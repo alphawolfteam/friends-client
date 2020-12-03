@@ -12,7 +12,7 @@ const AppBarComponent = () => {
     <AppBar position="static" className={classes.root}>
       <Toolbar>
         <Typography variant="h6" className={classes.username}>
-          {user.name.firstName} {user.name.lastName}
+          שלום {user.name.firstName} {user.name.lastName}
         </Typography>
         <ReactLogo className={classes.logo} />
       </Toolbar>

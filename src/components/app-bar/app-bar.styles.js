@@ -4,7 +4,7 @@ import config from '../shared/config';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'white',
-    boxShadow: `0px 2px 3px 0px ${config.style.mainColor}`,
+    boxShadow: `0 2px 3px 0 ${config.style.mainColor}`,
   },
   logo: {
     width: '20%',

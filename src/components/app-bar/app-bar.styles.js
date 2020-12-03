@@ -4,12 +4,18 @@ import config from '../shared/config';
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'white',
-    direction: 'rtl',
-    boxShadow: `0px 2px 3px 0px ${config.style.mainColor}`
+    boxShadow: `0px 2px 3px 0px ${config.style.mainColor}`,
   },
   logo: {
     width: '20%',
-    height: '15%'
+    height: '15%',
+    paddingRight: '1%',
+    paddingBottom: '0.5%'
+  },
+  username: {
+    color: config.style.mainColor,
+    fontFamily: config.style.fontFamily,
+    flexGrow: 1,
   }
 }));
 

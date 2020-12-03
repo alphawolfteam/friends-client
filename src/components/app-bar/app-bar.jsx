@@ -1,14 +1,21 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import React, { useContext } from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { ReactComponent as ReactLogo } from '../../images/logo.svg';
+import { userContext } from '../shared/context';
 import useStyles from "./app-bar.styles";
 
 const AppBarComponent = () => {
   const classes = useStyles();
+  const user = useContext(userContext);
 
   return (
     <AppBar position="static" className={classes.root}>
-      <ReactLogo className={classes.logo} />
+      <Toolbar>
+        <Typography variant="h6" className={classes.username}>
+          {user.name.firstName} {user.name.lastName}
+        </Typography>
+        <ReactLogo className={classes.logo} />
+      </Toolbar>
     </AppBar>
   );
 }

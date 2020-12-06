@@ -8,12 +8,16 @@ const GroupsList = ({ groups }) => {
 
   const handleSelectGroup = (selectedGroup) => {
     setSelectedGroup(selectedGroup);
-  }
+  };
 
   return (
     <>
       {groups.map((group) => (
-        <GroupRaw onClick={() => handleSelectGroup(group)} id={group._id} group={group} />
+        <GroupRaw
+          onClick={() => handleSelectGroup(group)}
+          key={group._id}
+          group={group}
+        />
       ))}
     </>
   );

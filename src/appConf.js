@@ -4,10 +4,10 @@ const config = {
     fontFamily: "Segoe UI",
   },
   // TODO: verify roles
-  rolesEnum: [
-    { role: "manager", value: 0 },
-    { role: "friend", value: 1 },
-  ],
+  rolesEnum: {
+    MANAGER: 0,
+    FRIEND: 1,
+  },
 };
 
 export default config;

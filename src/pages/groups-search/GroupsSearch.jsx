@@ -8,6 +8,9 @@ import GroupsService from "../../services/GroupsService";
 import useStyles from "./GroupsSearch.style";
 import loadingAnimation from "../../images/loading.gif";
 import GroupsList from "../../components/groups-list/GroupsList";
+import config from "../../appConf";
+
+const rolesEnum = config.rolesEnum;
 
 const GroupsSearch = () => {
   const classes = useStyles();
@@ -19,7 +22,6 @@ const GroupsSearch = () => {
   const initPrivateGroups = useCallback(() => {
     GroupsService.getPrivateGroups()
       .then((privateGroups) => {
-        console.log("here");
         setPrivateGroups(privateGroups);
       })
       // TODO: Error handler
@@ -51,14 +53,18 @@ const GroupsSearch = () => {
     const filteredOwnedGroups = [],
       filteredUnownedGroups = [];
     filteredGroups.forEach((filteredGroup) => {
-      console.log(filteredGroup)
-      // TODO: Check role
-      if (filteredGroup.users.map((user) => user.id).includes(user._id)) {
-        filteredOwnedGroups.push(filteredGroup);
-      } else {
-        filteredUnownedGroups.push(filteredGroup);
+      let owned = false;
+      for (const groupUser of filteredGroup.users) {
+        if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
+          owned = true;
+          break;
+        }
       }
+      owned
+        ? filteredOwnedGroups.push(filteredGroup)
+        : filteredUnownedGroups.push(filteredGroup);
     });
+
     return [...filteredOwnedGroups, ...filteredUnownedGroups];
   };
 

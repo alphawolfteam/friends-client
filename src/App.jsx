@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AppBarComponent from './components/app-bar/app-bar';
 import useStyles from "./App.styles";
-import { userContext } from './components/shared/context';
+import { userContext } from './stores/userStore';
 
 const App = () => {
   const classes = useStyles();
@@ -35,7 +35,9 @@ const App = () => {
   }, []);
 
   return (<>
-    { user &&
+    {
+     // TODO: Add router
+     user &&
       <div className={classes.root}>
         <userContext.Provider value={user}>
           <AppBarComponent />

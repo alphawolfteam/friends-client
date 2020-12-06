@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { ReactComponent as ReactLogo } from '../../images/logo.svg';
-import { userContext } from '../shared/context';
+import { userContext } from '../../stores/userStore';
 import useStyles from "./app-bar.styles";
 
 const AppBarComponent = () => {

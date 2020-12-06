@@ -43,15 +43,15 @@ const App = () => {
         <div className={classes.app}>
           <userContext.Provider value={user}>
             <AppBarComponent />
+            <div>
+              <Switch>
+                <Route path="/">
+                  <GroupsSearch />
+                </Route>
+                <Redirect to="/" />
+              </Switch>
+            </div>
           </userContext.Provider>
-          <div>
-            <Switch>
-              <Route path="/">
-                <GroupsSearch />
-              </Route>
-              <Redirect to="/" />
-            </Switch>
-          </div>
         </div>
       </Router>
     );

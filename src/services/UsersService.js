@@ -4,7 +4,7 @@
 class UsersService {
   static async getAuthUser() {
     // TODO: get current user
-    // const { data } = await axios.get('/currentUser');
+    // const { data } = await axios.get('/users/currentUser');
 
     // return data;
     return {

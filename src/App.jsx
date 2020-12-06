@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import AppBarComponent from "./components/app-bar/AppBar";
 import {
   BrowserRouter as Router,
@@ -7,10 +7,10 @@ import {
   Redirect,
 } from "react-router-dom";
 import GroupsSearch from "./pages/groups-search/GroupsSearch";
-import UserService from "./services/UserService";
+import UsersService from "./services/UsersService";
 import loadingAnimation from "./images/loading.gif";
 import unitLogo from "./images/unitLogo.svg";
-import { userContext } from './stores/userStore';
+import { userContext } from "./stores/userStore";
 import useStyles from "./App.styles";
 
 const App = () => {
@@ -19,23 +19,23 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(undefined);
 
-  const initAuthUser = () => {
-    UserService.getAuthUser()
+  const initAuthUser = useCallback(() => {
+    UsersService.getAuthUser()
       .then((currentUser) => {
         setUser(currentUser);
         setIsAuthenticated(true);
       })
-      .catch((err) => setIsAuthenticated(false))
+      .catch(() => setIsAuthenticated(false))
       .then(() => {
         setTimeout(() => {
           setIsLoading(false);
         }, 2000);
       });
-  };
+  }, []);
 
   useEffect(() => {
     initAuthUser();
-  }, []);
+  }, [initAuthUser]);
 
   const renderFriends = () => {
     return (
@@ -60,10 +60,10 @@ const App = () => {
   const renderLoading = () => {
     return (
       <div className={classes.loading}>
-        <img src={loadingAnimation} alt="loading"/>
+        <img src={loadingAnimation} alt="loading" />
         <div className={classes.poweredByDiv}>
           <span className={classes.poweredByText}>powered by</span>
-          <img src={unitLogo} className={classes.unitLogo} alt="unitLogo"/>
+          <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
         </div>
       </div>
     );

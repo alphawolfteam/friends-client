@@ -1,0 +1,22 @@
+import React, { useState } from "react";
+import GroupRaw from "../group-raw/GroupRaw";
+import useStyles from "./GroupsList.styles";
+
+const GroupsList = ({ groups }) => {
+  const classes = useStyles();
+  const [selectedGroup, setSelectedGroup] = useState(undefined);
+
+  const handleSelectGroup = (selectedGroup) => {
+    setSelectedGroup(selectedGroup);
+  }
+
+  return (
+    <>
+      {groups.map((group) => (
+        <GroupRaw onClick={() => handleSelectGroup(group)} id={group._id} group={group} />
+      ))}
+    </>
+  );
+};
+
+export default GroupsList;

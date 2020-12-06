@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import config from '../../appConf';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
     boxShadow: `0 2px 3px 0 ${config.style.mainColor}`,
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: config.style.mainColor,
     fontFamily: config.style.fontFamily,
     flexGrow: 1,
+    fontSize: '1.5vw'
   }
 }));
 

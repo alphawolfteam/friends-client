@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import config from "./appConf";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   app: {
     backgroundColor: "#F9FAFB",
     height: "calc(100vh - 16px)",

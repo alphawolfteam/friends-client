@@ -7,9 +7,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import GroupsSearch from "./pages/groups-search/GroupsSearch";
-import UsersService from "./services/UsersService";
+import UserService from "./services/UserService";
 import loadingAnimation from "./images/loading.gif";
-import unitsLogo from "./images/unitLogo.svg";
+import unitLogo from "./images/unitLogo.svg";
 import { userContext } from './stores/userStore';
 import useStyles from "./App.styles";
 
@@ -20,7 +20,7 @@ const App = () => {
   const [user, setUser] = useState(undefined);
 
   const initAuthUser = () => {
-    UsersService.getAuthUser()
+    UserService.getAuthUser()
       .then((currentUser) => {
         setUser(currentUser);
         setIsAuthenticated(true);
@@ -40,7 +40,7 @@ const App = () => {
   const renderFriends = () => {
     return (
       <Router>
-        <div className={classes.root}>
+        <div className={classes.app}>
           <userContext.Provider value={user}>
             <AppBarComponent />
           </userContext.Provider>
@@ -59,11 +59,11 @@ const App = () => {
 
   const renderLoading = () => {
     return (
-      <div>
+      <div className={classes.loading}>
         <img src={loadingAnimation} alt="loading"/>
-        <div>
-          <span>powered by</span>
-          <img src={unitsLogo} alt="unitLogo"/>
+        <div className={classes.poweredByDiv}>
+          <span className={classes.poweredByText}>powered by</span>
+          <img src={unitLogo} className={classes.unitLogo} alt="unitLogo"/>
         </div>
       </div>
     );

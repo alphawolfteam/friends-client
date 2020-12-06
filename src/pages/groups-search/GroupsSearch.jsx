@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { privateGroupsContext, publicGroupsContext } from '../../stores/groupsStore';
-import useStyles from "./GroupsSearch.style.styles";
+import useStyles from "./GroupsSearch.style";
 
 const GroupsSearch = () => {
   const classes = useStyles();

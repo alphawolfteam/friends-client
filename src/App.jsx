@@ -1,51 +1,83 @@
-import React, { useEffect, useState } from 'react';
-import AppBarComponent from './components/app-bar/app-bar';
-import useStyles from "./App.styles";
+import React, { useState, useEffect } from "react";
+import AppBarComponent from "./components/app-bar/AppBar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import GroupsSearch from "./pages/groups-search/GroupsSearch";
+import UsersService from "./services/UsersService";
+import loadingAnimation from "./images/loading.gif";
+import unitsLogo from "./images/unitLogo.svg";
 import { userContext } from './stores/userStore';
+import useStyles from "./App.styles";
 
 const App = () => {
   const classes = useStyles();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(undefined);
 
-  const getUser = async () => {
-    // TODO: get current user
-    setUser({
-      address: "רחוב הממתקים 34",
-      adfsId: "t23458789@jello.com",
-      currentUnit: "nitro unit",
-      dischargeDay: "2022-11-30T22:00:00.000Z",
-      displayName: "t23458789@jello.com",
-      entityType: "digimon",
-      exp: 1607005903,
-      genesisId: "5e5688324203fc40043591aa",
-      iat: 1607002303,
-      id: "5e5688324203fc40043591aa",
-      job: "רוצח",
-      jti: "57c79308-5e5e-4205-8d69-c59025dc70fd",
-      name: { firstName: "נייקי", lastName: "אדידס" },
-      phoneNumbers: ["026666998", "052-1234565"],
-      photo: null,
-      provider: "Genesis",
-      rank: "mega"
-    });
+  const initAuthUser = () => {
+    UsersService.getAuthUser()
+      .then((currentUser) => {
+        setUser(currentUser);
+        setIsAuthenticated(true);
+      })
+      .catch((err) => setIsAuthenticated(false))
+      .then(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      });
   };
 
   useEffect(() => {
-    getUser();
+    initAuthUser();
   }, []);
 
-  return (<>
-    {
-     // TODO: Add router
-     user &&
-      <div className={classes.root}>
-        <userContext.Provider value={user}>
-          <AppBarComponent />
-        </userContext.Provider>
+  const renderFriends = () => {
+    return (
+      <Router>
+        <div className={classes.root}>
+          <userContext.Provider value={user}>
+            <AppBarComponent />
+          </userContext.Provider>
+          <div>
+            <Switch>
+              <Route path="/">
+                <GroupsSearch />
+              </Route>
+              <Redirect to="/" />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  };
+
+  const renderLoading = () => {
+    return (
+      <div>
+        <img src={loadingAnimation} alt="loading"/>
+        <div>
+          <span>powered by</span>
+          <img src={unitsLogo} alt="unitLogo"/>
+        </div>
       </div>
-    }
-  </>
-  );
-}
+    );
+  };
+
+  const renderUnauthorized = () => {
+    return <span>unauthorized</span>;
+  };
+
+  return isLoading
+    ? renderLoading()
+    : isAuthenticated
+    ? renderFriends()
+    : renderUnauthorized();
+};
 
 export default App;

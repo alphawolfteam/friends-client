@@ -1,51 +1,114 @@
-import React, { useEffect, useState } from 'react';
-import AppBarComponent from './components/app-bar/app-bar';
+import React, { useState, useCallback, useEffect } from "react";
+import AppBarComponent from "./components/app-bar/AppBar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import {
+  privateGroupsContext,
+  publicGroupsContext,
+} from "./stores/groupsStore";
+import GroupsSearch from "./pages/groups-search/GroupsSearch";
+import UsersService from "./services/UsersService";
+import loadingAnimation from "./images/loading.gif";
+import unitLogo from "./images/unitLogo.svg";
+import { userContext } from "./stores/userStore";
 import useStyles from "./App.styles";
-import { userContext } from './stores/userStore';
+import GroupsService from "./services/GroupsService";
 
 const App = () => {
   const classes = useStyles();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(undefined);
+  const [privateGroups, setPrivateGroups] = useState(undefined);
+  const [publicGroups, setPublicGroups] = useState(undefined);
 
-  const getUser = async () => {
-    // TODO: get current user
-    setUser({
-      address: "רחוב הממתקים 34",
-      adfsId: "t23458789@jello.com",
-      currentUnit: "nitro unit",
-      dischargeDay: "2022-11-30T22:00:00.000Z",
-      displayName: "t23458789@jello.com",
-      entityType: "digimon",
-      exp: 1607005903,
-      genesisId: "5e5688324203fc40043591aa",
-      iat: 1607002303,
-      id: "5e5688324203fc40043591aa",
-      job: "רוצח",
-      jti: "57c79308-5e5e-4205-8d69-c59025dc70fd",
-      name: { firstName: "נייקי", lastName: "אדידס" },
-      phoneNumbers: ["026666998", "052-1234565"],
-      photo: null,
-      provider: "Genesis",
-      rank: "mega"
-    });
-  };
-
-  useEffect(() => {
-    getUser();
+  const initAuthUser = useCallback(() => {
+    UsersService.getAuthUser()
+      .then((currentUser) => {
+        setUser(currentUser);
+        setIsAuthenticated(true);
+      })
+      .catch(() => setIsAuthenticated(false))
+      .then(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      });
   }, []);
 
-  return (<>
-    {
-     // TODO: Add router
-     user &&
-      <div className={classes.root}>
-        <userContext.Provider value={user}>
-          <AppBarComponent />
-        </userContext.Provider>
+  const initPrivateGroups = useCallback(() => {
+    GroupsService.getPrivateGroups()
+      .then((privateGroups) => {
+        setPrivateGroups(privateGroups);
+      })
+      // TODO: Error handler
+      .catch((err) => console.log(err));
+  }, []);
+
+  const initPublicGroups = useCallback(() => {
+    GroupsService.getPublicGroups()
+      .then((publicGroups) => {
+        setPublicGroups(publicGroups);
+      })
+      // TODO: Error handler
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    initAuthUser();
+    initPrivateGroups();
+    initPublicGroups();
+  }, [initAuthUser, initPrivateGroups, initPublicGroups]);
+
+  const renderFriends = () => {
+    return (
+      <Router>
+        <div className={classes.app}>
+          <userContext.Provider value={user}>
+            <AppBarComponent />
+            <div>
+              <Switch>
+                <Route path="/">
+                  <privateGroupsContext.Provider value={privateGroups}>
+                    <publicGroupsContext.Provider value={publicGroups}>
+                      <GroupsSearch />
+                    </publicGroupsContext.Provider>
+                  </privateGroupsContext.Provider>
+                </Route>
+                <Redirect to="/" />
+              </Switch>
+            </div>
+          </userContext.Provider>
+        </div>
+      </Router>
+    );
+  };
+
+  const renderLoading = () => {
+    return (
+      <div className={classes.loading}>
+        <img src={loadingAnimation} alt="loading" />
+        <div className={classes.poweredByDiv}>
+          <span className={classes.poweredByText}>powered by</span>
+          <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
+        </div>
       </div>
-    }
-  </>
-  );
-}
+    );
+  };
+
+  const renderUnauthorized = () => {
+    return <span>unauthorized</span>;
+  };
+
+  return isLoading
+    ? renderLoading()
+    : isAuthenticated
+    ? renderFriends()
+    : renderUnauthorized();
+};
 
 export default App;

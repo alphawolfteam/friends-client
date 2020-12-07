@@ -4,7 +4,7 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
-    boxShadow: `0 2px 3px 0 ${config.style.mainColor}`,
+    boxShadow: `0 0.2vw 0.3vw 0 ${config.style.mainColor}`,
   },
   logo: {
     width: '20%',

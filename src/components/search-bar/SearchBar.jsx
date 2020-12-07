@@ -1,5 +1,5 @@
 import React from "react";
-import { InputBase } from "@material-ui/core";
+import { InputBase, Fab } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import useStyles from "./SearchBar.styles";
 
@@ -21,9 +21,9 @@ const SearchBar = ({ setSearchValue }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.searchIcon}>
-        <Search onClick={() => handleOnClick()} />
-      </div>
+      <Fab className={classes.searchIcon} onClick={() => handleOnClick()}>
+        <Search />
+      </Fab>
       <InputBase
         id="searchInput"
         placeholder="חפש..."

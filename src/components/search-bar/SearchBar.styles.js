@@ -13,11 +13,19 @@ const useStyles = makeStyles((theme) => ({
   },
   searchIcon: {
     color: "white",
+    backgroundColor: config.style.mainColor,
+    boxShadow: "none",
+    width: "8%",
+    height: "50%",
     marginLeft: "1%",
+    "&:hover": {
+      color: config.style.mainColor,
+      backgroundColor: "white",
+    },
   },
   input: {
     padding: theme.spacing(1, 1, 1, 0),
-    fontSize: '1vw',
+    fontSize: "1vw",
     color: "white",
     fontFamily: config.style.fontFamily,
     fontWeight: "500",

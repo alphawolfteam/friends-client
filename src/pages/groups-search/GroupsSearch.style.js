@@ -29,6 +29,15 @@ const useStyles = makeStyles(() => ({
     fontWeight: "500",
     color: config.style.mainColor,
   },
+  addButton: {
+    marginLeft: "7%",
+    alignSelf: "start",
+    backgroundColor: config.style.mainColor,
+    color: "white",
+    "&:hover": {
+      color: config.style.mainColor,
+    },
+  },
 }));
 
 export default useStyles;

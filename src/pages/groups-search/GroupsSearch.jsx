@@ -22,39 +22,31 @@ const isIncludesInSentence = (sentence, portion) => {
 };
 
 const getFilteredGroups = (groups, searchValue) => {
-  return searchValue !== ""
-    ? groups.filter(
-        (privateGroup) =>
-          isIncludesInSentence(privateGroup.name, searchValue) ||
-          privateGroup.tags.filter((tag) =>
-            isIncludesInSentence(tag, searchValue)
-          ).length > 0
-      )
-    : groups;
+  return groups.filter(
+    (privateGroup) =>
+      isIncludesInSentence(privateGroup.name, searchValue) ||
+      privateGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue))
+        .length > 0
+  );
 };
 
-const getFilteredPrivateGroups = (privateGroups, searchValue, user) => {
-  const filteredGroups = getFilteredGroups(privateGroups, searchValue);
-  const filteredOwnedGroups = [],
-    filteredUnownedGroups = [];
-  filteredGroups.forEach((filteredGroup) => {
+const getSortedPrivateGroups = (privateGroups, user) => {
+  const ownedGroups = [],
+    unownedGroups = [];
+  privateGroups.forEach((group) => {
     let owned = false;
-    for (const groupUser of filteredGroup.users) {
+    for (const groupUser of group.users) {
       if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
         owned = true;
         break;
       }
     }
     owned
-      ? filteredOwnedGroups.push(filteredGroup)
-      : filteredUnownedGroups.push(filteredGroup);
+      ? ownedGroups.push(group)
+      : unownedGroups.push(group);
   });
 
-  return [...filteredOwnedGroups, ...filteredUnownedGroups];
-};
-
-const getFilteredPublicGroups = (publicGroups, searchValue) => {
-  return searchValue !== "" ? getFilteredGroups(publicGroups, searchValue) : [];
+  return [...ownedGroups, ...unownedGroups];
 };
 
 const GroupsSearch = () => {
@@ -79,13 +71,22 @@ const GroupsSearch = () => {
   };
 
   const filteredPrivateGroups = useMemo(
-    () => getFilteredPrivateGroups(privateGroups, searchValue, user),
-    [privateGroups, searchValue, user]
+    () =>
+      searchValue !== ""
+        ? getFilteredGroups(privateGroups, searchValue)
+        : privateGroups,
+    [privateGroups, searchValue]
   );
 
   const filteredPublicGroups = useMemo(
-    () => getFilteredPublicGroups(publicGroups, searchValue),
+    () =>
+      searchValue !== "" ? getFilteredGroups(publicGroups, searchValue) : [],
     [publicGroups, searchValue]
+  );
+
+  const sortedPrivateGroups = useMemo(
+    () => getSortedPrivateGroups(filteredPrivateGroups, user),
+    [filteredPrivateGroups, user]
   );
 
   return (
@@ -96,7 +97,7 @@ const GroupsSearch = () => {
         <div className={classes.root}>
           <SearchBar setSearchValue={setSearchValue} />
           <ScrollableGroupsResult
-            privateGroups={filteredPrivateGroups}
+            privateGroups={sortedPrivateGroups}
             publicGroups={filteredPublicGroups}
           />
           <Tooltip title="הוסף קבוצה חדשה">

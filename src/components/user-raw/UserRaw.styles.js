@@ -26,9 +26,11 @@ const useStyles = makeStyles(() => ({
   userName: {
     fontFamily: config.style.fontFamily,
     fontWeight: "700",
+    boxShadow: `0 0.2vw 0.3vw 0 grey`,
   },
   description: {
     fontFamily: config.style.fontFamily,
+    wordBreak: "break-all",
   },
 }));
 

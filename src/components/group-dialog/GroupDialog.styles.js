@@ -29,6 +29,9 @@ const useStyles = makeStyles(() => ({
     backgroundColor: config.style.mainColor,
     color: "white",
     fontFamily: config.style.fontFamily,
+    "&:hover": {
+      color: config.style.mainColor,
+    },
   },
 }));
 

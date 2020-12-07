@@ -14,21 +14,25 @@ class GroupsService {
             role: 0,
             id: "5e5688324203fc40043591aa",
             name: { firstName: "נייקי", lastName: "אדידס" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 0,
             id: "2222",
             name: { firstName: "ישראל", lastName: "ישראלי" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "3333",
             name: { firstName: "חיים", lastName: "כהן" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 2,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
         ],
         lastModified: new Date(),
@@ -50,11 +54,13 @@ class GroupsService {
             role: 0,
             id: "5555",
             name: { firstName: "איציק", lastName: "כהן" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "6666",
             name: { firstName: "ישראל", lastName: "אהרוני" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
         ],
         lastModified: new Date(),
@@ -85,21 +91,25 @@ class GroupsService {
             role: 1,
             id: "5e5688324203fc40043591aa",
             name: { firstName: "נייקי", lastName: "אדידס" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 0,
             id: "2222",
             name: { firstName: "ישראל", lastName: "ישראלי" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "3333",
             name: { firstName: "חיים", lastName: "כהן" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
         ],
         lastModified: new Date(),
@@ -121,16 +131,19 @@ class GroupsService {
             role: 0,
             id: "5e5688324203fc40043591aa",
             name: { firstName: "נייקי", lastName: "אדידס" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "3333",
             name: { firstName: "חיים", lastName: "כהן" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
         ],
         lastModified: new Date(),
@@ -152,21 +165,25 @@ class GroupsService {
             role: 1,
             id: "5e5688324203fc40043591aa",
             name: { firstName: "נייקי", lastName: "אדידס" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 0,
             id: "2222",
             name: { firstName: "ישראל", lastName: "ישראלי" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 1,
             id: "3333",
             name: { firstName: "חיים", lastName: "כהן" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
           {
             role: 0,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
+            description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
         ],
         lastModified: new Date(),

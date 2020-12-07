@@ -9,9 +9,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginRight: theme.spacing(15),
     marginLeft: theme.spacing(15),
-    color: config.style.mainColor,
     fontFamily: config.style.fontFamily,
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: "2vw",
   },
   closeButton: {
@@ -23,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
   dialogContent: {
     padding: theme.spacing(2),
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
-    alignItems: "stretch",
+    alignItems: "center",
   },
   dialogActions: {
     margin: 0,

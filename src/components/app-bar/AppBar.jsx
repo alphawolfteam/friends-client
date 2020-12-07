@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { ReactComponent as ReactLogo } from '../../images/logo.svg';
-import { userContext } from '../../stores/userStore';
+import React, { useContext } from "react";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { ReactComponent as ReactLogo } from "../../images/logo.svg";
+import { userContext } from "../../stores/userStore";
 import useStyles from "./AppBar.styles";
 
 const AppBarComponent = () => {
@@ -18,6 +18,6 @@ const AppBarComponent = () => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default AppBarComponent;

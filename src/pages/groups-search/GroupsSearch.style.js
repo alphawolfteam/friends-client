@@ -18,8 +18,11 @@ const useStyles = makeStyles(() => ({
   scrollBar: {
     marginTop: "1%",
     width: "70vw",
-    height: "70vh",
+    height: "65vh",
+  },
+  scrollBarContent: {
     display: "flex",
+    flexDirection: "column",
   },
   message: {
     marginTop: "2%",

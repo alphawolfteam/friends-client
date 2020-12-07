@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import {
   privateGroupsContext,
-  // publicGroupsContext,
+  publicGroupsContext,
 } from "../../stores/groupsStore";
 import { userContext } from "../../stores/userStore";
 import useStyles from "./GroupsSearch.style";
 import loadingAnimation from "../../images/loading.gif";
 import GroupsList from "../../components/groups-list/GroupsList";
+import TextDivider from "../../components/text-divider/TextDivider";
 import { Typography, Fab, Tooltip } from "@material-ui/core";
 import SearchBar from "../../components/search-bar/SearchBar";
 import Scrollbar from "react-scrollbars-custom";
@@ -54,6 +55,10 @@ const getFilteredPrivateGroups = (privateGroups, searchValue, user) => {
   return [...filteredOwnedGroups, ...filteredUnownedGroups];
 };
 
+const getFilteredPublicGroups = (publicGroups, searchValue) => {
+  return searchValue !== "" ? getFilteredGroups(publicGroups, searchValue) : [];
+};
+
 const GroupsSearch = () => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +66,7 @@ const GroupsSearch = () => {
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const user = useContext(userContext);
   const privateGroups = useContext(privateGroupsContext);
+  const publicGroups = useContext(publicGroupsContext);
 
   useEffect(() => {
     setIsLoading(privateGroups === undefined);
@@ -79,6 +85,11 @@ const GroupsSearch = () => {
     [privateGroups, searchValue, user]
   );
 
+  const filteredPublicGroups = useMemo(
+    () => getFilteredPublicGroups(publicGroups, searchValue),
+    [publicGroups, searchValue]
+  );
+
   return (
     <>
       {isLoading ? (
@@ -88,8 +99,22 @@ const GroupsSearch = () => {
           <SearchBar setSearchValue={setSearchValue} />
           <div className={classes.scrollBar}>
             <Scrollbar>
-              {filteredPrivateGroups.length > 0 ? (
-                <GroupsList groups={filteredPrivateGroups} />
+              {filteredPrivateGroups.length > 0 ||
+              filteredPublicGroups.length > 0 ? (
+                <div className={classes.scrollBarContent}>
+                  {filteredPrivateGroups.length > 0 && (
+                    <>
+                      <TextDivider text="הקבוצות שלי" />
+                      <GroupsList groups={filteredPrivateGroups} />
+                    </>
+                  )}
+                  {filteredPublicGroups.length > 0 && (
+                    <>
+                      <TextDivider text="קבוצות ציבוריות" />
+                      <GroupsList groups={filteredPublicGroups} />
+                    </>
+                  )}
+                </div>
               ) : (
                 <Typography className={classes.message}>
                   לא נמצאו אף קבוצות

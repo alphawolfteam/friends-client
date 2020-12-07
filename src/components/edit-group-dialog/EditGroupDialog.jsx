@@ -20,7 +20,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
 
   const handleDeleteGroup = () => {
     // TODO: Delete group
-    // TODO: Addensuring message
+    // TODO: Add ensuring message
     console.log("Delete group #id(", group._id, ")");
     onClose();
   };
@@ -30,7 +30,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
       title={<>title</>}
       content={
         <>
-          <DynamicUserInputFields object={newGroup} setObject={setNewGroup} />
+          <DynamicUserInputFields group={newGroup} setGroup={setNewGroup} />
         </>
       }
       actions={

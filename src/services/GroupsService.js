@@ -12,7 +12,7 @@ class GroupsService {
         users: [
           {
             role: 0,
-            id: "5e5688324203fc40043591aa",
+            id: "1111",
             name: { firstName: "נייקי", lastName: "אדידס" },
             description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
@@ -89,7 +89,7 @@ class GroupsService {
         users: [
           {
             role: 1,
-            id: "5e5688324203fc40043591aa",
+            id: "1111",
             name: { firstName: "נייקי", lastName: "אדידס" },
             description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
@@ -129,7 +129,7 @@ class GroupsService {
         users: [
           {
             role: 0,
-            id: "5e5688324203fc40043591aa",
+            id: "1111",
             name: { firstName: "נייקי", lastName: "אדידס" },
             description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },
@@ -163,7 +163,7 @@ class GroupsService {
         users: [
           {
             role: 1,
-            id: "5e5688324203fc40043591aa",
+            id: "1111",
             name: { firstName: "נייקי", lastName: "אדידס" },
             description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235'
           },

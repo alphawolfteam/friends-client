@@ -7,7 +7,7 @@ import { userContext } from "../../stores/userStore";
 import useStyles from "./GroupsSearch.style";
 import loadingAnimation from "../../images/loading.gif";
 import { Fab, Tooltip } from "@material-ui/core";
-import SearchBar from "../../components/search-bar/SearchBar";
+import GroupSearchBar from "../../components/group-search-bar/GroupSearchBar";
 import { Add } from "@material-ui/icons";
 import config from "../../appConf";
 import ScrollableGroupsResult from "../../components/scrollable-groups-result/ScrollableGroupsResult";
@@ -95,7 +95,7 @@ const GroupsSearch = () => {
         renderLoading()
       ) : (
         <div className={classes.root}>
-          <SearchBar setSearchValue={setSearchValue} />
+          <GroupSearchBar setSearchValue={setSearchValue} />
           <ScrollableGroupsResult
             privateGroups={sortedPrivateGroups}
             publicGroups={filteredPublicGroups}

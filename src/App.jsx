@@ -10,11 +10,11 @@ import {
   privateGroupsContext,
   publicGroupsContext,
 } from "./stores/groupsStore";
+import { userContext, usersListContext } from "./stores/userStore";
 import GroupsSearch from "./pages/groups-search/GroupsSearch";
 import UsersService from "./services/UsersService";
 import loadingAnimation from "./images/loading.gif";
 import unitLogo from "./images/unitLogo.svg";
-import { userContext } from "./stores/userStore";
 import useStyles from "./App.styles";
 import GroupsService from "./services/GroupsService";
 
@@ -25,6 +25,7 @@ const App = () => {
   const [user, setUser] = useState(undefined);
   const [privateGroups, setPrivateGroups] = useState(undefined);
   const [publicGroups, setPublicGroups] = useState(undefined);
+  const [usersList, setUsersList] = useState(undefined);
 
   const initAuthUser = useCallback(() => {
     UsersService.getAuthUser()
@@ -38,6 +39,15 @@ const App = () => {
           setIsLoading(false);
         }, 2000);
       });
+  }, []);
+
+  const initUsersList = useCallback(() => {
+    UsersService.getUsersList()
+      .then((usersList) => {
+        setUsersList(usersList);
+      })
+      // TODO: Error handler
+      .catch((err) => console.log(err));
   }, []);
 
   const initPrivateGroups = useCallback(() => {
@@ -62,7 +72,8 @@ const App = () => {
     initAuthUser();
     initPrivateGroups();
     initPublicGroups();
-  }, [initAuthUser, initPrivateGroups, initPublicGroups]);
+    initUsersList();
+  }, [initAuthUser, initPrivateGroups, initPublicGroups, initUsersList]);
 
   const renderFriends = () => {
     return (
@@ -75,7 +86,9 @@ const App = () => {
                 <Route path="/">
                   <privateGroupsContext.Provider value={privateGroups}>
                     <publicGroupsContext.Provider value={publicGroups}>
-                      <GroupsSearch />
+                      <usersListContext.Provider value={usersList}>
+                        <GroupsSearch />
+                      </usersListContext.Provider>
                     </publicGroupsContext.Provider>
                   </privateGroupsContext.Provider>
                 </Route>

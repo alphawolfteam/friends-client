@@ -1,51 +1,84 @@
-import React from "react";
-import { Delete, Add } from "@material-ui/icons";
-import { Button, Input } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Delete } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
 import useStyles from "./DynamicUserInputFields.styles";
+import UserRaw from "../user-raw/UserRaw";
+import config from "../../appConf";
+import UserSearchBar from "../user-search-bar/UserSearchBar";
 
-const DynamicUserInputFields = ({ object, setObject }) => {
+const rolesEnum = config.rolesEnum;
+
+const DynamicUserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
+  const [selectedUser, setSelectedUser] = useState(undefined);
 
-  const handleFieldChange = (event, index) => {
-    const target = event.target;
-    const value = target.value === "" ? undefined : target.value;
-    const values = [...object.users];
-    values[index] = { ...values[index], id: value };
-    setObject({ ...object, users: values });
+  useEffect(() => {
+    if (selectedUser) {
+      setGroup((prevValue) => {
+        return {
+          ...prevValue,
+          users: [
+            ...prevValue.users,
+            { ...selectedUser , role: rolesEnum.FRIEND },
+          ],
+        };
+      });
+    }
+  }, [setGroup, selectedUser]);
+
+  const handleRemoveUser = (index) => {
+    setGroup((prevValue) => {
+      const usersList = [...prevValue.users];
+      usersList.splice(index, 1);
+      return { ...prevValue, users: usersList };
+    });
   };
 
-  const handleAddFields = () => {
-    const values = object.users ? [...object.users] : [];
-    values.push({ id: undefined });
-    setObject({ ...object, users: values });
+  const handleChangeRole = (index, newRole) => {
+    setGroup((prevValue) => {
+      const usersList = [...prevValue.users];
+      usersList[index].role = newRole;
+      return { ...prevValue, users: usersList };
+    });
   };
 
-  const handleRemoveFields = (index) => {
-    const values = [...object.users];
-    values.splice(index, 1);
-    setObject({ ...object, users: values });
+  const isAManager = (user) => {
+    for (const groupUser of group.users) {
+      if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
+        return true;
+      }
+    }
+    return false;
   };
 
   return (
     <>
-      <Button className={classes.button} onClick={() => handleAddFields()}>
-        <Add />
-      </Button>
-      {object.users &&
-        object.users.map((user, index) => (
+      <UserSearchBar setSelectedUser={setSelectedUser} />
+      {group.users &&
+        group.users.map((user, index) => (
           <div key={index} className={classes.field}>
-            <Input
-              dir="rtl"
-              className={classes.textBox}
-              onChange={(event) => handleFieldChange(event, index)}
-              value={user.id}
-            />
+            <UserRaw user={user} />
             <Button
-              className={classes.button}
-              onClick={() => handleRemoveFields(index)}
+              className={classes.iconButton}
+              onClick={() => handleRemoveUser(index)}
             >
               <Delete />
             </Button>
+            {isAManager(user) ? (
+              <Button
+                className={classes.button}
+                onClick={() => handleChangeRole(index, rolesEnum.FRIEND)}
+              >
+                הסרה ממנהל
+              </Button>
+            ) : (
+              <Button
+                className={classes.button}
+                onClick={() => handleChangeRole(index, rolesEnum.MANAGER)}
+              >
+                הפיכה למנהל
+              </Button>
+            )}
           </div>
         ))}
     </>

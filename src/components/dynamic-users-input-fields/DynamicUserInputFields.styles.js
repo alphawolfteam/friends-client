@@ -7,9 +7,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     fontFamily: config.style.fontFamily,
   },
-  button: {
+  iconButton: {
     color: config.style.mainColor,
     fontWeight: "800",
+  },
+  button: {
+    backgroundColor: config.style.mainColor,
+    color: "white",
+    fontFamily: config.style.fontFamily,
+    "&:hover": {
+      color: config.style.mainColor,
+    },
   },
   textBox: {
     width: "100%",

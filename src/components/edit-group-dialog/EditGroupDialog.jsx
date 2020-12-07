@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./EditGroupDialog.styles";
 import { Button } from "@material-ui/core";
 import DialogTemplate from "../dialog-template/DialogTemplate";
+import DynamicUserInputFields from "../dynamic-users-input-fields/DynamicUserInputFields";
 
 const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
+  const [newGroup, setNewGroup] = useState({ ...group });
+
+  // useEffect(() => {
+  //   console.log("newGroup.users", newGroup.users);
+  // }, [newGroup]);
 
   const handleSave = () => {
     // TODO: Save editing
@@ -21,14 +27,10 @@ const EditGroupDialog = ({ group, open, onClose }) => {
 
   return (
     <DialogTemplate
-      title={
-        <>
-          <h1>title</h1>
-        </>
-      }
+      title={<>title</>}
       content={
         <>
-          <h1>content</h1>
+          <DynamicUserInputFields object={newGroup} setObject={setNewGroup} />
         </>
       }
       actions={

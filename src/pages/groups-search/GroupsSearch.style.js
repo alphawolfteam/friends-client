@@ -1,8 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
-import config from '../../appConf';
+import config from "../../appConf";
 
 const useStyles = makeStyles(() => ({
   root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
   loading: {
     display: "flex",
@@ -10,6 +14,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     height: "100vh",
     width: "100vw",
+  },
+  scrollBar: {
+    marginTop: "1%",
+    width: "70vw",
+    height: "70vh",
+    display: "flex",
+  },
+  message: {
+    marginTop: "2%",
+    fontFamily: config.style.fontFamily,
+    fontSize: "1.5vw",
+    textAlign: "center",
+    fontWeight: "500",
+    color: config.style.mainColor,
   },
 }));
 

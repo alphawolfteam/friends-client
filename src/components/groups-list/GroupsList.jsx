@@ -11,7 +11,7 @@ const GroupsList = ({ groups }) => {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       {groups.map((group) => (
         <GroupRaw
           onClick={() => handleSelectGroup(group)}
@@ -19,7 +19,7 @@ const GroupsList = ({ groups }) => {
           group={group}
         />
       ))}
-    </>
+    </div>
   );
 };
 

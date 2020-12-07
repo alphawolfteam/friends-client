@@ -2,6 +2,47 @@
 // import axios from "axios";
 
 class GroupsService {
+  static async getPublicGroups() {
+    return [
+      {
+        name: "סגני דולפין",
+        description: "הסגנים של דולפין",
+        tags: ["קצונה"],
+        type: "public",
+        users: [
+          {
+            role: 0,
+            id: "5e5688324203fc40043591aa",
+            name: { firstName: "נייקי", lastName: "אדידס" },
+          },
+          {
+            role: 0,
+            id: "2222",
+            name: { firstName: "ישראל", lastName: "ישראלי" },
+          },
+          {
+            role: 1,
+            id: "3333",
+            name: { firstName: "חיים", lastName: "כהן" },
+          },
+          {
+            role: 2,
+            id: "4444",
+            name: { firstName: "עומר", lastName: "אדם" },
+          },
+        ],
+        lastModified: new Date(),
+        createdAt: new Date(),
+        modifiedBy: "5e5688324203fc40043591aa",
+        exchangeAddress: "",
+        externalSystems: {},
+        createdBy: "5e5688324203fc40043591aa",
+        icon: undefined,
+        _id: "1",
+      }
+    ]
+  }
+
   static async getPrivateGroups() {
     // TODO: get private groups
     // const { data } = await axios.get('/groups');

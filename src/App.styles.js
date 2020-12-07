@@ -3,7 +3,7 @@ import config from "./appConf";
 
 const useStyles = makeStyles(() => ({
   app: {
-    backgroundColor: "#F9FAFB",
+    backgroundColor: config.style.backgroundColor,
     height: "calc(100vh - 16px)",
   },
   loading: {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GroupDialog from "../group-dialog/GroupDialog";
 import GroupRaw from "../group-raw/GroupRaw";
 import useStyles from "./GroupsList.styles";
 
@@ -6,20 +7,25 @@ const GroupsList = ({ groups }) => {
   const classes = useStyles();
   const [selectedGroup, setSelectedGroup] = useState(undefined);
 
-  const handleSelectGroup = (selectedGroup) => {
-    setSelectedGroup(selectedGroup);
-  };
-
   return (
-    <div className={classes.root}>
-      {groups.map((group) => (
-        <GroupRaw
-          onClick={() => handleSelectGroup(group)}
+    <>
+      <div className={classes.root}>
+        {groups.map((group) => (
+          <GroupRaw
           key={group._id}
           group={group}
+          setSelectedGroup={setSelectedGroup}
+          />
+        ))}
+      </div>
+      {selectedGroup && (
+        <GroupDialog
+          group={selectedGroup}
+          open={selectedGroup !== undefined}
+          onClose={() => setSelectedGroup(undefined)}
         />
-      ))}
-    </div>
+      )}
+    </>
   );
 };
 

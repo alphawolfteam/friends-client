@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     margin: "1%",
     width: "70%",
     height: "50%",
+    border: `0.1vw solid ${config.style.mainColor}`,
   },
   cardContent: {
     padding: "0.5%",
@@ -74,9 +75,6 @@ const useStyles = makeStyles(() => ({
     top: "50%",
     left: "50%",
     transform: "translate( -50%, -50%)",
-  },
-  lock: {
-    color: config.style.mainColor,
   },
 }));
 

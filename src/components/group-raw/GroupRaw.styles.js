@@ -28,15 +28,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
   },
-  label: {
-    margin: "0.5%",
-    border: `0.1vw solid ${config.style.mainColor}`,
-    backgroundColor: "white",
-    color: config.style.mainColor,
-    fontFamily: config.style.fontFamily,
-    fontWeight: "700",
-    fontSize: "1vw",
-  },
   info: {
     display: "flex",
     flexDirection: "column",

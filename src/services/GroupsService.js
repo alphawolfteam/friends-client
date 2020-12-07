@@ -38,7 +38,33 @@ class GroupsService {
         externalSystems: {},
         createdBy: "5e5688324203fc40043591aa",
         icon: undefined,
-        _id: "1",
+        _id: "4",
+      },
+      {
+        name: "סרני דולפין",
+        description: "הסגנים של דולפין",
+        tags: ["קצונה"],
+        type: "public",
+        users: [
+          {
+            role: 0,
+            id: "5555",
+            name: { firstName: "איציק", lastName: "כהן" },
+          },
+          {
+            role: 1,
+            id: "6666",
+            name: { firstName: "ישראל", lastName: "אהרוני" },
+          },
+        ],
+        lastModified: new Date(),
+        createdAt: new Date(),
+        modifiedBy: "5e5688324203fc40043591aa",
+        exchangeAddress: "",
+        externalSystems: {},
+        createdBy: "5e5688324203fc40043591aa",
+        icon: undefined,
+        _id: "5",
       }
     ]
   }
@@ -71,7 +97,7 @@ class GroupsService {
             name: { firstName: "חיים", lastName: "כהן" },
           },
           {
-            role: 2,
+            role: 1,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
           },
@@ -102,7 +128,7 @@ class GroupsService {
             name: { firstName: "חיים", lastName: "כהן" },
           },
           {
-            role: 2,
+            role: 1,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
           },
@@ -138,7 +164,7 @@ class GroupsService {
             name: { firstName: "חיים", lastName: "כהן" },
           },
           {
-            role: 2,
+            role: 0,
             id: "4444",
             name: { firstName: "עומר", lastName: "אדם" },
           },

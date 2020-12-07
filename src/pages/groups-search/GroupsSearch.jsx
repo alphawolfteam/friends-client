@@ -6,13 +6,11 @@ import {
 import { userContext } from "../../stores/userStore";
 import useStyles from "./GroupsSearch.style";
 import loadingAnimation from "../../images/loading.gif";
-import GroupsList from "../../components/groups-list/GroupsList";
-import TextDivider from "../../components/text-divider/TextDivider";
-import { Typography, Fab, Tooltip } from "@material-ui/core";
+import { Fab, Tooltip } from "@material-ui/core";
 import SearchBar from "../../components/search-bar/SearchBar";
-import Scrollbar from "react-scrollbars-custom";
 import { Add } from "@material-ui/icons";
 import config from "../../appConf";
+import ScrollableGroupsResult from "../../components/scrollable-groups-result/ScrollableGroupsResult";
 
 const rolesEnum = config.rolesEnum;
 
@@ -97,31 +95,10 @@ const GroupsSearch = () => {
       ) : (
         <div className={classes.root}>
           <SearchBar setSearchValue={setSearchValue} />
-          <div className={classes.scrollBar}>
-            <Scrollbar>
-              {filteredPrivateGroups.length > 0 ||
-              filteredPublicGroups.length > 0 ? (
-                <div className={classes.scrollBarContent}>
-                  {filteredPrivateGroups.length > 0 && (
-                    <>
-                      <TextDivider text="הקבוצות שלי" />
-                      <GroupsList groups={filteredPrivateGroups} />
-                    </>
-                  )}
-                  {filteredPublicGroups.length > 0 && (
-                    <>
-                      <TextDivider text="קבוצות ציבוריות" />
-                      <GroupsList groups={filteredPublicGroups} />
-                    </>
-                  )}
-                </div>
-              ) : (
-                <Typography className={classes.message}>
-                  לא נמצאו אף קבוצות
-                </Typography>
-              )}
-            </Scrollbar>
-          </div>
+          <ScrollableGroupsResult
+            privateGroups={filteredPrivateGroups}
+            publicGroups={filteredPublicGroups}
+          />
           <Tooltip title="הוסף קבוצה חדשה">
             <Fab
               className={classes.addButton}

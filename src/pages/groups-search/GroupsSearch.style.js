@@ -15,23 +15,6 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     width: "100vw",
   },
-  scrollBar: {
-    marginTop: "1%",
-    width: "70vw",
-    height: "65vh",
-  },
-  scrollBarContent: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  message: {
-    marginTop: "2%",
-    fontFamily: config.style.fontFamily,
-    fontSize: "1.5vw",
-    textAlign: "center",
-    fontWeight: "500",
-    color: config.style.mainColor,
-  },
   addButton: {
     marginLeft: "7%",
     alignSelf: "start",

@@ -1,8 +1,22 @@
 // import axiosInstance from '../axiosConf';
 // import axios from "axios";
 
+// TODO: delete
+const isIncludesInSentence = (sentence, portion) => (
+  sentence.startsWith(portion)
+  || sentence.split(' ').filter((word) => word.startsWith(portion)).length > 0
+);
+
 class GroupsService {
-  static async getPublicGroups() {
+  static async getFilteredPublicGroups(searchValue) {
+    // TODO: get my groups sorted by searchValue
+    return (await this.getPrivateGroups())
+      .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
+        || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
+  }
+
+  static async getFilteredPrivateGroups(searchValue) {
+    // TODO: get public groups sorted by searchValue
     return [
       {
         name: 'סגני דולפין',
@@ -72,7 +86,8 @@ class GroupsService {
         icon: undefined,
         _id: '5',
       },
-    ];
+    ].filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
+      || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
   }
 
   static async getPrivateGroups() {

@@ -4,7 +4,7 @@ import useStyles from './GroupDialog.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
-import { userContext } from '../../stores/userStore';
+import userContext from '../../stores/userStore';
 import config from '../../appConf';
 import TagsList from '../tags-list/TagsList';
 import UsersList from '../users-list/UsersList';

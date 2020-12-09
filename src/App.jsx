@@ -6,29 +6,21 @@ import {
   Redirect,
 } from 'react-router-dom';
 import AppBarComponent from './components/app-bar/AppBar';
-import {
-  privateGroupsContext,
-  publicGroupsContext,
-} from './stores/groupsStore';
-import { userContext, usersListContext } from './stores/userStore';
+import userContext from './stores/userStore';
 import GroupsSearch from './pages/groups-search/GroupsSearch';
-import UsersService from './services/UsersService';
 import loadingAnimation from './images/loading.gif';
 import unitLogo from './images/unitLogo.svg';
 import useStyles from './App.styles';
-import GroupsService from './services/GroupsService';
+import AuthService from './services/AuthService';
 
 const App = () => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(undefined);
-  const [privateGroups, setPrivateGroups] = useState(undefined);
-  const [publicGroups, setPublicGroups] = useState(undefined);
-  const [usersList, setUsersList] = useState(undefined);
 
   const initAuthUser = useCallback(() => {
-    UsersService.getAuthUser()
+    AuthService.getAuthUser()
       .then((currentUser) => {
         setUser(currentUser);
         setIsAuthenticated(true);
@@ -41,39 +33,9 @@ const App = () => {
       });
   }, []);
 
-  const initUsersList = useCallback(() => {
-    UsersService.getUsersList()
-      .then((res) => {
-        setUsersList(res);
-      })
-      // TODO: Error handler
-      .catch((err) => console.log(err));
-  }, []);
-
-  const initPrivateGroups = useCallback(() => {
-    GroupsService.getPrivateGroups()
-      .then((res) => {
-        setPrivateGroups(res);
-      })
-      // TODO: Error handler
-      .catch((err) => console.log(err));
-  }, []);
-
-  const initPublicGroups = useCallback(() => {
-    GroupsService.getPublicGroups()
-      .then((res) => {
-        setPublicGroups(res);
-      })
-      // TODO: Error handler
-      .catch((err) => console.log(err));
-  }, []);
-
   useEffect(() => {
     initAuthUser();
-    initPrivateGroups();
-    initPublicGroups();
-    initUsersList();
-  }, [initAuthUser, initPrivateGroups, initPublicGroups, initUsersList]);
+  }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;
 
@@ -87,13 +49,7 @@ const App = () => {
               <div>
                 <Switch>
                   <Route path="/">
-                    <privateGroupsContext.Provider value={privateGroups}>
-                      <publicGroupsContext.Provider value={publicGroups}>
-                        <usersListContext.Provider value={usersList}>
-                          <GroupsSearch />
-                        </usersListContext.Provider>
-                      </publicGroupsContext.Provider>
-                    </privateGroupsContext.Provider>
+                    <GroupsSearch />
                   </Route>
                   <Redirect to="/" />
                 </Switch>

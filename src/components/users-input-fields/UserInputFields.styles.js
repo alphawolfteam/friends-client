@@ -2,22 +2,25 @@ import { makeStyles } from "@material-ui/core/styles";
 import config from "../../appConf";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+  },
+  fieldList: {
+    width: "30vw",
+    height: "20vh",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
   field: {
     display: "flex",
+    jusifyContent: 'space-between',
+    alignItems: 'center',
     fontFamily: config.style.fontFamily,
   },
   iconButton: {
     color: config.style.mainColor,
-    fontWeight: "800",
-  },
-  button: {
-    backgroundColor: config.style.mainColor,
-    color: "white",
-    fontFamily: config.style.fontFamily,
-    "&:hover": {
-      color: config.style.mainColor,
-    },
+    width: '3vw',
+    height: '3vh',
   },
   textBox: {
     width: "100%",

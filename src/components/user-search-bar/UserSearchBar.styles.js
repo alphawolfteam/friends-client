@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: config.style.mainColor,
     marginTop: "2%",
-    width: "30%",
+    width: "60%",
   },
   searchIcon: {
     color: "white",
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     padding: theme.spacing(1, 1, 1, 0),
-    fontSize: "1vw",
+    fontSize: "0.7vw",
     color: "white",
     fontFamily: config.style.fontFamily,
     fontWeight: "500",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useStyles from "./EditGroupDialog.styles";
 import { Button } from "@material-ui/core";
 import DialogTemplate from "../dialog-template/DialogTemplate";
-import DynamicUserInputFields from "../dynamic-users-input-fields/DynamicUserInputFields";
+import UserInputFields from "../users-input-fields/UserInputFields";
 
 const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
@@ -30,7 +30,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
       title={<>title</>}
       content={
         <>
-          <DynamicUserInputFields group={newGroup} setGroup={setNewGroup} />
+          <UserInputFields group={newGroup} setGroup={setNewGroup} />
         </>
       }
       actions={

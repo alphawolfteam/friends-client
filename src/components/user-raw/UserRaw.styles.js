@@ -4,7 +4,7 @@ import config from "../../appConf";
 const useStyles = makeStyles(() => ({
   root: {
     margin: "1%",
-    width: "70%",
+    width: "80%",
     height: "50%",
     border: `0.1vw solid ${config.style.mainColor}`,
   },
@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   userName: {
     fontFamily: config.style.fontFamily,
     fontWeight: "700",
-    boxShadow: `0 0.2vw 0.3vw 0 grey`,
+    boxShadow: `0 0.1vw 0 0 grey`,
   },
   description: {
     fontFamily: config.style.fontFamily,

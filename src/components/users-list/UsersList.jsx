@@ -1,8 +1,8 @@
-import React from "react";
-import UserRaw from "../user-raw/UserRaw";
-import useStyles from "./UsersList.styles";
-import Scrollbar from "react-scrollbars-custom";
-import { Typography } from "@material-ui/core";
+import React from 'react';
+import Scrollbar from 'react-scrollbars-custom';
+import { Typography } from '@material-ui/core';
+import UserRaw from '../user-raw/UserRaw';
+import useStyles from './UsersList.styles';
 
 const UsersList = ({ users }) => {
   const classes = useStyles();

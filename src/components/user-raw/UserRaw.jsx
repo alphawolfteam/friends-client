@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Card, CardContent, Typography } from "@material-ui/core";
-import useStyles from "./UserRaw.styles";
+import React, { useState } from 'react';
+import { Card, CardContent, Typography } from '@material-ui/core';
+import useStyles from './UserRaw.styles';
 
 const UserRaw = ({ user }) => {
   const classes = useStyles();
@@ -13,7 +13,9 @@ const UserRaw = ({ user }) => {
           className={classes.userName}
           onClick={() => setOpenDescription((prevValue) => !prevValue)}
         >
-          {user.name.firstName} {user.name.lastName}
+          {user.name.firstName}
+          {' '}
+          {user.name.lastName}
         </Typography>
         {openDescription && (
           <Typography

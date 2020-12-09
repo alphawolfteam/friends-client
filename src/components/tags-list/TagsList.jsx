@@ -1,6 +1,6 @@
-import React from "react";
-import { Chip } from "@material-ui/core";
-import useStyles from "./TagsList.styles";
+import React from 'react';
+import { Chip } from '@material-ui/core';
+import useStyles from './TagsList.styles';
 
 const TagsList = ({ tags }) => {
   const classes = useStyles();

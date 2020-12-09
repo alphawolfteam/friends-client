@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import GroupDialog from "../group-dialog/GroupDialog";
-import GroupRaw from "../group-raw/GroupRaw";
-import useStyles from "./GroupsList.styles";
+import React, { useState } from 'react';
+import GroupDialog from '../group-dialog/GroupDialog';
+import GroupRaw from '../group-raw/GroupRaw';
+import useStyles from './GroupsList.styles';
 
 const GroupsList = ({ groups }) => {
   const classes = useStyles();
@@ -12,9 +12,9 @@ const GroupsList = ({ groups }) => {
       <div className={classes.root}>
         {groups.map((group) => (
           <GroupRaw
-          key={group._id}
-          group={group}
-          setSelectedGroup={setSelectedGroup}
+            key={group._id}
+            group={group}
+            setSelectedGroup={setSelectedGroup}
           />
         ))}
       </div>

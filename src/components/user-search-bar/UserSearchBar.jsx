@@ -1,23 +1,24 @@
-import React, { useState, useContext } from "react";
-import { InputBase, Fab } from "@material-ui/core";
-import { PersonAdd } from "@material-ui/icons";
-import useStyles from "./UserSearchBar.styles";
-import { usersListContext } from "../../stores/userStore";
+import React, { useState, useContext } from 'react';
+import { InputBase } from '@material-ui/core';
+import useStyles from './UserSearchBar.styles';
+import { usersListContext } from '../../stores/userStore';
 
-const UserSearchBar = ({ setSelectedUser }) => {
+const UserSearchBar = () => {
   const classes = useStyles();
   const [searchValue, setSearchValue] = useState(undefined);
   const usersList = useContext(usersListContext);
 
   const handleOnChange = (event) => {
     setSearchValue(() => event.target.value);
+    console.log(usersList);
   };
+
+  // const handleOnClick = () => {
+  //   setSelectedUser(() =>{});
+  // };
 
   return (
     <div className={classes.root}>
-      <Fab className={classes.searchIcon}>
-        <PersonAdd />
-      </Fab>
       <InputBase
         id="searchInput"
         placeholder="הוספת חבר..."

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Delete } from "@material-ui/icons";
-import { Button, Tooltip } from "@material-ui/core";
-import useStyles from "./UserInputFields.styles";
-import Scrollbar from "react-scrollbars-custom";
-import UserRaw from "../user-raw/UserRaw";
-import config from "../../appConf";
-import { ReactComponent as RemoveManagerIcon } from "../../images/removeManagerIcon.svg";
-import { ReactComponent as AddManagerIcon } from "../../images/addManagerIcon.svg";
-import UserSearchBar from "../user-search-bar/UserSearchBar";
+import React, { useState, useEffect } from 'react';
+import { Delete } from '@material-ui/icons';
+import { Button, Tooltip } from '@material-ui/core';
+import Scrollbar from 'react-scrollbars-custom';
+import useStyles from './UserInputFields.styles';
+import UserRaw from '../user-raw/UserRaw';
+import config from '../../appConf';
+import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
+import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
+import UserSearchBar from '../user-search-bar/UserSearchBar';
 
-const rolesEnum = config.rolesEnum;
+const { rolesEnum } = config;
 
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -17,15 +17,13 @@ const UserInputFields = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (selectedUser) {
-      setGroup((prevValue) => {
-        return {
-          ...prevValue,
-          users: [
-            ...prevValue.users,
-            { ...selectedUser, role: rolesEnum.FRIEND },
-          ],
-        };
-      });
+      setGroup((prevValue) => ({
+        ...prevValue,
+        users: [
+          ...prevValue.users,
+          { ...selectedUser, role: rolesEnum.FRIEND },
+        ],
+      }));
     }
   }, [setGroup, selectedUser]);
 
@@ -46,12 +44,12 @@ const UserInputFields = ({ group, setGroup }) => {
   };
 
   const isAManager = (user) => {
-    for (const groupUser of group.users) {
+    group.users.forEach((groupUser) => {
       if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
         return true;
       }
-    }
-    return false;
+      return false;
+    });
   };
 
   return (
@@ -59,9 +57,9 @@ const UserInputFields = ({ group, setGroup }) => {
       <UserSearchBar setSelectedUser={setSelectedUser} />
       <div className={classes.fieldList}>
         <Scrollbar>
-          {group.users &&
-            group.users.map((user, index) => (
-              <div key={index} className={classes.field}>
+          {group.users
+            && group.users.map((user, index) => (
+              <div key={user.id} className={classes.field}>
                 <Tooltip title="מחיקה">
                   <Button
                     className={classes.iconButton}

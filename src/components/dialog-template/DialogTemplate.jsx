@@ -1,5 +1,4 @@
-import React from "react";
-import useStyles from "./DialogTemplate.styles";
+import React from 'react';
 import {
   Dialog,
   DialogContent,
@@ -7,10 +6,13 @@ import {
   DialogActions,
   IconButton,
   Typography,
-} from "@material-ui/core";
-import { Close } from "@material-ui/icons";
+} from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import useStyles from './DialogTemplate.styles';
 
-const DialogTemplate = ({ title, content, actions, open, onClose }) => {
+const DialogTemplate = ({
+  title, content, actions, open, onClose,
+}) => {
   const classes = useStyles();
 
   return (

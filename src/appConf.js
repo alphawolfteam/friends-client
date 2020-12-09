@@ -1,8 +1,8 @@
 const config = {
   style: {
-    mainColor: "#2FB67C",
+    mainColor: '#2FB67C',
     backgroundColor: '#F9FAFB',
-    fontFamily: "Segoe UI",
+    fontFamily: 'Segoe UI',
   },
   // TODO: verify roles
   rolesEnum: {

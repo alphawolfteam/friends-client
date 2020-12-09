@@ -1,7 +1,7 @@
-import React from "react";
-import { InputBase, Fab } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
-import useStyles from "./GroupSearchBar.styles";
+import React from 'react';
+import { InputBase, Fab } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
+import useStyles from './GroupSearchBar.styles';
 
 const ENTER_CHAR_CODE = 13;
 
@@ -15,7 +15,7 @@ const GroupSearchBar = ({ setSearchValue }) => {
   };
 
   const handleOnClick = () => {
-    const searchInput = document.getElementById("searchInput");
+    const searchInput = document.getElementById('searchInput');
     setSearchValue(() => searchInput.value);
   };
 

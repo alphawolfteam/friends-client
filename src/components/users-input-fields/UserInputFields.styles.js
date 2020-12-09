@@ -1,18 +1,18 @@
-import { makeStyles } from "@material-ui/core/styles";
-import config from "../../appConf";
+import { makeStyles } from '@material-ui/core/styles';
+import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
   },
   fieldList: {
-    width: "30vw",
-    height: "20vh",
+    width: '30vw',
+    height: '20vh',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   field: {
-    display: "flex",
+    display: 'flex',
     jusifyContent: 'space-between',
     alignItems: 'center',
     fontFamily: config.style.fontFamily,
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
     height: '3vh',
   },
   textBox: {
-    width: "100%",
+    width: '100%',
     backgroundColor: config.style.backgroundColor,
-    marginBottom: "4%",
+    marginBottom: '4%',
     borderRadius: theme.shape.borderRadius,
-    "&:before": {
-      borderBottom: `1.2px solid grey`,
+    '&:before': {
+      borderBottom: '1.2px solid grey',
     },
-    "&:after": {
+    '&:after': {
       borderBottom: `2px solid ${config.style.mainColor}`,
     },
   },

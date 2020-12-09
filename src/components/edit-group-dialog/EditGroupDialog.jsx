@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import useStyles from "./EditGroupDialog.styles";
-import { Button } from "@material-ui/core";
-import DialogTemplate from "../dialog-template/DialogTemplate";
-import UserInputFields from "../users-input-fields/UserInputFields";
+import React, { useState } from 'react';
+import { Button } from '@material-ui/core';
+import useStyles from './EditGroupDialog.styles';
+import DialogTemplate from '../dialog-template/DialogTemplate';
+import UserInputFields from '../users-input-fields/UserInputFields';
 
 const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
@@ -21,19 +21,19 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const handleDeleteGroup = () => {
     // TODO: Delete group
     // TODO: Add ensuring message
-    console.log("Delete group #id(", group._id, ")");
+    console.log('Delete group #id(', group._id, ')');
     onClose();
   };
 
   return (
     <DialogTemplate
       title={<>title</>}
-      content={
+      content={(
         <>
           <UserInputFields group={newGroup} setGroup={setNewGroup} />
         </>
-      }
-      actions={
+      )}
+      actions={(
         <>
           <Button
             variant="contained"
@@ -57,7 +57,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
             מחיקת קבוצה
           </Button>
         </>
-      }
+      )}
       open={open}
       onClose={onClose}
     />

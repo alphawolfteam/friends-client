@@ -1,20 +1,20 @@
-import { makeStyles } from "@material-ui/core/styles";
-import config from "../../appConf";
+import { makeStyles } from '@material-ui/core/styles';
+import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: "22vw",
-    height: "28vh",
+    width: '22vw',
+    height: '28vh',
   },
   scrollBarContent: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   message: {
     fontFamily: config.style.fontFamily,
     color: config.style.mainColor,
-    fontWeight: "500",
+    fontWeight: '500',
   },
 }));
 

@@ -22,17 +22,17 @@ const UserSearchBar = ({ setSelectedUser }) => {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <InputBase
         id="searchInput"
         placeholder="הוספת חבר..."
         dir="rtl"
         value={searchValue}
         onChange={(e) => handleOnChange(e)}
-        className={classes.root}
+        className={classes.searchBar}
       />
       <Autocomplete options={options} setSelectedOption={setSelectedUser} />
-    </>
+    </div>
   );
 };
 export default UserSearchBar;

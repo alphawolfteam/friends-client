@@ -3,11 +3,16 @@ import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginBottom: '2%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  searchBar: {
     borderRadius: theme.shape.borderRadius,
     backgroundColor: config.style.mainColor,
-    marginBottom: '2%',
-    width: '60%',
     padding: theme.spacing(1, 1, 1, 0),
+    width: '19vw',
     fontSize: '0.7vw',
     color: 'white',
     fontFamily: config.style.fontFamily,

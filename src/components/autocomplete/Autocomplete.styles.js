@@ -8,11 +8,11 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     position: 'absolute',
     zIndex: 1000,
-    top: '15vh',
+    top: '14.5vh',
     borderRadius: 0,
   },
   optionCard: {
-    width: '17.7vw',
+    width: '19vw',
     fontFamily: config.style.fontFamily,
     border: `1px solid ${config.style.mainColor}`,
     '&:hover': {

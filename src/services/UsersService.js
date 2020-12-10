@@ -10,35 +10,43 @@ class UsersService {
     return [
       {
         id: '1111',
+        fullName: 'נייקי אדידס',
         name: { firstName: 'נייקי', lastName: 'אדידס' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
       {
         id: '2222',
+        fullName: 'ישראל ישראלי',
         name: { firstName: 'ישראל', lastName: 'ישראלי' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
       {
         id: '3333',
+        fullName: 'חיים כהן',
         name: { firstName: 'חיים', lastName: 'כהן' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
       {
         id: '4444',
+        fullName: 'עומר אדם',
         name: { firstName: 'עומר', lastName: 'אדם' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
       {
         id: '5555',
+        fullName: 'איציק כהן',
         name: { firstName: 'איציק', lastName: 'כהן' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
       {
         id: '6666',
+        fullName: 'ישראל אהרוני',
         name: { firstName: 'ישראל', lastName: 'אהרוני' },
-        description: 'קמנר/ספיר/מטה/יסודות/צוות אלפא T33245235',
+        hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
       },
-    ];
+    ].filter((user) => user.name.lastName.startsWith(searchValue)
+      || user.name.firstName.startsWith(searchValue)
+      || `${user.name.firstName} ${user.name.lastName}`.startsWith(searchValue));
   }
 }
 

@@ -29,8 +29,8 @@ const GroupsSearch = () => {
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
-  console.log(openAddGroupDialog);
   const user = useContext(userContext);
+  console.log(openAddGroupDialog);
 
   useEffect(async () => {
     if (searchValue === '') {

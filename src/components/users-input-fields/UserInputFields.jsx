@@ -12,12 +12,16 @@ import GroupService from '../../services/GroupsService';
 
 const { rolesEnum } = config;
 
+const isExist = (usersList, userToCheck) => {
+  return usersList.map((user) => user.id).includes(userToCheck.id);
+};
+
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
   const [selectedUser, setSelectedUser] = useState(undefined);
 
   useEffect(() => {
-    if (selectedUser) {
+    if (selectedUser && !isExist(group.users, selectedUser)) {
       setGroup((prevValue) => ({
         ...prevValue,
         users: [

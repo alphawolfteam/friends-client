@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputBase } from '@material-ui/core';
 import useStyles from './UserSearchBar.styles';
+import UsersService from '../../services/UsersService';
+import Autocomplete from '../autocomplete/Autocomplete';
 
-const UserSearchBar = () => {
+const UserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = useState(undefined);
+  const [searchValue, setSearchValue] = useState('');
+  const [options, setOptions] = useState([]);
+
+  useEffect(async () => {
+    if (searchValue.length < 2) {
+      setOptions([]);
+    } else {
+      setOptions(await UsersService.getFilteredUsersList(searchValue));
+    }
+  }, [searchValue]);
 
   const handleOnChange = (event) => {
     setSearchValue(() => event.target.value);
   };
 
-  // const handleOnClick = () => {
-  //   setSelectedUser(() =>{});
-  // };
-
   return (
-    <div className={classes.root}>
+    <>
       <InputBase
         id="searchInput"
         placeholder="הוספת חבר..."
         dir="rtl"
         value={searchValue}
         onChange={(e) => handleOnChange(e)}
-        className={classes.input}
+        className={classes.root}
       />
-    </div>
+      <Autocomplete options={options} setSelectedOption={setSelectedUser} />
+    </>
   );
 };
-
 export default UserSearchBar;

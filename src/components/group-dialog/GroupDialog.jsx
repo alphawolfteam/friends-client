@@ -5,25 +5,16 @@ import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
 import userContext from '../../stores/userStore';
-import config from '../../appConf';
 import TagsList from '../tags-list/TagsList';
 import UsersList from '../users-list/UsersList';
-
-const { rolesEnum } = config;
+import GroupService from '../../services/GroupsService';
 
 const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
   const user = useContext(userContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
 
-  const isAManager = useMemo(() => {
-    group.users.forEach((groupUser) => {
-      if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
-        return true;
-      }
-      return false;
-    });
-  }, [group, user]);
+  const isAManager = useMemo(() => GroupService.isAManager(group, user.id), [group, user]);
 
   const isAFriend = useMemo(
     () => group.users.map((groupUser) => groupUser.id).includes(user.id),
@@ -36,7 +27,6 @@ const GroupDialog = ({ group, open, onClose }) => {
 
   const handleLeaveGroup = () => {
     // TODO: Leave group
-    console.log('user #id(', user.id, ') leaving group #id(', group._id, ')');
     onClose();
   };
 

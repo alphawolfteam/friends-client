@@ -1,5 +1,8 @@
 // import axiosInstance from '../axiosConf';
 // import axios from "axios";
+import config from '../appConf';
+
+const { rolesEnum } = config;
 
 // TODO: delete
 const isIncludesInSentence = (sentence, portion) => (
@@ -8,14 +11,24 @@ const isIncludesInSentence = (sentence, portion) => (
 );
 
 class GroupsService {
-  static async getFilteredPublicGroups(searchValue) {
+  static isAManager(group, userId) {
+    let isAManager = false;
+    group.users.forEach((groupUser) => {
+      if (userId === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
+        isAManager = true;
+      }
+    });
+    return isAManager;
+  }
+
+  static async getFilteredPrivateGroups(searchValue) {
     // TODO: get my groups sorted by searchValue
     return (await this.getPrivateGroups())
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
   }
 
-  static async getFilteredPrivateGroups(searchValue) {
+  static async getFilteredPublicGroups(searchValue) {
     // TODO: get public groups sorted by searchValue
     return [
       {

@@ -1,5 +1,5 @@
 import React, {
-  useContext, useMemo, useState,
+  useContext, useEffect, useMemo, useState,
 } from 'react';
 import { Fab, Tooltip } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
@@ -7,23 +7,13 @@ import userContext from '../../stores/userStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
-import config from '../../appConf';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
 
-const { rolesEnum } = config;
-
-const getSortedPrivateGroups = (privateGroups, user) => {
+const getSortedPrivateGroups = (privateGroups, userId) => {
   const ownedGroups = [];
   const unownedGroups = [];
   privateGroups.forEach((group) => {
-    let owned = false;
-    owned = group.users.forEach((groupUser) => {
-      if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
-        return true;
-      }
-      return false;
-    });
-    if (owned) {
+    if (GroupsService.isAManager(group, userId)) {
       ownedGroups.push(group);
     } else {
       unownedGroups.push(group);
@@ -36,26 +26,28 @@ const getSortedPrivateGroups = (privateGroups, user) => {
 const GroupsSearch = () => {
   const classes = useStyles();
   const [searchValue, setSearchValue] = useState('');
+  const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
+  const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   console.log(openAddGroupDialog);
   const user = useContext(userContext);
 
-  // TODO: fix async
-  const filteredPrivateGroups = useMemo(
-    () => (searchValue === ''
-      ? GroupsService.getPrivateGroups()
-      : GroupsService.getFilteredPrivateGroups(searchValue)),
-    [searchValue],
-  );
+  useEffect(async () => {
+    if (searchValue === '') {
+      setFilteredPrivateGroups(await GroupsService.getPrivateGroups());
+      setFilteredPublicGroups([]);
+    } else {
+      setFilteredPrivateGroups(await GroupsService.getFilteredPrivateGroups(searchValue));
+      if (searchValue.length >= 2) {
+        setFilteredPublicGroups(await GroupsService.getFilteredPublicGroups(searchValue));
+      } else {
+        setFilteredPublicGroups([]);
+      }
+    }
+  }, [searchValue]);
 
-  // TODO: fix async
-  const filteredPublicGroups = useMemo(
-    () => (searchValue.length < 2 ? [] : GroupsService.getFilteredPublicGroups(searchValue)),
-    [searchValue],
-  );
-
-  const sortedPrivateGroups = useMemo(() => (filteredPrivateGroups === undefined ? []
-    : getSortedPrivateGroups(filteredPrivateGroups, user)),
+  const sortedPrivateGroups = useMemo(() => (
+    getSortedPrivateGroups(filteredPrivateGroups, user.id)),
   [filteredPrivateGroups, user]);
 
   return (

@@ -8,6 +8,7 @@ import config from '../../appConf';
 import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
 import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
 import UserSearchBar from '../user-search-bar/UserSearchBar';
+import GroupService from '../../services/GroupsService';
 
 const { rolesEnum } = config;
 
@@ -43,14 +44,7 @@ const UserInputFields = ({ group, setGroup }) => {
     });
   };
 
-  const isAManager = (user) => {
-    group.users.forEach((groupUser) => {
-      if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
-        return true;
-      }
-      return false;
-    });
-  };
+  const isAManager = (userId) => GroupService.isAManager(group, userId);
 
   return (
     <>
@@ -68,7 +62,7 @@ const UserInputFields = ({ group, setGroup }) => {
                     <Delete />
                   </Button>
                 </Tooltip>
-                {isAManager(user) ? (
+                {isAManager(user.id) ? (
                   <Tooltip title="הסרה ממנהל">
                     <RemoveManagerIcon
                       className={classes.iconButton}

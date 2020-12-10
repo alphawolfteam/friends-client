@@ -13,7 +13,9 @@ const AppBarComponent = () => {
       <Toolbar>
         <Typography variant="h6" className={classes.username}>
           שלום
+          {' '}
           {user.name.firstName}
+          {' '}
           {user.name.lastName}
         </Typography>
         <ReactLogo className={classes.logo} />

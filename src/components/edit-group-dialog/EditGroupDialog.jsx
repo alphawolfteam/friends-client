@@ -8,10 +8,6 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
   const [newGroup, setNewGroup] = useState({ ...group });
 
-  // useEffect(() => {
-  //   console.log("newGroup.users", newGroup.users);
-  // }, [newGroup]);
-
   const handleSave = () => {
     // TODO: Save editing
     // TODO: Add validation
@@ -21,43 +17,48 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const handleDeleteGroup = () => {
     // TODO: Delete group
     // TODO: Add ensuring message
-    console.log('Delete group #id(', group._id, ')');
     onClose();
   };
 
+  const dialogTitle = () => <>title</>;
+
+  const dialogContent = () => (
+    <>
+      <UserInputFields group={newGroup} setGroup={setNewGroup} />
+    </>
+  );
+
+  const dialogActions = () => (
+    <>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={() => handleSave()}
+      >
+        שמור
+      </Button>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={() => onClose()}
+      >
+        ביטול
+      </Button>
+      <Button
+        variant="contained"
+        className={classes.button}
+        onClick={() => handleDeleteGroup()}
+      >
+        מחיקת קבוצה
+      </Button>
+    </>
+  );
+
   return (
     <DialogTemplate
-      title={<>title</>}
-      content={(
-        <>
-          <UserInputFields group={newGroup} setGroup={setNewGroup} />
-        </>
-      )}
-      actions={(
-        <>
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={() => handleSave()}
-          >
-            שמור
-          </Button>
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={() => onClose()}
-          >
-            ביטול
-          </Button>
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={() => handleDeleteGroup()}
-          >
-            מחיקת קבוצה
-          </Button>
-        </>
-      )}
+      title={dialogTitle()}
+      content={dialogContent()}
+      actions={dialogActions()}
       open={open}
       onClose={onClose}
     />

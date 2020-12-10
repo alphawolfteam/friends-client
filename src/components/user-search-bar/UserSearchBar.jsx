@@ -31,7 +31,13 @@ const UserSearchBar = ({ setSelectedUser }) => {
         onChange={(e) => handleOnChange(e)}
         className={classes.searchBar}
       />
-      <Autocomplete options={options} setSelectedOption={setSelectedUser} />
+      <Autocomplete
+        options={options}
+        setSelectedOption={(selectedOption) => {
+          setSelectedUser(selectedOption);
+          setSearchValue('');
+        }}
+      />
     </div>
   );
 };

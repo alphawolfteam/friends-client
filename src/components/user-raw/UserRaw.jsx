@@ -4,24 +4,24 @@ import useStyles from './UserRaw.styles';
 
 const UserRaw = ({ user }) => {
   const classes = useStyles();
-  const [openDescription, setOpenDescription] = useState(false);
+  const [openHierarchy, setOpenHierarchy] = useState(false);
 
   return (
     <Card className={classes.root}>
       <CardContent dir="rtl" className={classes.cardContent}>
         <Typography
           className={classes.userName}
-          onClick={() => setOpenDescription((prevValue) => !prevValue)}
+          onClick={() => setOpenHierarchy((prevValue) => !prevValue)}
         >
           {user.name.firstName}
-          {' '}
+          { ' '}
           {user.name.lastName}
         </Typography>
-        {openDescription && (
+        {openHierarchy && (
           <Typography
-            className={classes.description}
+            className={classes.hierarchyFlat}
           >
-            {user.description}
+            {user.hierarchyFlat}
           </Typography>
         )}
       </CardContent>

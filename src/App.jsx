@@ -17,12 +17,12 @@ const App = () => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const initAuthUser = useCallback(() => {
     AuthService.getAuthUser()
-      .then((currentUser) => {
-        setUser(currentUser);
+      .then((res) => {
+        setCurrentUser(res);
         setIsAuthenticated(true);
       })
       .catch(() => setIsAuthenticated(false))
@@ -44,7 +44,7 @@ const App = () => {
       ? (
         <Router>
           <div className={classes.app}>
-            <userContext.Provider value={user}>
+            <userContext.Provider value={currentUser}>
               <AppBarComponent />
               <div>
                 <Switch>

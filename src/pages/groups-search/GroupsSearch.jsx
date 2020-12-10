@@ -29,7 +29,7 @@ const GroupsSearch = () => {
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
-  const user = useContext(userContext);
+  const currentUser = useContext(userContext);
   console.log(openAddGroupDialog);
 
   useEffect(async () => {
@@ -47,8 +47,8 @@ const GroupsSearch = () => {
   }, [searchValue]);
 
   const sortedPrivateGroups = useMemo(() => (
-    getSortedPrivateGroups(filteredPrivateGroups, user.id)),
-  [filteredPrivateGroups, user]);
+    getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
+  [filteredPrivateGroups, currentUser]);
 
   return (
     <div className={classes.root}>

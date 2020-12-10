@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: '700',
     boxShadow: '0 0.1vw 0 0 grey',
   },
-  description: {
+  hierarchyFlat: {
     fontFamily: config.style.fontFamily,
     wordBreak: 'break-all',
   },

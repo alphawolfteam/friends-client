@@ -9,6 +9,8 @@ const Autocomplete = ({ options, setSelectedOption }) => {
     setSelectedOption(option);
   };
 
+  // TODO: Add an icon next to every user
+
   return (
     <div className={classes.root}>
       {options.map((option) => (

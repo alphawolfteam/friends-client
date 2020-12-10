@@ -6,7 +6,7 @@ import useStyles from './AppBar.styles';
 
 const AppBarComponent = () => {
   const classes = useStyles();
-  const user = useContext(userContext);
+  const currentUser = useContext(userContext);
 
   return (
     <AppBar position="static" className={classes.root}>
@@ -14,9 +14,9 @@ const AppBarComponent = () => {
         <Typography variant="h6" className={classes.username}>
           שלום
           {' '}
-          {user.name.firstName}
+          {currentUser.name.firstName}
           {' '}
-          {user.name.lastName}
+          {currentUser.name.lastName}
         </Typography>
         <ReactLogo className={classes.logo} />
       </Toolbar>

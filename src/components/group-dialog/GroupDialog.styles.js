@@ -16,6 +16,9 @@ const useStyles = makeStyles(() => ({
     border: '0.1vw solid black',
     marginLeft: '5%',
   },
+  groupDescription: {
+    fontSize: '1vw',
+  },
   img: {
     position: 'absolute',
     maxWidth: '100%',

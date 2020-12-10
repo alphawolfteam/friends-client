@@ -18,8 +18,6 @@ const GroupDialog = ({ group, open, onClose }) => {
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [populatedUsers, setPopulatedUsers] = useState([]);
 
-  // TODO: Add description
-
   // TODO: Sort the users- managrs at the top and bold
 
   useEffect(async () => {
@@ -57,6 +55,9 @@ const GroupDialog = ({ group, open, onClose }) => {
       <div className={classes.groupTitle}>
         {group.name}
         <LockIcon type={group.type} />
+      </div>
+      <div className={classes.groupDescription}>
+        {group.description}
       </div>
     </>
   );

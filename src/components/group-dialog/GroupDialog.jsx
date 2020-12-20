@@ -1,7 +1,8 @@
 import React, {
   useContext, useMemo, useState, useEffect,
 } from 'react';
-import { Button } from '@material-ui/core';
+import { Info, People } from '@material-ui/icons';
+import { Button, Typography } from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -18,7 +19,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [populatedUsers, setPopulatedUsers] = useState([]);
 
-  // TODO: Sort the users- managrs at the top and bold
+  // TODO: Sort the users- managers at the top and bold
 
   useEffect(async () => {
     // TODO: Send 5 users at a time
@@ -56,16 +57,24 @@ const GroupDialog = ({ group, open, onClose }) => {
         {group.name}
         <LockIcon type={group.type} />
       </div>
-      <div className={classes.groupDescription}>
-        {group.description}
-      </div>
     </>
   );
 
   const dialogContent = () => (
     <>
-      <UsersList users={populatedUsers} />
+      <Typography dir="rtl" className={classes.title}>
+        <Info />
+        תיאור
+      </Typography>
+      <Typography dir="rtl" className={classes.groupDescription}>
+        {group.description}
+      </Typography>
       <TagsList tags={group.tags} />
+      <Typography dir="rtl" className={classes.title}>
+        <People />
+        חברים
+      </Typography>
+      <UsersList users={populatedUsers} />
     </>
   );
 

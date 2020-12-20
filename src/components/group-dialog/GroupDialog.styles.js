@@ -18,6 +18,14 @@ const useStyles = makeStyles(() => ({
   },
   groupDescription: {
     fontSize: '1vw',
+    fontFamily: config.style.fontFamily,
+    alignSelf: 'flex-end',
+  },
+  title: {
+    display: 'flex',
+    alignSelf: 'flex-end',
+    fontFamily: config.style.fontFamily,
+    fontWeight: '700',
   },
   img: {
     position: 'absolute',

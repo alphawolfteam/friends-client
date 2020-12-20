@@ -21,6 +21,9 @@ const useStyles = makeStyles(() => ({
     color: config.style.mainColor,
     width: '3vw',
     height: '3vh',
+    '&:hover': {
+      background: 'white',
+    },
   },
 }));
 

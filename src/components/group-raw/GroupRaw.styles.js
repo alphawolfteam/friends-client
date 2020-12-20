@@ -8,17 +8,20 @@ const useStyles = makeStyles(() => ({
     height: '50%',
     borderRadius: 30,
     border: `0.1vw solid ${config.style.mainColor}`,
+    '&:hover': {
+      border: '0.1vw solid grey',
+      boxShadow: '0.1vw 0.1vw 0.4vw 0vw grey',
+    },
   },
   cardContent: {
+    fontFamily: config.style.fontFamily,
+    color: config.style.fontColor,
     padding: '0.5%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     '&:last-child': {
       paddingBottom: '0.5%',
-    },
-    '&:hover': {
-      backgroundColor: config.style.hoverColor,
     },
   },
   mainContent: {
@@ -34,13 +37,11 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '1%',
   },
   groupAmount: {
-    fontFamily: config.style.fontFamily,
-    fontWeight: '500',
     fontSize: '1vw',
+    fontWeight: '700',
   },
   groupName: {
-    fontFamily: config.style.fontFamily,
-    fontSize: '1.5vw',
+    fontSize: '1.6vw',
     fontWeight: '700',
     marginRight: '2%',
     whiteSpace: 'nowrap',

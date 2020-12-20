@@ -16,7 +16,13 @@ const DialogTemplate = ({
   const classes = useStyles();
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      classes={{
+        paper: classes.root,
+      }}
+    >
       <DialogTitle dir="rtl" onClose={onClose} disableTypography>
         <Typography variant="h4" className={classes.dialogTitle}>
           {title}
@@ -25,7 +31,7 @@ const DialogTemplate = ({
           <Close />
         </IconButton>
       </DialogTitle>
-      <DialogContent className={classes.dialogContent} dividers>
+      <DialogContent dividers className={classes.dialogContent}>
         {content}
       </DialogContent>
       <DialogActions className={classes.dialogActions}>{actions}</DialogActions>

@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 30,
     backgroundColor: config.style.mainColor,
     marginTop: '2%',
     width: '30%',
@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     height: '50%',
     marginLeft: '1%',
     '&:hover': {
+      backgroundColor: config.style.secondaryColor,
       color: config.style.mainColor,
-      backgroundColor: 'white',
     },
   },
   input: {

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   searchBar: {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 30,
     backgroundColor: config.style.mainColor,
     padding: theme.spacing(1, 1, 1, 0),
     width: '19vw',

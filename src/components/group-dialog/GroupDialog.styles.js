@@ -28,14 +28,7 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate( -50%, -50%)',
   },
-  button: {
-    backgroundColor: config.style.mainColor,
-    color: 'white',
-    fontFamily: config.style.fontFamily,
-    '&:hover': {
-      color: config.style.mainColor,
-    },
-  },
+  button: config.style.button,
 }));
 
 export default useStyles;

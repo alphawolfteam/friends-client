@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
   },
   fieldList: {
@@ -21,18 +21,6 @@ const useStyles = makeStyles((theme) => ({
     color: config.style.mainColor,
     width: '3vw',
     height: '3vh',
-  },
-  textBox: {
-    width: '100%',
-    backgroundColor: config.style.backgroundColor,
-    marginBottom: '4%',
-    borderRadius: theme.shape.borderRadius,
-    '&:before': {
-      borderBottom: '1.2px solid grey',
-    },
-    '&:after': {
-      borderBottom: `2px solid ${config.style.mainColor}`,
-    },
   },
 }));
 

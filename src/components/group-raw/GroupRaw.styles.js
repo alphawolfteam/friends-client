@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     margin: '1%',
     width: '70%',
     height: '50%',
+    borderRadius: 30,
     border: `0.1vw solid ${config.style.mainColor}`,
   },
   cardContent: {
@@ -17,11 +18,7 @@ const useStyles = makeStyles(() => ({
       paddingBottom: '0.5%',
     },
     '&:hover': {
-      backgroundColor: config.style.mainColor,
-      color: 'white',
-      '& path': {
-        color: 'white',
-      },
+      backgroundColor: config.style.hoverColor,
     },
   },
   mainContent: {

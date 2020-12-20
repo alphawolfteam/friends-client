@@ -10,14 +10,7 @@ const useStyles = makeStyles(() => ({
   lockIcon: {
     fontSize: '50vw',
   },
-  button: {
-    backgroundColor: config.style.mainColor,
-    color: 'white',
-    fontFamily: config.style.fontFamily,
-    '&:hover': {
-      color: config.style.mainColor,
-    },
-  },
+  button: config.style.button,
 }));
 
 export default useStyles;

@@ -6,7 +6,6 @@ const useStyles = makeStyles(() => ({
     margin: '1%',
     width: '80%',
     height: '50%',
-    border: `0.1vw solid ${config.style.mainColor}`,
   },
   cardContent: {
     padding: '0.5%',
@@ -15,18 +14,14 @@ const useStyles = makeStyles(() => ({
     '&:last-child': {
       paddingBottom: '0.5%',
     },
-    '&:hover': {
-      backgroundColor: config.style.mainColor,
-      color: 'white',
-      '& path': {
-        color: 'white',
-      },
-    },
   },
   userName: {
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     boxShadow: '0 0.1vw 0 0 grey',
+    '&:hover': {
+      backgroundColor: config.style.hoverColor,
+    },
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,

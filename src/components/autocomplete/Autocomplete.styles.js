@@ -14,10 +14,9 @@ const useStyles = makeStyles(() => ({
   optionCard: {
     width: '19vw',
     fontFamily: config.style.fontFamily,
-    border: `1px solid ${config.style.mainColor}`,
+    border: '1px solid grey',
     '&:hover': {
-      backgroundColor: config.style.backgroundColor,
-      color: config.style.mainColor,
+      backgroundColor: config.style.hoverColor,
     },
   },
   optionContent: {

@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import UserInputFields from '../users-input-fields/UserInputFields';
+import TagsInputFields from '../tags-input-fields/TagsInputFields';
 import GroupNameInput from '../group-name-input/GroupNameInput';
 import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
 import LockIcon from '../lock-icon/LockIcon';
@@ -44,10 +45,12 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   );
 
   const dialogContent = () => (
-    <>
+    <div className={classes.content}>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+      <TagsInputFields group={newGroup} setGroup={setNewGroup} />
+      <hr />
       <UserInputFields group={newGroup} setGroup={setNewGroup} />
-    </>
+    </div>
   );
 
   const dialogActions = () => (

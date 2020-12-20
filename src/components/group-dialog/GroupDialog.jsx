@@ -61,7 +61,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   );
 
   const dialogContent = () => (
-    <>
+    <div className={classes.content}>
       <Typography dir="rtl" className={classes.title}>
         <Info />
         תיאור
@@ -69,13 +69,19 @@ const GroupDialog = ({ group, open, onClose }) => {
       <Typography dir="rtl" className={classes.groupDescription}>
         {group.description}
       </Typography>
-      <TagsList tags={group.tags} />
+      <hr />
+      {group.tags.length > 0 && (
+        <>
+          <TagsList tags={group.tags} />
+          <hr />
+        </>
+      )}
       <Typography dir="rtl" className={classes.title}>
         <People />
         חברים
       </Typography>
       <UsersList users={populatedUsers} />
-    </>
+    </div>
   );
 
   const dialogActions = () => (

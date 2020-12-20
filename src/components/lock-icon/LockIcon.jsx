@@ -7,27 +7,25 @@ const LockIcon = ({ type, setType }) => {
 
   return (
     <div className={classes.root}>
-      {type === 'private'
-        ? (
-          <Lock
-            fontSize="large"
-            onClick={() => {
-              if (setType) {
-                setType('public');
-              }
-            }}
-          />
+      {
+        setType ? (
+          <>
+            {type === 'private'
+              ? <Lock fontSize="large" onClick={() => setType('public')} />
+              : <LockOpen fontSize="large" onClick={() => setType('private')} />}
+          </>
+        ) : (
+          <>
+            {type === 'private'
+              ? (
+                <Lock fontSize="large" />
+              )
+              : (
+                <LockOpen fontSize="large" />
+              )}
+          </>
         )
-        : (
-          <LockOpen
-            fontSize="large"
-            onClick={() => {
-              if (setType) {
-                setType('public');
-              }
-            }}
-          />
-        )}
+      }
     </div>
   );
 };

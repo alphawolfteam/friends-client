@@ -3,19 +3,22 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginTop: '3%',
-    marginRight: '5%',
-    whiteSpace: 'nowrap',
-    alignSelf: 'flex-end',
+    maxWidth: '50vw',
+    display: 'flex',
+    justifyContent: 'center',
   },
   label: {
-    margin: '1.3%',
+    margin: '0.5%',
     border: `0.1vw solid ${config.style.mainColor}`,
     backgroundColor: 'white',
-    color: config.style.mainColor,
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
+    whiteSpace: 'nowrap',
+  },
+  closeIcon: {
+    color: config.style.mainColor,
+    marginLeft: '1%',
   },
 }));
 

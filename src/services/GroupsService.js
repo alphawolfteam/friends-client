@@ -104,7 +104,7 @@ class GroupsService {
         type: 'private',
         users: [
           {
-            role: 1,
+            role: 0,
             id: '1111',
           },
           {

@@ -3,6 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    overflowX: 'hidden',
   },
   dialogTitle: {
     display: 'flex',
@@ -21,11 +22,10 @@ const useStyles = makeStyles((theme) => ({
     color: config.style.mainColor,
   },
   dialogContent: {
-    padding: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    margin: '1%',
+    overflowX: 'hidden',
+    width: '29em',
+    height: '27em',
   },
   dialogActions: {
     margin: 0,

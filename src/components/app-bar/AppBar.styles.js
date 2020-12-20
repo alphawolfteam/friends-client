@@ -6,6 +6,10 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'white',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
   },
+  toolBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
   logo: {
     width: '20%',
     height: '15%',
@@ -15,7 +19,6 @@ const useStyles = makeStyles(() => ({
   username: {
     color: config.style.fontColor,
     fontFamily: config.style.fontFamily,
-    flexGrow: 1,
     fontSize: '1.3vw',
   },
 }));

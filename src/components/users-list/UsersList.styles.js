@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     height: '28vh',
   },
   scrollBarContent: {
-    margin: '1%',
+    margin: '2%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

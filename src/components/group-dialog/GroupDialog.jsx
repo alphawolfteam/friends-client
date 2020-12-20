@@ -63,7 +63,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   const dialogContent = () => (
     <div className={classes.content}>
       <Typography dir="rtl" className={classes.title}>
-        <Info />
+        <Info className={classes.titleIcon} />
         תיאור
       </Typography>
       <Typography dir="rtl" className={classes.groupDescription}>
@@ -77,10 +77,10 @@ const GroupDialog = ({ group, open, onClose }) => {
         </>
       )}
       <Typography dir="rtl" className={classes.title}>
-        <People />
+        <People className={classes.titleIcon} />
         חברים
       </Typography>
-      <UsersList users={populatedUsers} />
+      <UsersList users={populatedUsers} group={group} />
     </div>
   );
 

@@ -108,12 +108,12 @@ class GroupsService {
             id: '1111',
           },
           {
-            role: 0,
-            id: '2222',
-          },
-          {
             role: 1,
             id: '3333',
+          },
+          {
+            role: 0,
+            id: '2222',
           },
           {
             role: 1,

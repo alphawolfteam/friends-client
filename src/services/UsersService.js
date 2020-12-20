@@ -20,15 +20,15 @@ class UsersService {
           hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
         },
         {
-          id: '2222',
-          fullName: 'ישראל ישראלי',
-          name: { firstName: 'ישראל', lastName: 'ישראלי' },
-          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
-        },
-        {
           id: '3333',
           fullName: 'חיים כהן',
           name: { firstName: 'חיים', lastName: 'כהן' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '2222',
+          fullName: 'ישראל ישראלי',
+          name: { firstName: 'ישראל', lastName: 'ישראלי' },
           hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
         },
         {

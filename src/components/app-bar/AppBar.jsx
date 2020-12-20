@@ -23,7 +23,8 @@ const AppBarComponent = () => {
 
   return (
     <AppBar position="static" className={classes.root}>
-      <Toolbar>
+      <Toolbar className={classes.toolBar}>
+        <ReactLogo className={classes.logo} />
         <Typography variant="h6" className={classes.username}>
           {getMessage(currentHour)}
           {', '}
@@ -31,7 +32,6 @@ const AppBarComponent = () => {
           {' '}
           {currentUser.name.lastName}
         </Typography>
-        <ReactLogo className={classes.logo} />
       </Toolbar>
     </AppBar>
   );

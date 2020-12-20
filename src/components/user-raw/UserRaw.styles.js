@@ -15,13 +15,22 @@ const useStyles = makeStyles(() => ({
       paddingBottom: '0.5%',
     },
   },
-  userName: {
+  text: {
+    display: 'flex',
+    justifyContent: 'space-between',
     fontFamily: config.style.fontFamily,
-    fontWeight: '700',
     boxShadow: '0 0.1vw 0 0 grey',
+    fontSize: '1vw',
     '&:hover': {
       backgroundColor: config.style.hoverColor,
     },
+  },
+  userName: {
+    fontWeight: '700',
+  },
+  manager: {
+    fontWeight: '500',
+    fontSize: '0.7vw',
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,

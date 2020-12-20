@@ -4,9 +4,12 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
   },
-  fieldList: {
+  scrollBar: {
     width: '30vw',
     height: '20vh',
+    marginRight: '5%',
+  },
+  fieldsList: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -24,6 +27,12 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       background: 'white',
     },
+  },
+  message: {
+    fontFamily: config.style.fontFamily,
+    color: config.style.mainColor,
+    fontWeight: '500',
+    textAlign: 'center',
   },
 }));
 

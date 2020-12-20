@@ -4,9 +4,9 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     margin: '1%',
-    width: '70%',
-    height: '50%',
-    borderRadius: 30,
+    width: '90%',
+    height: '40%',
+    borderRadius: 15,
     border: `0.1vw solid ${config.style.mainColor}`,
     '&:hover': {
       border: '0.1vw solid grey',

@@ -4,8 +4,10 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     marginTop: '1%',
-    width: '70vw',
+    width: '60vw',
     height: '65vh',
+    boxShadow: '0 0.2vw 0.3vw 0 grey',
+    borderRadius: 20,
   },
   scrollBarContent: {
     display: 'flex',

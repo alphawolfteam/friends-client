@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: '3%',
   },
   groupTitle: {
     display: 'flex',
@@ -24,6 +25,9 @@ const useStyles = makeStyles(() => ({
     boxShadow: '0 0.2vw 0.3vw 0 grey',
     marginLeft: '5%',
     marginBottom: '2%',
+  },
+  titleIcon: {
+    marginLeft: '5%',
   },
   groupDescription: {
     fontSize: '1vw',

@@ -1,35 +1,28 @@
-import React, { useState, useCallback, useEffect } from "react";
-import AppBarComponent from "./components/app-bar/AppBar";
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-} from "react-router-dom";
-import {
-  privateGroupsContext,
-  publicGroupsContext,
-} from "./stores/groupsStore";
-import GroupsSearch from "./pages/groups-search/GroupsSearch";
-import UsersService from "./services/UsersService";
-import loadingAnimation from "./images/loading.gif";
-import unitLogo from "./images/unitLogo.svg";
-import { userContext } from "./stores/userStore";
-import useStyles from "./App.styles";
-import GroupsService from "./services/GroupsService";
+} from 'react-router-dom';
+import AppBarComponent from './components/app-bar/AppBar';
+import userContext from './stores/userStore';
+import GroupsSearch from './pages/groups-search/GroupsSearch';
+import loadingAnimation from './images/loading.gif';
+import unitLogo from './images/unitLogo.svg';
+import useStyles from './App.styles';
+import AuthService from './services/AuthService';
 
 const App = () => {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(undefined);
-  const [privateGroups, setPrivateGroups] = useState(undefined);
-  const [publicGroups, setPublicGroups] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const initAuthUser = useCallback(() => {
-    UsersService.getAuthUser()
-      .then((currentUser) => {
-        setUser(currentUser);
+    AuthService.getAuthUser()
+      .then((res) => {
+        setCurrentUser(res);
         setIsAuthenticated(true);
       })
       .catch(() => setIsAuthenticated(false))
@@ -40,75 +33,47 @@ const App = () => {
       });
   }, []);
 
-  const initPrivateGroups = useCallback(() => {
-    GroupsService.getPrivateGroups()
-      .then((privateGroups) => {
-        setPrivateGroups(privateGroups);
-      })
-      // TODO: Error handler
-      .catch((err) => console.log(err));
-  }, []);
-
-  const initPublicGroups = useCallback(() => {
-    GroupsService.getPublicGroups()
-      .then((publicGroups) => {
-        setPublicGroups(publicGroups);
-      })
-      // TODO: Error handler
-      .catch((err) => console.log(err));
-  }, []);
-
   useEffect(() => {
     initAuthUser();
-    initPrivateGroups();
-    initPublicGroups();
-  }, [initAuthUser, initPrivateGroups, initPublicGroups]);
+  }, [initAuthUser]);
 
-  const renderFriends = () => {
-    return (
-      <Router>
-        <div className={classes.app}>
-          <userContext.Provider value={user}>
-            <AppBarComponent />
-            <div>
-              <Switch>
-                <Route path="/">
-                  <privateGroupsContext.Provider value={privateGroups}>
-                    <publicGroupsContext.Provider value={publicGroups}>
-                      <GroupsSearch />
-                    </publicGroupsContext.Provider>
-                  </privateGroupsContext.Provider>
-                </Route>
-                <Redirect to="/" />
-              </Switch>
-            </div>
-          </userContext.Provider>
-        </div>
-      </Router>
-    );
-  };
+  const renderUnauthorized = () => <span>unauthorized</span>;
 
-  const renderLoading = () => {
-    return (
-      <div className={classes.loading}>
-        <img src={loadingAnimation} alt="loading" />
-        <div className={classes.poweredByDiv}>
-          <span className={classes.poweredByText}>powered by</span>
-          <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
-        </div>
+  const renderFriends = () => (
+    isAuthenticated
+      ? (
+        <Router>
+          <div className={classes.app}>
+            <userContext.Provider value={currentUser}>
+              <AppBarComponent />
+              <div>
+                <Switch>
+                  <Route path="/">
+                    <GroupsSearch />
+                  </Route>
+                  <Redirect to="/" />
+                </Switch>
+              </div>
+            </userContext.Provider>
+          </div>
+        </Router>
+      )
+      : renderUnauthorized()
+  );
+
+  const renderLoading = () => (
+    <div className={classes.loading}>
+      <img src={loadingAnimation} alt="loading" />
+      <div className={classes.poweredByDiv}>
+        <span className={classes.poweredByText}>powered by</span>
+        <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
       </div>
-    );
-  };
-
-  const renderUnauthorized = () => {
-    return <span>unauthorized</span>;
-  };
+    </div>
+  );
 
   return isLoading
     ? renderLoading()
-    : isAuthenticated
-    ? renderFriends()
-    : renderUnauthorized();
+    : renderFriends();
 };
 
 export default App;

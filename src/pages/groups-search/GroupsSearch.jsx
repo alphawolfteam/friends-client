@@ -1,113 +1,71 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import {
-  privateGroupsContext,
-  // publicGroupsContext,
-} from "../../stores/groupsStore";
-import { userContext } from "../../stores/userStore";
-import useStyles from "./GroupsSearch.style";
-import loadingAnimation from "../../images/loading.gif";
-import GroupsList from "../../components/groups-list/GroupsList";
-import { Typography, Fab, Tooltip } from "@material-ui/core";
-import SearchBar from "../../components/search-bar/SearchBar";
-import Scrollbar from "react-scrollbars-custom";
-import { Add } from "@material-ui/icons";
-import config from "../../appConf";
+import React, {
+  useContext, useEffect, useMemo, useState,
+} from 'react';
+import { Fab, Tooltip } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
+import userContext from '../../stores/userStore';
+import useStyles from './GroupsSearch.style';
+import GroupsService from '../../services/GroupsService';
+import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
+import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
 
-const rolesEnum = config.rolesEnum;
-
-const isIncludesInSentence = (sentence, portion) => {
-  return (
-    sentence.startsWith(portion) ||
-    sentence.split(" ").filter((word) => word.startsWith(portion)).length > 0
-  );
-};
-
-const getFilteredGroups = (groups, searchValue) => {
-  return searchValue !== ""
-    ? groups.filter(
-        (privateGroup) =>
-          isIncludesInSentence(privateGroup.name, searchValue) ||
-          privateGroup.tags.filter((tag) =>
-            isIncludesInSentence(tag, searchValue)
-          ).length > 0
-      )
-    : groups;
-};
-
-const getFilteredPrivateGroups = (privateGroups, searchValue, user) => {
-  const filteredGroups = getFilteredGroups(privateGroups, searchValue);
-  const filteredOwnedGroups = [],
-    filteredUnownedGroups = [];
-  filteredGroups.forEach((filteredGroup) => {
-    let owned = false;
-    for (const groupUser of filteredGroup.users) {
-      if (user.id === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
-        owned = true;
-        break;
-      }
+const getSortedPrivateGroups = (privateGroups, userId) => {
+  const ownedGroups = [];
+  const unownedGroups = [];
+  privateGroups.forEach((group) => {
+    if (GroupsService.isAManager(group, userId)) {
+      ownedGroups.push(group);
+    } else {
+      unownedGroups.push(group);
     }
-    owned
-      ? filteredOwnedGroups.push(filteredGroup)
-      : filteredUnownedGroups.push(filteredGroup);
   });
 
-  return [...filteredOwnedGroups, ...filteredUnownedGroups];
+  return [...ownedGroups, ...unownedGroups];
 };
 
 const GroupsSearch = () => {
   const classes = useStyles();
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
+  const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
-  const user = useContext(userContext);
-  const privateGroups = useContext(privateGroupsContext);
+  const currentUser = useContext(userContext);
+  console.log(openAddGroupDialog);
 
-  useEffect(() => {
-    setIsLoading(privateGroups === undefined);
-  }, [privateGroups]);
+  useEffect(async () => {
+    if (searchValue === '') {
+      setFilteredPrivateGroups(await GroupsService.getPrivateGroups());
+      setFilteredPublicGroups([]);
+    } else {
+      setFilteredPrivateGroups(await GroupsService.getFilteredPrivateGroups(searchValue));
+      if (searchValue.length >= 2) {
+        setFilteredPublicGroups(await GroupsService.getFilteredPublicGroups(searchValue));
+      } else {
+        setFilteredPublicGroups([]);
+      }
+    }
+  }, [searchValue]);
 
-  const renderLoading = () => {
-    return (
-      <div className={classes.loading}>
-        <img src={loadingAnimation} alt="loading" />
-      </div>
-    );
-  };
-
-  const filteredPrivateGroups = useMemo(
-    () => getFilteredPrivateGroups(privateGroups, searchValue, user),
-    [privateGroups, searchValue, user]
-  );
+  const sortedPrivateGroups = useMemo(() => (
+    getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
+  [filteredPrivateGroups, currentUser]);
 
   return (
-    <>
-      {isLoading ? (
-        renderLoading()
-      ) : (
-        <div className={classes.root}>
-          <SearchBar setSearchValue={setSearchValue} />
-          <div className={classes.scrollBar}>
-            <Scrollbar>
-              {filteredPrivateGroups.length > 0 ? (
-                <GroupsList groups={filteredPrivateGroups} />
-              ) : (
-                <Typography className={classes.message}>
-                  לא נמצאו אף קבוצות
-                </Typography>
-              )}
-            </Scrollbar>
-          </div>
-          <Tooltip title="הוסף קבוצה חדשה">
-            <Fab
-              className={classes.addButton}
-              onClick={() => setOpenAddGroupDialog(true)}
-            >
-              <Add />
-            </Fab>
-          </Tooltip>
-        </div>
-      )}
-    </>
+    <div className={classes.root}>
+      <GroupSearchBar setSearchValue={setSearchValue} />
+      <ScrollableGroupsResult
+        privateGroups={sortedPrivateGroups}
+        publicGroups={filteredPublicGroups}
+      />
+      <Tooltip title="הוסף קבוצה חדשה">
+        <Fab
+          className={classes.addButton}
+          onClick={() => setOpenAddGroupDialog(true)}
+        >
+          <Add />
+        </Fab>
+      </Tooltip>
+    </div>
   );
 };
 

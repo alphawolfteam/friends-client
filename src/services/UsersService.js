@@ -2,30 +2,58 @@
 // import axios from "axios";
 
 class UsersService {
-  static async getAuthUser() {
-    // TODO: get current user
-    // const { data } = await axios.get('/users/currentUser');
+  static async getPopulatedUsersList(idsList) {
+    // TODO: get populated users from api-gateway
 
-    // return data;
-    return {
-      address: "רחוב הממתקים 34",
-      adfsId: "t23458789@jello.com",
-      currentUnit: "nitro unit",
-      dischargeDay: "2022-11-30T22:00:00.000Z",
-      displayName: "t23458789@jello.com",
-      entityType: "digimon",
-      exp: 1607005903,
-      genesisId: "5e5688324203fc40043591aa",
-      iat: 1607002303,
-      id: "5e5688324203fc40043591aa",
-      job: "רוצח",
-      jti: "57c79308-5e5e-4205-8d69-c59025dc70fd",
-      name: { firstName: "נייקי", lastName: "אדידס" },
-      phoneNumbers: ["026666998", "052-1234565"],
-      photo: null,
-      provider: "Genesis",
-      rank: "mega",
-    };
+    const usersList = await this.getFilteredUsersList('');
+    return usersList.filter((user) => idsList.includes(user.id));
+  }
+
+  static async getFilteredUsersList(searchValue) {
+    // TODO: Get 20 first users by searchValue
+    if (searchValue !== undefined) {
+      return [
+        {
+          id: '1111',
+          fullName: 'נייקי אדידס',
+          name: { firstName: 'נייקי', lastName: 'אדידס' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '2222',
+          fullName: 'ישראל ישראלי',
+          name: { firstName: 'ישראל', lastName: 'ישראלי' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '3333',
+          fullName: 'חיים כהן',
+          name: { firstName: 'חיים', lastName: 'כהן' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '4444',
+          fullName: 'עומר אדם',
+          name: { firstName: 'עומר', lastName: 'אדם' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '5555',
+          fullName: 'איציק כהן',
+          name: { firstName: 'איציק', lastName: 'כהן' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+        {
+          id: '6666',
+          fullName: 'ישראל אהרוני',
+          name: { firstName: 'ישראל', lastName: 'אהרוני' },
+          hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+        },
+      ].filter((user) => user.name.lastName.startsWith(searchValue)
+        || user.name.firstName.startsWith(searchValue)
+        || `${user.name.firstName} ${user.name.lastName}`.startsWith(searchValue));
+    }
+    return [];
   }
 }
 

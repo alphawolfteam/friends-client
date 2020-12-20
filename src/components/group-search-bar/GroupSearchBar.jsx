@@ -1,11 +1,11 @@
-import React from "react";
-import { InputBase, Fab } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
-import useStyles from "./SearchBar.styles";
+import React from 'react';
+import { InputBase, Fab } from '@material-ui/core';
+import { Search } from '@material-ui/icons';
+import useStyles from './GroupSearchBar.styles';
 
 const ENTER_CHAR_CODE = 13;
 
-const SearchBar = ({ setSearchValue }) => {
+const GroupSearchBar = ({ setSearchValue }) => {
   const classes = useStyles();
 
   const handleOnKeyPress = (event) => {
@@ -15,7 +15,7 @@ const SearchBar = ({ setSearchValue }) => {
   };
 
   const handleOnClick = () => {
-    const searchInput = document.getElementById("searchInput");
+    const searchInput = document.getElementById('searchInput');
     setSearchValue(() => searchInput.value);
   };
 
@@ -26,7 +26,7 @@ const SearchBar = ({ setSearchValue }) => {
       </Fab>
       <InputBase
         id="searchInput"
-        placeholder="חפש..."
+        placeholder="חיפוש..."
         dir="rtl"
         onKeyDown={(e) => handleOnKeyPress(e)}
         className={classes.input}
@@ -35,4 +35,4 @@ const SearchBar = ({ setSearchValue }) => {
   );
 };
 
-export default SearchBar;
+export default GroupSearchBar;

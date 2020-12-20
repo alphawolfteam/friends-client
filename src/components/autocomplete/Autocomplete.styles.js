@@ -6,23 +6,22 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    position: 'absolute',
+    zIndex: 1000,
+    top: '14.5vh',
+    borderRadius: 0,
   },
-  loading: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    width: '100vw',
-  },
-  addButton: {
-    marginLeft: '7%',
-    alignSelf: 'start',
-    backgroundColor: config.style.mainColor,
-    color: 'white',
+  optionCard: {
+    width: '19vw',
+    fontFamily: config.style.fontFamily,
+    border: `1px solid ${config.style.mainColor}`,
     '&:hover': {
+      backgroundColor: config.style.backgroundColor,
       color: config.style.mainColor,
     },
+  },
+  optionContent: {
+
   },
 }));
 

@@ -2,24 +2,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loading: {
+  root: {},
+  title: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    width: '100vw',
   },
-  addButton: {
-    marginLeft: '7%',
-    alignSelf: 'start',
+  lockIcon: {
+    fontSize: '50vw',
+  },
+  button: {
     backgroundColor: config.style.mainColor,
     color: 'white',
+    fontFamily: config.style.fontFamily,
     '&:hover': {
       color: config.style.mainColor,
     },

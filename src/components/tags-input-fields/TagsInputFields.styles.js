@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {
     maxWidth: '50vw',
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'center',
   },
   label: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
+    maxWidth: '30vw',
     whiteSpace: 'nowrap',
   },
   closeIcon: {

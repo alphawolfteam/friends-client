@@ -50,10 +50,10 @@ const useStyles = makeStyles(() => ({
     borderRadius: '50%',
     position: 'relative',
     backgroundColor: 'white',
-    width: '9vh',
-    height: '8vh',
+    width: '5.5em',
+    height: '4.5em',
     overflow: 'hidden',
-    border: '0.1vw solid black',
+    boxShadow: '0 0.2vw 0.3vw 0 grey',
     marginLeft: '5%',
   },
   img: {

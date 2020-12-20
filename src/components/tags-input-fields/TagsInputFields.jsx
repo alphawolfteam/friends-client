@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chip } from '@material-ui/core';
+import { Chip, Tooltip } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import useStyles from './TagsInputFields.styles';
 
@@ -25,18 +25,21 @@ const TagsInputFields = ({ group, setGroup }) => {
   return (
     <div className={classes.root}>
       {group.tags.length > 0 && (
-        <div>
-          {[...group.tags, ...group.tags].map((tag) => (
-            <Chip
-              dir="rtl"
-              className={classes.label}
-              key={tag}
-              label={`#${tag}`}
-              onDelete={() => handleRemoveTag(tag)}
-              deleteIcon={<Close className={classes.closeIcon} />}
-            />
-          ))}
-        </div>
+        <>
+          {
+            group.tags.map((tag) => (
+              <Tooltip title={tag} key={tag}>
+                <Chip
+                  dir="rtl"
+                  className={classes.label}
+                  label={`#${tag}`}
+                  onDelete={() => handleRemoveTag(tag)}
+                  deleteIcon={<Close className={classes.closeIcon} />}
+                />
+              </Tooltip>
+            ))
+          }
+        </>
       )}
     </div>
   );

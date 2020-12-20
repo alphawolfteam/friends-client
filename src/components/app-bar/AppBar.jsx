@@ -6,9 +6,9 @@ import useStyles from './AppBar.styles';
 
 const getMessage = (currentHour) => {
   let message;
-  if (currentHour <= 12) {
+  if (currentHour < 12) {
     message = 'בוקר טוב';
-  } else if (currentHour <= 17) {
+  } else if (currentHour < 18) {
     message = 'צהריים טובים';
   } else {
     message = 'ערב טוב';

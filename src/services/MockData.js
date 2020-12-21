@@ -1,6 +1,45 @@
 // TODO: Delete file
-
 const groups = [
+  {
+    name: 'כל דולפין',
+    description: 'כללללל דולפין',
+    tags: ['רמת אביב'],
+    type: 'public',
+    users: [
+      {
+        role: 0,
+        id: '1111',
+      },
+      {
+        role: 0,
+        id: '2222',
+      },
+      {
+        role: 1,
+        id: '3333',
+      },
+      {
+        role: 1,
+        id: '4444',
+      },
+      {
+        role: 0,
+        id: '5555',
+      },
+      {
+        role: 1,
+        id: '6666',
+      },
+    ],
+    lastModified: new Date(),
+    createdAt: new Date(),
+    modifiedBy: '5e5688324203fc40043591aa',
+    exchangeAddress: '',
+    externalSystems: {},
+    createdBy: '5e5688324203fc40043591aa',
+    icon: undefined,
+    _id: '8',
+  },
   {
     name: 'סגני דולפין',
     description: 'הסגנים של דולפין',

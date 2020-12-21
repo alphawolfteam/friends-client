@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -19,11 +19,6 @@ const AddGroupDialog = ({ open, onClose }) => {
     users: [{ id: currentUser.id, role: rolesEnum.MANAGER }],
     icon: 'TODO: Add default value',
   });
-
-  // TODO: delete
-  useEffect(() => {
-    console.log('in add: ', JSON.stringify(newGroup, null, 2));
-  }, [newGroup]);
 
   const handleAdd = () => {
     // TODO: Add new group

@@ -1,5 +1,4 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
 import useStyles from './GroupDescriptionInput.styles';
 
 const GroupDescriptionInput = ({ group, setGroup }) => {
@@ -12,13 +11,11 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   };
 
   return (
-    <TextField
-      id="name"
-      helperText="תיאור הקבוצה"
-      value={group.description}
-      variant="outlined"
-      multiline
+    <textarea
+      cols="5"
       rows="2"
+      placeholder="תיאור הקבוצה"
+      value={group.description}
       dir="rtl"
       onChange={(e) => handleChange(e)}
       className={classes.root}

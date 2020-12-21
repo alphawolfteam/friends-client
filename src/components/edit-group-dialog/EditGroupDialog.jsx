@@ -47,6 +47,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const dialogContent = () => (
     <div className={classes.content}>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+      <hr />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
       <hr />
       <UserInputFields group={newGroup} setGroup={setNewGroup} />

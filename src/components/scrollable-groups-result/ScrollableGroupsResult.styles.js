@@ -6,8 +6,8 @@ const useStyles = makeStyles(() => ({
     marginTop: '1%',
     width: '60vw',
     height: '65vh',
-    boxShadow: '0 0.2vw 0.3vw 0 grey',
-    borderRadius: 20,
+    boxShadow: 'inset 0vw -0.7vw 1vw -0.6vw lightgrey',
+    borderRadius: 10,
   },
   scrollBarContent: {
     display: 'flex',

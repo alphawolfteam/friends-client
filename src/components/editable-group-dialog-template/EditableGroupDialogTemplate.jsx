@@ -8,9 +8,10 @@ import TagsInputFields from '../tags-input-fields/TagsInputFields';
 import GroupNameInput from '../group-name-input/GroupNameInput';
 import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
 import LockIcon from '../lock-icon/LockIcon';
+import IconInput from '../icon-input/IconInput';
 
 const EditableGroupDialogTemplate = ({
-  newGroup, setNewGroup, open, onClose, actions,
+  newGroup, setNewGroup, open, actions,
 }) => {
   const classes = useStyles();
 
@@ -22,18 +23,23 @@ const EditableGroupDialogTemplate = ({
   };
 
   const dialogTitle = () => (
-    <div className={classes.dialogTitle}>
-      <GroupNameInput group={newGroup} setGroup={setNewGroup} />
-      <div className={classes.lock}>
-        <LockIcon type={newGroup.type} />
-        <Switch
-          size="small"
-          checked={newGroup.type === 'private'}
-          color="default"
-          onChange={() => changeType()}
-        />
+    <>
+      <div className={classes.groupIcon}>
+        <IconInput group={newGroup} setGroup={setNewGroup} />
       </div>
-    </div>
+      <div className={classes.dialogTitle}>
+        <GroupNameInput group={newGroup} setGroup={setNewGroup} />
+        <div className={classes.lock}>
+          <LockIcon type={newGroup.type} />
+          <Switch
+            size="small"
+            checked={newGroup.type === 'private'}
+            color="default"
+            onChange={() => changeType()}
+          />
+        </div>
+      </div>
+    </>
   );
 
   const dialogContent = () => (
@@ -56,7 +62,6 @@ const EditableGroupDialogTemplate = ({
       content={dialogContent()}
       actions={actions}
       open={open}
-      onClose={onClose}
     />
   );
 };

@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     padding: '0.5%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     '&:last-child': {
       paddingBottom: '0.5%',
     },
@@ -34,6 +34,11 @@ const useStyles = makeStyles(() => ({
     paddingTop: '3%',
     paddingBottom: '3%',
     paddingLeft: '1%',
+  },
+  tagList: {
+    width: '10vw',
+    display: 'flex',
+    justifyContent: 'center',
   },
   groupAmount: {
     fontFamily: config.style.fontFamily,

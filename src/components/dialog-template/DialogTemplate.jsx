@@ -28,9 +28,11 @@ const DialogTemplate = ({
         <Typography variant="h4" className={classes.dialogTitle}>
           {title}
         </Typography>
+        {onClose && (
         <IconButton onClick={onClose} className={classes.closeButton}>
           <Close />
         </IconButton>
+        )}
       </DialogTitle>
       <DialogContent dividers className={classes.dialogContent}>
         <Scrollbar>

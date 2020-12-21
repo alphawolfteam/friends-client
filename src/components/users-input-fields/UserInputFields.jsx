@@ -4,6 +4,7 @@ import { Button, Tooltip, Typography } from '@material-ui/core';
 import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
+import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import config from '../../appConf';
 import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
 import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
@@ -102,7 +103,7 @@ const UserInputFields = ({ group, setGroup }) => {
         </Button>
       </Tooltip>
       {managerButton(user)}
-      <UserRaw user={user} />
+      <EditableUserRaw user={user} />
     </div>
   );
 

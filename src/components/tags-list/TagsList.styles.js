@@ -6,7 +6,6 @@ const useStyles = makeStyles(() => ({
     marginTop: '3%',
     marginRight: '5%',
     whiteSpace: 'nowrap',
-    alignSelf: 'flex-end',
   },
   label: {
     margin: '1.3%',

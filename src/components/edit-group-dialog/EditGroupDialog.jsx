@@ -52,7 +52,6 @@ const EditGroupDialog = ({ group, open, onClose }) => {
       setNewGroup={setNewGroup}
       actions={dialogActions()}
       open={open}
-      onClose={onClose}
     />
   );
 };

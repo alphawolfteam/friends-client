@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '22vw',
+    width: '27vw',
     height: '19vh',
   },
   scrollBarContent: {

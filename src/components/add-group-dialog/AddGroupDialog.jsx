@@ -4,9 +4,11 @@ import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
 import userContext from '../../stores/userStore';
 import config from '../../appConf';
+import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 
 const { rolesEnum } = config;
 const DEFAULT_TYPE = 'private';
+const DEFAULT_ICON = groupIconsCodes[0];
 
 const AddGroupDialog = ({ open, onClose }) => {
   const classes = useStyles();
@@ -17,7 +19,7 @@ const AddGroupDialog = ({ open, onClose }) => {
     tags: [],
     type: DEFAULT_TYPE,
     users: [{ id: currentUser.id, role: rolesEnum.MANAGER }],
-    icon: 'TODO: Add default value',
+    icon: DEFAULT_ICON,
   });
 
   const handleAdd = () => {
@@ -51,7 +53,6 @@ const AddGroupDialog = ({ open, onClose }) => {
       setNewGroup={setNewGroup}
       actions={dialogActions()}
       open={open}
-      onClose={onClose}
     />
   );
 };

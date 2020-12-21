@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
-import useStyles from './UserRaw.styles';
+import useStyles from './EditableUserRaw.styles';
 
-const UserRaw = ({ user, isAManager }) => {
+const EditableUserRaw = ({ user, isAManager }) => {
   const classes = useStyles();
   const [openHierarchy, setOpenHierarchy] = useState(false);
 
@@ -39,4 +39,4 @@ const UserRaw = ({ user, isAManager }) => {
   );
 };
 
-export default UserRaw;
+export default EditableUserRaw;

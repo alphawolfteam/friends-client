@@ -48,11 +48,9 @@ const GroupDialog = ({ group, open, onClose }) => {
 
   const dialogTitle = () => (
     <>
-      {group.icon && (
-        <div className={classes.groupIcon}>
-          <img className={classes.img} src={group.icon} alt="icon" />
-        </div>
-      )}
+      <div className={classes.groupIcon}>
+        <img className={classes.img} src={group.icon} alt="icon" />
+      </div>
       <div className={classes.groupTitle}>
         {group.name}
         <LockIcon disabled type={group.type} />
@@ -69,11 +67,11 @@ const GroupDialog = ({ group, open, onClose }) => {
       <Typography dir="rtl" className={classes.groupDescription}>
         {group.description}
       </Typography>
-      <hr />
+      <hr className={classes.divider} />
       {group.tags.length > 0 && (
         <>
           <TagsList tags={group.tags} />
-          <hr />
+          <hr className={classes.divider} />
         </>
       )}
       <Typography dir="rtl" className={classes.title}>
@@ -85,7 +83,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   );
 
   const dialogActions = () => (
-    <>
+    <div className={classes.actions}>
       {isAManager && (
         <Button
           variant="contained"
@@ -104,7 +102,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           יציאה מהקבוצה
         </Button>
       )}
-    </>
+    </div>
   );
 
   return (

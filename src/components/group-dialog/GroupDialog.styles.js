@@ -51,6 +51,17 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate( -50%, -50%)',
   },
+  divider: {
+    border: '0',
+    clear: 'both',
+    display: 'block',
+    width: '96%',
+    backgroundColor: 'lightgrey',
+    height: '0.1vh',
+  },
+  actions: {
+    flex: '1 0 0',
+  },
   button: config.style.button,
 }));
 

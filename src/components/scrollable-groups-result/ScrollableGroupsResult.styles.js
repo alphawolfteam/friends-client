@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '1%',
     width: '60vw',
     height: '65vh',
-    boxShadow: 'inset 0vw -0.7vw 1vw -0.6vw lightgrey',
+    background: config.style.backgroundColor,
     borderRadius: 10,
   },
   scrollBarContent: {

@@ -15,20 +15,19 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     width: '100vw',
   },
-  poweredByText: {
+  text: {
     fontFamily: config.style.fontFamily,
-    fontWeight: 500,
-    marginTop: '5%',
-    marginBottom: '3%',
+    fontWeight: 700,
+    marginTop: '4%',
+    marginBottom: '2%',
   },
-  poweredByDiv: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+  friendsLogo: {
+    width: '40vw',
+    height: '25vh',
   },
   unitLogo: {
-    width: '50%',
-    height: '30%',
+    width: '30%',
+    height: '20%',
   },
 }));
 

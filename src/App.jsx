@@ -8,7 +8,7 @@ import {
 import AppBarComponent from './components/app-bar/AppBar';
 import userContext from './stores/userStore';
 import GroupsSearch from './pages/groups-search/GroupsSearch';
-import loadingAnimation from './images/loading.gif';
+import friendsLogo from './images/logo.svg';
 import unitLogo from './images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
@@ -63,11 +63,9 @@ const App = () => {
 
   const renderLoading = () => (
     <div className={classes.loading}>
-      <img src={loadingAnimation} alt="loading" />
-      <div className={classes.poweredByDiv}>
-        <span className={classes.poweredByText}>powered by</span>
-        <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
-      </div>
+      <img src={friendsLogo} className={classes.friendsLogo} alt="friendsLogo" />
+      <span className={classes.text}>powered by</span>
+      <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
     </div>
   );
 

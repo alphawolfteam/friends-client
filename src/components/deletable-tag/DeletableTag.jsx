@@ -7,7 +7,7 @@ const DeletableTag = ({ tag, onDelete }) => {
   const classes = useStyles();
 
   return (
-    <Tooltip className={classes.root} title={tag} key={tag}>
+    <Tooltip className={classes.root} title={tag}>
       <Chip
         dir="rtl"
         className={classes.label}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Switch } from '@material-ui/core';
+import { Button, Switch, Typography } from '@material-ui/core';
+import { Info } from '@material-ui/icons';
 import useStyles from './EditGroupDialog.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import UserInputFields from '../users-input-fields/UserInputFields';
@@ -21,6 +22,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
 
   const handleSave = () => {
     // TODO: Save editing
+    // TODO: Add ensuring message
     // TODO: Add validation
     onClose();
   };
@@ -39,7 +41,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   };
 
   const dialogTitle = () => (
-    <div className={classes.title}>
+    <div className={classes.dialogTitle}>
       <GroupNameInput group={newGroup} setGroup={setNewGroup} />
       <div className={classes.lock}>
         <LockIcon type={newGroup.type} />
@@ -55,6 +57,10 @@ const EditGroupDialog = ({ group, open, onClose }) => {
 
   const dialogContent = () => (
     <div className={classes.content}>
+      <Typography dir="rtl" className={classes.title}>
+        <Info className={classes.titleIcon} />
+        תיאור
+      </Typography>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <hr />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />

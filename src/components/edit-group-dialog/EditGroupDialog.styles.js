@@ -10,9 +10,19 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     overflowX: 'hidden',
   },
-  title: {
+  dialogTitle: {
     display: 'flex',
     alignItems: 'center',
+  },
+  titleIcon: {
+    marginLeft: '5%',
+  },
+  title: {
+    display: 'flex',
+    paddingRight: '2%',
+    alignSelf: 'flex-end',
+    fontFamily: config.style.fontFamily,
+    fontWeight: '700',
   },
   lock: {
     display: 'flex',

@@ -14,7 +14,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
     <textarea
       cols="5"
       rows="2"
-      placeholder="תיאור הקבוצה"
+      placeholder="הוסיפו תיאור.."
       value={group.description}
       dir="rtl"
       onChange={(e) => handleChange(e)}

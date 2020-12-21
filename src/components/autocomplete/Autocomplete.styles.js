@@ -6,9 +6,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    position: 'absolute',
+    position: 'relative',
     zIndex: 1000,
-    top: '14.5vh',
+    top: '10%',
     borderRadius: 0,
   },
   optionCard: {

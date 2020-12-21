@@ -14,13 +14,9 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  currentUser: {
-    padding: '0.5%',
-    alignSelf: 'center',
-  },
   field: {
     display: 'flex',
-    jusifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: '0.5%',
     fontFamily: config.style.fontFamily,
@@ -36,7 +32,7 @@ const useStyles = makeStyles(() => ({
   message: {
     fontFamily: config.style.fontFamily,
     color: config.style.mainColor,
-    fontWeight: '500',
+    fontWeight: '600',
     textAlign: 'center',
   },
 }));

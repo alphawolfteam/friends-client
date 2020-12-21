@@ -107,9 +107,7 @@ const UserInputFields = ({ group, setGroup }) => {
         </Button>
       </Tooltip>
       {managerButton(user)}
-      <UserRaw
-        user={user}
-      />
+      <UserRaw user={user} />
     </div>
   );
 
@@ -119,7 +117,9 @@ const UserInputFields = ({ group, setGroup }) => {
       <div className={classes.scrollBar}>
         <Scrollbar>
           <div className={classes.fieldList}>
-            <UserRaw user={currentUser} isAManager className={classes.currentUser} />
+            <div className={classes.field}>
+              <UserRaw user={currentUser} isAManager />
+            </div>
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (
               userInputField(user)
             ))

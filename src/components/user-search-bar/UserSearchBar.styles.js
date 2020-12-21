@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1vw',
     color: 'white',
     fontFamily: config.style.fontFamily,
-    fontWeight: '500',
+    fontWeight: '600',
     position: 'relative',
   },
 }));

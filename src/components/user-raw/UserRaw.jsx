@@ -12,8 +12,12 @@ const UserRaw = ({ user, isAManager }) => {
       <CardContent dir="rtl" className={classes.cardContent}>
         <Typography
           component="span"
-          className={classes.text}
-          onClick={() => setOpenHierarchy((prevValue) => !prevValue)}
+          className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
+          onClick={() => {
+            if (user.hierarchyFlat) {
+              setOpenHierarchy((prevValue) => !prevValue);
+            }
+          }}
         >
           <div className={classes.userName}>
             {user.name.firstName}

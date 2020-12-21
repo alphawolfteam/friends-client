@@ -13,7 +13,7 @@ const GroupNameInput = ({ group, setGroup }) => {
   return (
     <input
       type="text"
-      placeholder="שם הקבוצה"
+      placeholder="הוסיפו שם.."
       value={group.name}
       onChange={(e) => handleChange(e)}
       className={classes.root}

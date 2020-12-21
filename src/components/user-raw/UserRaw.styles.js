@@ -19,8 +19,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     fontFamily: config.style.fontFamily,
-    boxShadow: '0 0.1vw 0 0 grey',
     fontSize: '1vw',
+  },
+  hover: {
     '&:hover': {
       backgroundColor: config.style.hoverColor,
     },
@@ -36,6 +37,7 @@ const useStyles = makeStyles(() => ({
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,
     wordBreak: 'break-all',
+    boxShadow: '0 -0.1vw 0 0 grey',
   },
 }));
 

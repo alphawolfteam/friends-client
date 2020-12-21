@@ -16,7 +16,7 @@ const EditableGroupDialogTemplate = ({
 
   const changeType = () => {
     setNewGroup((prevValue) => {
-      const newType = prevValue.type === 'public' ? 'private' : 'public';
+      const newType = prevValue.type === 'private' ? 'public' : 'private';
       return { ...prevValue, type: newType };
     });
   };
@@ -28,7 +28,7 @@ const EditableGroupDialogTemplate = ({
         <LockIcon type={newGroup.type} />
         <Switch
           size="small"
-          checked={newGroup.type === 'public'}
+          checked={newGroup.type === 'private'}
           color="default"
           onChange={() => changeType()}
         />

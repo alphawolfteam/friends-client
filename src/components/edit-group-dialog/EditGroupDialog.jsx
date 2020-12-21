@@ -9,7 +9,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
 
   // TODO: delete
   useEffect(() => {
-    console.log('in edit: ', JSON.stringify({ ...newGroup, icon: 'there is an icon don\'t worry' }, null, 2));
+    console.log('in edit: ', JSON.stringify(newGroup, null, 2));
   }, [newGroup]);
 
   const handleSave = () => {

@@ -8,6 +8,7 @@ import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
+import AddGroupDialog from '../../components/add-group-dialog/AddGroupDialog';
 
 const getSortedPrivateGroups = (privateGroups, userId) => {
   const ownedGroups = [];
@@ -30,7 +31,6 @@ const GroupsSearch = () => {
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const currentUser = useContext(userContext);
-  console.log(openAddGroupDialog);
 
   useEffect(async () => {
     if (searchValue === '') {
@@ -65,6 +65,12 @@ const GroupsSearch = () => {
           <Add />
         </Fab>
       </Tooltip>
+      {openAddGroupDialog && (
+        <AddGroupDialog
+          open={openAddGroupDialog}
+          onClose={() => setOpenAddGroupDialog(false)}
+        />
+      )}
     </div>
   );
 };

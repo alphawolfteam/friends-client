@@ -38,12 +38,6 @@ const UserInputFields = ({ group, setGroup }) => {
     }));
   };
 
-  useEffect(async () => {
-    if (!isExist(group.users, currentUser)) {
-      addUser(currentUser, rolesEnum.MANAGER);
-    }
-  }, []);
-
   // TODO: On changeing page
   useEffect(async () => {
     // TODO: Populate first 5 users except of the current user

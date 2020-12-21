@@ -4,7 +4,7 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     width: '22vw',
-    height: '28vh',
+    height: '19vh',
   },
   scrollBarContent: {
     margin: '2%',

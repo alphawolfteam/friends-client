@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
     height: '20vh',
     marginRight: '5%',
   },
+  scrolBar: {
+    scrollbarWidth: 'none',
+  },
   fieldsList: {
     display: 'flex',
     flexDirection: 'column',

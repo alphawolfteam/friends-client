@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     color: config.style.fontColor,
     fontFamily: config.style.fontFamily,
     fontSize: '1.3vw',
+    fontWeight: '500',
   },
 }));
 

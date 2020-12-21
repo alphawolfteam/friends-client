@@ -5,7 +5,7 @@ const config = {
     backgroundColor: '#F9FAFB',
     hoverColor: '#E4E6E9',
     fontColor: '#56575D',
-    fontFamily: 'Segoe UI',
+    fontFamily: 'Alef',
     button: {},
   },
   // TODO: verify roles
@@ -20,10 +20,10 @@ config.style.button = {
   backgroundColor: config.style.mainColor,
   color: 'white',
   fontFamily: config.style.fontFamily,
+  fontWeight: '700',
   '&:hover': {
     color: config.style.mainColor,
     backgroundColor: config.style.hoverColor,
-    fontWeight: '700',
   },
 };
 

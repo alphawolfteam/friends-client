@@ -30,7 +30,8 @@ const useStyles = makeStyles(() => ({
   },
   manager: {
     fontWeight: '500',
-    fontSize: '0.7vw',
+    fontSize: '0.8vw',
+    paddingLeft: '1%',
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,

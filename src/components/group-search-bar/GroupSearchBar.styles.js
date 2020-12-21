@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -24,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   input: {
-    padding: theme.spacing(1, 1, 1, 0),
-    fontSize: '1vw',
+    padding: '2%',
+    width: '100%',
+    fontSize: '1.1vw',
     color: 'white',
     fontFamily: config.style.fontFamily,
-    fontWeight: '500',
+    fontWeight: '600',
   },
 }));
 

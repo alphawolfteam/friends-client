@@ -14,7 +14,6 @@ const useStyles = makeStyles(() => ({
     },
   },
   cardContent: {
-    fontFamily: config.style.fontFamily,
     color: config.style.fontColor,
     padding: '0.5%',
     display: 'flex',
@@ -37,10 +36,12 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '1%',
   },
   groupAmount: {
+    fontFamily: config.style.fontFamily,
     fontSize: '1vw',
     fontWeight: '700',
   },
   groupName: {
+    fontFamily: config.style.fontFamily,
     fontSize: '1.6vw',
     fontWeight: '700',
     marginRight: '2%',

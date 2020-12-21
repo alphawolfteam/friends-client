@@ -28,9 +28,11 @@ const AppBarComponent = () => {
         <Typography variant="h6" className={classes.username}>
           {getMessage(currentHour)}
           {', '}
-          {currentUser.name.firstName}
-          {' '}
-          {currentUser.name.lastName}
+          <strong>
+            {currentUser.name.firstName}
+            {' '}
+            {currentUser.name.lastName}
+          </strong>
         </Typography>
       </Toolbar>
     </AppBar>

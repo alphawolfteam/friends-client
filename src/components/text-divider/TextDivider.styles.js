@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
   dividerText: {
     fontFamily: config.style.fontFamily,
-    fontWeight: '500',
+    fontWeight: '600',
     color: config.style.mainColor,
   },
 }));

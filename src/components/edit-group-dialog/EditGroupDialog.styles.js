@@ -16,8 +16,10 @@ const useStyles = makeStyles(() => ({
   },
   titleIcon: {
     marginLeft: '5%',
+    fontSize: '1.5vw',
   },
   title: {
+    fontSize: '1vw',
     display: 'flex',
     paddingRight: '2%',
     alignSelf: 'flex-end',

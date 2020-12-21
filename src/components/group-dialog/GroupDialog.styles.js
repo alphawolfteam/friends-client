@@ -28,17 +28,19 @@ const useStyles = makeStyles(() => ({
   },
   titleIcon: {
     marginLeft: '5%',
+    fontSize: '1.5vw',
+  },
+  title: {
+    fontSize: '1vw',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    fontFamily: config.style.fontFamily,
+    fontWeight: '700',
   },
   groupDescription: {
     fontSize: '1vw',
     fontFamily: config.style.fontFamily,
     alignSelf: 'flex-end',
-  },
-  title: {
-    display: 'flex',
-    alignSelf: 'flex-end',
-    fontFamily: config.style.fontFamily,
-    fontWeight: '700',
   },
   img: {
     position: 'absolute',

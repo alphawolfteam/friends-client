@@ -7,20 +7,23 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     position: 'relative',
-    zIndex: 1000,
     top: '10%',
+    zIndex: 1,
     borderRadius: 0,
+  },
+  optionsDiv: {
+    position: 'absolute',
   },
   optionCard: {
     width: '19vw',
-    fontFamily: config.style.fontFamily,
     border: '1px solid grey',
     '&:hover': {
       backgroundColor: config.style.hoverColor,
     },
   },
   optionContent: {
-
+    fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
   },
 }));
 

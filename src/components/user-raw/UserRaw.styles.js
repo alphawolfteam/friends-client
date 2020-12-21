@@ -36,6 +36,7 @@ const useStyles = makeStyles(() => ({
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
     wordBreak: 'break-all',
     boxShadow: '0 -0.1vw 0 0 grey',
   },

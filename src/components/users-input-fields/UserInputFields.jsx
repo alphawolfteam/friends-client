@@ -59,8 +59,9 @@ const UserInputFields = ({ group, setGroup }) => {
   useEffect(() => {
     if (selectedUser && !isExist(group.users, selectedUser)) {
       addUser(selectedUser, rolesEnum.FRIEND);
+      setSelectedUser(undefined);
     }
-  }, [setGroup, selectedUser]);
+  }, [selectedUser]);
 
   const handleRemoveUser = (userToRemove) => {
     setGroup((prevValue) => {

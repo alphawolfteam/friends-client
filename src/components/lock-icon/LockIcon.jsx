@@ -1,30 +1,25 @@
 import React from 'react';
 import { Lock, LockOpen } from '@material-ui/icons';
+import { Tooltip } from '@material-ui/core';
 import useStyles from './LockIcon.styles';
 
-const LockIcon = ({ type, setType }) => {
+const LockIcon = ({ type }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       {
-        setType ? (
-          <>
-            {type === 'private'
-              ? <Lock fontSize="large" onClick={() => setType('public')} />
-              : <LockOpen fontSize="large" onClick={() => setType('private')} />}
-          </>
-        ) : (
-          <>
-            {type === 'private'
-              ? (
-                <Lock fontSize="large" />
-              )
-              : (
-                <LockOpen fontSize="large" />
-              )}
-          </>
-        )
+        type === 'private'
+          ? (
+            <Tooltip title="קבוצה פרטית">
+              <Lock fontSize="large" />
+            </Tooltip>
+          )
+          : (
+            <Tooltip title="קבוצה ציבורית">
+              <LockOpen fontSize="large" />
+            </Tooltip>
+          )
       }
     </div>
   );

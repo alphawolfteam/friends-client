@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, Switch } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import UserInputFields from '../users-input-fields/UserInputFields';
@@ -31,8 +31,9 @@ const EditGroupDialog = ({ group, open, onClose }) => {
     onClose();
   };
 
-  const setType = (newType) => {
+  const changeType = () => {
     setNewGroup((prevValue) => {
+      const newType = prevValue.type === 'public' ? 'private' : 'public';
       return { ...prevValue, type: newType };
     });
   };
@@ -40,7 +41,15 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const dialogTitle = () => (
     <div className={classes.title}>
       <GroupNameInput group={newGroup} setGroup={setNewGroup} />
-      <LockIcon type={newGroup.type} setType={setType} className={classes.lockIcon} />
+      <div className={classes.lock}>
+        <LockIcon type={newGroup.type} />
+        <Switch
+          size="small"
+          checked={newGroup.type === 'public'}
+          color="default"
+          onChange={() => changeType()}
+        />
+      </div>
     </div>
   );
 

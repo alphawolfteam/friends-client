@@ -14,8 +14,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
   },
-  lockIcon: {
-    fontSize: '50vw',
+  lock: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginRight: '1%',
   },
   button: config.style.button,
 }));

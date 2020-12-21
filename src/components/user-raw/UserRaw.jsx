@@ -11,6 +11,7 @@ const UserRaw = ({ user, isAManager }) => {
     <Card className={classes.root}>
       <CardContent dir="rtl" className={classes.cardContent}>
         <Typography
+          component="span"
           className={classes.text}
           onClick={() => setOpenHierarchy((prevValue) => !prevValue)}
         >

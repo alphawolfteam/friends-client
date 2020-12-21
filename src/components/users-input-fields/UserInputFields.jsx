@@ -117,9 +117,9 @@ const UserInputFields = ({ group, setGroup }) => {
     <>
       <UserSearchBar setSelectedUser={setSelectedUser} />
       <div className={classes.scrollBar}>
-        <Scrollbar className={classes.scrolBar}>
+        <Scrollbar>
           <div className={classes.fieldList}>
-            <UserRaw user={currentUser} isAManager />
+            <UserRaw user={currentUser} isAManager className={classes.currentUser} />
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (
               userInputField(user)
             ))

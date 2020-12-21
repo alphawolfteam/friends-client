@@ -9,18 +9,20 @@ const useStyles = makeStyles(() => ({
     height: '20vh',
     marginRight: '5%',
   },
-  scrolBar: {
-    scrollbarWidth: 'none',
-  },
   fieldsList: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+  currentUser: {
+    padding: '0.5%',
+    alignSelf: 'center',
+  },
   field: {
     display: 'flex',
     jusifyContent: 'space-between',
     alignItems: 'center',
+    padding: '0.5%',
     fontFamily: config.style.fontFamily,
   },
   iconButton: {

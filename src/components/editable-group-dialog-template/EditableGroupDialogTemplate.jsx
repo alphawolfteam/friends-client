@@ -24,9 +24,7 @@ const EditableGroupDialogTemplate = ({
 
   const dialogTitle = () => (
     <>
-      <div className={classes.groupIcon}>
-        <IconInput group={newGroup} setGroup={setNewGroup} />
-      </div>
+      <IconInput group={newGroup} setGroup={setNewGroup} />
       <div className={classes.dialogTitle}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
         <div className={classes.lock}>

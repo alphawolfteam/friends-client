@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   dialogContent: {
     margin: '1%',
     overflowX: 'hidden',
-    width: '29em',
     height: '22em',
   },
   dialogActions: {

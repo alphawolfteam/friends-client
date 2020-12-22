@@ -4,8 +4,7 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     margin: '1%',
-    width: '90%',
-    height: '40%',
+    width: '85%',
     borderRadius: 15,
     border: `0.1vw solid ${config.style.mainColor}`,
     '&:hover': {
@@ -47,7 +46,7 @@ const useStyles = makeStyles(() => ({
   },
   groupName: {
     fontFamily: config.style.fontFamily,
-    fontSize: '1.6vw',
+    fontSize: '1.5vw',
     fontWeight: '700',
     marginRight: '5%',
     whiteSpace: 'nowrap',
@@ -65,7 +64,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     maxWidth: '100%',
     width: '100%',
-    height: 'auto',
+    height: '100%',
     top: '50%',
     left: '50%',
     transform: 'translate( -50%, -50%)',

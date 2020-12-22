@@ -5,9 +5,8 @@ const useStyles = makeStyles(() => ({
   root: {
   },
   scrollBar: {
-    width: '30vw',
+    width: '90%',
     height: '20vh',
-    marginRight: '5%',
   },
   fieldsList: {
     display: 'flex',

@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '20vw',
+    width: '80%',
     height: '19vh',
     overflow: 'overlay',
   },

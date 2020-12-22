@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
   },
   groupTitle: {
     display: 'flex',
+    alignItems: 'center',
   },
   groupIcon: {
     borderRadius: '50%',

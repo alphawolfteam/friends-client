@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { IconButton } from '@material-ui/core';
+import { AddAPhoto } from '@material-ui/icons';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 import useStyles from './IconInput.styles';
 
@@ -32,17 +34,20 @@ const IconInput = ({ group }) => {
 
   return (
     <div className={classes.root}>
+      <IconButton
+        variant="contained"
+        component="label"
+        className={classes.button}
+      >
+        <AddAPhoto />
+        <input
+          type="file"
+          hidden
+          multiple
+          onChange={(e) => handleOnChange(e)}
+        />
+      </IconButton>
       <img className={classes.img} src={selectedIcon} alt="icon" />
-      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-      <label htmlFor="file-input" className={classes.label}>
-        +
-      </label>
-      <input
-        multiple
-        className={classes.input}
-        type="file"
-        onChange={(e) => handleOnChange(e)}
-      />
     </div>
   );
 };

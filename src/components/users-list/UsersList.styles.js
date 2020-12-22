@@ -3,8 +3,9 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '27vw',
+    width: '20vw',
     height: '19vh',
+    overflow: 'overlay',
   },
   scrollBarContent: {
     margin: '2%',

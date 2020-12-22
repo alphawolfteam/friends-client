@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Typography } from '@material-ui/core';
+import { Fab, Switch, Typography } from '@material-ui/core';
 import { Info } from '@material-ui/icons';
 import useStyles from './EditableGroupDialogTemplate.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -28,7 +28,9 @@ const EditableGroupDialogTemplate = ({
       <div className={classes.dialogTitle}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
         <div className={classes.lock}>
-          <LockIcon type={newGroup.type} />
+          <Fab className={classes.lockIcon} onClick={() => changeType()}>
+            <LockIcon type={newGroup.type} />
+          </Fab>
           <Switch
             size="small"
             checked={newGroup.type === 'private'}

@@ -19,6 +19,7 @@ const TagsInputFields = ({ group, setGroup }) => {
   };
 
   const handleAddTag = (newTag) => {
+    // TODO: Add alert
     if (newTag !== '' && !isExist(newTag, group.tags)) {
       setGroup((prevValue) => {
         const tagsList = [...prevValue.tags];

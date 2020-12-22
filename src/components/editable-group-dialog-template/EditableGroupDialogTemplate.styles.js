@@ -32,6 +32,14 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     marginRight: '1%',
   },
+  lockIcon: {
+    background: 'none',
+    boxShadow: 'none',
+    '&:hover': {
+      background: 'none',
+      boxShadow: 'none',
+    },
+  },
 }));
 
 export default useStyles;

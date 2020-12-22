@@ -64,7 +64,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     maxWidth: '100%',
     width: '100%',
-    height: '100%',
+    height: 'auto',
     top: '50%',
     left: '50%',
     transform: 'translate( -50%, -50%)',

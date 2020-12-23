@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { IconButton } from '@material-ui/core';
-import { AddAPhoto } from '@material-ui/icons';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 import useStyles from './IconInput.styles';
 import IconsSwiper from '../icons-swiper/IconsSwiper';
+import AddIconButton from '../add-icon-button/AddIconButton';
 
 const IconInput = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -16,41 +15,12 @@ const IconInput = ({ group, setGroup }) => {
     }
   }, []);
 
-  const handleOnChange = async (event) => {
-    // TODO: Alert error
-    const file = event.target.files[0];
-    if (file && file.type.startsWith('image')) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const newIcon = reader.result;
-        if (!iconsOptions.includes(newIcon)) {
-          setIconsOptions((prevValue) => [...prevValue, newIcon]);
-        }
-      };
-    }
-  };
-
-  const addAPhotoButton = () => (
-    <IconButton
-      variant="contained"
-      component="label"
-      className={classes.button}
-    >
-      <AddAPhoto />
-      <input
-        accept="image/*"
-        type="file"
-        hidden
-        multiple
-        onChange={(e) => handleOnChange(e)}
-      />
-    </IconButton>
-  );
-
   return (
     <div className={classes.root}>
-      {addAPhotoButton()}
+      <AddIconButton
+        iconsOptions={iconsOptions}
+        setIconsOptions={setIconsOptions}
+      />
       <IconsSwiper
         setGroup={setGroup}
         selectedIcon={selectedIcon}

@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { IconButton } from '@material-ui/core';
 import { AddAPhoto } from '@material-ui/icons';
-import SwiperCore, { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 import useStyles from './IconInput.styles';
-import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
-
-SwiperCore.use([Navigation]);
+import IconsSwiper from '../icons-swiper/IconsSwiper';
 
 const IconInput = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -16,16 +11,10 @@ const IconInput = ({ group, setGroup }) => {
   const [selectedIcon, setSelectedIcon] = useState(group.icon);
 
   useEffect(() => {
-    setGroup((prevValue) => {
-      return { ...prevValue, icon: selectedIcon };
-    });
-  }, [selectedIcon]);
-
-  useEffect(() => {
     if (!iconsOptions.includes(group.icon)) {
       setIconsOptions((prevValue) => [...prevValue, group.icon]);
     }
-  }, [group.icon]);
+  }, []);
 
   const handleOnChange = async (event) => {
     // TODO: Alert error
@@ -35,10 +24,9 @@ const IconInput = ({ group, setGroup }) => {
       reader.readAsDataURL(file);
       reader.onload = () => {
         const newIcon = reader.result;
-        if (!iconsOptions.includes(file)) {
+        if (!iconsOptions.includes(newIcon)) {
           setIconsOptions((prevValue) => [...prevValue, newIcon]);
         }
-        setSelectedIcon(newIcon);
       };
     }
   };
@@ -51,6 +39,7 @@ const IconInput = ({ group, setGroup }) => {
     >
       <AddAPhoto />
       <input
+        accept="image/*"
         type="file"
         hidden
         multiple
@@ -59,24 +48,15 @@ const IconInput = ({ group, setGroup }) => {
     </IconButton>
   );
 
-  const photosSwiper = () => (
-    <Swiper
-      tag="section"
-      wrapperTag="ul"
-      navigation
-    >
-      {iconsOptions.map((iconOption, i) => (
-        <SwiperSlide className={classes.swiperSlide} key={i} tag="li">
-          <img className={classes.img} src={iconOption} alt="swiper" />
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  );
-
   return (
     <div className={classes.root}>
       {addAPhotoButton()}
-      {photosSwiper()}
+      <IconsSwiper
+        setGroup={setGroup}
+        selectedIcon={selectedIcon}
+        setSelectedIcon={setSelectedIcon}
+        iconsOptions={iconsOptions}
+      />
     </div>
   );
 };

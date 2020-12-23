@@ -2,17 +2,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    borderRadius: '50%',
-    position: 'relative',
-    backgroundColor: 'white',
-    width: '4em',
-    height: '4em',
-    boxShadow: '0 0.2vw 0.3vw 0 grey',
+    width: '50.5%',
+    height: '10vh',
+    marginBottom: '30%',
+    marginTop: '0',
   },
   button: {
     position: 'relative',
     zIndex: 2,
-    top: '65%',
+    top: '100%',
+    left: '10%',
     background: 'white',
     color: 'black',
     padding: '5%',
@@ -24,16 +23,26 @@ const useStyles = makeStyles(() => ({
   },
   swiperSlide: {
     listStyle: 'none',
-    width: '100%',
+    paddingInlineStart: 0,
+  },
+  swiper: {
+    '&:last-child': {
+      color: '#000 !important',
+      fill: 'black!important',
+      stroke: 'black!important',
+    },
   },
   img: {
-    position: 'absolute',
+    // position: 'absolute',
     maxWidth: '100%',
     width: '100%',
-    height: 'auto',
-    top: '50%',
-    left: '50%',
-    transform: 'translate( -50%, -50%)',
+    height: '100%',
+    boxShadow: '0 0.2vw 0.3vw 0 grey',
+    borderRadius: '50%',
+    zIndex: 1,
+    // top: '50%',
+    // left: '50%',
+    transform: 'translate( 25%, -30%)',
   },
 }));
 

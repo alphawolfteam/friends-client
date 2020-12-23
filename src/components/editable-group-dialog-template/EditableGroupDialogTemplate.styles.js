@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   dialogTitle: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: '5%',
+    marginTop: '7%',
   },
   titleIcon: {
     marginLeft: '5%',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Fab, Switch, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Info } from '@material-ui/icons';
 import useStyles from './EditableGroupDialogTemplate.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -7,37 +7,20 @@ import UserInputFields from '../users-input-fields/UserInputFields';
 import TagsInputFields from '../tags-input-fields/TagsInputFields';
 import GroupNameInput from '../group-name-input/GroupNameInput';
 import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
-import LockIcon from '../lock-icon/LockIcon';
 import IconInput from '../icon-input/IconInput';
+import LockIconInput from '../lock-icon-input/LockIconInput';
 
 const EditableGroupDialogTemplate = ({
   newGroup, setNewGroup, open, actions,
 }) => {
   const classes = useStyles();
 
-  const changeType = () => {
-    setNewGroup((prevValue) => {
-      const newType = prevValue.type === 'private' ? 'public' : 'private';
-      return { ...prevValue, type: newType };
-    });
-  };
-
   const dialogTitle = () => (
     <>
       <IconInput group={newGroup} setGroup={setNewGroup} />
       <div className={classes.dialogTitle}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
-        <div className={classes.lock}>
-          <Fab className={classes.lockIcon} onClick={() => changeType()}>
-            <LockIcon type={newGroup.type} />
-          </Fab>
-          <Switch
-            size="small"
-            checked={newGroup.type === 'private'}
-            color="default"
-            onChange={() => changeType()}
-          />
-        </div>
+        <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
       </div>
     </>
   );

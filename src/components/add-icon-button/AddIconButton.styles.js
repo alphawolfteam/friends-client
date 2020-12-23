@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
     zIndex: 2,
-    top: '100%',
+    top: '110%',
     left: '5%',
     background: 'white',
     color: 'black',

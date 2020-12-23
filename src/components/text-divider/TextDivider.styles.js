@@ -7,13 +7,14 @@ const useStyles = makeStyles(() => ({
     alignSelf: 'center',
   },
   divider: {
-    backgroundColor: config.style.mainColor,
+    backgroundColor: config.style.primaryColor,
     marginBottom: '1%',
   },
   dividerText: {
     fontFamily: config.style.fontFamily,
-    fontWeight: '500',
-    color: config.style.mainColor,
+    fontWeight: '600',
+    fontSize: '1vw',
+    color: config.style.primaryColor,
   },
 }));
 

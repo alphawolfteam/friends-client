@@ -11,14 +11,14 @@ const GroupRaw = ({ group, setSelectedGroup }) => {
     <Card onClick={() => setSelectedGroup(group)} className={classes.root}>
       <CardContent dir="rtl" className={classes.cardContent}>
         <div className={classes.mainContent}>
-          {group.icon && (
-            <div className={classes.groupIcon}>
-              <img className={classes.img} src={group.icon} alt="icon" />
-            </div>
-          )}
+          <div className={classes.groupIcon}>
+            <img className={classes.img} src={group.icon} alt="icon" />
+          </div>
           <Typography className={classes.groupName}>{group.name}</Typography>
         </div>
-        <TagsList tags={group.tags} />
+        <div className={classes.tagList}>
+          <TagsList tags={group.tags} />
+        </div>
         <div className={classes.info}>
           <LockIcon type={group.type} />
           <Typography className={classes.groupAmount}>

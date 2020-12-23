@@ -4,9 +4,8 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     margin: '1%',
-    width: '80%',
+    width: '90%',
     height: '50%',
-    border: `0.1vw solid ${config.style.mainColor}`,
   },
   cardContent: {
     padding: '0.5%',
@@ -15,22 +14,31 @@ const useStyles = makeStyles(() => ({
     '&:last-child': {
       paddingBottom: '0.5%',
     },
+  },
+  text: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
+  },
+  hover: {
     '&:hover': {
-      backgroundColor: config.style.mainColor,
-      color: 'white',
-      '& path': {
-        color: 'white',
-      },
+      backgroundColor: config.style.hoverColor,
     },
   },
   userName: {
-    fontFamily: config.style.fontFamily,
     fontWeight: '700',
-    boxShadow: '0 0.1vw 0 0 grey',
+  },
+  manager: {
+    fontWeight: '500',
+    fontSize: '0.8vw',
+    paddingLeft: '1%',
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
     wordBreak: 'break-all',
+    boxShadow: '0 -0.1vw 0 0 grey',
   },
 }));
 

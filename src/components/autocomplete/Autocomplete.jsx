@@ -13,17 +13,23 @@ const Autocomplete = ({ options, setSelectedOption }) => {
 
   return (
     <div className={classes.root}>
-      {options.map((option) => (
-        <Card key={option.id} className={classes.optionCard} onClick={() => handleOnClick(option)}>
-          <Typography dir="rtl" className={classes.optionContent}>
-            <strong>
-              { option.fullName }
-            </strong>
-            { ' - ' }
-            {option.hierarchyFlat }
-          </Typography>
-        </Card>
-      ))}
+      <div className={classes.optionsDiv}>
+        {options.map((option) => (
+          <Card
+            key={option.id}
+            className={classes.optionCard}
+            onClick={() => handleOnClick(option)}
+          >
+            <Typography dir="rtl" className={classes.optionContent}>
+              <strong>
+                {option.fullName}
+              </strong>
+              {' -'}
+              {option.hierarchyFlat}
+            </Typography>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

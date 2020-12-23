@@ -16,13 +16,9 @@ const useStyles = makeStyles(() => ({
     width: '100vw',
   },
   addButton: {
+    ...config.style.button,
     marginLeft: '7%',
     alignSelf: 'start',
-    backgroundColor: config.style.mainColor,
-    color: 'white',
-    '&:hover': {
-      color: config.style.mainColor,
-    },
   },
 }));
 

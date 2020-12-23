@@ -4,7 +4,11 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: 'white',
-    boxShadow: `0 0.2vw 0.3vw 0 ${config.style.mainColor}`,
+    boxShadow: '0 0.2vw 0.3vw 0 grey',
+  },
+  toolBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   logo: {
     width: '20%',
@@ -13,10 +17,10 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '0.5%',
   },
   username: {
-    color: config.style.mainColor,
+    color: config.style.fontColor,
     fontFamily: config.style.fontFamily,
-    flexGrow: 1,
-    fontSize: '1.5vw',
+    fontSize: '1.3vw',
+    fontWeight: '500',
   },
 }));
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
 import Scrollbar from 'react-scrollbars-custom';
 import GroupsList from '../groups-list/GroupsList';
 import TextDivider from '../text-divider/TextDivider';
@@ -9,7 +9,7 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Paper elevation={2} className={classes.root}>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
           {privateGroups.length > 0 || publicGroups.length > 0 ? (
@@ -34,7 +34,7 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups }) => {
           )}
         </div>
       </Scrollbar>
-    </div>
+    </Paper>
   );
 };
 

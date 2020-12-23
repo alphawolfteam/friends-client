@@ -1,7 +1,8 @@
 import React, {
   useContext, useMemo, useState, useEffect,
 } from 'react';
-import { Button } from '@material-ui/core';
+import { Info, People } from '@material-ui/icons';
+import { Button, Typography } from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -18,7 +19,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [populatedUsers, setPopulatedUsers] = useState([]);
 
-  // TODO: Sort the users- managrs at the top and bold
+  // TODO: Sort the users- managers at the top and bold
 
   useEffect(async () => {
     // TODO: Send 5 users at a time
@@ -47,30 +48,42 @@ const GroupDialog = ({ group, open, onClose }) => {
 
   const dialogTitle = () => (
     <>
-      {group.icon && (
-        <div className={classes.groupIcon}>
-          <img className={classes.img} src={group.icon} alt="icon" />
-        </div>
-      )}
+      <div className={classes.groupIcon}>
+        <img className={classes.img} src={group.icon} alt="icon" />
+      </div>
       <div className={classes.groupTitle}>
         {group.name}
-        <LockIcon type={group.type} />
-      </div>
-      <div className={classes.groupDescription}>
-        {group.description}
+        <LockIcon disabled type={group.type} />
       </div>
     </>
   );
 
   const dialogContent = () => (
-    <>
-      <UsersList users={populatedUsers} />
-      <TagsList tags={group.tags} />
-    </>
+    <div className={classes.content}>
+      <Typography dir="rtl" className={classes.title}>
+        <Info className={classes.titleIcon} />
+        תיאור
+      </Typography>
+      <Typography dir="rtl" className={classes.groupDescription}>
+        {group.description}
+      </Typography>
+      <hr className={classes.divider} />
+      {group.tags.length > 0 && (
+        <>
+          <TagsList tags={group.tags} />
+          <hr className={classes.divider} />
+        </>
+      )}
+      <Typography dir="rtl" className={classes.title}>
+        <People className={classes.titleIcon} />
+        חברים
+      </Typography>
+      <UsersList users={populatedUsers} group={group} />
+    </div>
   );
 
   const dialogActions = () => (
-    <>
+    <div className={classes.actions}>
       {isAManager && (
         <Button
           variant="contained"
@@ -89,7 +102,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           יציאה מהקבוצה
         </Button>
       )}
-    </>
+    </div>
   );
 
   return (

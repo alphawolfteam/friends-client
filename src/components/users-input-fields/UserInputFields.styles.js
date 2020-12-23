@@ -1,38 +1,38 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
   },
-  fieldList: {
-    width: '30vw',
+  scrollBar: {
+    width: '90%',
     height: '20vh',
+  },
+  fieldsList: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   field: {
     display: 'flex',
-    jusifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: '0.5%',
     fontFamily: config.style.fontFamily,
   },
   iconButton: {
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     width: '3vw',
     height: '3vh',
+    '&:hover': {
+      background: 'white',
+    },
   },
-  textBox: {
-    width: '100%',
-    backgroundColor: config.style.backgroundColor,
-    marginBottom: '4%',
-    borderRadius: theme.shape.borderRadius,
-    '&:before': {
-      borderBottom: '1.2px solid grey',
-    },
-    '&:after': {
-      borderBottom: `2px solid ${config.style.mainColor}`,
-    },
+  message: {
+    fontFamily: config.style.fontFamily,
+    color: config.style.primaryColor,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 }));
 

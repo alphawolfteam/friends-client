@@ -4,24 +4,22 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     margin: '1%',
-    width: '70%',
-    height: '50%',
-    border: `0.1vw solid ${config.style.mainColor}`,
+    width: '85%',
+    borderRadius: 15,
+    border: `0.1vw solid ${config.style.primaryColor}`,
+    '&:hover': {
+      border: '0.1vw solid grey',
+      boxShadow: '0.1vw 0.1vw 0.4vw 0vw grey',
+    },
   },
   cardContent: {
+    color: config.style.fontColor,
     padding: '0.5%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     '&:last-child': {
       paddingBottom: '0.5%',
-    },
-    '&:hover': {
-      backgroundColor: config.style.mainColor,
-      color: 'white',
-      '& path': {
-        color: 'white',
-      },
     },
   },
   mainContent: {
@@ -36,27 +34,31 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '3%',
     paddingLeft: '1%',
   },
+  tagList: {
+    width: '10vw',
+    display: 'flex',
+    justifyContent: 'center',
+  },
   groupAmount: {
     fontFamily: config.style.fontFamily,
-    fontWeight: '500',
     fontSize: '1vw',
+    fontWeight: '700',
   },
   groupName: {
     fontFamily: config.style.fontFamily,
     fontSize: '1.5vw',
     fontWeight: '700',
-    marginRight: '2%',
+    marginRight: '5%',
     whiteSpace: 'nowrap',
   },
   groupIcon: {
     borderRadius: '50%',
     position: 'relative',
     backgroundColor: 'white',
-    width: '9vh',
-    height: '8vh',
+    width: '6em',
+    height: '5em',
     overflow: 'hidden',
-    border: '0.1vw solid black',
-    marginLeft: '5%',
+    boxShadow: '0 0.2vw 0.3vw 0 grey',
   },
   img: {
     position: 'absolute',

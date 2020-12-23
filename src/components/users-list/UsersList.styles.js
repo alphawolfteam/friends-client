@@ -3,17 +3,19 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '22vw',
-    height: '28vh',
+    width: '80%',
+    height: '19vh',
+    overflow: 'overlay',
   },
   scrollBarContent: {
+    margin: '2%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   message: {
     fontFamily: config.style.fontFamily,
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     fontWeight: '500',
   },
 }));

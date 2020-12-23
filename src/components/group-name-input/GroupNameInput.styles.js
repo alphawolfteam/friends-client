@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
+import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
-  root: {
-  },
+  root: config.style.input,
 }));
 
 export default useStyles;

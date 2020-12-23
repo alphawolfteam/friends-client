@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Delete } from '@material-ui/icons';
-import { Button, Tooltip } from '@material-ui/core';
+import { Button, Tooltip, Typography } from '@material-ui/core';
 import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
+import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import config from '../../appConf';
 import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
 import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
 import UserSearchBar from '../user-search-bar/UserSearchBar';
 import GroupService from '../../services/GroupsService';
 import UsersService from '../../services/UsersService';
+import userContext from '../../stores/userStore';
 
 const { rolesEnum } = config;
 
@@ -23,12 +25,23 @@ const getUserIndex = (usersList, userToFind) => {
 
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
+  const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
   const [populatedUsers, setPopulatedUsers] = useState([]);
 
+  const addUser = (newUser, userRole) => {
+    setGroup((prevValue) => ({
+      ...prevValue,
+      users: [
+        ...prevValue.users,
+        { id: newUser.id, role: userRole },
+      ],
+    }));
+  };
+
   // TODO: On changeing page
   useEffect(async () => {
-    // TODO: Populate first 5 users
+    // TODO: Populate first 5 users except of the current user
     setPopulatedUsers(
       await UsersService.getPopulatedUsersList(group.users.map((user) => user.id)),
     );
@@ -40,15 +53,10 @@ const UserInputFields = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (selectedUser && !isExist(group.users, selectedUser)) {
-      setGroup((prevValue) => ({
-        ...prevValue,
-        users: [
-          ...prevValue.users,
-          { id: selectedUser.id, role: rolesEnum.FRIEND },
-        ],
-      }));
+      addUser(selectedUser, rolesEnum.FRIEND);
+      setSelectedUser(undefined);
     }
-  }, [setGroup, selectedUser]);
+  }, [selectedUser]);
 
   const handleRemoveUser = (userToRemove) => {
     setGroup((prevValue) => {
@@ -84,25 +92,39 @@ const UserInputFields = ({ group, setGroup }) => {
     </Tooltip>
   ));
 
+  const userInputField = (user) => (
+    <div key={user.id} className={classes.field}>
+      <Tooltip title="מחיקה">
+        <Button
+          className={classes.iconButton}
+          onClick={() => handleRemoveUser(user)}
+        >
+          <Delete />
+        </Button>
+      </Tooltip>
+      {managerButton(user)}
+      <EditableUserRaw user={user} />
+    </div>
+  );
+
   return (
     <>
       <UserSearchBar setSelectedUser={setSelectedUser} />
-      <div className={classes.fieldList}>
+      <div className={classes.scrollBar}>
         <Scrollbar>
-          {populatedUsers.map((user) => (
-            <div key={user.id} className={classes.field}>
-              <Tooltip title="מחיקה">
-                <Button
-                  className={classes.iconButton}
-                  onClick={() => handleRemoveUser(user)}
-                >
-                  <Delete />
-                </Button>
-              </Tooltip>
-              {managerButton(user)}
-              <UserRaw user={user} />
+          <div className={classes.fieldList}>
+            <div className={classes.field}>
+              <UserRaw user={currentUser} isAManager />
             </div>
-          ))}
+            {populatedUsers.length > 0 ? populatedUsers.map((user) => (
+              userInputField(user)
+            ))
+              : (
+                <Typography className={classes.message}>
+                  (: אין חברים בקבוצה.. צרפו כמה
+                </Typography>
+              )}
+          </div>
         </Scrollbar>
       </div>
     </>

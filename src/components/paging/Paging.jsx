@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
-import Pagination from '../pagination/Pagination';
 import useStyles from './Paging.styles';
 
 const Paging = ({ pages }) => {
@@ -22,7 +21,6 @@ const Paging = ({ pages }) => {
           {pages.length - 1 > currentPageIndex
         && <Button onClick={() => changePage('next')} className={classes.button}>רשימת חברים</Button>}
         </div>
-        <Pagination count={pages.length} page={currentPageIndex + 1} />
         <div className={classes.buttonSection}>
           {currentPageIndex > 0
         && <Button onClick={() => changePage('back')} className={classes.button}>חזור</Button>}

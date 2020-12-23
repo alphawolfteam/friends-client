@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core';
-import { AddAPhoto } from '@material-ui/icons';
+import { ReactComponent as AddPhotoIcon } from '../../images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
 
 const AddIconButton = ({ iconsOptions, setIconsOptions }) => {
@@ -27,7 +27,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions }) => {
       component="label"
       className={classes.root}
     >
-      <AddAPhoto />
+      <AddPhotoIcon className={classes.icon} />
       <input
         accept="image/*"
         type="file"

@@ -15,6 +15,10 @@ const useStyles = makeStyles(() => ({
       backgroundColor: 'rgba(255, 255, 255, 0.7)',
     },
   },
+  icon: {
+    width: '0.6em',
+    height: '0.6em',
+  },
 }));
 
 export default useStyles;

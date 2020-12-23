@@ -3,13 +3,6 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {},
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflowX: 'hidden',
-  },
   dialogTitle: {
     display: 'flex',
     alignItems: 'center',

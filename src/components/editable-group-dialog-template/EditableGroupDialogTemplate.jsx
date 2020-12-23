@@ -9,6 +9,7 @@ import GroupNameInput from '../group-name-input/GroupNameInput';
 import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
 import IconInput from '../icon-input/IconInput';
 import LockIconInput from '../lock-icon-input/LockIconInput';
+import Paging from '../paging/Paging';
 
 const EditableGroupDialogTemplate = ({
   newGroup, setNewGroup, open, actions,
@@ -25,8 +26,8 @@ const EditableGroupDialogTemplate = ({
     </>
   );
 
-  const dialogContent = () => (
-    <div className={classes.content}>
+  const firstPage = () => (
+    <>
       <Typography dir="rtl" className={classes.title}>
         <Info className={classes.titleIcon} />
         תיאור
@@ -34,9 +35,15 @@ const EditableGroupDialogTemplate = ({
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <hr />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
-      <hr />
-      <UserInputFields group={newGroup} setGroup={setNewGroup} />
-    </div>
+    </>
+  );
+
+  const secondPage = () => (
+    <UserInputFields group={newGroup} setGroup={setNewGroup} />
+  );
+
+  const dialogContent = () => (
+    <Paging pages={[firstPage(), secondPage()]} />
   );
 
   return (

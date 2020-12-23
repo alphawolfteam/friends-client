@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     margin: '1%',
     width: '80%',
     height: '50%',
+    boxShadow: 'inset 0 0 0.1vw 0 grey',
   },
   cardContent: {
     padding: '0.5%',
@@ -38,7 +39,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
     wordBreak: 'break-all',
-    boxShadow: '0 -0.1vw 0 0 grey',
+    boxShadow: 'inset 0 0.03vw 0 0 grey',
   },
 }));
 

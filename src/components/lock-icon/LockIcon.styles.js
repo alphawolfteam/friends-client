@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
   },
 }));
 

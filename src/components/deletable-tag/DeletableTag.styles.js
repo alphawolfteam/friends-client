@@ -5,7 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {},
   label: {
     margin: '0.5%',
-    border: `0.1vw solid ${config.style.mainColor}`,
+    border: `0.1vw solid ${config.style.primaryColor}`,
     backgroundColor: 'white',
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     whiteSpace: 'nowrap',
   },
   closeIcon: {
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     marginLeft: '1%',
   },
 }));

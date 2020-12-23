@@ -1,6 +1,6 @@
 const config = {
   style: {
-    mainColor: '#2FB67C',
+    primaryColor: '#2FB67C',
     secondaryColor: '#C2EFDC',
     backgroundColor: '#F9FAFB',
     hoverColor: '#E4E6E9',
@@ -17,13 +17,13 @@ const config = {
 
 config.style.button = {
   borderRadius: 30,
-  backgroundColor: config.style.mainColor,
+  backgroundColor: config.style.primaryColor,
   color: 'white',
   fontFamily: config.style.fontFamily,
   margin: '0.5%',
   fontWeight: '700',
   '&:hover': {
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     backgroundColor: config.style.hoverColor,
   },
 };
@@ -36,7 +36,7 @@ config.style.input = {
   fontSize: '1vw',
   fontFamily: config.style.fontFamily,
   '&:focus, &:hover': {
-    border: `0.1vw solid ${config.style.mainColor}`,
+    border: `0.1vw solid ${config.style.primaryColor}`,
   },
 };
 

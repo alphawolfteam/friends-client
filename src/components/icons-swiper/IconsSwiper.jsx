@@ -3,6 +3,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useStyles from './IconsSwiper.styles';
 import 'swiper/swiper.scss';
+import './swiper.css';
 import 'swiper/components/navigation/navigation.scss';
 
 SwiperCore.use([Navigation]);

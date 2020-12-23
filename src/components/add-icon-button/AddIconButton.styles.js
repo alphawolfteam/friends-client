@@ -5,7 +5,7 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     zIndex: 2,
     top: '100%',
-    left: '10%',
+    left: '5%',
     background: 'white',
     color: 'black',
     padding: '5%',

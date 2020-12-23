@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     border: '0.1vw solid grey',
     borderRadius: 30,
     '&:focus, &:hover': {
-      border: `0.1vw solid ${config.style.mainColor}`,
+      border: `0.1vw solid ${config.style.primaryColor}`,
     },
     marginBottom: '3%',
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.3vw',
     marginLeft: '5%',
     '&:hover': {
-      color: config.style.mainColor,
+      color: config.style.primaryColor,
     },
   },
 }));

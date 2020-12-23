@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
   },
   dialogContent: {
     margin: '1%',

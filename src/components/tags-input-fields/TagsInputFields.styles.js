@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   message: {
     fontFamily: config.style.fontFamily,
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     fontWeight: '600',
     textAlign: 'center',
   },

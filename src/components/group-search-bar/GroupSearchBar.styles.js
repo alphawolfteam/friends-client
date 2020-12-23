@@ -7,20 +7,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 30,
-    backgroundColor: config.style.mainColor,
+    backgroundColor: config.style.primaryColor,
     marginTop: '2%',
     width: '30%',
   },
   searchIcon: {
     color: 'white',
-    backgroundColor: config.style.mainColor,
+    backgroundColor: config.style.primaryColor,
     boxShadow: 'none',
     width: '8%',
     height: '50%',
     marginLeft: '1%',
     '&:hover': {
       backgroundColor: config.style.secondaryColor,
-      color: config.style.mainColor,
+      color: config.style.primaryColor,
     },
   },
   input: {

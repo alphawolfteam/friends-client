@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
   },
   iconButton: {
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     width: '3vw',
     height: '3vh',
     '&:hover': {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
   },
   message: {
     fontFamily: config.style.fontFamily,
-    color: config.style.mainColor,
+    color: config.style.primaryColor,
     fontWeight: '600',
     textAlign: 'center',
   },

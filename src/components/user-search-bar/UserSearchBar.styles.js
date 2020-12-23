@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   },
   searchBar: {
     borderRadius: 30,
-    backgroundColor: config.style.mainColor,
+    backgroundColor: config.style.primaryColor,
     padding: '2%',
     width: '19vw',
     fontSize: '1vw',

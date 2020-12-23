@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     margin: '1%',
     width: '85%',
     borderRadius: 15,
-    border: `0.1vw solid ${config.style.mainColor}`,
+    border: `0.1vw solid ${config.style.primaryColor}`,
     '&:hover': {
       border: '0.1vw solid grey',
       boxShadow: '0.1vw 0.1vw 0.4vw 0vw grey',

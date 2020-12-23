@@ -197,37 +197,37 @@ const users = [{
   id: '1111',
   fullName: 'נייקי אדידס',
   name: { firstName: 'נייקי', lastName: 'אדידס' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 {
   id: '3333',
   fullName: 'חיים כהן',
   name: { firstName: 'חיים', lastName: 'כהן' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 {
   id: '2222',
   fullName: 'ישראל ישראלי',
   name: { firstName: 'ישראל', lastName: 'ישראלי' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 {
   id: '4444',
   fullName: 'עומר אדם',
   name: { firstName: 'עומר', lastName: 'אדם' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 {
   id: '5555',
   fullName: 'איציק כהן',
   name: { firstName: 'איציק', lastName: 'כהן' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 {
   id: '6666',
   fullName: 'ישראל אהרוני',
   name: { firstName: 'ישראל', lastName: 'אהרוני' },
-  hierarchyFlat: 'קמנר/ספיר/מטה/יסודות/צוות אלפא',
+  hierarchyFlat: 'היררכיה',
 },
 ];
 

@@ -3,9 +3,18 @@ import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
 
+const getNestedGroupCopy = (group) => {
+  return {
+    ...group,
+    users: [...group.users.map((user) => {
+      return { ...user };
+    })],
+  };
+};
+
 const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
-  const [newGroup, setNewGroup] = useState({ ...group });
+  const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
   const handleSave = () => {
     // TODO: Save editing

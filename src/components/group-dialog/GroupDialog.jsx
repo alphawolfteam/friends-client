@@ -1,8 +1,8 @@
 import React, {
   useContext, useMemo, useState, useEffect,
 } from 'react';
-import { Info, People } from '@material-ui/icons';
-import { Button, Typography } from '@material-ui/core';
+import { Info, People, Close } from '@material-ui/icons';
+import { Button, Typography, IconButton } from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -12,6 +12,9 @@ import TagsList from '../tags-list/TagsList';
 import UsersList from '../users-list/UsersList';
 import GroupService from '../../services/GroupsService';
 import UsersService from '../../services/UsersService';
+import config from '../../appConf';
+
+const { getRole } = config;
 
 const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
@@ -28,8 +31,8 @@ const GroupDialog = ({ group, open, onClose }) => {
     );
   }, []);
 
-  const isAManager = useMemo(() => {
-    return GroupService.isAManager(group, currentUser.id);
+  const role = useMemo(() => {
+    return GroupService.getUserRoleCode(group, currentUser.id);
   }, [group, currentUser]);
 
   const isAFriend = useMemo(
@@ -84,7 +87,7 @@ const GroupDialog = ({ group, open, onClose }) => {
 
   const dialogActions = () => (
     <div className={classes.actions}>
-      {isAManager && (
+      {role === getRole('manager').code && (
         <Button
           variant="contained"
           className={classes.button}
@@ -114,6 +117,11 @@ const GroupDialog = ({ group, open, onClose }) => {
           actions={dialogActions()}
           open={open}
           onClose={onClose}
+          closeButton={(
+            <IconButton onClick={onClose} className={classes.closeButton}>
+              <Close />
+            </IconButton>
+          )}
         />
       ) : (
         <EditGroupDialog

@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
     zIndex: 2,
-    top: '100%',
+    top: '110%',
     left: '5%',
     background: 'white',
     color: 'black',
@@ -14,6 +14,10 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.7)',
     },
+  },
+  icon: {
+    width: '0.6em',
+    height: '0.6em',
   },
 }));
 

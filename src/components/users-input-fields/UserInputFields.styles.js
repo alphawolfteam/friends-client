@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
   },
   scrollBar: {
     width: '90%',
-    height: '20vh',
+    height: '22vh',
   },
   fieldsList: {
     display: 'flex',
@@ -19,14 +19,6 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     padding: '0.5%',
     fontFamily: config.style.fontFamily,
-  },
-  iconButton: {
-    color: config.style.primaryColor,
-    width: '3vw',
-    height: '3vh',
-    '&:hover': {
-      background: 'white',
-    },
   },
   message: {
     fontFamily: config.style.fontFamily,

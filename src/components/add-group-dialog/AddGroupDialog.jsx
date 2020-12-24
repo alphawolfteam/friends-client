@@ -6,7 +6,7 @@ import userContext from '../../stores/userStore';
 import config from '../../appConf';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 
-const { rolesEnum } = config;
+const { getRole } = config;
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
 
@@ -18,7 +18,11 @@ const AddGroupDialog = ({ open, onClose }) => {
     description: '',
     tags: [],
     type: DEFAULT_TYPE,
-    users: [{ id: currentUser.id, role: rolesEnum.MANAGER }],
+    users: [
+      {
+        id: currentUser.id,
+        role: getRole('manager').code,
+      }],
     icon: DEFAULT_ICON,
   });
 
@@ -53,6 +57,7 @@ const AddGroupDialog = ({ open, onClose }) => {
       setNewGroup={setNewGroup}
       actions={dialogActions()}
       open={open}
+      onClose={onClose}
     />
   );
 };

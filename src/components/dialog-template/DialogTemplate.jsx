@@ -4,15 +4,13 @@ import {
   DialogContent,
   DialogTitle,
   DialogActions,
-  IconButton,
   Typography,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
 import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './DialogTemplate.styles';
 
 const DialogTemplate = ({
-  title, content, actions, open, onClose,
+  title, content, actions, open, onClose, closeButton,
 }) => {
   const classes = useStyles();
 
@@ -28,11 +26,7 @@ const DialogTemplate = ({
         <Typography variant="h4" className={classes.dialogTitle}>
           {title}
         </Typography>
-        {onClose && (
-        <IconButton onClick={onClose} className={classes.closeButton}>
-          <Close />
-        </IconButton>
-        )}
+        {closeButton && <>{ closeButton }</>}
       </DialogTitle>
       <DialogContent dividers className={classes.dialogContent}>
         <Scrollbar>

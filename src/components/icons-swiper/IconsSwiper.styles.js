@@ -2,8 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    paddingTop: '30%',
-    paddingBottom: '5%',
+    marginTop: '6%',
+    paddingTop: '22%',
+    paddingBottom: '10%',
   },
   swiperSlide: {
     listStyle: 'none',
@@ -16,7 +17,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: '0 0.2vw 0.3vw 0 grey',
     borderRadius: '50%',
     zIndex: 1,
-    transform: 'translate( 20%, -65%)',
+    transform: 'translate( 20%, -55%)',
     verticalAlign: 'super',
   },
 }));

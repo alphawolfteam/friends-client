@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
   },
   content: {
@@ -42,6 +42,12 @@ const useStyles = makeStyles(() => ({
     fontSize: '1vw',
     fontFamily: config.style.fontFamily,
     alignSelf: 'flex-end',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: config.style.primaryColor,
   },
   img: {
     position: 'absolute',

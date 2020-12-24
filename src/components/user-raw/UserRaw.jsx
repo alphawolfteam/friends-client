@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import useStyles from './UserRaw.styles';
+import config from '../../appConf';
 
-const UserRaw = ({ user, isAManager }) => {
+const { getRole } = config;
+
+const UserRaw = ({ user, role }) => {
   const classes = useStyles();
   const [openHierarchy, setOpenHierarchy] = useState(false);
 
@@ -23,16 +26,16 @@ const UserRaw = ({ user, isAManager }) => {
             {' '}
             {user.name.lastName}
           </div>
-          <div className={classes.manager}>
-            {isAManager && 'מנהל/ת'}
+          <div className={classes.role}>
+            {role.code !== getRole('friend').code && role.displayName}
           </div>
         </Typography>
         {openHierarchy && (
-          <Typography
-            className={classes.hierarchyFlat}
-          >
-            {user.hierarchyFlat}
-          </Typography>
+        <Typography
+          className={classes.hierarchyFlat}
+        >
+          {user.hierarchyFlat && user.hierarchyFlat}
+        </Typography>
         )}
       </CardContent>
     </Card>

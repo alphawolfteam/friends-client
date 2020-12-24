@@ -4,10 +4,6 @@
 // TODO: Delete
 import { groups, currentUser } from './MockData';
 
-import config from '../appConf';
-
-const { rolesEnum } = config;
-
 // TODO: delete
 const isIncludesInSentence = (sentence, portion) => (
   sentence.startsWith(portion)
@@ -20,14 +16,14 @@ const isCurrentUserInGroup = (group) => (
 );
 
 class GroupsService {
-  static isAManager(group, userId) {
-    let isAManager = false;
+  static getUserRoleCode(group, userId) {
+    let role = false;
     group.users.forEach((groupUser) => {
-      if (userId === groupUser.id && groupUser.role === rolesEnum.MANAGER) {
-        isAManager = true;
+      if (userId === groupUser.id) {
+        role = groupUser.role;
       }
     });
-    return isAManager;
+    return role;
   }
 
   static async getFilteredPrivateGroups(searchValue) {

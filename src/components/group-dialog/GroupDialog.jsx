@@ -1,8 +1,8 @@
 import React, {
   useContext, useMemo, useState, useEffect,
 } from 'react';
-import { Info, People } from '@material-ui/icons';
-import { Button, Typography } from '@material-ui/core';
+import { Info, People, Close } from '@material-ui/icons';
+import { Button, Typography, IconButton } from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -114,6 +114,11 @@ const GroupDialog = ({ group, open, onClose }) => {
           actions={dialogActions()}
           open={open}
           onClose={onClose}
+          closeButton={(
+            <IconButton onClick={onClose} className={classes.closeButton}>
+              <Close />
+            </IconButton>
+          )}
         />
       ) : (
         <EditGroupDialog

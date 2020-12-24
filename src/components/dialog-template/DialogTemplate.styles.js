@@ -15,12 +15,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     fontSize: '2vw',
   },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: config.style.primaryColor,
-  },
   dialogContent: {
     margin: '1%',
     overflowX: 'hidden',

@@ -8,11 +8,22 @@ const config = {
     fontFamily: 'Alef',
     button: {},
   },
-  // TODO: verify roles
-  rolesEnum: {
-    MANAGER: 0,
-    FRIEND: 1,
-  },
+  roles: [
+    { role: 'manager', displayName: 'מנהל/ת', code: 0 },
+    { role: 'friend', displayName: 'חבר/ה', code: 1 },
+  ],
+};
+
+config.getRole = (role) => {
+  return config.roles.filter((currentRole) => currentRole.role === role)[0];
+};
+
+config.getRoleByCode = (roleCode) => {
+  return config.roles.filter((currentRole) => currentRole.code === roleCode)[0];
+};
+
+config.getRoleByDisplayName = (roleDisplayName) => {
+  return config.roles.filter((currentRole) => currentRole.displayName === roleDisplayName)[0];
 };
 
 config.style.button = {
@@ -27,17 +38,6 @@ config.style.button = {
     backgroundColor: config.style.hoverColor,
   },
 };
-/*
-    borderRadius: 30,
-    backgroundColor: config.style.primaryColor,
-    padding: '2%',
-    width: '19vw',
-    fontSize: '1vw',
-    color: 'white',
-    fontFamily: config.style.fontFamily,
-    fontWeight: '600',
-    position: 'relative',
-*/
 
 config.style.input = {
   borderRadius: 10,

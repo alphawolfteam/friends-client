@@ -12,7 +12,7 @@ import UsersService from '../../services/UsersService';
 import GroupsService from '../../services/GroupsService';
 import userContext from '../../stores/userStore';
 
-const { rolesEnum } = config;
+const { getRole, getRoleByCode } = config;
 
 const isExist = (usersList, userToCheck) => {
   return usersList.map((user) => user.id).includes(userToCheck.id);
@@ -24,12 +24,12 @@ const UserInputFields = ({ group, setGroup }) => {
   const [selectedUser, setSelectedUser] = useState(undefined);
   const [populatedUsers, setPopulatedUsers] = useState([]);
 
-  const addUser = (newUser, userRole) => {
+  const addUser = (newUser, userRoleCode) => {
     setGroup((prevValue) => ({
       ...prevValue,
       users: [
         ...prevValue.users,
-        { id: newUser.id, role: userRole },
+        { id: newUser.id, role: userRoleCode },
       ],
     }));
   };
@@ -48,16 +48,18 @@ const UserInputFields = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (selectedUser && !isExist(group.users, selectedUser)) {
-      addUser(selectedUser, rolesEnum.FRIEND);
+      addUser(selectedUser, getRole('friend').code);
       setSelectedUser(undefined);
     }
   }, [selectedUser]);
 
-  const isAManager = (userId) => GroupsService.isAManager(group, userId);
-
   const userInputField = (user) => (
     <div key={user.id} className={classes.field}>
-      <EditableUserRaw user={user} wasAManager={isAManager(user)} setGroup={setGroup} />
+      <EditableUserRaw
+        user={user}
+        initialRole={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
+        setGroup={setGroup}
+      />
     </div>
   );
 
@@ -68,7 +70,10 @@ const UserInputFields = ({ group, setGroup }) => {
         <Scrollbar>
           <div className={classes.fieldList}>
             <div className={classes.field}>
-              <UserRaw user={currentUser} isAManager />
+              <UserRaw
+                user={currentUser}
+                role={getRole('manager')}
+              />
             </div>
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (
               userInputField(user)

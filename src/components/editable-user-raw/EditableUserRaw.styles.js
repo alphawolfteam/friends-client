@@ -20,16 +20,13 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'flex-start',
   },
-  userTitle: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    fontFamily: config.style.fontFamily,
-  },
   text: {
     display: 'flex',
     justifyContent: 'space-between',
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
+    fontWeight: '700',
+    width: '100%',
   },
   hover: {
     '&:hover': {
@@ -37,22 +34,11 @@ const useStyles = makeStyles(() => ({
     },
   },
   iconButton: {
-    color: config.style.primaryColor,
     width: '3vw',
     height: '3vh',
     '&:hover': {
-      background: 'white',
+      background: 'none',
     },
-  },
-  userName: {
-    fontWeight: '700',
-    fontFamily: config.style.fontFamily,
-  },
-  manager: {
-    fontWeight: '500',
-    fontSize: '0.8vw',
-    paddingLeft: '1%',
-    fontFamily: config.style.fontFamily,
   },
   hierarchyFlat: {
     fontFamily: config.style.fontFamily,

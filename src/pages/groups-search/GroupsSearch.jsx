@@ -9,12 +9,15 @@ import GroupsService from '../../services/GroupsService';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../../components/add-group-dialog/AddGroupDialog';
+import config from '../../appConf';
+
+const { getRole } = config;
 
 const getSortedPrivateGroups = (privateGroups, userId) => {
   const ownedGroups = [];
   const unownedGroups = [];
   privateGroups.forEach((group) => {
-    if (GroupsService.isAManager(group, userId)) {
+    if (GroupsService.getUserRoleCode(group, userId) === getRole('manager').code) {
       ownedGroups.push(group);
     } else {
       unownedGroups.push(group);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -7,9 +7,6 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
   const [newGroup, setNewGroup] = useState({ ...group });
 
-  useEffect(() => {
-    console.log(newGroup);
-  }, [newGroup]);
   const handleSave = () => {
     // TODO: Save editing
     // TODO: Add ensuring message

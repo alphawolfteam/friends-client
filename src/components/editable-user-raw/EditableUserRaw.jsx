@@ -3,21 +3,20 @@ import {
   Button, Tooltip, Card, CardContent, Typography,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
-import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
-import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
 import useStyles from './EditableUserRaw.styles';
+import RolesSelect from '../roles-select/RolesSelect';
 import config from '../../appConf';
 
-const { rolesEnum } = config;
+const { getRoleByDisplayName } = config;
 
 const getUserIndex = (usersList, userToFind) => {
   return usersList.map((user) => user.id).indexOf(userToFind.id);
 };
 
-const EditableUserRaw = ({ user, wasAManager, setGroup }) => {
+const EditableUserRaw = ({ user, initialRole, setGroup }) => {
   const classes = useStyles();
   const [openHierarchy, setOpenHierarchy] = useState(false);
-  const [isAManager, setIsAManager] = useState(wasAManager);
+  const [role, setRole] = useState(initialRole);
 
   const handleRemoveUser = (userToRemove) => {
     setGroup((prevValue) => {
@@ -27,67 +26,46 @@ const EditableUserRaw = ({ user, wasAManager, setGroup }) => {
     });
   };
 
-  const handleChangeRole = (userToChange, newRole) => {
+  const handleChangeRole = (newRoleDisplayName) => {
     setGroup((prevValue) => {
       const usersList = [...prevValue.users];
-      usersList[getUserIndex(usersList, userToChange)].role = newRole;
-      setIsAManager(newRole === rolesEnum.MANAGER);
+      const newRole = getRoleByDisplayName(newRoleDisplayName);
+      usersList[getUserIndex(usersList, user)].role = newRole.code;
+      setRole(newRole);
       return { ...prevValue, users: usersList };
     });
   };
 
-  const userTitle = () => (
+  const userName = () => (
     <Typography
       component="span"
-      className={classes.userTitle}
+      className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
       onClick={() => {
         if (user.hierarchyFlat) {
           setOpenHierarchy((prevValue) => !prevValue);
         }
       }}
     >
-      <div className={classes.userName}>
-        {user.name.firstName}
-        {' '}
-        {user.name.lastName}
-      </div>
-      <div className={classes.manager}>
-        {isAManager && 'מנהל/ת'}
-      </div>
+      {user.name.firstName}
+      {' '}
+      {user.name.lastName}
     </Typography>
   );
 
-  const managerButton = () => (isAManager ? (
-    <Tooltip title="הסרה ממנהל">
-      <RemoveManagerIcon
-        className={classes.iconButton}
-        onClick={() => handleChangeRole(user, rolesEnum.FRIEND)}
-      />
-    </Tooltip>
-  ) : (
-    <Tooltip title="הוספה למנהל">
-      <AddManagerIcon
-        className={classes.iconButton}
-        onClick={() => handleChangeRole(user, rolesEnum.MANAGER)}
-      />
-    </Tooltip>
-  ));
-
-  const deleteButton = () => (
-    <Tooltip title="מחיקה">
-      <Button
-        className={classes.iconButton}
-        onClick={() => handleRemoveUser(user)}
-      >
-        <Delete />
-      </Button>
-    </Tooltip>
-  );
-
-  const actionButtons = () => (
+  const actions = () => (
     <Typography className={classes.actions}>
-      {managerButton()}
-      {deleteButton()}
+      <RolesSelect
+        role={role.displayName}
+        onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}
+      />
+      <Tooltip title="מחיקה">
+        <Button
+          className={classes.iconButton}
+          onClick={() => handleRemoveUser(user)}
+        >
+          <Delete />
+        </Button>
+      </Tooltip>
     </Typography>
   );
 
@@ -98,8 +76,8 @@ const EditableUserRaw = ({ user, wasAManager, setGroup }) => {
           component="span"
           className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
         >
-          {userTitle()}
-          {actionButtons()}
+          {userName()}
+          {actions()}
         </Typography>
         {openHierarchy && (
           <Typography

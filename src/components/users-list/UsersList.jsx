@@ -4,6 +4,9 @@ import { Typography } from '@material-ui/core';
 import UserRaw from '../user-raw/UserRaw';
 import useStyles from './UsersList.styles';
 import GroupsService from '../../services/GroupsService';
+import config from '../../appConf';
+
+const { getRoleByCode } = config;
 
 const UsersList = ({ users, group }) => {
   const classes = useStyles();
@@ -17,7 +20,7 @@ const UsersList = ({ users, group }) => {
               <UserRaw
                 key={user.id}
                 user={user}
-                isAManager={GroupsService.isAManager(group, user.id)}
+                role={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
               />
             ))
           ) : (

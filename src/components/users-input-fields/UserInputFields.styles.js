@@ -20,14 +20,6 @@ const useStyles = makeStyles(() => ({
     padding: '0.5%',
     fontFamily: config.style.fontFamily,
   },
-  iconButton: {
-    color: config.style.primaryColor,
-    width: '3vw',
-    height: '3vh',
-    '&:hover': {
-      background: 'white',
-    },
-  },
   message: {
     fontFamily: config.style.fontFamily,
     color: config.style.primaryColor,

@@ -1,35 +1,15 @@
-import React, { useState } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import React from 'react';
+import { Card, CardContent } from '@material-ui/core';
 import useStyles from './UserRaw.styles';
+import UserInfo from '../user-info/UserInfo';
 
 const UserRaw = ({ user, isAManager }) => {
   const classes = useStyles();
-  const [openHierarchy, setOpenHierarchy] = useState(false);
 
   return (
     <Card className={classes.root}>
       <CardContent dir="rtl" className={classes.cardContent}>
-        <Typography
-          component="span"
-          className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
-          onClick={() => setOpenHierarchy((prevValue) => !prevValue)}
-        >
-          <div className={classes.userName}>
-            {user.name.firstName}
-            {' '}
-            {user.name.lastName}
-          </div>
-          <div className={classes.manager}>
-            {isAManager && 'מנהל/ת'}
-          </div>
-        </Typography>
-        {openHierarchy && (
-          <Typography
-            className={classes.hierarchyFlat}
-          >
-            {user.hierarchyFlat && user.hierarchyFlat}
-          </Typography>
-        )}
+        <UserInfo user={user} isAManager={isAManager} />
       </CardContent>
     </Card>
   );

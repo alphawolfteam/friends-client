@@ -16,8 +16,8 @@ const useStyles = makeStyles(() => ({
     width: '100vw',
   },
   icon: {
-    height: '3em',
-    width: '3em',
+    height: '1.5em',
+    width: '1.5em',
   },
   addButton: {
     ...config.style.button,

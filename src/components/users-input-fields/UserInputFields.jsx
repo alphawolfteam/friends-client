@@ -1,26 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Delete } from '@material-ui/icons';
-import { Button, Tooltip, Typography } from '@material-ui/core';
+import React, {
+  useState, useEffect, useContext,
+} from 'react';
+import { Typography } from '@material-ui/core';
 import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import config from '../../appConf';
-import { ReactComponent as RemoveManagerIcon } from '../../images/removeManagerIcon.svg';
-import { ReactComponent as AddManagerIcon } from '../../images/addManagerIcon.svg';
 import UserSearchBar from '../user-search-bar/UserSearchBar';
-import GroupService from '../../services/GroupsService';
 import UsersService from '../../services/UsersService';
+import GroupsService from '../../services/GroupsService';
 import userContext from '../../stores/userStore';
 
 const { rolesEnum } = config;
 
 const isExist = (usersList, userToCheck) => {
   return usersList.map((user) => user.id).includes(userToCheck.id);
-};
-
-const getUserIndex = (usersList, userToFind) => {
-  return usersList.map((user) => user.id).indexOf(userToFind.id);
 };
 
 const UserInputFields = ({ group, setGroup }) => {
@@ -58,52 +53,11 @@ const UserInputFields = ({ group, setGroup }) => {
     }
   }, [selectedUser]);
 
-  const handleRemoveUser = (userToRemove) => {
-    setGroup((prevValue) => {
-      const usersList = [...prevValue.users];
-      usersList.splice(getUserIndex(usersList, userToRemove), 1);
-      return { ...prevValue, users: usersList };
-    });
-  };
-
-  const handleChangeRole = (userToChange, newRole) => {
-    setGroup((prevValue) => {
-      const usersList = [...prevValue.users];
-      usersList[getUserIndex(usersList, userToChange)].role = newRole;
-      return { ...prevValue, users: usersList };
-    });
-  };
-
-  const isAManager = (userId) => GroupService.isAManager(group, userId);
-
-  const managerButton = (user) => (isAManager(user.id) ? (
-    <Tooltip title="הסרה ממנהל">
-      <RemoveManagerIcon
-        className={classes.iconButton}
-        onClick={() => handleChangeRole(user, rolesEnum.FRIEND)}
-      />
-    </Tooltip>
-  ) : (
-    <Tooltip title="הוספה למנהל">
-      <AddManagerIcon
-        className={classes.iconButton}
-        onClick={() => handleChangeRole(user, rolesEnum.MANAGER)}
-      />
-    </Tooltip>
-  ));
+  const isAManager = (userId) => GroupsService.isAManager(group, userId);
 
   const userInputField = (user) => (
     <div key={user.id} className={classes.field}>
-      <Tooltip title="מחיקה">
-        <Button
-          className={classes.iconButton}
-          onClick={() => handleRemoveUser(user)}
-        >
-          <Delete />
-        </Button>
-      </Tooltip>
-      {managerButton(user)}
-      <EditableUserRaw user={user} />
+      <EditableUserRaw user={user} wasAManager={isAManager(user)} setGroup={setGroup} />
     </div>
   );
 

@@ -27,14 +27,27 @@ config.style.button = {
     backgroundColor: config.style.hoverColor,
   },
 };
+/*
+    borderRadius: 30,
+    backgroundColor: config.style.primaryColor,
+    padding: '2%',
+    width: '19vw',
+    fontSize: '1vw',
+    color: 'white',
+    fontFamily: config.style.fontFamily,
+    fontWeight: '600',
+    position: 'relative',
+*/
 
 config.style.input = {
-  outline: 'none',
-  border: '0.1vw solid grey',
-  padding: '3%',
   borderRadius: 10,
+  padding: '2%',
   fontSize: '1vw',
   fontFamily: config.style.fontFamily,
+  fontWeight: '600',
+  position: 'relative',
+  outline: 'none',
+  border: '0.1vw solid grey',
   '&:focus, &:hover': {
     border: `0.1vw solid ${config.style.primaryColor}`,
   },

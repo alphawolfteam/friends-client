@@ -2,7 +2,7 @@ import React, {
   useContext, useEffect, useMemo, useState,
 } from 'react';
 import { Fab, Tooltip } from '@material-ui/core';
-import { ReactComponent as AddGroupIcon } from '../../images/addGroup.svg';
+import { Add } from '@material-ui/icons';
 import userContext from '../../stores/userStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
@@ -62,7 +62,7 @@ const GroupsSearch = () => {
           className={classes.addButton}
           onClick={() => setOpenAddGroupDialog(true)}
         >
-          <AddGroupIcon className={classes.icon} />
+          <Add className={classes.icon} />
         </Fab>
       </Tooltip>
       {openAddGroupDialog && (

@@ -53,7 +53,7 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
   );
 
   const actions = () => (
-    <Typography className={classes.actions}>
+    <Typography component="span" className={classes.actions}>
       <RolesSelect
         role={role.displayName}
         onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}

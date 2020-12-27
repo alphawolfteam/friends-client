@@ -23,8 +23,8 @@ const Autocomplete = ({ options, setSelectedOption }) => {
             <Typography dir="rtl" className={classes.optionContent}>
               <strong>
                 {option.fullName}
+                {'- '}
               </strong>
-              {' -'}
               {option.hierarchyFlat}
             </Typography>
           </Card>

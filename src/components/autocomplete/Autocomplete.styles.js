@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
   },
   optionCard: {
     width: '19vw',
+    borderRadius: 0,
     border: '1px solid grey',
     '&:hover': {
       backgroundColor: config.style.hoverColor,

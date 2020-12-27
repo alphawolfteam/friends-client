@@ -74,7 +74,7 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
       <CardContent dir="rtl" className={classes.cardContent}>
         <Typography
           component="span"
-          className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
+          className={`${classes.main} ${user.hierarchyFlat ? classes.hover : ''}`}
         >
           {userName()}
           {actions()}

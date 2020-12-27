@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '4.5vw',
+    width: '5vw',
     fontFamily: config.style.fontFamily,
     '&:before': {
       borderColor: 'grey',

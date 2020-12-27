@@ -56,7 +56,7 @@ const GroupDialog = ({ group, open, onClose }) => {
       </div>
       <div className={classes.groupTitle}>
         {group.name}
-        <LockIcon disabled type={group.type} />
+        <LockIcon type={group.type} />
       </div>
     </>
   );

@@ -72,7 +72,7 @@ const UserInputFields = ({ group, setGroup }) => {
             <div className={classes.field}>
               <UserRaw
                 user={currentUser}
-                role={getRole('manager')}
+                role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.id))}
               />
             </div>
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (

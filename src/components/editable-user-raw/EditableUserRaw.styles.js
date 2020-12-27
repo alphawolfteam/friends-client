@@ -19,10 +19,17 @@ const useStyles = makeStyles(() => ({
   actions: {
     display: 'flex',
     justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  text: {
+  main: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
+    fontWeight: '700',
+  },
+  text: {
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
     fontWeight: '700',

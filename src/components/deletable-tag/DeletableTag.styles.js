@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {},
   label: {
     margin: '0.5%',
+    paddingLeft: '1.1%',
     border: `0.1vw solid ${config.style.primaryColor}`,
     backgroundColor: 'white',
     fontFamily: config.style.fontFamily,
@@ -15,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
   closeIcon: {
     color: config.style.primaryColor,
-    marginLeft: '1%',
+    // paddingLeft: '1%',
   },
 }));
 

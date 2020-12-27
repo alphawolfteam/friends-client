@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputBase } from '@material-ui/core';
+import { Input } from '@material-ui/core';
 import useStyles from './GroupNameInput.styles';
 
 const GroupNameInput = ({ group, setGroup }) => {
@@ -12,16 +12,14 @@ const GroupNameInput = ({ group, setGroup }) => {
   };
 
   return (
-    // <div className={classes.root}>
-    <InputBase
-      id="groupName"
+    <Input
+      disableUnderline
       placeholder="הוסיפו שם.."
-      dir="rtl"
       value={group.name}
+      dir="rtl"
       onChange={(e) => handleOnChange(e)}
       className={classes.root}
     />
-    // </div>
   );
 };
 

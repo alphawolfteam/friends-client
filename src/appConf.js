@@ -44,7 +44,6 @@ config.style.input = {
   padding: '2%',
   fontSize: '1vw',
   fontFamily: config.style.fontFamily,
-  fontWeight: '600',
   position: 'relative',
   outline: 'none',
   border: '0.1vw solid grey',

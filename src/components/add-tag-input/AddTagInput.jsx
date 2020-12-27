@@ -16,11 +16,13 @@ const AddTagInput = ({ onAdd }) => {
   const handleOnKeyPress = (event) => {
     if (event.keyCode === ENTER_CHAR_CODE) {
       onAdd(inputValue);
+      setInputValue('');
     }
   };
 
   const handleOnClick = () => {
     onAdd(inputValue);
+    setInputValue('');
   };
 
   return (

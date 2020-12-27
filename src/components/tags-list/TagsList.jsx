@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chip } from '@material-ui/core';
+import { Chip, Tooltip } from '@material-ui/core';
 import useStyles from './TagsList.styles';
 
 const TagsList = ({ tags }) => {
@@ -10,7 +10,9 @@ const TagsList = ({ tags }) => {
       {tags.length > 0 && (
         <div>
           {tags.map((tag) => (
-            <Chip dir="rtl" className={classes.label} key={tag} label={`#${tag}`} />
+            <Tooltip title={tag}>
+              <Chip dir="rtl" className={classes.label} key={tag} label={`#${tag}`} />
+            </Tooltip>
           ))}
         </div>
       )}

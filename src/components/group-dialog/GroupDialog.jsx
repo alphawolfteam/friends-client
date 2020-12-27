@@ -11,7 +11,6 @@ import userContext from '../../stores/userStore';
 import TagsList from '../tags-list/TagsList';
 import UsersList from '../users-list/UsersList';
 import GroupService from '../../services/GroupsService';
-import UsersService from '../../services/UsersService';
 import config from '../../appConf';
 
 const { getRole } = config;
@@ -20,24 +19,19 @@ const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
   const currentUser = useContext(userContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
-  const [populatedUsers, setPopulatedUsers] = useState([]);
-
-  // TODO: Sort the users- managers at the top and bold
+  const [groupUsers, setGroupUsers] = useState([]);
 
   useEffect(async () => {
-    // TODO: Send 5 users at a time
-    setPopulatedUsers(
-      await UsersService.getPopulatedUsersList(group.users.map((user) => user.id)),
-    );
+    setGroupUsers(await GroupService.getGroupUsers(group._id));
   }, []);
 
-  const role = useMemo(() => {
+  const currentUserRole = useMemo(() => {
     return GroupService.getUserRoleCode(group, currentUser.id);
   }, [group, currentUser]);
 
   const isAFriend = useMemo(
-    () => populatedUsers.map((groupUser) => groupUser.id).includes(currentUser.id),
-    [populatedUsers, currentUser],
+    () => groupUsers.map((groupUser) => groupUser.id).includes(currentUser.id),
+    [groupUsers, currentUser],
   );
 
   const handleEditGroup = () => {
@@ -45,7 +39,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   };
 
   const handleLeaveGroup = () => {
-    // TODO: Leave group
+    GroupService.removeUserFromGroup(group._id, currentUser.id);
     onClose();
   };
 
@@ -81,13 +75,13 @@ const GroupDialog = ({ group, open, onClose }) => {
         <People className={classes.titleIcon} />
         חברים
       </Typography>
-      <UsersList users={populatedUsers} group={group} />
+      <UsersList users={groupUsers} group={group} />
     </div>
   );
 
   const dialogActions = () => (
     <div className={classes.actions}>
-      {role === getRole('manager').code && (
+      {currentUserRole === getRole('manager').code && (
         <Button
           variant="contained"
           className={classes.button}
@@ -127,7 +121,7 @@ const GroupDialog = ({ group, open, onClose }) => {
         <EditGroupDialog
           open={openEditGroupDialog}
           onClose={() => setOpenEditGroupDialog(false)}
-          group={group}
+          group={{ ...group, users: groupUsers }}
         />
       )}
     </>

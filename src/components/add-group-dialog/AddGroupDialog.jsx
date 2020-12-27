@@ -5,6 +5,7 @@ import EditableGroupDialogTemplate from '../editable-group-dialog-template/Edita
 import userContext from '../../stores/userStore';
 import config from '../../appConf';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
+import GroupsService from '../../services/GroupsService';
 
 const { getRole } = config;
 const DEFAULT_TYPE = 'private';
@@ -27,8 +28,8 @@ const AddGroupDialog = ({ open, onClose }) => {
   });
 
   const handleAdd = () => {
-    // TODO: Add new group
     // TODO: Add validation
+    GroupsService.createGroup(newGroup);
     onClose();
   };
 

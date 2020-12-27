@@ -10,8 +10,8 @@ const TagsList = ({ tags }) => {
       {tags.length > 0 && (
         <div>
           {tags.map((tag) => (
-            <Tooltip title={tag}>
-              <Chip dir="rtl" className={classes.label} key={tag} label={`#${tag}`} />
+            <Tooltip title={tag} key={tag}>
+              <Chip dir="rtl" className={classes.label} label={`#${tag}`} />
             </Tooltip>
           ))}
         </div>

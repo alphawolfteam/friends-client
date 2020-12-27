@@ -13,7 +13,7 @@ const UserSearchBar = ({ setSelectedUser }) => {
     if (searchValue.length < 2) {
       setOptions([]);
     } else {
-      setOptions(await UsersService.getFilteredUsersList(searchValue));
+      setOptions(await UsersService.searchUsers(searchValue));
     }
   }, [searchValue]);
 

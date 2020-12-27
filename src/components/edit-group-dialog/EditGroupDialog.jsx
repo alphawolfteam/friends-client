@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
+import GroupsService from '../../services/GroupsService';
 
 const getNestedGroupCopy = (group) => {
   return {
@@ -17,15 +18,15 @@ const EditGroupDialog = ({ group, open, onClose }) => {
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
   const handleSave = () => {
-    // TODO: Save editing
     // TODO: Add ensuring message
     // TODO: Add validation
+    GroupsService.updateGroup(group, newGroup);
     onClose();
   };
 
   const handleDeleteGroup = () => {
-    // TODO: Delete group
     // TODO: Add ensuring message
+    GroupsService.deleteGroup(group._id);
     onClose();
   };
 

@@ -37,12 +37,12 @@ const GroupsSearch = () => {
 
   useEffect(async () => {
     if (searchValue === '') {
-      setFilteredPrivateGroups(await GroupsService.getPrivateGroups());
+      setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
       setFilteredPublicGroups([]);
     } else {
-      setFilteredPrivateGroups(await GroupsService.getFilteredPrivateGroups(searchValue));
+      setFilteredPrivateGroups(await GroupsService.searchPrivateGroups(searchValue));
       if (searchValue.length >= 2) {
-        setFilteredPublicGroups(await GroupsService.getFilteredPublicGroups(searchValue));
+        setFilteredPublicGroups(await GroupsService.searchPublicGroups(searchValue));
       } else {
         setFilteredPublicGroups([]);
       }

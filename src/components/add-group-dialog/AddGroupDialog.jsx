@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
 import userContext from '../../stores/userStore';
+import refreshDataContext from '../../stores/refreshDataStore';
 import config from '../../appConf';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 import GroupsService from '../../services/GroupsService';
@@ -14,6 +15,7 @@ const DEFAULT_ICON = groupIconsCodes[0];
 const AddGroupDialog = ({ open, onClose }) => {
   const classes = useStyles();
   const currentUser = useContext(userContext);
+  const refreshData = useContext(refreshDataContext);
   const [newGroup, setNewGroup] = useState({
     name: '',
     description: '',
@@ -27,9 +29,11 @@ const AddGroupDialog = ({ open, onClose }) => {
     icon: DEFAULT_ICON,
   });
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     // TODO: Add validation
-    GroupsService.createGroup(newGroup);
+    // TODO: Add loader
+    await GroupsService.createGroup(newGroup);
+    refreshData();
     onClose();
   };
 

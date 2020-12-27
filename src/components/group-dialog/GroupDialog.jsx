@@ -8,6 +8,7 @@ import LockIcon from '../lock-icon/LockIcon';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
 import userContext from '../../stores/userStore';
+import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../tags-list/TagsList';
 import UsersList from '../users-list/UsersList';
 import GroupService from '../../services/GroupsService';
@@ -18,6 +19,7 @@ const { getRole } = config;
 const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
   const currentUser = useContext(userContext);
+  const refreshData = useContext(refreshDataContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [groupUsers, setGroupUsers] = useState([]);
 
@@ -38,8 +40,10 @@ const GroupDialog = ({ group, open, onClose }) => {
     setOpenEditGroupDialog(true);
   };
 
-  const handleLeaveGroup = () => {
-    GroupService.removeUserFromGroup(group._id, currentUser.id);
+  const handleLeaveGroup = async () => {
+    // TODO: Add loader
+    await GroupService.removeUserFromGroup(group._id, currentUser.id);
+    refreshData();
     onClose();
   };
 

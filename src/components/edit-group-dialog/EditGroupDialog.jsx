@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
+import refreshDataContext from '../../stores/refreshDataStore';
 import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
 import GroupsService from '../../services/GroupsService';
 
@@ -15,18 +16,23 @@ const getNestedGroupCopy = (group) => {
 
 const EditGroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
+  const refreshData = useContext(refreshDataContext);
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // TODO: Add ensuring message
     // TODO: Add validation
-    GroupsService.updateGroup(group, newGroup);
+    // TODO: Add loader
+    await GroupsService.updateGroup(group, newGroup);
+    refreshData();
     onClose();
   };
 
-  const handleDeleteGroup = () => {
+  const handleDeleteGroup = async () => {
     // TODO: Add ensuring message
-    GroupsService.deleteGroup(group._id);
+    // TODO: Add loader
+    await GroupsService.deleteGroup(group._id);
+    refreshData();
     onClose();
   };
 

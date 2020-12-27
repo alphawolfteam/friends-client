@@ -1,7 +1,11 @@
-import React, {
-  useContext, useEffect, useMemo, useState,
+import React,
+{
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
-import { Fab, Tooltip } from '@material-ui/core';
+import { Button, Fab, Tooltip } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import userContext from '../../stores/userStore';
 import useStyles from './GroupsSearch.style';
@@ -29,33 +33,40 @@ const getSortedPrivateGroups = (privateGroups, userId) => {
 
 const GroupsSearch = () => {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = useState('');
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const currentUser = useContext(userContext);
 
   useEffect(async () => {
-    if (searchValue === '') {
-      setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
+    setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
+  }, []);
+
+  const handleOnSearch = async (searchValue) => {
+    setFilteredPrivateGroups(
+      await GroupsService.searchPrivateGroups(currentUser.id, searchValue),
+    );
+    if (searchValue.length <= 2) {
       setFilteredPublicGroups([]);
     } else {
-      setFilteredPrivateGroups(await GroupsService.searchPrivateGroups(searchValue));
-      if (searchValue.length >= 2) {
-        setFilteredPublicGroups(await GroupsService.searchPublicGroups(searchValue));
-      } else {
-        setFilteredPublicGroups([]);
-      }
+      setFilteredPublicGroups(await GroupsService.searchPublicGroups(searchValue));
     }
-  }, [searchValue]);
+  };
 
   const sortedPrivateGroups = useMemo(() => (
     getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
   [filteredPrivateGroups, currentUser]);
 
+  // TODO: Delete
+  const handleRefresh = async () => {
+    setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
+    setFilteredPublicGroups([]);
+  };
+
   return (
     <div className={classes.root}>
-      <GroupSearchBar setSearchValue={setSearchValue} />
+      <GroupSearchBar onSearch={(searchValue) => handleOnSearch(searchValue)} />
+      <Button onClick={() => handleRefresh()}>refresh</Button>
       <ScrollableGroupsResult
         privateGroups={sortedPrivateGroups}
         publicGroups={filteredPublicGroups}

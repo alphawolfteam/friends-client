@@ -22,9 +22,10 @@ class GroupsService {
     return role;
   }
 
-  static async searchPrivateGroups(searchValue) {
+  static async searchPrivateGroups(userId, searchValue) {
     // TODO: Axios request
-    return (await this.getPrivateGroups())
+
+    return (await this.getPrivateGroups(userId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
   }
@@ -50,7 +51,8 @@ class GroupsService {
     // TODO: Axios request
     // await axios.post('/', newGroup);
 
-    groups.push(newGroup);
+    const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
+    groups.push({ ...newGroup, _id: uint32.toString(16) });
   }
 
   static async getGroupUsers(groupId) {

@@ -10,6 +10,10 @@ const isIncludesInSentence = (sentence, portion) => (
   || sentence.split(' ').filter((word) => word.startsWith(portion)).length > 0
 );
 
+const getUserFromList = (usersList, userIdToFind) => {
+  return usersList.find((user) => user.id === userIdToFind);
+};
+
 // TODO: Error handler
 class GroupsService {
   static getUserRoleCode(group, userId) {
@@ -63,18 +67,20 @@ class GroupsService {
     return groupToFind.users;
   }
 
-  static async updateGroup(group, newGroup) {
-    this._updateGroupDetails(group._id, newGroup);
-    // TODO: Finish
-    // const prevUsersList = group.users;
-    // const newUsersList = newGroup.users;
-  }
-
   static async deleteGroup(groupId) {
     // TODO: Axios request
     // await axios.delete(`/${groupId}`);
 
     groups = groups.filter((group) => group._id !== groupId);
+  }
+
+  static async updateGroup(group, newGroup) {
+    this._updateGroupDetails(group._id, newGroup);
+    const prevUsersList = group.users;
+    const newUsersList = newGroup.users;
+    this._removeUsersFromGroup(group._id, prevUsersList, newUsersList);
+    this._addUsersToGroup(group._id, prevUsersList, newUsersList);
+    this._updateUsersRole(group._id, prevUsersList, newUsersList);
   }
 
   static async removeUserFromGroup(groupId, userId) {
@@ -83,6 +89,31 @@ class GroupsService {
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
+  }
+
+  static _removeUsersFromGroup(groupId, prevUsersList, newUsersList) {
+    prevUsersList.forEach((prevUser) => {
+      if (!getUserFromList(newUsersList, prevUser.id)) {
+        this.removeUserFromGroup(groupId, prevUser.id);
+      }
+    });
+  }
+
+  static _addUsersToGroup(groupId, prevUsersList, newUsersList) {
+    newUsersList.forEach((newUser) => {
+      if (!getUserFromList(prevUsersList, newUser.id)) {
+        this._addUserToGroup(groupId, newUser.id);
+      }
+    });
+  }
+
+  static _updateUsersRole(groupId, prevUsersList, newUsersList) {
+    newUsersList.forEach((newUser) => {
+      if (getUserFromList(prevUsersList, newUser.id).role
+        && getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
+        this._updateUserRole(groupId, newUser.id, newUser.role);
+      }
+    });
   }
 
   static async _updateGroupDetails(groupId, newGroup) {

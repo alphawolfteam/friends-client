@@ -124,7 +124,8 @@ const GroupDialog = ({ group, open, onClose }) => {
       ) : (
         <EditGroupDialog
           open={openEditGroupDialog}
-          onClose={() => setOpenEditGroupDialog(false)}
+          onCancel={() => setOpenEditGroupDialog(false)}
+          onClose={() => onClose()}
           group={{ ...group, users: groupUsers }}
         />
       )}

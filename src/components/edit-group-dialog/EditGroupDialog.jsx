@@ -14,7 +14,9 @@ const getNestedGroupCopy = (group) => {
   };
 };
 
-const EditGroupDialog = ({ group, open, onClose }) => {
+const EditGroupDialog = ({
+  group, open, onClose, onCancel,
+}) => {
   const classes = useStyles();
   const refreshData = useContext(refreshDataContext);
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
@@ -48,7 +50,7 @@ const EditGroupDialog = ({ group, open, onClose }) => {
       <Button
         variant="contained"
         className={classes.button}
-        onClick={() => onClose()}
+        onClick={() => onCancel()}
       >
         ביטול
       </Button>

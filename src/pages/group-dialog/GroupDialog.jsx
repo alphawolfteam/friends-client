@@ -139,7 +139,7 @@ const GroupDialog = ({ group, open, onClose }) => {
             )}
           />
           <AlertDialogTemplate
-            message="אתה בטוח שאתה רוצה לצאת מהקבוצה?"
+            message="אוי חבל.. לצאת מהקבוצה?"
             open={openAlertLeaveDialog}
             onClose={() => setOpenAlertLeaveDialog(false)}
             handleAnswer={(answer) => setDialogLeaveAnswer(answer)}

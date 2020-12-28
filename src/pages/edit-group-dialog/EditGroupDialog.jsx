@@ -91,13 +91,13 @@ const EditGroupDialog = ({
         onClose={onClose}
       />
       <AlertDialogTemplate
-        message="אתה בטוח שאתה רוצה לשמור?"
+        message="נראה טוב! לשמור את השינויים?"
         open={openAlertSaveDialog}
         onClose={() => setAlertSaveDialog(false)}
         handleAnswer={(answer) => setDialogSaveAnswer(answer)}
       />
       <AlertDialogTemplate
-        message="אתה בטוח שאתה רוצה למחוק?"
+        message="אוי חבל.. למחוק את הקבוצה?"
         open={openAlertDeleteDialog}
         onClose={() => setAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}

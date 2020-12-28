@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     direction: 'rtl',
     fontWeight: '600',
+    fontSize: '1.2vw',
   },
   button: config.style.button,
 }));

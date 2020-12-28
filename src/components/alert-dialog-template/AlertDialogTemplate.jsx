@@ -40,7 +40,7 @@ const AlertDialogTemplate = ({
           }}
           className={classes.button}
         >
-          בטוח :)
+          כן :)
         </Button>
         <Button
           onClick={() => {

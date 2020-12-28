@@ -102,14 +102,14 @@ class GroupsService {
   static _addUsersToGroup(groupId, prevUsersList, newUsersList) {
     newUsersList.forEach((newUser) => {
       if (!getUserFromList(prevUsersList, newUser.id)) {
-        this._addUserToGroup(groupId, newUser.id);
+        this._addUserToGroup(groupId, newUser);
       }
     });
   }
 
   static _updateUsersRole(groupId, prevUsersList, newUsersList) {
     newUsersList.forEach((newUser) => {
-      if (getUserFromList(prevUsersList, newUser.id).role
+      if (getUserFromList(prevUsersList, newUser.id)
         && getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
         this._updateUserRole(groupId, newUser.id, newUser.role);
       }

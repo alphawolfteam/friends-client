@@ -143,6 +143,7 @@ const GroupDialog = ({ group, open, onClose }) => {
             open={openAlertLeaveDialog}
             onClose={() => setOpenAlertLeaveDialog(false)}
             handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
+            prefferedAnswer="disagree"
           />
         </>
       ) : (

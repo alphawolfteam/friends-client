@@ -95,12 +95,14 @@ const EditGroupDialog = ({
         open={openAlertSaveDialog}
         onClose={() => setAlertSaveDialog(false)}
         handleAnswer={(answer) => setDialogSaveAnswer(answer)}
+        prefferedAnswer="agree"
       />
       <AlertDialogTemplate
         message="אוי חבל.. למחוק את הקבוצה?"
         open={openAlertDeleteDialog}
         onClose={() => setAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
+        prefferedAnswer="disagree"
       />
     </>
   );

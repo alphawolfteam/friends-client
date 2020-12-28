@@ -10,7 +10,12 @@ const useStyles = makeStyles(() => ({
     fontWeight: '600',
     fontSize: '1.2vw',
   },
-  button: config.style.button,
+  mainButton: config.style.button,
+  secondaryButton: {
+    ...config.style.button,
+    backgroundColor: 'white',
+    color: config.style.primaryColor,
+  },
 }));
 
 export default useStyles;

@@ -10,12 +10,11 @@ import {
 import useStyles from './AlertDialogTemplate.styles';
 
 const Transition = React.forwardRef((props, ref) => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const AlertDialogTemplate = ({
-  open, onClose, handleAnswer, message,
+  open, onClose, handleAnswer, message, prefferedAnswer,
 }) => {
   const classes = useStyles();
 
@@ -38,7 +37,7 @@ const AlertDialogTemplate = ({
             handleAnswer('agree');
             onClose();
           }}
-          className={classes.button}
+          className={prefferedAnswer === 'agree' ? classes.mainButton : classes.secondaryButton}
         >
           כן :)
         </Button>
@@ -47,7 +46,7 @@ const AlertDialogTemplate = ({
             handleAnswer('disagree');
             onClose();
           }}
-          className={classes.button}
+          className={prefferedAnswer === 'disagree' ? classes.mainButton : classes.secondaryButton}
         >
           בעצם לא..
         </Button>

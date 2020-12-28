@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './Paging.styles';
 
-const Paging = ({ pages }) => {
+const Paging = ({ pages, backTitle, nextTitle }) => {
   const classes = useStyles();
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
@@ -19,11 +19,11 @@ const Paging = ({ pages }) => {
       <div className={classes.pagination}>
         <div className={classes.buttonSection}>
           {pages.length - 1 > currentPageIndex
-        && <Button onClick={() => changePage('next')} className={classes.button}>רשימת חברים</Button>}
+        && <Button onClick={() => changePage('next')} className={classes.button}>{nextTitle}</Button>}
         </div>
         <div className={classes.buttonSection}>
           {currentPageIndex > 0
-        && <Button onClick={() => changePage('back')} className={classes.button}>חזור</Button>}
+        && <Button onClick={() => changePage('back')} className={classes.button}>{backTitle}</Button>}
         </div>
       </div>
       <div className={classes.page}>{pages[currentPageIndex]}</div>

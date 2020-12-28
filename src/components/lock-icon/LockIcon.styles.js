@@ -4,6 +4,7 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     color: config.style.primaryColor,
+    marginTop: '7%',
   },
 }));
 

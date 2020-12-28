@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useContext,
+  useState, useEffect, useContext, useMemo,
 } from 'react';
 import { Typography } from '@material-ui/core';
 import Scrollbar from 'react-scrollbars-custom';
@@ -34,11 +34,16 @@ const UserInputFields = ({ group, setGroup }) => {
     }));
   };
 
+  const usersListToEdit = useMemo(
+    () => group.users.filter((groupUser) => groupUser.id !== currentUser.id),
+    [group.users, currentUser],
+  );
+
   // TODO: On changeing page
   useEffect(async () => {
     // TODO: Populate first 5 users except of the current user
     setPopulatedUsers(
-      await UsersService.getPopulatedUsersList(group.users.map((user) => user.id)),
+      await UsersService.getPopulatedUsersList(usersListToEdit.map((user) => user.id)),
     );
   }, [group]);
 
@@ -72,7 +77,7 @@ const UserInputFields = ({ group, setGroup }) => {
             <div className={classes.field}>
               <UserRaw
                 user={currentUser}
-                role={getRole('manager')}
+                role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.id))}
               />
             </div>
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (

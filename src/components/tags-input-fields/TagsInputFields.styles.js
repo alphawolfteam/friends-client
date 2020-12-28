@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: '50vw',
     display: 'flex',
@@ -10,8 +10,12 @@ const useStyles = makeStyles(() => ({
   },
   tagsList: {
     display: 'flex',
-    flexWrap: 'wrap',
+    alignItems: 'center',
     justifyContent: 'center',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
   },
   message: {
     fontFamily: config.style.fontFamily,

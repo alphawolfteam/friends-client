@@ -3,18 +3,13 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '5vw',
-    fontFamily: config.style.fontFamily,
-    '&:before': {
-      borderColor: 'grey',
-    },
-    '&:after': {
-      borderColor: 'grey',
-    },
   },
-  item: {
+  message: {
     fontFamily: config.style.fontFamily,
+    direction: 'rtl',
+    fontWeight: '600',
   },
+  button: config.style.button,
 }));
 
 export default useStyles;

@@ -8,8 +8,8 @@ import {
 import AppBarComponent from './components/app-bar/AppBar';
 import userContext from './stores/userStore';
 import GroupsSearch from './pages/groups-search/GroupsSearch';
-import friendsLogo from './images/logo.svg';
-import unitLogo from './images/unitLogo.svg';
+import { ReactComponent as FriendsLogo } from './images/logo.svg';
+import { ReactComponent as UnitLogo } from './images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
 
@@ -63,9 +63,9 @@ const App = () => {
 
   const renderLoading = () => (
     <div className={classes.loading}>
-      <img src={friendsLogo} className={classes.friendsLogo} alt="friendsLogo" />
+      <FriendsLogo className={classes.friendsLogo} />
       <span className={classes.text}>powered by</span>
-      <img src={unitLogo} className={classes.unitLogo} alt="unitLogo" />
+      <UnitLogo className={classes.unitLogo} />
     </div>
   );
 

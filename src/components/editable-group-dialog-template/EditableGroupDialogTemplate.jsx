@@ -43,7 +43,7 @@ const EditableGroupDialogTemplate = ({
   );
 
   const dialogContent = () => (
-    <Paging pages={[firstPage(), secondPage()]} />
+    <Paging pages={[firstPage(), secondPage()]} backTitle="חזור" nextTitle="רשימת חברים" />
   );
 
   return (

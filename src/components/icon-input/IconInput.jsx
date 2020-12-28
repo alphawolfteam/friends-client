@@ -20,6 +20,7 @@ const IconInput = ({ group, setGroup }) => {
       <AddIconButton
         iconsOptions={iconsOptions}
         setIconsOptions={setIconsOptions}
+        setSelectedIcon={setSelectedIcon}
       />
       <IconsSwiper
         setGroup={setGroup}

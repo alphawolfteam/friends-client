@@ -1,17 +1,25 @@
-import React from 'react';
-import { Chip } from '@material-ui/core';
+import React, { useMemo } from 'react';
+import { Chip, Tooltip, Typography } from '@material-ui/core';
 import useStyles from './TagsList.styles';
 
-const TagsList = ({ tags }) => {
+const TagsList = ({ tags, maxTagsCount }) => {
   const classes = useStyles();
+
+  const slicedTagsList = useMemo(() => (maxTagsCount ? [...tags]
+    .slice(0, maxTagsCount) : tags),
+  [tags, maxTagsCount]);
 
   return (
     <div className={classes.root}>
-      {tags.length > 0 && (
-        <div>
-          {tags.map((tag) => (
-            <Chip dir="rtl" className={classes.label} key={tag} label={`#${tag}`} />
+      {slicedTagsList.length > 0 && (
+        <div className={classes.tagsList}>
+          {slicedTagsList.map((tag) => (
+            <Tooltip title={tag} key={tag}>
+              <Chip dir="rtl" className={classes.label} label={`#${tag}`} />
+            </Tooltip>
           ))}
+          {tags.length > maxTagsCount
+            && <Typography className={classes.moreMessage}>...</Typography>}
         </div>
       )}
     </div>

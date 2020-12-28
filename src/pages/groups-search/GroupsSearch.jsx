@@ -1,14 +1,19 @@
-import React, {
-  useContext, useEffect, useMemo, useState,
+import React,
+{
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
 import { Fab, Tooltip } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import userContext from '../../stores/userStore';
+import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
-import AddGroupDialog from '../../components/add-group-dialog/AddGroupDialog';
+import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
 import config from '../../appConf';
 
 const { getRole } = config;
@@ -29,25 +34,32 @@ const getSortedPrivateGroups = (privateGroups, userId) => {
 
 const GroupsSearch = () => {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = useState('');
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const currentUser = useContext(userContext);
 
+  const handleInit = async () => {
+    setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
+    setFilteredPublicGroups([]);
+    setSearchValue('');
+  };
+
   useEffect(async () => {
-    if (searchValue === '') {
-      setFilteredPrivateGroups(await GroupsService.getPrivateGroups());
-      setFilteredPublicGroups([]);
+    handleInit();
+  }, []);
+
+  const handleOnSearch = async (value) => {
+    if (value.length === 0) {
+      handleInit();
     } else {
-      setFilteredPrivateGroups(await GroupsService.getFilteredPrivateGroups(searchValue));
-      if (searchValue.length >= 2) {
-        setFilteredPublicGroups(await GroupsService.getFilteredPublicGroups(searchValue));
-      } else {
-        setFilteredPublicGroups([]);
-      }
+      setFilteredPrivateGroups(
+        await GroupsService.searchPrivateGroups(currentUser.id, value),
+      );
+      setFilteredPublicGroups(await GroupsService.searchPublicGroups(value));
     }
-  }, [searchValue]);
+  };
 
   const sortedPrivateGroups = useMemo(() => (
     getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
@@ -55,25 +67,32 @@ const GroupsSearch = () => {
 
   return (
     <div className={classes.root}>
-      <GroupSearchBar setSearchValue={setSearchValue} />
-      <ScrollableGroupsResult
-        privateGroups={sortedPrivateGroups}
-        publicGroups={filteredPublicGroups}
+      <GroupSearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        onSearch={(value) => handleOnSearch(value)}
       />
-      <Tooltip title="הוסף קבוצה חדשה">
-        <Fab
-          className={classes.addButton}
-          onClick={() => setOpenAddGroupDialog(true)}
-        >
-          <Add className={classes.icon} />
-        </Fab>
-      </Tooltip>
-      {openAddGroupDialog && (
-        <AddGroupDialog
-          open={openAddGroupDialog}
-          onClose={() => setOpenAddGroupDialog(false)}
+      <refreshDataContext.Provider value={() => handleInit()}>
+        <ScrollableGroupsResult
+          privateGroups={sortedPrivateGroups}
+          publicGroups={filteredPublicGroups}
+          searchValue={searchValue}
         />
-      )}
+        <Tooltip title="הוסף קבוצה חדשה">
+          <Fab
+            className={classes.addButton}
+            onClick={() => setOpenAddGroupDialog(true)}
+          >
+            <Add className={classes.icon} />
+          </Fab>
+        </Tooltip>
+        {openAddGroupDialog && (
+          <AddGroupDialog
+            open={openAddGroupDialog}
+            onClose={() => setOpenAddGroupDialog(false)}
+          />
+        )}
+      </refreshDataContext.Provider>
     </div>
   );
 };

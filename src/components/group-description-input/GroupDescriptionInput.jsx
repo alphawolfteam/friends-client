@@ -4,7 +4,7 @@ import useStyles from './GroupDescriptionInput.styles';
 const GroupDescriptionInput = ({ group, setGroup }) => {
   const classes = useStyles();
 
-  const handleChange = (event) => {
+  const handleOnChange = (event) => {
     setGroup((prevValue) => {
       return { ...prevValue, description: event.target.value };
     });
@@ -17,7 +17,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
       placeholder="הוסיפו תיאור.."
       value={group.description}
       dir="rtl"
-      onChange={(e) => handleChange(e)}
+      onChange={(e) => handleOnChange(e)}
       className={classes.root}
     />
   );

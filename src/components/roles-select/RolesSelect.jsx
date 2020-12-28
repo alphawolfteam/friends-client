@@ -19,7 +19,11 @@ const RolesSelect = ({ role, onChange }) => {
       className={classes.root}
     >
       {roles.map((currentRole) => (
-        <MenuItem key={currentRole} className={classes.item} value={currentRole.displayName}>
+        <MenuItem
+          key={currentRole.displayName}
+          className={classes.item}
+          value={currentRole.displayName}
+        >
           {currentRole.displayName}
         </MenuItem>
       ))}

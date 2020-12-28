@@ -5,18 +5,24 @@ import useStyles from './GroupSearchBar.styles';
 
 const ENTER_CHAR_CODE = 13;
 
-const GroupSearchBar = ({ setSearchValue }) => {
+const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
   const classes = useStyles();
 
   const handleOnKeyPress = (event) => {
     if (event.keyCode === ENTER_CHAR_CODE) {
-      setSearchValue(() => event.target.value);
+      onSearch(event.target.value);
     }
   };
 
   const handleOnClick = () => {
-    const searchInput = document.getElementById('searchInput');
-    setSearchValue(() => searchInput.value);
+    onSearch(searchValue);
+  };
+
+  const handleOnChange = (event) => {
+    setSearchValue(event.target.value);
+    if (event.target.value.length % 2 === 0) {
+      onSearch(event.target.value);
+    }
   };
 
   return (
@@ -28,7 +34,9 @@ const GroupSearchBar = ({ setSearchValue }) => {
         id="searchInput"
         placeholder="חיפוש..."
         dir="rtl"
+        value={searchValue}
         onKeyDown={(e) => handleOnKeyPress(e)}
+        onChange={(e) => handleOnChange(e)}
         className={classes.input}
       />
     </div>

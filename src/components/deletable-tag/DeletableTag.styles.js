@@ -5,17 +5,17 @@ const useStyles = makeStyles(() => ({
   root: {},
   label: {
     margin: '0.5%',
+    paddingLeft: '1.1%',
     border: `0.1vw solid ${config.style.primaryColor}`,
     backgroundColor: 'white',
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
-    maxWidth: '30vw',
+    maxWidth: '15vw',
     whiteSpace: 'nowrap',
   },
   closeIcon: {
     color: config.style.primaryColor,
-    marginLeft: '1%',
   },
 }));
 

@@ -5,7 +5,7 @@ import GroupsList from '../groups-list/GroupsList';
 import TextDivider from '../text-divider/TextDivider';
 import useStyles from './ScrollableGroupsResult.styles';
 
-const ScrollableGroupsResult = ({ privateGroups, publicGroups }) => {
+const ScrollableGroupsResult = ({ privateGroups, publicGroups, searchValue }) => {
   const classes = useStyles();
 
   return (
@@ -17,13 +17,13 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups }) => {
               {privateGroups.length > 0 && (
                 <>
                   <TextDivider text="הקבוצות שלי" />
-                  <GroupsList groups={privateGroups} />
+                  <GroupsList groups={privateGroups} searchValue={searchValue} />
                 </>
               )}
               {publicGroups.length > 0 && (
                 <>
                   <TextDivider text="קבוצות ציבוריות" />
-                  <GroupsList groups={publicGroups} />
+                  <GroupsList groups={publicGroups} searchValue={searchValue} />
                 </>
               )}
             </>

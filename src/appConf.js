@@ -27,6 +27,7 @@ config.getRoleByDisplayName = (roleDisplayName) => {
 };
 
 config.style.button = {
+  direction: 'rtl',
   borderRadius: 30,
   backgroundColor: config.style.primaryColor,
   color: 'white',
@@ -44,7 +45,6 @@ config.style.input = {
   padding: '2%',
   fontSize: '1vw',
   fontFamily: config.style.fontFamily,
-  fontWeight: '600',
   position: 'relative',
   outline: 'none',
   border: '0.1vw solid grey',

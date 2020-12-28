@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'overlay',
   },
   scrollBarContent: {
-    margin: '2%',
+    padding: '3%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   message: {
     fontFamily: config.style.fontFamily,
     color: config.style.primaryColor,
-    fontWeight: '500',
+    fontWeight: '600',
   },
 }));
 

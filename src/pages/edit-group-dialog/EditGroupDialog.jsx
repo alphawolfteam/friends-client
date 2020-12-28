@@ -50,6 +50,8 @@ const EditGroupDialog = ({
   const handleSave = () => {
     if (newGroup.name && newGroup.description && newGroup.users.length > 1) {
       setAlertSaveDialog(true);
+    } else {
+      // TODO: Add alert
     }
   };
 

@@ -43,8 +43,8 @@ const resources = {
       },
       alertMessage: {
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
-        saveChanges: 'נראה טוב! לשמור את השינויים?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
+        saveChanges: 'נראה טוב! לשמור את השינויים?',
       },
       timeGreeting: {
         morning: 'בוקר טוב',

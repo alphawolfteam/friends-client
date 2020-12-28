@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {
     width: '5vw',
     fontFamily: config.style.fontFamily,
+    fontSize: '0.8vw',
     '&:before': {
       borderColor: 'grey',
     },
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   item: {
     fontFamily: config.style.fontFamily,
+    fontSize: '0.8vw',
   },
 }));
 

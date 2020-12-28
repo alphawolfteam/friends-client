@@ -37,6 +37,8 @@ const AddGroupDialog = ({ open, onClose }) => {
       await GroupsService.createGroup(newGroup);
       refreshData();
       onClose();
+    } else {
+      // TODO: Add alert
     }
   };
 

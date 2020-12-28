@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '0.5%',
+    padding: '0.2%',
     fontFamily: config.style.fontFamily,
   },
   message: {

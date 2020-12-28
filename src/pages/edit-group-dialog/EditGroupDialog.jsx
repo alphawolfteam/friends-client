@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './EditGroupDialog.styles';
 import refreshDataContext from '../../stores/refreshDataStore';
-import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
+import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import GroupsService from '../../services/GroupsService';
 
 const getNestedGroupCopy = (group) => {

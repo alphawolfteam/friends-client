@@ -4,13 +4,13 @@ import React, {
 import { Info, People, Close } from '@material-ui/icons';
 import { Button, Typography, IconButton } from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
-import LockIcon from '../lock-icon/LockIcon';
-import DialogTemplate from '../dialog-template/DialogTemplate';
+import LockIcon from '../../components/lock-icon/LockIcon';
+import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
-import TagsList from '../tags-list/TagsList';
-import UsersList from '../users-list/UsersList';
+import TagsList from '../../components/tags-list/TagsList';
+import UsersList from '../../components/users-list/UsersList';
 import GroupService from '../../services/GroupsService';
 import config from '../../appConf';
 

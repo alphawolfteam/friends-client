@@ -13,7 +13,7 @@ import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
-import AddGroupDialog from '../../components/add-group-dialog/AddGroupDialog';
+import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
 import config from '../../appConf';
 
 const { getRole } = config;

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './AddGroupDialog.styles';
-import EditableGroupDialogTemplate from '../editable-group-dialog-template/EditableGroupDialogTemplate';
+import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import config from '../../appConf';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GroupDialog from '../group-dialog/GroupDialog';
+import GroupDialog from '../../pages/group-dialog/GroupDialog';
 import GroupRaw from '../group-raw/GroupRaw';
 import useStyles from './GroupsList.styles';
 

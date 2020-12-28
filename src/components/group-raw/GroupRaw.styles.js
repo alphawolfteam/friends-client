@@ -35,11 +35,8 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '3%',
     paddingLeft: '1%',
   },
-  tagList: {
-    width: '15vw',
-    margin: '3%',
-    display: 'flex',
-    justifyContent: 'center',
+  tagsList: {
+    width: '13vw',
   },
   groupAmount: {
     fontFamily: config.style.fontFamily,

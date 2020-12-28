@@ -8,7 +8,7 @@ const TagsList = ({ tags }) => {
   return (
     <div className={classes.root}>
       {tags.length > 0 && (
-        <div>
+        <div className={classes.tagsList}>
           {tags.map((tag) => (
             <Tooltip title={tag} key={tag}>
               <Chip dir="rtl" className={classes.label} label={`#${tag}`} />

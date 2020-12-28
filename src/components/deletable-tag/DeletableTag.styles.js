@@ -11,12 +11,11 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
-    maxWidth: '30vw',
+    maxWidth: '15vw',
     whiteSpace: 'nowrap',
   },
   closeIcon: {
     color: config.style.primaryColor,
-    // paddingLeft: '1%',
   },
 }));
 

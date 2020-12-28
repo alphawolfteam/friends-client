@@ -3,6 +3,13 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
+    height: '100%',
+    width: '100%',
+  },
+  tagsList: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexWrap: 'wrap',
   },
   label: {
@@ -13,6 +20,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
+    maxWidth: '10vw',
   },
 }));
 

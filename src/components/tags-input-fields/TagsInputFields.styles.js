@@ -10,8 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tagsList: {
     display: 'flex',
-    flexWrap: 'wrap',
+    alignItems: 'center',
     justifyContent: 'center',
+    flexWrap: 'wrap',
     '& > *': {
       margin: theme.spacing(0.5),
     },

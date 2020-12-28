@@ -23,7 +23,7 @@ const GroupRaw = ({ group, setSelectedGroup }) => {
             <Typography className={classes.groupName}>{group.name}</Typography>
           </Tooltip>
         </div>
-        <div className={classes.tagList}>
+        <div className={classes.tagsList}>
           <TagsList tags={group.tags} />
         </div>
         <div className={classes.info}>

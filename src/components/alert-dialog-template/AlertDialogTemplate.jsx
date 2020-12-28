@@ -14,7 +14,7 @@ const Transition = React.forwardRef((props, ref) => {
 });
 
 const AlertDialogTemplate = ({
-  open, onClose, handleAnswer, message, prefferedAnswer,
+  open, onClose, handleAnswer, message, preferredAnswer,
 }) => {
   const classes = useStyles();
 
@@ -37,7 +37,7 @@ const AlertDialogTemplate = ({
             handleAnswer('agree');
             onClose();
           }}
-          className={prefferedAnswer === 'agree' ? classes.mainButton : classes.secondaryButton}
+          className={preferredAnswer === 'agree' ? classes.mainButton : classes.secondaryButton}
         >
           כן :)
         </Button>
@@ -46,7 +46,7 @@ const AlertDialogTemplate = ({
             handleAnswer('disagree');
             onClose();
           }}
-          className={prefferedAnswer === 'disagree' ? classes.mainButton : classes.secondaryButton}
+          className={preferredAnswer === 'disagree' ? classes.mainButton : classes.secondaryButton}
         >
           בעצם לא..
         </Button>

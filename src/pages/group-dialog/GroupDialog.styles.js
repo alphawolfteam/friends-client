@@ -49,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
   },
   groupDescription: {
-    maxHeight: '13vh',
+    maxHeight: '8vh',
+    width: '95%',
     overflow: 'auto',
     fontSize: '1vw',
     fontFamily: config.style.fontFamily,

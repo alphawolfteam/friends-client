@@ -2,6 +2,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import config from './appConf';
 
 const useStyles = makeStyles(() => ({
+  '@global': {
+    '*::-webkit-scrollbar': {
+      width: '0.4em',
+    },
+    '*::-webkit-scrollbar-track': {
+      background: '#E5E5E5',
+      'border-radius': '50em',
+    },
+    '*::-webkit-scrollbar-thumb': {
+      background: '#898989',
+      'border-radius': '50em',
+    },
+  },
   app: {
     backgroundColor: config.style.backgroundColor,
     height: 'calc(100vh - 16px)',

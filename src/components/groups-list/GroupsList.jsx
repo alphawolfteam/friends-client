@@ -3,7 +3,7 @@ import GroupDialog from '../../pages/group-dialog/GroupDialog';
 import GroupRaw from '../group-raw/GroupRaw';
 import useStyles from './GroupsList.styles';
 
-const GroupsList = ({ groups }) => {
+const GroupsList = ({ groups, searchValue }) => {
   const classes = useStyles();
   const [selectedGroup, setSelectedGroup] = useState(undefined);
 
@@ -15,6 +15,7 @@ const GroupsList = ({ groups }) => {
             key={group._id}
             group={group}
             setSelectedGroup={setSelectedGroup}
+            searchValue={searchValue}
           />
         ))}
       </div>

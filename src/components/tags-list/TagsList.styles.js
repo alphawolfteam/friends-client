@@ -22,6 +22,12 @@ const useStyles = makeStyles(() => ({
     fontSize: '1vw',
     maxWidth: '10vw',
   },
+  moreMessage: {
+    color: config.style.primaryColor,
+    fontFamily: config.style.fontFamily,
+    fontWeight: '700',
+    fontSize: '1vw',
+  },
 }));
 
 export default useStyles;

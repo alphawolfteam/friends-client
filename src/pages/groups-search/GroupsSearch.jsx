@@ -80,6 +80,7 @@ const GroupsSearch = () => {
         <ScrollableGroupsResult
           privateGroups={sortedPrivateGroups}
           publicGroups={filteredPublicGroups}
+          searchValue={searchValue}
         />
         <Tooltip title="הוסף קבוצה חדשה">
           <Fab

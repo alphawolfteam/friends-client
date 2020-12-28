@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  root: {},
+  iconButton: {
     position: 'relative',
     zIndex: 2,
     top: '110%',

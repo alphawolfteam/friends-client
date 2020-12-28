@@ -5,6 +5,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import TagsList from '../tags-list/TagsList';
@@ -24,6 +25,7 @@ const getSortedTagsByString = (tagsList, string) => {
 
 const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const sortedGroupTags = useMemo(() => getSortedTagsByString(group.tags, searchValue),
     [group.tags, searchValue]);
@@ -47,7 +49,7 @@ const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
           <Typography className={classes.groupAmount}>
             {group.users.length}
             {' '}
-            חברים
+            {t('title.friends')}
           </Typography>
         </div>
       </CardContent>

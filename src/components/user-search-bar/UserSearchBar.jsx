@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { InputBase } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './UserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import Autocomplete from '../autocomplete/Autocomplete';
 
 const UserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [options, setOptions] = useState([]);
 
@@ -25,7 +27,7 @@ const UserSearchBar = ({ setSelectedUser }) => {
     <div className={classes.root}>
       <InputBase
         id="searchInput"
-        placeholder="הוסיפו חבר..."
+        placeholder={t('placeholder.friends')}
         dir="rtl"
         value={searchValue}
         onChange={(e) => handleOnChange(e)}

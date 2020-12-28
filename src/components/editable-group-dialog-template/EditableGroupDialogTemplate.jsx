@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { Info } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 import useStyles from './EditableGroupDialogTemplate.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import UserInputFields from '../users-input-fields/UserInputFields';
@@ -15,6 +16,7 @@ const EditableGroupDialogTemplate = ({
   newGroup, setNewGroup, open, onClose, actions,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const dialogTitle = () => (
     <>
@@ -30,7 +32,7 @@ const EditableGroupDialogTemplate = ({
     <>
       <Typography dir="rtl" className={classes.title}>
         <Info className={classes.titleIcon} />
-        תיאור
+        {t('title.description')}
       </Typography>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <hr />
@@ -43,7 +45,7 @@ const EditableGroupDialogTemplate = ({
   );
 
   const dialogContent = () => (
-    <Paging pages={[firstPage(), secondPage()]} backTitle="חזור" nextTitle="רשימת חברים" />
+    <Paging pages={[firstPage(), secondPage()]} backTitle={t('button.back')} nextTitle={t('button.next')} />
   );
 
   return (

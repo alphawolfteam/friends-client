@@ -2,6 +2,7 @@ import React, {
   useState, useEffect, useContext, useMemo,
 } from 'react';
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
@@ -20,6 +21,7 @@ const isExist = (usersList, userToCheck) => {
 
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
   const [populatedUsers, setPopulatedUsers] = useState([]);
@@ -85,7 +87,7 @@ const UserInputFields = ({ group, setGroup }) => {
             ))
               : (
                 <Typography className={classes.message}>
-                  (: אין חברים בקבוצה.. צרפו כמה
+                  {t('message.noFriendsFound')}
                 </Typography>
               )}
           </div>

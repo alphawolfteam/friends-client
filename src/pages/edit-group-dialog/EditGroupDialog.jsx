@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './EditGroupDialog.styles';
 import refreshDataContext from '../../stores/refreshDataStore';
 import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -19,6 +20,7 @@ const EditGroupDialog = ({
   group, open, onClose, onCancel,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
   const [openAlertSaveDialog, setAlertSaveDialog] = useState(false);
   const [dialogSaveAnswer, setDialogSaveAnswer] = useState(undefined);
@@ -62,21 +64,21 @@ const EditGroupDialog = ({
         className={classes.button}
         onClick={() => handleSave()}
       >
-        שמור
+        {t('button.save')}
       </Button>
       <Button
         variant="contained"
         className={classes.button}
         onClick={() => onCancel()}
       >
-        ביטול
+        {t('button.cancel')}
       </Button>
       <Button
         variant="contained"
         className={classes.button}
         onClick={() => handleDeleteGroup()}
       >
-        מחיקת קבוצה
+        {t('button.deleteGroup')}
       </Button>
     </>
   );
@@ -91,14 +93,14 @@ const EditGroupDialog = ({
         onClose={onClose}
       />
       <AlertDialogTemplate
-        message="נראה טוב! לשמור את השינויים?"
+        message={t('alertMessage.saveChanges')}
         open={openAlertSaveDialog}
         onClose={() => setAlertSaveDialog(false)}
         handleAnswer={(answer) => setDialogSaveAnswer(answer)}
         preferredAnswer="agree"
       />
       <AlertDialogTemplate
-        message="אוי חבל.. למחוק את הקבוצה?"
+        message={t('alertMessage.deleteGroup')}
         open={openAlertDeleteDialog}
         onClose={() => setAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}

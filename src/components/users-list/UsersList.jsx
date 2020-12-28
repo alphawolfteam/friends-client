@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Scrollbar from 'react-scrollbars-custom';
-import { Typography } from '@material-ui/core';
 import UserRaw from '../user-raw/UserRaw';
 import useStyles from './UsersList.styles';
 import GroupsService from '../../services/GroupsService';
@@ -28,19 +27,13 @@ const UsersList = ({ users, group }) => {
     <div className={classes.root}>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
-          {populatedUsers.length > 0 ? (
-            populatedUsers.map((user) => (
-              <UserRaw
-                key={user.id}
-                user={user}
-                role={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
-              />
-            ))
-          ) : (
-            <Typography className={classes.message}>
-              אין חברים בקבוצה
-            </Typography>
-          )}
+          {populatedUsers.map((user) => (
+            <UserRaw
+              key={user.id}
+              user={user}
+              role={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
+            />
+          ))}
         </div>
       </Scrollbar>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
 import useStyles from './TagsInputFields.styles';
@@ -10,6 +11,7 @@ const isExist = (tag, tagList) => {
 
 const TagsInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const handleRemoveTag = (tagToRemove) => {
     setGroup((prevValue) => {
@@ -44,7 +46,7 @@ const TagsInputFields = ({ group, setGroup }) => {
         )
           : (
             <Typography className={classes.message}>
-              (: אין תגיות.. צרפו כמה
+              {t('message.noTagsFound')}
             </Typography>
           )}
       </div>

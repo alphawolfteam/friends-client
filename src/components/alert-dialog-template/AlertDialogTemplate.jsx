@@ -7,6 +7,7 @@ import {
   Dialog,
   Button,
 } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './AlertDialogTemplate.styles';
 
 const Transition = React.forwardRef((props, ref) => {
@@ -17,6 +18,7 @@ const AlertDialogTemplate = ({
   open, onClose, handleAnswer, message, preferredAnswer,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Dialog
@@ -39,7 +41,7 @@ const AlertDialogTemplate = ({
           }}
           className={preferredAnswer === 'agree' ? classes.mainButton : classes.secondaryButton}
         >
-          כן :)
+          {t('button.agree')}
         </Button>
         <Button
           onClick={() => {
@@ -48,7 +50,7 @@ const AlertDialogTemplate = ({
           }}
           className={preferredAnswer === 'disagree' ? classes.mainButton : classes.secondaryButton}
         >
-          בעצם לא..
+          {t('button.disagree')}
         </Button>
       </DialogActions>
     </Dialog>

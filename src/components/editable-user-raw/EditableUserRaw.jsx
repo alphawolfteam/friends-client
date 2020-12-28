@@ -3,6 +3,7 @@ import {
   Button, Tooltip, Card, CardContent, Typography,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 import useStyles from './EditableUserRaw.styles';
 import RolesSelect from '../roles-select/RolesSelect';
 import config from '../../appConf';
@@ -15,6 +16,7 @@ const getUserIndex = (usersList, userToFind) => {
 
 const EditableUserRaw = ({ user, initialRole, setGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [openHierarchy, setOpenHierarchy] = useState(false);
   const [role, setRole] = useState(initialRole);
 
@@ -58,7 +60,7 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
         role={role.displayName}
         onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}
       />
-      <Tooltip title="מחיקה">
+      <Tooltip title={t('tooltip.delete')}>
         <Button
           className={classes.iconButton}
           onClick={() => handleRemoveUser(user)}

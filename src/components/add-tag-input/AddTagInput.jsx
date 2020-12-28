@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { InputBase } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 import useStyles from './AddTagInput.styles';
 
 const ENTER_CHAR_CODE = 13;
 
 const AddTagInput = ({ onAdd }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');
 
   const handleOnChange = (event) => {
@@ -30,7 +32,7 @@ const AddTagInput = ({ onAdd }) => {
       <Add className={classes.addIcon} onClick={() => handleOnClick()} />
       <InputBase
         dir="rtl"
-        placeholder="הוסיפו תגית.."
+        placeholder={t('tooltip.addTag')}
         onChange={(e) => handleOnChange(e)}
         onKeyDown={(e) => handleOnKeyPress(e)}
         value={inputValue}

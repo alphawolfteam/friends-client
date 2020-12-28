@@ -7,6 +7,7 @@ import React,
 } from 'react';
 import { Fab, Tooltip } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
@@ -34,6 +35,7 @@ const getSortedPrivateGroups = (privateGroups, userId) => {
 
 const GroupsSearch = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
@@ -78,7 +80,7 @@ const GroupsSearch = () => {
           publicGroups={filteredPublicGroups}
           searchValue={searchValue}
         />
-        <Tooltip title="הוסף קבוצה חדשה">
+        <Tooltip title={t('tooltip.addNewGroup')}>
           <Fab
             className={classes.addButton}
             onClick={() => setOpenAddGroupDialog(true)}

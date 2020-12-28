@@ -8,6 +8,7 @@ import {
   IconButton,
   Tooltip,
 } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../../components/lock-icon/LockIcon';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
@@ -24,6 +25,7 @@ const { getRole } = config;
 
 const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
@@ -79,7 +81,7 @@ const GroupDialog = ({ group, open, onClose }) => {
     <div className={classes.content}>
       <Typography dir="rtl" className={classes.title}>
         <Info className={classes.titleIcon} />
-        תיאור
+        {t('title.description')}
       </Typography>
       <Typography dir="rtl" className={classes.groupDescription}>
         {group.description}
@@ -93,7 +95,7 @@ const GroupDialog = ({ group, open, onClose }) => {
       )}
       <Typography dir="rtl" className={classes.title}>
         <People className={classes.titleIcon} />
-        חברים
+        {t('title.friends')}
       </Typography>
       <UsersList users={groupUsers} group={group} />
     </div>
@@ -107,7 +109,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           className={classes.button}
           onClick={() => handleEditGroup()}
         >
-          ערוך
+          {t('button.edit')}
         </Button>
       )}
       {isAFriend && (
@@ -116,7 +118,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           className={classes.button}
           onClick={() => handleLeaveGroup()}
         >
-          יציאה מהקבוצה
+          {t('button.leaveGroup')}
         </Button>
       )}
     </div>
@@ -139,7 +141,7 @@ const GroupDialog = ({ group, open, onClose }) => {
             )}
           />
           <AlertDialogTemplate
-            message="אוי חבל.. לצאת מהקבוצה?"
+            message={t('alertMessage.leaveGroup')}
             open={openAlertLeaveDialog}
             onClose={() => setOpenAlertLeaveDialog(false)}
             handleAnswer={(answer) => setDialogLeaveAnswer(answer)}

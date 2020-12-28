@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import userContext from '../../stores/userStore';
@@ -14,6 +15,7 @@ const DEFAULT_ICON = groupIconsCodes[0];
 
 const AddGroupDialog = ({ open, onClose }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
   const [newGroup, setNewGroup] = useState({
@@ -45,14 +47,14 @@ const AddGroupDialog = ({ open, onClose }) => {
         className={classes.button}
         onClick={() => handleAdd()}
       >
-        הוסף
+        {t('button.add')}
       </Button>
       <Button
         variant="contained"
         className={classes.button}
         onClick={() => onClose()}
       >
-        ביטול
+        {t('button.cancel')}
       </Button>
     </>
   );

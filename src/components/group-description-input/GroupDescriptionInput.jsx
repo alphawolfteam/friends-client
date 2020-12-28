@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import useStyles from './GroupDescriptionInput.styles';
 
 const GroupDescriptionInput = ({ group, setGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const handleOnChange = (event) => {
     setGroup((prevValue) => {
@@ -14,7 +16,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
     <textarea
       cols="5"
       rows="2"
-      placeholder="הוסיפו תיאור.."
+      placeholder={t('placeholder.description')}
       value={group.description}
       dir="rtl"
       onChange={(e) => handleOnChange(e)}

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Input } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from './GroupNameInput.styles';
 
 const GroupNameInput = ({ group, setGroup }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const handleOnChange = (event) => {
     setGroup((prevValue) => {
@@ -14,7 +16,7 @@ const GroupNameInput = ({ group, setGroup }) => {
   return (
     <Input
       disableUnderline
-      placeholder="הוסיפו שם.."
+      placeholder={t('placeholder.name')}
       value={group.name}
       dir="rtl"
       onChange={(e) => handleOnChange(e)}

@@ -1,12 +1,14 @@
 import React from 'react';
 import { InputBase, Fab } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
 import useStyles from './GroupSearchBar.styles';
 
 const ENTER_CHAR_CODE = 13;
 
 const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const handleOnKeyPress = (event) => {
     if (event.keyCode === ENTER_CHAR_CODE) {
@@ -32,7 +34,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
       </Fab>
       <InputBase
         id="searchInput"
-        placeholder="חיפוש..."
+        placeholder={t('placeholder.search')}
         dir="rtl"
         value={searchValue}
         onKeyDown={(e) => handleOnKeyPress(e)}

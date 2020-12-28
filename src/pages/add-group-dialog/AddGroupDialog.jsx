@@ -76,7 +76,7 @@ const AddGroupDialog = ({ open, onClose }) => {
         onClose={onClose}
       />
       <AlertDialogTemplate
-        message="אתה בטוח שאתה רוצה לשמור?"
+        message="אתה בטוח שאתה רוצה להוסיף?"
         open={openAlertDialog}
         onClose={() => setOpenAddGroupDialog(false)}
         handleAnswer={(answer) => setDialogAnswer(answer)}

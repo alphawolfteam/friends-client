@@ -57,11 +57,7 @@ const GroupsSearch = () => {
       setFilteredPrivateGroups(
         await GroupsService.searchPrivateGroups(currentUser.id, value),
       );
-      if (value.length <= 2) {
-        setFilteredPublicGroups([]);
-      } else {
-        setFilteredPublicGroups(await GroupsService.searchPublicGroups(value));
-      }
+      setFilteredPublicGroups(await GroupsService.searchPublicGroups(value));
     }
   };
 

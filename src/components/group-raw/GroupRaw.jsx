@@ -9,7 +9,7 @@ import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import TagsList from '../tags-list/TagsList';
 
-const sortTagsByString = (tagsList, string) => {
+const getSortedTagsByString = (tagsList, string) => {
   const matchedTags = [];
   const unmatchedTags = [];
   tagsList.forEach((tag) => {
@@ -25,7 +25,7 @@ const sortTagsByString = (tagsList, string) => {
 const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
   const classes = useStyles();
 
-  const sortedGroupTags = useMemo(() => sortTagsByString(group.tags, searchValue),
+  const sortedGroupTags = useMemo(() => getSortedTagsByString(group.tags, searchValue),
     [group.tags, searchValue]);
 
   return (

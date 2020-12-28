@@ -71,7 +71,8 @@ class GroupsService {
     // TODO: Axios request
     // await axios.delete(`/${groupId}`);
 
-    groups = groups.filter((group) => group._id !== groupId);
+    const groupIndexInArray = groups.map((group) => group._id).indexOf(groupId);
+    groups.splice(groupIndexInArray, 1);
   }
 
   static async updateGroup(group, newGroup) {

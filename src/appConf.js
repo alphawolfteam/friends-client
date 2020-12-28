@@ -27,6 +27,7 @@ config.getRoleByDisplayName = (roleDisplayName) => {
 };
 
 config.style.button = {
+  direction: 'rtl',
   borderRadius: 30,
   backgroundColor: config.style.primaryColor,
   color: 'white',

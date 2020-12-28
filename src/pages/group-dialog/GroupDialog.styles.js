@@ -15,6 +15,16 @@ const useStyles = makeStyles((theme) => ({
   groupTitle: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    width: '15vw',
+  },
+  groupName: {
+    fontFamily: config.style.fontFamily,
+    fontWeight: '700',
+    fontSize: '2vw',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
   },
   groupIcon: {
     borderRadius: '50%',
@@ -39,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
   },
   groupDescription: {
+    maxHeight: '13vh',
+    overflow: 'auto',
     fontSize: '1vw',
     fontFamily: config.style.fontFamily,
     alignSelf: 'flex-end',

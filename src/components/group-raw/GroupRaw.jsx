@@ -1,5 +1,10 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import TagsList from '../tags-list/TagsList';
@@ -14,7 +19,9 @@ const GroupRaw = ({ group, setSelectedGroup }) => {
           <div className={classes.groupIcon}>
             <img className={classes.img} src={group.icon} alt="icon" />
           </div>
-          <Typography className={classes.groupName}>{group.name}</Typography>
+          <Tooltip title={group.name}>
+            <Typography className={classes.groupName}>{group.name}</Typography>
+          </Tooltip>
         </div>
         <div className={classes.tagList}>
           <TagsList tags={group.tags} />

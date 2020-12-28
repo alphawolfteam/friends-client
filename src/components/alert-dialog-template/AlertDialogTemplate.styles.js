@@ -3,21 +3,13 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '80%',
-    height: '19vh',
-    overflow: 'overlay',
-  },
-  scrollBarContent: {
-    padding: '3%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
   },
   message: {
     fontFamily: config.style.fontFamily,
-    color: config.style.primaryColor,
+    direction: 'rtl',
     fontWeight: '600',
   },
+  button: config.style.button,
 }));
 
 export default useStyles;

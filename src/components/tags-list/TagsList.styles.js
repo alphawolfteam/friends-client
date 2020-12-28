@@ -3,9 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginTop: '3%',
-    marginRight: '5%',
-    whiteSpace: 'nowrap',
+    flexWrap: 'wrap',
   },
   label: {
     margin: '1.3%',

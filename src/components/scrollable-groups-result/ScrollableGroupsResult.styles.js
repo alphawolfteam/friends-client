@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontSize: '1.5vw',
     textAlign: 'center',
-    fontWeight: '500',
+    fontWeight: '600',
     color: config.style.primaryColor,
   },
 }));

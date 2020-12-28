@@ -2,7 +2,12 @@ import React, {
   useContext, useMemo, useState, useEffect,
 } from 'react';
 import { Info, People, Close } from '@material-ui/icons';
-import { Button, Typography, IconButton } from '@material-ui/core';
+import {
+  Button,
+  Typography,
+  IconButton,
+  Tooltip,
+} from '@material-ui/core';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../../components/lock-icon/LockIcon';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
@@ -12,6 +17,7 @@ import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../../components/tags-list/TagsList';
 import UsersList from '../../components/users-list/UsersList';
 import GroupService from '../../services/GroupsService';
+import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import config from '../../appConf';
 
 const { getRole } = config;
@@ -21,6 +27,8 @@ const GroupDialog = ({ group, open, onClose }) => {
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
+  const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
+  const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [groupUsers, setGroupUsers] = useState([]);
 
   useEffect(async () => {
@@ -40,11 +48,17 @@ const GroupDialog = ({ group, open, onClose }) => {
     setOpenEditGroupDialog(true);
   };
 
-  const handleLeaveGroup = async () => {
+  useEffect(async () => {
     // TODO: Add loader
-    await GroupService.removeUserFromGroup(group._id, currentUser.id);
-    refreshData();
-    onClose();
+    if (dialogLeaveAnswer === 'agree') {
+      await GroupService.removeUserFromGroup(group._id, currentUser.id);
+      refreshData();
+      onClose();
+    }
+  }, [dialogLeaveAnswer]);
+
+  const handleLeaveGroup = () => {
+    setOpenAlertLeaveDialog(true);
   };
 
   const dialogTitle = () => (
@@ -53,7 +67,9 @@ const GroupDialog = ({ group, open, onClose }) => {
         <img className={classes.img} src={group.icon} alt="icon" />
       </div>
       <div className={classes.groupTitle}>
-        {group.name}
+        <Tooltip title={group.name}>
+          <Typography className={classes.groupName}>{group.name}</Typography>
+        </Tooltip>
         <LockIcon type={group.type} />
       </div>
     </>
@@ -109,18 +125,26 @@ const GroupDialog = ({ group, open, onClose }) => {
   return (
     <>
       {!openEditGroupDialog ? (
-        <DialogTemplate
-          title={dialogTitle()}
-          content={dialogContent()}
-          actions={dialogActions()}
-          open={open}
-          onClose={onClose}
-          closeButton={(
-            <IconButton onClick={onClose} className={classes.closeButton}>
-              <Close />
-            </IconButton>
-          )}
-        />
+        <>
+          <DialogTemplate
+            title={dialogTitle()}
+            content={dialogContent()}
+            actions={dialogActions()}
+            open={open}
+            onClose={onClose}
+            closeButton={(
+              <IconButton onClick={onClose} className={classes.closeButton}>
+                <Close />
+              </IconButton>
+            )}
+          />
+          <AlertDialogTemplate
+            message="אתה בטוח שאתה רוצה לצאת מהקבוצה?"
+            open={openAlertLeaveDialog}
+            onClose={() => setOpenAlertLeaveDialog(false)}
+            handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
+          />
+        </>
       ) : (
         <EditGroupDialog
           open={openEditGroupDialog}

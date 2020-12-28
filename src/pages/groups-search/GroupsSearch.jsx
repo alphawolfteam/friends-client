@@ -37,20 +37,31 @@ const GroupsSearch = () => {
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const currentUser = useContext(userContext);
 
-  useEffect(async () => {
+  const handleInit = async () => {
     setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
+    setFilteredPublicGroups([]);
+    setSearchValue('');
+  };
+
+  useEffect(async () => {
+    handleInit();
   }, []);
 
-  const handleOnSearch = async (searchValue) => {
-    setFilteredPrivateGroups(
-      await GroupsService.searchPrivateGroups(currentUser.id, searchValue),
-    );
-    if (searchValue.length <= 2) {
-      setFilteredPublicGroups([]);
+  const handleOnSearch = async (value) => {
+    if (value.length === 0) {
+      handleInit();
     } else {
-      setFilteredPublicGroups(await GroupsService.searchPublicGroups(searchValue));
+      setFilteredPrivateGroups(
+        await GroupsService.searchPrivateGroups(currentUser.id, value),
+      );
+      if (value.length <= 2) {
+        setFilteredPublicGroups([]);
+      } else {
+        setFilteredPublicGroups(await GroupsService.searchPublicGroups(value));
+      }
     }
   };
 
@@ -58,15 +69,14 @@ const GroupsSearch = () => {
     getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
   [filteredPrivateGroups, currentUser]);
 
-  const handleRefresh = async () => {
-    setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
-    setFilteredPublicGroups([]);
-  };
-
   return (
     <div className={classes.root}>
-      <GroupSearchBar onSearch={(searchValue) => handleOnSearch(searchValue)} />
-      <refreshDataContext.Provider value={() => handleRefresh()}>
+      <GroupSearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        onSearch={(value) => handleOnSearch(value)}
+      />
+      <refreshDataContext.Provider value={() => handleInit()}>
         <ScrollableGroupsResult
           privateGroups={sortedPrivateGroups}
           publicGroups={filteredPublicGroups}

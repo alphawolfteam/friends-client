@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -7,6 +7,7 @@ import refreshDataContext from '../../stores/refreshDataStore';
 import config from '../../appConf';
 import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
 import GroupsService from '../../services/GroupsService';
+import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 
 const { getRole } = config;
 const DEFAULT_TYPE = 'private';
@@ -16,6 +17,8 @@ const AddGroupDialog = ({ open, onClose }) => {
   const classes = useStyles();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
+  const [openAlertDialog, setOpenAddGroupDialog] = useState(false);
+  const [dialogAnswer, setDialogAnswer] = useState(undefined);
   const [newGroup, setNewGroup] = useState({
     name: '',
     description: '',
@@ -29,12 +32,19 @@ const AddGroupDialog = ({ open, onClose }) => {
     icon: DEFAULT_ICON,
   });
 
-  const handleAdd = async () => {
-    // TODO: Add validation
+  useEffect(async () => {
     // TODO: Add loader
-    await GroupsService.createGroup(newGroup);
-    refreshData();
-    onClose();
+    if (dialogAnswer === 'agree') {
+      await GroupsService.createGroup(newGroup);
+      refreshData();
+      onClose();
+    }
+  }, [dialogAnswer]);
+
+  const handleAdd = () => {
+    if (newGroup.name && newGroup.description && newGroup.users.length > 1) {
+      setOpenAddGroupDialog(true);
+    }
   };
 
   const dialogActions = () => (
@@ -57,13 +67,21 @@ const AddGroupDialog = ({ open, onClose }) => {
   );
 
   return (
-    <EditableGroupDialogTemplate
-      newGroup={newGroup}
-      setNewGroup={setNewGroup}
-      actions={dialogActions()}
-      open={open}
-      onClose={onClose}
-    />
+    <>
+      <EditableGroupDialogTemplate
+        newGroup={newGroup}
+        setNewGroup={setNewGroup}
+        actions={dialogActions()}
+        open={open}
+        onClose={onClose}
+      />
+      <AlertDialogTemplate
+        message="אתה בטוח שאתה רוצה לשמור?"
+        open={openAlertDialog}
+        onClose={() => setOpenAddGroupDialog(false)}
+        handleAnswer={(answer) => setDialogAnswer(answer)}
+      />
+    </>
   );
 };
 

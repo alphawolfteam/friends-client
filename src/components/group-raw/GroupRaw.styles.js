@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     color: config.style.fontColor,
     padding: '0.5%',
     display: 'flex',
+    height: '13vh',
     alignItems: 'center',
     justifyContent: 'space-around',
     '&:last-child': {
@@ -35,7 +36,8 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '1%',
   },
   tagList: {
-    width: '10vw',
+    width: '15vw',
+    margin: '3%',
     display: 'flex',
     justifyContent: 'center',
   },
@@ -46,10 +48,13 @@ const useStyles = makeStyles(() => ({
   },
   groupName: {
     fontFamily: config.style.fontFamily,
+    width: '10vw',
     fontSize: '1.5vw',
     fontWeight: '700',
     marginRight: '5%',
+    textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    overflow: 'hidden',
   },
   groupIcon: {
     borderRadius: '50%',

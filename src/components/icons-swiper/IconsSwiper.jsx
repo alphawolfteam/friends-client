@@ -21,7 +21,7 @@ const IconsSwiper = ({
     if (controlledSwiper) {
       controlledSwiper.slideTo(iconsOptions.indexOf(selectedIcon));
     }
-  }, [selectedIcon]);
+  }, [selectedIcon, controlledSwiper]);
 
   return (
     <Swiper

@@ -11,7 +11,7 @@ const IconInput = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (!iconsOptions.includes(group.icon)) {
-      setIconsOptions((prevValue) => [...prevValue, group.icon]);
+      setIconsOptions((prevValue) => [group.icon, ...prevValue]);
     }
   }, []);
 

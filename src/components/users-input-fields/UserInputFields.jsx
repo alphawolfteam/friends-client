@@ -41,16 +41,21 @@ const UserInputFields = ({ group, setGroup }) => {
     [group.users, currentUser],
   );
 
+  const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
+    return GroupsService.getUserRoleCode(group, firstUser.id)
+    - GroupsService.getUserRoleCode(group, secondUser.id);
+  }),
+  [usersListToEdit]);
+
   // TODO: On changeing page
   useEffect(async () => {
     // TODO: Populate first 5 users
     setPopulatedUsers(
-      await UsersService.getPopulatedUsersList(usersListToEdit.map((user) => user.id)),
+      await UsersService.getPopulatedUsersList(sortedUsers.map((user) => user.id)),
     );
-  }, [group]);
+  }, [sortedUsers]);
 
-  // TODO: Sort the users- managers at the top and bold
-  // TODO: (?) Add useEffect that when changing someone from and to be a manager
+  // TODO: Add useEffect that when changing someone from and to be a manager
   // its reset the pages to 1 and populates the users again
 
   useEffect(() => {

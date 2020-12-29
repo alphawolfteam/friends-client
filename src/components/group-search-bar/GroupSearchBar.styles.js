@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
   },
   input: {
     direction: 'rtl',
+    padding: '0.7%',
     paddingRight: '3%',
     width: '100%',
     fontSize: '0.9vw',

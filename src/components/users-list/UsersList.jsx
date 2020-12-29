@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Scrollbar from 'react-scrollbars-custom';
 import UserRaw from '../user-raw/UserRaw';
 import useStyles from './UsersList.styles';
@@ -13,14 +13,18 @@ const UsersList = ({ users, group }) => {
   const [populatedUsers, setPopulatedUsers] = useState([]);
   // const [page, setPage] = useState(1);
 
-  // TODO: Sort the users- managers at the top and bold
+  const sortedUsers = useMemo(() => users.sort((firstUser, secondUser) => {
+    return GroupsService.getUserRoleCode(group, firstUser.id)
+    - GroupsService.getUserRoleCode(group, secondUser.id);
+  }),
+  [users]);
 
   useEffect(async () => {
     // TODO: Send 5 users at a time
     setPopulatedUsers(
-      await UsersService.getPopulatedUsersList(users.map((user) => user.id)),
+      await UsersService.getPopulatedUsersList(sortedUsers.map((user) => user.id)),
     );
-  }, [users]);
+  }, [sortedUsers]);
   // }, [page]);
 
   return (

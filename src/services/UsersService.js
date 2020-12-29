@@ -10,7 +10,7 @@ class UsersService {
     // TODO: Axios request- Get populated users from api-gateway
 
     const usersList = await this.searchUsers('');
-    return usersList.filter((user) => idsList.includes(user.id));
+    return idsList.map((id) => usersList.find((user) => user.id === id));
   }
 
   static async searchUsers(searchValue) {

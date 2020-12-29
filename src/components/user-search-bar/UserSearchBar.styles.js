@@ -12,10 +12,10 @@ const useStyles = makeStyles(() => ({
   searchBar: {
     borderRadius: 30,
     backgroundColor: config.style.primaryColor,
-    padding: '2%',
+    paddingRight: '3%',
     width: '19vw',
     direction: 'rtl',
-    fontSize: '1vw',
+    fontSize: '0.9vw',
     color: 'white',
     fontFamily: config.style.fontFamily,
     fontWeight: '600',

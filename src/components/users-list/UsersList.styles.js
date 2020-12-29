@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'overlay',
   },
   scrollBarContent: {
-    padding: '3%',
+    paddingLeft: '1vw',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

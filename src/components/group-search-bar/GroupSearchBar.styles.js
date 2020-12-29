@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 30,
     backgroundColor: config.style.primaryColor,
     marginTop: '2%',
+    marginBottom: '1%',
     width: '30%',
   },
   searchIcon: {
@@ -25,9 +26,9 @@ const useStyles = makeStyles(() => ({
   },
   input: {
     direction: 'rtl',
-    padding: '2%',
+    paddingRight: '3%',
     width: '100%',
-    fontSize: '1.1vw',
+    fontSize: '0.8vw',
     color: 'white',
     fontFamily: config.style.fontFamily,
     fontWeight: '600',

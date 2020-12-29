@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '4.3vh',
+    height: '3vh',
     width: '11vw',
     border: '0.1vw solid grey',
     borderRadius: 30,
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
   input: {
     direction: 'rtl',
     fontFamily: config.style.fontFamily,
-    padding: '3%',
+    paddingRight: '2%',
     fontSize: '1vw',
     fontWeight: '600',
     width: '100%',

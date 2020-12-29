@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: 'inset 0 0 0.1vw 0 grey',
   },
   cardContent: {
+    direction: 'rtl',
     padding: '0.5%',
     display: 'flex',
     flexDirection: 'column',

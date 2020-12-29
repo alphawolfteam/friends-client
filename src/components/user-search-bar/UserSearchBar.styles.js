@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: config.style.primaryColor,
     padding: '2%',
     width: '19vw',
+    direction: 'rtl',
     fontSize: '1vw',
     color: 'white',
     fontFamily: config.style.fontFamily,

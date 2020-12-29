@@ -11,7 +11,7 @@ const UserRaw = ({ user, role }) => {
 
   return (
     <Card className={classes.root}>
-      <CardContent dir="rtl" className={classes.cardContent}>
+      <CardContent className={classes.cardContent}>
         <Typography
           component="span"
           className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}

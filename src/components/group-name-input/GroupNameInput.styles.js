@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {
     ...config.style.input,
     zIndex: 1,
+    direction: 'rtl',
   },
 }));
 

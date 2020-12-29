@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   cardContent: {
     display: 'flex',
     flexDirection: 'column',
+    direction: 'rtl',
     padding: '0.5%',
     '&:last-child': {
       paddingBottom: '0.5%',

@@ -43,7 +43,7 @@ const UserInputFields = ({ group, setGroup }) => {
 
   // TODO: On changeing page
   useEffect(async () => {
-    // TODO: Populate first 5 users except of the current user
+    // TODO: Populate first 5 users
     setPopulatedUsers(
       await UsersService.getPopulatedUsersList(usersListToEdit.map((user) => user.id)),
     );

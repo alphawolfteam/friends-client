@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: '3%',
   },
   input: {
+    direction: 'rtl',
     fontFamily: config.style.fontFamily,
     padding: '3%',
     fontSize: '1vw',

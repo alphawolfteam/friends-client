@@ -32,7 +32,7 @@ const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
 
   return (
     <Card onClick={() => setSelectedGroup(group)} className={classes.root}>
-      <CardContent dir="rtl" className={classes.cardContent}>
+      <CardContent className={classes.cardContent}>
         <div className={classes.mainContent}>
           <div className={classes.groupIcon}>
             <img className={classes.img} src={group.icon} alt="icon" />

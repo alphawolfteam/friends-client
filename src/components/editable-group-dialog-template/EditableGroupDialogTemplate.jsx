@@ -30,7 +30,7 @@ const EditableGroupDialogTemplate = ({
 
   const firstPage = () => (
     <>
-      <Typography dir="rtl" className={classes.title}>
+      <Typography className={classes.title}>
         <Info className={classes.titleIcon} />
         {t('title.description')}
       </Typography>

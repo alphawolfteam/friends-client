@@ -28,7 +28,6 @@ const UserSearchBar = ({ setSelectedUser }) => {
       <InputBase
         id="searchInput"
         placeholder={t('placeholder.friend')}
-        dir="rtl"
         value={searchValue}
         onChange={(e) => handleOnChange(e)}
         className={classes.searchBar}

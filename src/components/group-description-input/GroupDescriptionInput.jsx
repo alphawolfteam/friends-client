@@ -18,7 +18,6 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
       rows="2"
       placeholder={t('placeholder.description')}
       value={group.description}
-      dir="rtl"
       onChange={(e) => handleOnChange(e)}
       className={classes.root}
     />

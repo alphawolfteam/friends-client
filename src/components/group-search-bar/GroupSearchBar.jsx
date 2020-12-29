@@ -35,7 +35,6 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
       <InputBase
         id="searchInput"
         placeholder={t('placeholder.search')}
-        dir="rtl"
         value={searchValue}
         onKeyDown={(e) => handleOnKeyPress(e)}
         onChange={(e) => handleOnChange(e)}

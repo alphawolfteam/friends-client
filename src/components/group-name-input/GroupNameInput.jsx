@@ -18,7 +18,6 @@ const GroupNameInput = ({ group, setGroup }) => {
       disableUnderline
       placeholder={t('placeholder.name')}
       value={group.name}
-      dir="rtl"
       onChange={(e) => handleOnChange(e)}
       className={classes.root}
     />

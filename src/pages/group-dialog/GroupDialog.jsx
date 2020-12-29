@@ -79,11 +79,11 @@ const GroupDialog = ({ group, open, onClose }) => {
 
   const dialogContent = () => (
     <div className={classes.content}>
-      <Typography dir="rtl" className={classes.title}>
+      <Typography className={classes.title}>
         <Info className={classes.titleIcon} />
         {t('title.description')}
       </Typography>
-      <Typography dir="rtl" className={classes.groupDescription}>
+      <Typography className={classes.groupDescription}>
         {group.description}
       </Typography>
       <hr className={classes.divider} />
@@ -93,7 +93,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           <hr className={classes.divider} />
         </>
       )}
-      <Typography dir="rtl" className={classes.title}>
+      <Typography className={classes.title}>
         <People className={classes.titleIcon} />
         {t('title.friends')}
       </Typography>

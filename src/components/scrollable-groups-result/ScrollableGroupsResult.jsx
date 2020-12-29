@@ -14,7 +14,17 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups, searchValue }) =>
     <Paper elevation={2} className={classes.root}>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
-          {privateGroups.length > 0 || publicGroups.length > 0 ? (
+          {privateGroups.length === 0 && !publicGroups && (
+            <Typography className={classes.message}>
+              {t('message.noPrivateGroupsFound')}
+            </Typography>
+          )}
+          {privateGroups.length === 0 && (publicGroups && publicGroups.length === 0) && (
+            <Typography className={classes.message}>
+              {t('message.noGroupsFound')}
+            </Typography>
+          )}
+          {(privateGroups.length > 0 || (publicGroups && publicGroups.length > 0)) && (
             <>
               {privateGroups.length > 0 && (
                 <>
@@ -22,17 +32,13 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups, searchValue }) =>
                   <GroupsList groups={privateGroups} searchValue={searchValue} />
                 </>
               )}
-              {publicGroups.length > 0 && (
+              {publicGroups && publicGroups.length > 0 && (
                 <>
                   <TextDivider text={t('title.publicGroups')} />
                   <GroupsList groups={publicGroups} searchValue={searchValue} />
                 </>
               )}
             </>
-          ) : (
-            <Typography className={classes.message}>
-              {t('message.noGroupsFound')}
-            </Typography>
           )}
         </div>
       </Scrollbar>

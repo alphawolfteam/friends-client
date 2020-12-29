@@ -7,7 +7,7 @@ const TextDivider = ({ text }) => {
 
   return (
     <div className={classes.root}>
-      <Typography dir="rtl" className={classes.dividerText}>
+      <Typography className={classes.dividerText}>
         {text}
       </Typography>
       <Divider className={classes.divider} />

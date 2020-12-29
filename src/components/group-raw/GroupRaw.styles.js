@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   cardContent: {
+    direction: 'rtl',
     color: config.style.fontColor,
     padding: '0.5%',
     display: 'flex',

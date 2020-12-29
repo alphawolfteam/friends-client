@@ -31,7 +31,6 @@ const AddTagInput = ({ onAdd }) => {
     <div className={classes.root}>
       <Add className={classes.addIcon} onClick={() => handleOnClick()} />
       <InputBase
-        dir="rtl"
         placeholder={t('tooltip.addTag')}
         onChange={(e) => handleOnChange(e)}
         onKeyDown={(e) => handleOnKeyPress(e)}

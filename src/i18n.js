@@ -38,6 +38,7 @@ const resources = {
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
+        noPrivateGroupsFound: 'אין לכם קבוצות פרטיות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. צרפו כמה',
         noFriendsFound: '(: אין חברים בקבוצה.. צרפו כמה',
       },

@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: '1vw',
+    direction: 'rtl',
     display: 'flex',
     alignSelf: 'flex-end',
     fontFamily: config.style.fontFamily,
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   groupDescription: {
     maxHeight: '8vh',
+    direction: 'rtl',
     width: '95%',
     overflow: 'auto',
     fontSize: '1vw',

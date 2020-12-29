@@ -15,7 +15,7 @@ const TagsList = ({ tags, maxTagsCount }) => {
         <div className={classes.tagsList}>
           {slicedTagsList.map((tag) => (
             <Tooltip title={tag} key={tag}>
-              <Chip dir="rtl" className={classes.label} label={`#${tag}`} />
+              <Chip className={classes.label} label={`#${tag}`} />
             </Tooltip>
           ))}
           {tags.length > maxTagsCount

@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
   },
   label: {
+    direction: 'rtl',
     margin: '1.3%',
     border: `0.1vw solid ${config.style.primaryColor}`,
     backgroundColor: 'white',

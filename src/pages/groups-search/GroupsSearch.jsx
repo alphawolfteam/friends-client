@@ -37,14 +37,15 @@ const GroupsSearch = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
-  const [filteredPublicGroups, setFilteredPublicGroups] = useState([]);
+  const [filteredPublicGroups, setFilteredPublicGroups] = useState(undefined);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const currentUser = useContext(userContext);
 
   const handleInit = async () => {
+  // TODO: Add loader
     setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
-    setFilteredPublicGroups([]);
+    setFilteredPublicGroups(undefined);
     setSearchValue('');
   };
 
@@ -53,6 +54,7 @@ const GroupsSearch = () => {
   }, []);
 
   const handleOnSearch = async (value) => {
+    // TODO: Add loader
     if (value.length === 0) {
       handleInit();
     } else {

@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
   optionContent: {
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
+    direction: 'rtl',
   },
 }));
 

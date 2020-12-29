@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: '700',
     fontSize: '1vw',
     maxWidth: '15vw',
+    direction: 'rtl',
     whiteSpace: 'nowrap',
   },
   closeIcon: {

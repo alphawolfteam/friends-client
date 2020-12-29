@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.5vw',
   },
   title: {
+    direction: 'rtl',
     fontSize: '1vw',
     display: 'flex',
     paddingRight: '2%',

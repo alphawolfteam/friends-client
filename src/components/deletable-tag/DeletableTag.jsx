@@ -9,7 +9,6 @@ const DeletableTag = ({ tag, onDelete }) => {
   return (
     <Tooltip className={classes.root} title={tag}>
       <Chip
-        dir="rtl"
         className={classes.label}
         label={`#${tag}`}
         onDelete={onDelete}

@@ -9,8 +9,6 @@ const Autocomplete = ({ options, setSelectedOption }) => {
     setSelectedOption(option);
   };
 
-  // TODO: Add an icon next to every user
-
   return (
     <div className={classes.root}>
       <div className={classes.optionsDiv}>
@@ -20,7 +18,7 @@ const Autocomplete = ({ options, setSelectedOption }) => {
             className={classes.optionCard}
             onClick={() => handleOnClick(option)}
           >
-            <Typography dir="rtl" className={classes.optionContent}>
+            <Typography className={classes.optionContent}>
               <strong>
                 {option.fullName}
                 {'- '}

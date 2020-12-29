@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     ...config.style.input,
     width: '90%',
     resize: 'none',
+    direction: 'rtl',
   },
 }));
 

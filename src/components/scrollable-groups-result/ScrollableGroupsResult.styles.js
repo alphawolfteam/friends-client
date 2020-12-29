@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
   },
   message: {
+    direction: 'rtl',
     marginTop: '2%',
     fontFamily: config.style.fontFamily,
     fontSize: '1.5vw',

@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
   },
   dialogTitle: {
+    direction: 'rtl',
+  },
+  title: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

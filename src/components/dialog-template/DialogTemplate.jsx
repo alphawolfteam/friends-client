@@ -22,8 +22,8 @@ const DialogTemplate = ({
         paper: classes.root,
       }}
     >
-      <DialogTitle dir="rtl" onClose={onClose} disableTypography>
-        <Typography variant="h4" className={classes.dialogTitle}>
+      <DialogTitle className={classes.dialogTitle} onClose={onClose} disableTypography>
+        <Typography variant="h4" className={classes.title}>
           {title}
         </Typography>
         {closeButton && <>{ closeButton }</>}

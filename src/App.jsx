@@ -34,7 +34,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    initAuthUser();
+    if (!isAuthenticated) {
+      initAuthUser();
+    }
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

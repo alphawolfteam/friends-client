@@ -21,7 +21,7 @@ const resources = {
         agree: 'כן :)',
         disagree: 'בעצם לא..',
         back: 'חזור',
-        next: 'רשימת חברים',
+        next: 'הבא',
       },
       tooltip: {
         addNewPhoto: 'הוספת תמונה חדשה',
@@ -29,6 +29,7 @@ const resources = {
         delete: 'מחיקה',
         privateGroup: 'קבוצה פרטית',
         publicGroup: 'קבוצה ציבורית',
+        hierarchy: 'היררכיה',
       },
       placeholder: {
         description: 'הוסיפו תיאור..',

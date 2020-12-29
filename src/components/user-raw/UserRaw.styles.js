@@ -38,6 +38,13 @@ const useStyles = makeStyles(() => ({
   userName: {
     fontWeight: '700',
   },
+  iconButton: {
+    minWidth: 0,
+    height: '3vh',
+    '&:hover': {
+      background: 'none',
+    },
+  },
   role: {
     fontWeight: '500',
     fontSize: '0.8vw',

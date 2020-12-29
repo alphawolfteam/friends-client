@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Typography } from '@material-ui/core';
+import { Person } from '@material-ui/icons';
 import useStyles from './Autocomplete.styles';
 
 const Autocomplete = ({ options, setSelectedOption }) => {
@@ -19,6 +20,7 @@ const Autocomplete = ({ options, setSelectedOption }) => {
             onClick={() => handleOnClick(option)}
           >
             <Typography className={classes.optionContent}>
+              <Person className={classes.icon} />
               <strong>
                 {option.fullName}
                 {'- '}

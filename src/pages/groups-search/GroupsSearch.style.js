@@ -23,12 +23,17 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     width: '100vw',
   },
+  icon: {
+    paddingRight: '5%',
+  },
   addButton: {
     ...config.style.button,
     backgroundColor: 'white',
     color: config.style.primaryColor,
     padding: '0.2%',
-    fontSize: '0.9vw',
+    paddingRight: '0.5%',
+    fontSize: '1vw',
+    whiteSpace: 'nowrap',
   },
 }));
 

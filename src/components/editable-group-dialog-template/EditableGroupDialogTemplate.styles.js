@@ -7,6 +7,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     marginTop: '7%',
+    marginRight: '20%',
+    width: '100%',
   },
   titleIcon: {
     marginLeft: '5%',

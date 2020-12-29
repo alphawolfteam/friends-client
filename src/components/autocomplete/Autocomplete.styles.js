@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   optionCard: {
     width: '19vw',
     borderRadius: 0,
-    border: '1px solid grey',
+    border: '0.08vw solid grey',
     '&:hover': {
       backgroundColor: config.style.hoverColor,
     },
@@ -26,6 +26,11 @@ const useStyles = makeStyles(() => ({
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
     direction: 'rtl',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
+    paddingLeft: '1%',
   },
 }));
 

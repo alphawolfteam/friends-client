@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Tooltip,
+  Button,
+} from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
+import { AccountTree } from '@material-ui/icons';
 import useStyles from './UserRaw.styles';
 import config from '../../appConf';
 
@@ -7,6 +15,7 @@ const { getRole } = config;
 
 const UserRaw = ({ user, role }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [openHierarchy, setOpenHierarchy] = useState(false);
 
   return (
@@ -15,11 +24,6 @@ const UserRaw = ({ user, role }) => {
         <Typography
           component="span"
           className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
-          onClick={() => {
-            if (user.hierarchyFlat) {
-              setOpenHierarchy((prevValue) => !prevValue);
-            }
-          }}
         >
           <div className={classes.userName}>
             {user.name.firstName}
@@ -28,6 +32,20 @@ const UserRaw = ({ user, role }) => {
           </div>
           <div className={classes.role}>
             {role.code !== getRole('friend').code && role.displayName}
+            {user.hierarchyFlat && (
+            <Tooltip title={t('tooltip.hierarchy')}>
+              <Button
+                className={classes.iconButton}
+                onClick={() => {
+                  if (user.hierarchyFlat) {
+                    setOpenHierarchy((prevValue) => !prevValue);
+                  }
+                }}
+              >
+                <AccountTree />
+              </Button>
+            </Tooltip>
+            )}
           </div>
         </Typography>
         {openHierarchy && (

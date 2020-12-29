@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Button, Tooltip, Card, CardContent, Typography,
 } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import { Delete, AccountTree } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './EditableUserRaw.styles';
 import RolesSelect from '../roles-select/RolesSelect';
@@ -42,11 +42,6 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
     <Typography
       component="span"
       className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
-      onClick={() => {
-        if (user.hierarchyFlat) {
-          setOpenHierarchy((prevValue) => !prevValue);
-        }
-      }}
     >
       {user.name.firstName}
       {' '}
@@ -56,10 +51,24 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
 
   const actions = () => (
     <Typography component="span" className={classes.actions}>
-      <RolesSelect
-        role={role.displayName}
-        onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}
-      />
+      <div className={classes.rolesSelect}>
+        <RolesSelect
+          role={role.displayName}
+          onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}
+        />
+      </div>
+      <Tooltip title={t('tooltip.hierarchy')}>
+        <Button
+          className={classes.iconButton}
+          onClick={() => {
+            if (user.hierarchyFlat) {
+              setOpenHierarchy((prevValue) => !prevValue);
+            }
+          }}
+        >
+          <AccountTree />
+        </Button>
+      </Tooltip>
       <Tooltip title={t('tooltip.delete')}>
         <Button
           className={classes.iconButton}

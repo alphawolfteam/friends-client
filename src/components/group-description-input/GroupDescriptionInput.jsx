@@ -1,3 +1,4 @@
+import { TextareaAutosize } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import useStyles from './GroupDescriptionInput.styles';
@@ -13,7 +14,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   };
 
   return (
-    <textarea
+    <TextareaAutosize
       cols="5"
       rows="2"
       placeholder={t('placeholder.description')}

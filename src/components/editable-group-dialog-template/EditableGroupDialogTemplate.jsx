@@ -1,6 +1,4 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { Info } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './EditableGroupDialogTemplate.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
@@ -29,19 +27,15 @@ const EditableGroupDialogTemplate = ({
   );
 
   const firstPage = () => (
+    <UserInputFields group={newGroup} setGroup={setNewGroup} />
+  );
+
+  const secondPage = () => (
     <>
-      <Typography className={classes.title}>
-        <Info className={classes.titleIcon} />
-        {t('title.description')}
-      </Typography>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <hr />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
     </>
-  );
-
-  const secondPage = () => (
-    <UserInputFields group={newGroup} setGroup={setNewGroup} />
   );
 
   const dialogContent = () => (

@@ -6,6 +6,7 @@ import React,
   useState,
 } from 'react';
 import { Button } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
@@ -76,6 +77,7 @@ const GroupsSearch = () => {
           onClick={() => setOpenAddGroupDialog(true)}
         >
           {t('button.addNewGroup')}
+          <Add className={classes.icon} />
         </Button>
         <GroupSearchBar
           searchValue={searchValue}

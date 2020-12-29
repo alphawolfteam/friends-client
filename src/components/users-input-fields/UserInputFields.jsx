@@ -55,7 +55,7 @@ const UserInputFields = ({ group, setGroup }) => {
     );
   }, [sortedUsers]);
 
-  // TODO: Add useEffect that when changing someone from and to be a manager
+  // TODO: (?) Add useEffect that when changing someone from and to be a manager
   // its reset the pages to 1 and populates the users again
 
   useEffect(() => {

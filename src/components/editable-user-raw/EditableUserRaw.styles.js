@@ -22,6 +22,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  rolesSelect: {
+    marginLeft: '5%',
+  },
   main: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -42,7 +45,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   iconButton: {
-    width: '3vw',
+    minWidth: 0,
     height: '3vh',
     '&:hover': {
       background: 'none',

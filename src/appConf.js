@@ -44,6 +44,7 @@ config.style.button = {
 config.style.input = {
   borderRadius: 10,
   padding: '2%',
+  fontWeight: '600',
   fontSize: '1vw',
   fontFamily: config.style.fontFamily,
   position: 'relative',

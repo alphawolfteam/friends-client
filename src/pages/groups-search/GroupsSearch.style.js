@@ -8,6 +8,14 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginTop: '2%',
+    marginBottom: '1%',
+  },
   loading: {
     display: 'flex',
     alignItems: 'center',
@@ -15,14 +23,12 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
     width: '100vw',
   },
-  icon: {
-    height: '1.5em',
-    width: '1.5em',
-  },
   addButton: {
     ...config.style.button,
-    marginLeft: '7%',
-    alignSelf: 'start',
+    backgroundColor: 'white',
+    color: config.style.primaryColor,
+    padding: '0.2%',
+    fontSize: '0.9vw',
   },
 }));
 

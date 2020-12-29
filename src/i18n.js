@@ -13,6 +13,7 @@ const resources = {
       button: {
         add: 'הוסף',
         edit: 'ערוך',
+        addNewGroup: 'הוספת קבוצה',
         leaveGroup: 'יציאה מהקבוצה',
         save: 'שמור',
         cancel: 'ביטול',
@@ -23,7 +24,6 @@ const resources = {
         next: 'רשימת חברים',
       },
       tooltip: {
-        addNewGroup: 'הוספת קבוצה חדשה',
         addNewPhoto: 'הוספת תמונה חדשה',
         addTag: 'הוסיפו תגית..',
         delete: 'מחיקה',

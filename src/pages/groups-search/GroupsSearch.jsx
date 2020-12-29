@@ -5,8 +5,7 @@ import React,
   useMemo,
   useState,
 } from 'react';
-import { Fab, Tooltip } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
@@ -71,25 +70,25 @@ const GroupsSearch = () => {
 
   return (
     <div className={classes.root}>
-      <GroupSearchBar
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-        onSearch={(value) => handleOnSearch(value)}
-      />
+      <div className={classes.header}>
+        <Button
+          className={classes.addButton}
+          onClick={() => setOpenAddGroupDialog(true)}
+        >
+          {t('button.addNewGroup')}
+        </Button>
+        <GroupSearchBar
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          onSearch={(value) => handleOnSearch(value)}
+        />
+      </div>
       <refreshDataContext.Provider value={() => handleInit()}>
         <ScrollableGroupsResult
           privateGroups={sortedPrivateGroups}
           publicGroups={filteredPublicGroups}
           searchValue={searchValue}
         />
-        <Tooltip title={t('tooltip.addNewGroup')}>
-          <Fab
-            className={classes.addButton}
-            onClick={() => setOpenAddGroupDialog(true)}
-          >
-            <Add className={classes.icon} />
-          </Fab>
-        </Tooltip>
         {openAddGroupDialog && (
           <AddGroupDialog
             open={openAddGroupDialog}

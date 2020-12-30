@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
-  Button, Tooltip, Card, CardContent, Typography,
+  Tooltip, Card, CardContent, Typography,
 } from '@material-ui/core';
-import { Delete, AccountTree } from '@material-ui/icons';
+import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './EditableUserRaw.styles';
 import RolesSelect from '../roles-select/RolesSelect';
@@ -17,7 +17,6 @@ const getUserIndex = (usersList, userToFind) => {
 const EditableUserRaw = ({ user, initialRole, setGroup }) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [openHierarchy, setOpenHierarchy] = useState(false);
   const [role, setRole] = useState(initialRole);
 
   const handleRemoveUser = (userToRemove) => {
@@ -38,15 +37,17 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
     });
   };
 
-  const userName = () => (
-    <Typography
-      component="span"
-      className={classes.text}
-    >
+  const info = () => (
+    <div className={classes.info}>
       {user.name.firstName}
       {' '}
       {user.name.lastName}
-    </Typography>
+      <Tooltip title={user.hierarchyFlat}>
+        <div className={classes.hierarchy}>
+          {user.hierarchyFlat}
+        </div>
+      </Tooltip>
+    </div>
   );
 
   const actions = () => (
@@ -57,25 +58,11 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
           onChange={(newRoleDisplayName) => handleChangeRole(newRoleDisplayName)}
         />
       </div>
-      <Tooltip title={t('tooltip.hierarchy')}>
-        <Button
-          className={classes.iconButton}
-          onClick={() => {
-            if (user.hierarchyFlat) {
-              setOpenHierarchy((prevValue) => !prevValue);
-            }
-          }}
-        >
-          <AccountTree />
-        </Button>
-      </Tooltip>
       <Tooltip title={t('tooltip.delete')}>
-        <Button
+        <Delete
           className={classes.iconButton}
           onClick={() => handleRemoveUser(user)}
-        >
-          <Delete />
-        </Button>
+        />
       </Tooltip>
     </Typography>
   );
@@ -85,18 +72,11 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
       <CardContent className={classes.cardContent}>
         <Typography
           component="span"
-          className={`${classes.main} ${user.hierarchyFlat ? classes.hover : ''}`}
+          className={classes.main}
         >
-          {userName()}
+          {info()}
           {actions()}
         </Typography>
-        {openHierarchy && (
-          <Typography
-            className={classes.hierarchyFlat}
-          >
-            {user.hierarchyFlat}
-          </Typography>
-        )}
       </CardContent>
     </Card>
   );

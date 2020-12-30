@@ -197,37 +197,37 @@ const users = [{
   id: '1111',
   fullName: 'נייקי אדידס',
   name: { firstName: 'נייקי', lastName: 'אדידס' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '3333',
   fullName: 'חיים כהן',
   name: { firstName: 'חיים', lastName: 'כהן' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '2222',
   fullName: 'ישראל ישראלי',
   name: { firstName: 'ישראל', lastName: 'ישראלי' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '4444',
   fullName: 'עומר אדם',
   name: { firstName: 'עומר', lastName: 'אדם' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '5555',
   fullName: 'איציק כהן',
   name: { firstName: 'איציק', lastName: 'כהן' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '6666',
   fullName: 'ישראל אהרוני',
   name: { firstName: 'ישראל', lastName: 'אהרוני' },
-  hierarchyFlat: 'היררכיה',
+  hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 ];
 

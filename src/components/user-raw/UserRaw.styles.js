@@ -17,28 +17,26 @@ const useStyles = makeStyles(() => ({
       paddingBottom: '0.5%',
     },
   },
-  hierarchyFlat: {
-    fontFamily: config.style.fontFamily,
-    fontSize: '1vw',
-    wordBreak: 'break-all',
-    boxShadow: 'inset 0 0.03vw 0 0 grey',
-  },
   text: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     fontFamily: config.style.fontFamily,
     width: '100%',
     fontSize: '1vw',
   },
-  userName: {
+  info: {
     fontWeight: '700',
+    width: '70%',
+    minWidth: '70%',
   },
-  iconButton: {
-    minWidth: 0,
-    height: '3vh',
-    '&:hover': {
-      background: 'none',
-    },
+  hierarchy: {
+    fontFamily: config.style.fontFamily,
+    fontSize: '1vw',
+    fontWeight: '500',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
   },
   role: {
     fontWeight: '500',

@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
   actions: {
     display: 'flex',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   rolesSelect: {
@@ -38,19 +38,25 @@ const useStyles = makeStyles(() => ({
     fontSize: '1vw',
     fontWeight: '700',
     width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  info: {
+    fontWeight: '700',
+    width: '70%',
+    minWidth: '70%',
   },
   iconButton: {
-    minWidth: 0,
-    height: '3vh',
-    '&:hover': {
-      background: 'none',
-    },
+    marginLeft: '15%',
   },
-  hierarchyFlat: {
+  hierarchy: {
     fontFamily: config.style.fontFamily,
     fontSize: '1vw',
-    wordBreak: 'break-all',
-    boxShadow: 'inset 0 0.03vw 0 0 grey',
+    fontWeight: '500',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
   },
 }));
 

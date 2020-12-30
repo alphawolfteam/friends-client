@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: '3%',
     height: '3vh',
     width: '11vw',
     border: '0.1vw solid grey',

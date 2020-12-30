@@ -76,7 +76,7 @@ const UserInputFields = ({ group, setGroup }) => {
   );
 
   return (
-    <>
+    <div className={classes.root}>
       <UserSearchBar setSelectedUser={setSelectedUser} />
       <div className={classes.scrollBar}>
         <Scrollbar>
@@ -98,7 +98,7 @@ const UserInputFields = ({ group, setGroup }) => {
           </div>
         </Scrollbar>
       </div>
-    </>
+    </div>
   );
 };
 

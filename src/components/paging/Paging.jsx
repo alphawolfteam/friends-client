@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import { NavigateNext, NavigateBefore } from '@material-ui/icons';
+import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './Paging.styles';
 
-const Paging = ({ pages, backTitle, nextTitle }) => {
+const Paging = ({ pages }) => {
   const classes = useStyles();
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
@@ -16,17 +17,33 @@ const Paging = ({ pages, backTitle, nextTitle }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.pagination}>
-        <div className={classes.buttonSection}>
-          {pages.length - 1 > currentPageIndex
-        && <Button onClick={() => changePage('next')} className={classes.button}>{nextTitle}</Button>}
-        </div>
-        <div className={classes.buttonSection}>
-          {currentPageIndex > 0
-        && <Button onClick={() => changePage('back')} className={classes.button}>{backTitle}</Button>}
-        </div>
+      <div className={classes.page}>
+        <Scrollbar>
+          {pages[currentPageIndex]}
+        </Scrollbar>
       </div>
-      <div className={classes.page}>{pages[currentPageIndex]}</div>
+      <div className={classes.buttonSection}>
+        <NavigateBefore
+          className={`${currentPageIndex < pages.length - 1
+            ? classes.arrowIcon
+            : classes.disabledArrowIcon}`}
+          onClick={() => {
+            if (currentPageIndex < pages.length - 1) {
+              changePage('next');
+            }
+          }}
+        />
+        <NavigateNext
+          className={`${currentPageIndex > 0
+            ? classes.arrowIcon
+            : classes.disabledArrowIcon}`}
+          onClick={() => {
+            if (currentPageIndex > 0) {
+              changePage('back');
+            }
+          }}
+        />
+      </div>
     </div>
   );
 };

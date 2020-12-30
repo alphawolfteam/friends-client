@@ -11,8 +11,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
   },
   logo: {
-    width: '20%',
-    height: '15%',
+    width: '15%',
+    height: '10%',
     paddingRight: '1%',
     paddingBottom: '0.5%',
   },

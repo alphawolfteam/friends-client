@@ -3,10 +3,13 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   scrollBar: {
     width: '90%',
-    height: '22vh',
+    height: '18vh',
   },
   fieldsList: {
     display: 'flex',

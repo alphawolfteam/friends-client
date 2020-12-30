@@ -20,8 +20,6 @@ const resources = {
         deleteGroup: 'מחיקת קבוצה',
         agree: 'כן :)',
         disagree: 'בעצם לא..',
-        back: 'חזור',
-        next: 'הבא',
       },
       tooltip: {
         addNewPhoto: 'הוספת תמונה חדשה',

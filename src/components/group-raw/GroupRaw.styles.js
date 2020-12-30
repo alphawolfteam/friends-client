@@ -52,6 +52,7 @@ const useStyles = makeStyles(() => ({
   },
   groupName: {
     fontFamily: config.style.fontFamily,
+    textAlign: 'right',
     width: '10vw',
     fontSize: '1.5vw',
     fontWeight: '700',
@@ -64,8 +65,8 @@ const useStyles = makeStyles(() => ({
     borderRadius: '50%',
     position: 'relative',
     backgroundColor: 'white',
-    width: '5.5em',
-    height: '5.5em',
+    width: '6em',
+    height: '6em',
     overflow: 'hidden',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
   },

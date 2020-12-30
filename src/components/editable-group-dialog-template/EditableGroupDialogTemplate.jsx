@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import useStyles from './EditableGroupDialogTemplate.styles';
 import DialogTemplate from '../dialog-template/DialogTemplate';
 import UserInputFields from '../users-input-fields/UserInputFields';
@@ -14,7 +13,6 @@ const EditableGroupDialogTemplate = ({
   newGroup, setNewGroup, open, onClose, actions,
 }) => {
   const classes = useStyles();
-  const { t } = useTranslation();
 
   const dialogTitle = () => (
     <>
@@ -33,13 +31,12 @@ const EditableGroupDialogTemplate = ({
   const secondPage = () => (
     <>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
-      <hr />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
     </>
   );
 
   const dialogContent = () => (
-    <Paging pages={[firstPage(), secondPage()]} backTitle={t('button.back')} nextTitle={t('button.next')} />
+    <Paging pages={[firstPage(), secondPage()]} />
   );
 
   return (

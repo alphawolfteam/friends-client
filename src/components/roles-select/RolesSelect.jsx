@@ -14,6 +14,7 @@ const RolesSelect = ({ role, onChange }) => {
 
   return (
     <Select
+      disableUnderline
       value={role}
       onChange={(e) => handleOnChange(e)}
       className={classes.root}

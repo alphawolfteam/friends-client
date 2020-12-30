@@ -6,7 +6,6 @@ import {
   DialogActions,
   Typography,
 } from '@material-ui/core';
-import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './DialogTemplate.styles';
 
 const DialogTemplate = ({
@@ -29,9 +28,7 @@ const DialogTemplate = ({
         {closeButton && <>{ closeButton }</>}
       </DialogTitle>
       <DialogContent dividers className={classes.dialogContent}>
-        <Scrollbar>
-          {content}
-        </Scrollbar>
+        {content}
       </DialogContent>
       <DialogActions className={classes.dialogActions}>{actions}</DialogActions>
     </Dialog>

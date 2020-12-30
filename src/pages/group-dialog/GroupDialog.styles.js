@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
     fontSize: '2vw',
+    marginLeft: '2%',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',

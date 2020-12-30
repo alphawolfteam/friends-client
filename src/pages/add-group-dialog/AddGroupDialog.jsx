@@ -67,7 +67,6 @@ const AddGroupDialog = ({ open, onClose }) => {
       setNewGroup={setNewGroup}
       actions={dialogActions()}
       open={open}
-      onClose={onClose}
     />
   );
 };

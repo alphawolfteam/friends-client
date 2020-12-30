@@ -10,7 +10,7 @@ import LockIconInput from '../lock-icon-input/LockIconInput';
 import Paging from '../paging/Paging';
 
 const EditableGroupDialogTemplate = ({
-  newGroup, setNewGroup, open, onClose, actions,
+  newGroup, setNewGroup, open, actions,
 }) => {
   const classes = useStyles();
 
@@ -45,7 +45,6 @@ const EditableGroupDialogTemplate = ({
       content={dialogContent()}
       actions={actions}
       open={open}
-      onClose={onClose}
     />
   );
 };

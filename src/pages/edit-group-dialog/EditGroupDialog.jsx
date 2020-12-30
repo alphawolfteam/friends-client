@@ -92,7 +92,6 @@ const EditGroupDialog = ({
         setNewGroup={setNewGroup}
         actions={dialogActions()}
         open={open}
-        onClose={onClose}
       />
       <AlertDialogTemplate
         message={t('alertMessage.saveChanges')}

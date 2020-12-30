@@ -23,7 +23,7 @@ const UserRaw = ({ user, role }) => {
       <CardContent className={classes.cardContent}>
         <Typography
           component="span"
-          className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
+          className={classes.text}
         >
           <div className={classes.userName}>
             {user.name.firstName}

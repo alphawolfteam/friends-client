@@ -41,7 +41,7 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
   const userName = () => (
     <Typography
       component="span"
-      className={`${classes.text} ${user.hierarchyFlat ? classes.hover : ''}`}
+      className={classes.text}
     >
       {user.name.firstName}
       {' '}

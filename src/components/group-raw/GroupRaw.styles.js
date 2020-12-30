@@ -6,18 +6,24 @@ const useStyles = makeStyles(() => ({
     margin: '1%',
     width: '85%',
     borderRadius: 15,
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.2vw 0.4vw, rgba(0, 0, 0, 0.23) 0 0.2vw 0.4vw',
     border: `0.1vw solid ${config.style.primaryColor}`,
     '&:hover': {
-      border: '0.1vw solid grey',
-      boxShadow: '0.1vw 0.1vw 0.4vw 0vw grey',
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0 1vw 1.5vw, rgba(0, 0, 0, 0.22) 0px 0.5vw 0.5vw',
     },
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  buttonBase: {
+    width: '100%',
   },
   cardContent: {
     direction: 'rtl',
     color: config.style.fontColor,
     padding: '0.5%',
-    display: 'flex',
+    width: '100%',
     height: '13vh',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
     '&:last-child': {

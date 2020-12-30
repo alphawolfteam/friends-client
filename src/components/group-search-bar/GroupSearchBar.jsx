@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputBase, Fab } from '@material-ui/core';
+import { InputBase, Fab, Divider } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './GroupSearchBar.styles';
@@ -31,6 +31,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
     <div className={classes.root}>
       <Fab className={classes.searchIcon} onClick={() => handleOnClick()}>
         <Search />
+        <Divider className={classes.divider} orientation="vertical" flexItem />
       </Fab>
       <InputBase
         id="searchInput"

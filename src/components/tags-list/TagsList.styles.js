@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     direction: 'rtl',
     margin: '1.3%',
     border: `0.1vw solid ${config.style.primaryColor}`,
+    underline: 'auto',
     backgroundColor: 'white',
     color: config.style.primaryColor,
     fontFamily: config.style.fontFamily,

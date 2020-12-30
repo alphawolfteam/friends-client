@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
     maxWidth: '15vw',
     direction: 'rtl',
     whiteSpace: 'nowrap',
+    '&:focus': {
+      backgroundColor: 'white',
+    },
   },
   closeIcon: {
     color: config.style.primaryColor,

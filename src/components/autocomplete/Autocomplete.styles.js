@@ -18,9 +18,6 @@ const useStyles = makeStyles(() => ({
     width: '19vw',
     borderRadius: 0,
     border: '0.08vw solid grey',
-    '&:hover': {
-      backgroundColor: config.style.hoverColor,
-    },
   },
   optionContent: {
     fontFamily: config.style.fontFamily,
@@ -31,6 +28,9 @@ const useStyles = makeStyles(() => ({
   },
   icon: {
     paddingLeft: '1%',
+    '&:hover': {
+      color: 'lightgrey',
+    },
   },
 }));
 

@@ -30,11 +30,6 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     fontSize: '1vw',
   },
-  hover: {
-    '&:hover': {
-      backgroundColor: config.style.hoverColor,
-    },
-  },
   userName: {
     fontWeight: '700',
   },

@@ -37,7 +37,7 @@ config.style.button = {
   fontWeight: '700',
   '&:hover': {
     color: config.style.primaryColor,
-    backgroundColor: config.style.hoverColor,
+    backgroundColor: 'white',
   },
 };
 

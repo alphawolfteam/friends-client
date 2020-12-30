@@ -39,11 +39,6 @@ const useStyles = makeStyles(() => ({
     fontWeight: '700',
     width: '100%',
   },
-  hover: {
-    '&:hover': {
-      backgroundColor: config.style.hoverColor,
-    },
-  },
   iconButton: {
     minWidth: 0,
     height: '3vh',

@@ -28,12 +28,11 @@ const useStyles = makeStyles(() => ({
   },
   addButton: {
     ...config.style.button,
-    backgroundColor: 'white',
-    color: config.style.primaryColor,
     padding: '0.2%',
     paddingRight: '0.5%',
     fontSize: '1vw',
     whiteSpace: 'nowrap',
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.1vw 0.2vw, rgba(0, 0, 0, 0.23) 0 0.1vw 0.2vw',
   },
 }));
 

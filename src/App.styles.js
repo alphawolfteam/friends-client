@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
       background: '#898989',
       'border-radius': '50em',
     },
+    'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active': {
+      '-webkit-box-shadow': '0 0 0 30vw white inset !important',
+    },
   },
   app: {
     backgroundColor: config.style.backgroundColor,

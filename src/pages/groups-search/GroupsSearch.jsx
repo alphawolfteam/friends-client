@@ -90,6 +90,7 @@ const GroupsSearch = () => {
           privateGroups={sortedPrivateGroups}
           publicGroups={filteredPublicGroups}
           searchValue={searchValue}
+          setOpenAddGroupDialog={(value) => setOpenAddGroupDialog(value)}
         />
         {openAddGroupDialog && (
           <AddGroupDialog

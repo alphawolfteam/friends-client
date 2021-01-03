@@ -41,7 +41,7 @@ const App = () => {
 
   const renderUnauthorized = () => <span>unauthorized</span>;
 
-  const renderFriends = () => (
+  const renderApp = () => (
     isAuthenticated
       ? (
         <Router>
@@ -73,7 +73,7 @@ const App = () => {
 
   return isLoading
     ? renderLoading()
-    : renderFriends();
+    : renderApp();
 };
 
 export default App;

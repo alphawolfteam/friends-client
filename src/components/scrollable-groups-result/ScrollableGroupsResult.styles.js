@@ -13,6 +13,26 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  button: {
+    color: config.style.fontColor,
+    fontSize: '3em',
+    borderRadius: '50%',
+    '&:hover': {
+      color: config.style.primaryColor,
+    },
+  },
+  startMessage: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    direction: 'rtl',
+    marginTop: '5em',
+    fontFamily: config.style.fontFamily,
+    fontSize: '1.5vw',
+    fontWeight: '600',
+    color: config.style.fontColor,
+  },
   message: {
     direction: 'rtl',
     marginTop: '2%',
@@ -20,7 +40,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '1.5vw',
     textAlign: 'center',
     fontWeight: '600',
-    color: config.style.primaryColor,
+    color: config.style.fontColor,
   },
 }));
 

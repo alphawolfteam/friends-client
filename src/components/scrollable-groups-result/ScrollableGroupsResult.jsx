@@ -1,12 +1,18 @@
 import React from 'react';
 import { Typography, Paper } from '@material-ui/core';
+import { GroupAdd } from '@material-ui/icons';
 import Scrollbar from 'react-scrollbars-custom';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
 import TextDivider from '../text-divider/TextDivider';
 import useStyles from './ScrollableGroupsResult.styles';
 
-const ScrollableGroupsResult = ({ privateGroups, publicGroups, searchValue }) => {
+const ScrollableGroupsResult = ({
+  privateGroups,
+  publicGroups,
+  searchValue,
+  setOpenAddGroupDialog,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -15,9 +21,13 @@ const ScrollableGroupsResult = ({ privateGroups, publicGroups, searchValue }) =>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
           {privateGroups.length === 0 && !publicGroups && (
-            <Typography className={classes.message}>
+            <div className={classes.startMessage}>
               {t('message.noPrivateGroupsFound')}
-            </Typography>
+              <GroupAdd
+                className={classes.button}
+                onClick={() => setOpenAddGroupDialog(true)}
+              />
+            </div>
           )}
           {privateGroups.length === 0 && (publicGroups && publicGroups.length === 0) && (
             <Typography className={classes.message}>

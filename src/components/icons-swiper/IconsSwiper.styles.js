@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     transform: 'translate( 20%, -55%)',
     verticalAlign: 'super',
   },
+
 }));
 
 export default useStyles;

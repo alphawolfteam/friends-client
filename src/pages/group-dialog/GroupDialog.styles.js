@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     fontSize: '1rem',
     fontFamily: config.style.fontFamily,
+    wordBreak: 'break-all',
   },
   closeButton: {
     position: 'absolute',

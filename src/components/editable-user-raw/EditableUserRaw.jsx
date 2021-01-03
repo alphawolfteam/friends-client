@@ -4,8 +4,9 @@ import {
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
-import useStyles from './EditableUserRaw.styles';
 import RolesSelect from '../roles-select/RolesSelect';
+import UserInfo from '../user-info/UserInfo';
+import useStyles from './EditableUserRaw.styles';
 import config from '../../appConf';
 
 const { getRoleByDisplayName } = config;
@@ -37,19 +38,6 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
     });
   };
 
-  const info = () => (
-    <div className={classes.info}>
-      {user.name.firstName}
-      {' '}
-      {user.name.lastName}
-      <Tooltip title={user.hierarchyFlat}>
-        <div className={classes.hierarchy}>
-          {user.hierarchyFlat}
-        </div>
-      </Tooltip>
-    </div>
-  );
-
   const actions = () => (
     <Typography component="span" className={classes.actions}>
       <div className={classes.rolesSelect}>
@@ -74,7 +62,7 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
           component="span"
           className={classes.main}
         >
-          {info()}
+          <UserInfo user={user} />
           {actions()}
         </Typography>
       </CardContent>

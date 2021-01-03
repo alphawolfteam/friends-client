@@ -37,11 +37,13 @@ const TagsInputFields = ({ group, setGroup }) => {
       <div className={classes.tagsList}>
         {group.tags.length > 0 ? (
           <>
-            {
-              group.tags.map((tag) => (
-                <DeletableTag tag={tag} key={tag} onDelete={() => handleRemoveTag(tag)} />
-              ))
-            }
+            {group.tags.map((tag) => (
+              <DeletableTag
+                tag={tag}
+                key={tag}
+                onDelete={() => handleRemoveTag(tag)}
+              />
+            ))}
           </>
         )
           : (

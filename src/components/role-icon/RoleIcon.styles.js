@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     fontSize: '2em',
     color: config.style.fontColor,
+    cursor: 'auto',
   },
 }));
 

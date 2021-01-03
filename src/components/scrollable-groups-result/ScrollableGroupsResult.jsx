@@ -16,40 +16,56 @@ const ScrollableGroupsResult = ({
   const classes = useStyles();
   const { t } = useTranslation();
 
+  const noGroupsFound = (
+    <Typography className={classes.message}>
+      {t('message.noGroupsFound')}
+    </Typography>
+  );
+
+  const noPrivateGroupsFound = (
+    <div className={classes.startMessage}>
+      {t('message.noPrivateGroupsFound')}
+      <GroupAdd
+        className={classes.button}
+        onClick={() => setOpenAddGroupDialog(true)}
+      />
+    </div>
+  );
+
+  const privateGroupsList = (
+    <>
+      <TextDivider text={t('title.myGroups')} />
+      <GroupsList groups={privateGroups} searchValue={searchValue} />
+    </>
+  );
+
+  const publicGroupsList = (
+    <>
+      <TextDivider text={t('title.publicGroups')} />
+      <GroupsList groups={publicGroups} searchValue={searchValue} />
+    </>
+  );
+
+  const getGroupsList = () => {
+    if (privateGroups.length === 0 && (publicGroups && publicGroups.length === 0)) {
+      return noGroupsFound;
+    }
+    if (privateGroups.length === 0 && !publicGroups) {
+      return noPrivateGroupsFound;
+    }
+    return (
+      <>
+        {privateGroups.length > 0 && (privateGroupsList)}
+        {publicGroups && publicGroups.length > 0 && (publicGroupsList)}
+      </>
+    );
+  };
+
   return (
     <Paper elevation={2} className={classes.root}>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
-          {privateGroups.length === 0 && !publicGroups && (
-            <div className={classes.startMessage}>
-              {t('message.noPrivateGroupsFound')}
-              <GroupAdd
-                className={classes.button}
-                onClick={() => setOpenAddGroupDialog(true)}
-              />
-            </div>
-          )}
-          {privateGroups.length === 0 && (publicGroups && publicGroups.length === 0) && (
-            <Typography className={classes.message}>
-              {t('message.noGroupsFound')}
-            </Typography>
-          )}
-          {(privateGroups.length > 0 || (publicGroups && publicGroups.length > 0)) && (
-            <>
-              {privateGroups.length > 0 && (
-                <>
-                  <TextDivider text={t('title.myGroups')} />
-                  <GroupsList groups={privateGroups} searchValue={searchValue} />
-                </>
-              )}
-              {publicGroups && publicGroups.length > 0 && (
-                <>
-                  <TextDivider text={t('title.publicGroups')} />
-                  <GroupsList groups={publicGroups} searchValue={searchValue} />
-                </>
-              )}
-            </>
-          )}
+          {getGroupsList()}
         </div>
       </Scrollbar>
     </Paper>

@@ -28,6 +28,7 @@ const useStyles = makeStyles(() => ({
     color: 'grey',
     fontSize: '1.3em',
     marginLeft: '5%',
+    cursor: 'pointer',
     '&:hover': {
       color: config.style.primaryColor,
     },

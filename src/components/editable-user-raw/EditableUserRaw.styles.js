@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -36,28 +35,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  info: {
-    fontFamily: config.style.fontFamily,
-    fontWeight: '700',
-    fontSize: '1.2rem',
-    width: '70%',
-    minWidth: '70%',
-  },
   iconButton: {
     marginLeft: '15%',
     fontSize: '1.5rem',
     color: 'grey',
+    cursor: 'pointer',
     '&:hover': {
       color: 'black',
     },
-  },
-  hierarchy: {
-    fontFamily: config.style.fontFamily,
-    fontSize: '1rem',
-    fontWeight: '500',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
   },
 }));
 

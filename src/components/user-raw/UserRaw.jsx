@@ -3,8 +3,8 @@ import {
   Card,
   CardContent,
   Typography,
-  Tooltip,
 } from '@material-ui/core';
+import UserInfo from '../user-info/UserInfo';
 import useStyles from './UserRaw.styles';
 import config from '../../appConf';
 
@@ -20,18 +20,7 @@ const UserRaw = ({ user, role }) => {
           component="span"
           className={classes.text}
         >
-          <div className={classes.info}>
-            {user.name.firstName}
-            {' '}
-            {user.name.lastName}
-            {user.hierarchyFlat && (
-              <Tooltip title={user.hierarchyFlat}>
-                <div className={classes.hierarchy}>
-                  {user.hierarchyFlat}
-                </div>
-              </Tooltip>
-            )}
-          </div>
+          <UserInfo user={user} />
           <div className={classes.role}>
             {role.code !== getRole('friend').code && role.displayName}
           </div>

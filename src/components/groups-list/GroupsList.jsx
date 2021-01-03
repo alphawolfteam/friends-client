@@ -19,7 +19,9 @@ const GroupsList = ({ groups, searchValue }) => {
             group={group}
             setSelectedGroup={setSelectedGroup}
             searchValue={searchValue}
-            currentUserRole={GroupService.getUserRoleCode(group, currentUser.id)}
+            currentUserRole={
+              GroupService.getUserRoleCode(group, currentUser.id)
+            }
           />
         ))}
       </div>
@@ -28,7 +30,9 @@ const GroupsList = ({ groups, searchValue }) => {
           group={selectedGroup}
           open={selectedGroup !== undefined}
           onClose={() => setSelectedGroup(undefined)}
-          currentUserRole={GroupService.getUserRoleCode(selectedGroup, currentUser.id)}
+          currentUserRole={
+            GroupService.getUserRoleCode(selectedGroup, currentUser.id)
+          }
         />
       )}
     </>

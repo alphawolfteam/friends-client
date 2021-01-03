@@ -19,7 +19,10 @@ const Autocomplete = ({ options, setOptions, setSelectedOption }) => {
             key={option.id}
             className={classes.optionCard}
           >
-            <PersonAdd className={classes.icon} onClick={() => handleOnClick(option)} />
+            <PersonAdd
+              className={classes.icon}
+              onClick={() => handleOnClick(option)}
+            />
             <Typography className={classes.optionContent}>
               {option.fullName}
               {'- '}

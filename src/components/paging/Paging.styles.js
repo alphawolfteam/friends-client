@@ -31,6 +31,7 @@ const useStyles = makeStyles(() => ({
     color: 'black',
     width: '1em',
     fontSize: '2em',
+    cursor: 'pointer',
   },
   disabledArrowIcon: {
     color: 'lightgrey',

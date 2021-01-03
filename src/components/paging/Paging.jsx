@@ -15,6 +15,31 @@ const Paging = ({ pages }) => {
     }
   };
 
+  const buttonsSection = () => (
+    <div className={classes.buttonSection}>
+      <NavigateBefore
+        className={`${currentPageIndex < pages.length - 1
+          ? classes.arrowIcon
+          : classes.disabledArrowIcon}`}
+        onClick={() => {
+          if (currentPageIndex < pages.length - 1) {
+            changePage('next');
+          }
+        }}
+      />
+      <NavigateNext
+        className={`${currentPageIndex > 0
+          ? classes.arrowIcon
+          : classes.disabledArrowIcon}`}
+        onClick={() => {
+          if (currentPageIndex > 0) {
+            changePage('back');
+          }
+        }}
+      />
+    </div>
+  );
+
   return (
     <div className={classes.root}>
       <div className={classes.page}>
@@ -22,28 +47,7 @@ const Paging = ({ pages }) => {
           {pages[currentPageIndex]}
         </Scrollbar>
       </div>
-      <div className={classes.buttonSection}>
-        <NavigateBefore
-          className={`${currentPageIndex < pages.length - 1
-            ? classes.arrowIcon
-            : classes.disabledArrowIcon}`}
-          onClick={() => {
-            if (currentPageIndex < pages.length - 1) {
-              changePage('next');
-            }
-          }}
-        />
-        <NavigateNext
-          className={`${currentPageIndex > 0
-            ? classes.arrowIcon
-            : classes.disabledArrowIcon}`}
-          onClick={() => {
-            if (currentPageIndex > 0) {
-              changePage('back');
-            }
-          }}
-        />
-      </div>
+      {buttonsSection()}
     </div>
   );
 };

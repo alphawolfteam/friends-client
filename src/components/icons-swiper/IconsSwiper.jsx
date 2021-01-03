@@ -25,6 +25,7 @@ const IconsSwiper = ({
   return (
     <Swiper
       id="main"
+      className={classes.root}
       tag="section"
       wrapperTag="ul"
       navigation
@@ -38,7 +39,6 @@ const IconsSwiper = ({
         const { src } = currentSlide.firstChild;
         setSelectedIcon(src);
       }}
-      className={classes.root}
     >
       {iconsOptions.map((iconOption, i) => (
         <SwiperSlide key={`slide-${i}`} tag="li" className={classes.swiperSlide}>

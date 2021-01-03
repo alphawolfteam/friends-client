@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -22,8 +22,29 @@ const GroupRaw = ({
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const sortedGroupTags = useMemo(() => getSortedTagsByString(group.tags, searchValue),
-    [group.tags, searchValue]);
+  const mainContent = () => (
+    <div className={classes.mainContent}>
+      <div className={classes.groupIcon}>
+        <img className={classes.img} src={group.icon} alt="icon" />
+      </div>
+      <Tooltip title={group.name}>
+        <Typography className={classes.groupName}>
+          {group.name}
+        </Typography>
+      </Tooltip>
+    </div>
+  );
+
+  const info = () => (
+    <div className={classes.info}>
+      <LockIcon type={group.type} />
+      <Typography className={classes.groupAmount}>
+        {group.users.length}
+        {' '}
+        {t('title.friends')}
+      </Typography>
+    </div>
+  );
 
   return (
     <Card className={classes.root}>
@@ -33,25 +54,16 @@ const GroupRaw = ({
       >
         <RoleIcon role={currentUserRole} />
         <CardContent className={classes.cardContent}>
-          <div className={classes.mainContent}>
-            <div className={classes.groupIcon}>
-              <img className={classes.img} src={group.icon} alt="icon" />
-            </div>
-            <Tooltip title={group.name}>
-              <Typography className={classes.groupName}>{group.name}</Typography>
-            </Tooltip>
-          </div>
+          {mainContent()}
           <div className={classes.tagsList}>
-            <TagsList tags={sortedGroupTags} maxTagsCount={3} />
+            <TagsList
+              tags={
+                getSortedTagsByString(group.tags, searchValue)
+              }
+              maxTagsCount={3}
+            />
           </div>
-          <div className={classes.info}>
-            <LockIcon type={group.type} />
-            <Typography className={classes.groupAmount}>
-              {group.users.length}
-              {' '}
-              {t('title.friends')}
-            </Typography>
-          </div>
+          {info()}
         </CardContent>
       </ButtonBase>
     </Card>

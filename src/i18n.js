@@ -13,7 +13,7 @@ const resources = {
       button: {
         add: 'הוסף',
         edit: 'ערוך',
-        addNewGroup: 'הוספת קבוצה',
+        addNewGroup: 'קבוצה חדשה',
         leaveGroup: 'יציאה מהקבוצה',
         save: 'שמור',
         cancel: 'ביטול',

@@ -21,16 +21,22 @@ const DialogTemplate = ({
         paper: classes.root,
       }}
     >
-      <DialogTitle className={classes.dialogTitle} onClose={onClose} disableTypography>
+      <DialogTitle
+        className={classes.dialogTitle}
+        onClose={onClose}
+        disableTypography
+      >
         <Typography variant="h4" className={classes.title}>
           {title}
         </Typography>
-        {closeButton && <>{ closeButton }</>}
+        {closeButton && <>{closeButton}</>}
       </DialogTitle>
       <DialogContent dividers className={classes.dialogContent}>
         {content}
       </DialogContent>
-      <DialogActions className={classes.dialogActions}>{actions}</DialogActions>
+      <DialogActions className={classes.dialogActions}>
+        {actions}
+      </DialogActions>
     </Dialog>
   );
 };

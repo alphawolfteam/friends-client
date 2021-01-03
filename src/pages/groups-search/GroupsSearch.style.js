@@ -28,6 +28,7 @@ const useStyles = makeStyles(() => ({
   },
   addButton: {
     ...config.style.button,
+    fontSize: '1em',
     padding: '0.2%',
     paddingRight: '0.5%',
     whiteSpace: 'nowrap',

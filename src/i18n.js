@@ -39,7 +39,7 @@ const resources = {
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noPrivateGroupsFound: 'אין לכם קבוצות פרטיות! צרו אחת :)',
-        noTagsFound: '(: אין תגיות.. צרפו כמה',
+        noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',
         noFriendsFound: '(: אין חברים בקבוצה.. צרפו כמה',
       },
       alertMessage: {
@@ -47,6 +47,8 @@ const resources = {
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         saveChanges: 'נראה טוב! לשמור את השינויים?',
+        addValidation: 'כדי להוסיף יש למלא את כל הפרטים :)',
+        saveValidation: 'כדי לשמור יש למלא את כל הפרטים :)',
       },
       timeGreeting: {
         morning: 'בוקר טוב',

@@ -3,11 +3,12 @@ import { Card, Typography } from '@material-ui/core';
 import { PersonAdd } from '@material-ui/icons';
 import useStyles from './Autocomplete.styles';
 
-const Autocomplete = ({ options, setSelectedOption }) => {
+const Autocomplete = ({ options, setOptions, setSelectedOption }) => {
   const classes = useStyles();
 
   const handleOnClick = (option) => {
     setSelectedOption(option);
+    setOptions([]);
   };
 
   return (

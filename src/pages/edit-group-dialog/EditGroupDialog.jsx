@@ -5,6 +5,7 @@ import useStyles from './EditGroupDialog.styles';
 import refreshDataContext from '../../stores/refreshDataStore';
 import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
+import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import GroupsService from '../../services/GroupsService';
 
 const getNestedGroupCopy = (group) => {
@@ -26,6 +27,7 @@ const EditGroupDialog = ({
   const [dialogSaveAnswer, setDialogSaveAnswer] = useState(undefined);
   const [openAlertDeleteDialog, setAlertDeleteDialog] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
+  const [openAlertMessage, setAlertMessage] = useState(false);
 
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
@@ -51,7 +53,7 @@ const EditGroupDialog = ({
     if (newGroup.name && newGroup.description && newGroup.users.length > 1) {
       setAlertSaveDialog(true);
     } else {
-      // TODO: Add alert
+      setAlertMessage(true);
     }
   };
 
@@ -106,6 +108,11 @@ const EditGroupDialog = ({
         onClose={() => setAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
         preferredAnswer="disagree"
+      />
+      <AlertMessageTemplate
+        message={t('alertMessage.saveValidation')}
+        open={openAlertMessage}
+        onClose={() => setAlertMessage(false)}
       />
     </>
   );

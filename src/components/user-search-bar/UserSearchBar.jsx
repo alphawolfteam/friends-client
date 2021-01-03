@@ -38,6 +38,7 @@ const UserSearchBar = ({ setSelectedUser }) => {
           setSelectedUser(selectedOption);
           setSearchValue('');
         }}
+        setOptions={(value) => setOptions(value)}
       />
     </div>
   );

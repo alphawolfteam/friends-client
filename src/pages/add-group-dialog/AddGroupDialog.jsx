@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
+import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import config from '../../appConf';
@@ -18,6 +19,7 @@ const AddGroupDialog = ({ open, onClose }) => {
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
+  const [openAlertMessage, setAlertMessage] = useState(false);
   const [newGroup, setNewGroup] = useState({
     name: '',
     description: '',
@@ -38,7 +40,7 @@ const AddGroupDialog = ({ open, onClose }) => {
       refreshData();
       onClose();
     } else {
-      // TODO: Add alert
+      setAlertMessage(true);
     }
   };
 
@@ -62,12 +64,19 @@ const AddGroupDialog = ({ open, onClose }) => {
   );
 
   return (
-    <EditableGroupDialogTemplate
-      newGroup={newGroup}
-      setNewGroup={setNewGroup}
-      actions={dialogActions()}
-      open={open}
-    />
+    <>
+      <EditableGroupDialogTemplate
+        newGroup={newGroup}
+        setNewGroup={setNewGroup}
+        actions={dialogActions()}
+        open={open}
+      />
+      <AlertMessageTemplate
+        message={t('alertMessage.addValidation')}
+        open={openAlertMessage}
+        onClose={() => setAlertMessage(false)}
+      />
+    </>
   );
 };
 

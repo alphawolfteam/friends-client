@@ -7,6 +7,7 @@ const useStyles = makeStyles(() => ({
     width: '90%',
     resize: 'none',
     direction: 'rtl',
+    marginBottom: '1em',
   },
 }));
 

@@ -15,16 +15,17 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
   },
   optionCard: {
-    width: '19vw',
+    width: '19em',
     borderRadius: 0,
     border: '0.08vw solid grey',
-  },
-  optionContent: {
-    fontFamily: config.style.fontFamily,
-    fontSize: '1vw',
     direction: 'rtl',
     display: 'flex',
-    alignItems: 'center',
+    wordBreak: 'break-all',
+  },
+  optionContent: {
+    fontWeight: '500',
+    fontFamily: config.style.fontFamily,
+    fontSize: '1em',
   },
   icon: {
     paddingLeft: '1%',

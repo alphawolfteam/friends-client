@@ -27,7 +27,7 @@ const UserSearchBar = ({ setSelectedUser }) => {
     <div className={classes.root}>
       <InputBase
         id="searchInput"
-        placeholder={t('placeholder.friend')}
+        placeholder={t('placeholder.searchFriend')}
         value={searchValue}
         onChange={(e) => handleOnChange(e)}
         className={classes.searchBar}

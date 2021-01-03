@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     background: 'none',
     padding: '2%',
     paddingRight: '3%',
-    width: '15em',
+    width: '19em',
     direction: 'rtl',
     fontSize: '0.9em',
     color: config.style.primaryColor,

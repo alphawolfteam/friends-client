@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   },
   scrollBar: {
     width: '90%',
-    height: '18vh',
+    height: '10em',
   },
   fieldsList: {
     display: 'flex',

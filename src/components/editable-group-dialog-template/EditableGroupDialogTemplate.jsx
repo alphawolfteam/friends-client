@@ -29,10 +29,10 @@ const EditableGroupDialogTemplate = ({
   );
 
   const secondPage = () => (
-    <>
+    <div className={classes.page}>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
-    </>
+    </div>
   );
 
   const dialogContent = () => (

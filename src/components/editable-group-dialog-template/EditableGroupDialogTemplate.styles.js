@@ -9,6 +9,11 @@ const useStyles = makeStyles(() => ({
     marginRight: '6.5rem',
     width: '100%',
   },
+  page: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   titleIcon: {
     marginLeft: '5%',
     fontSize: '1.5vw',

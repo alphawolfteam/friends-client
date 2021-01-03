@@ -30,10 +30,10 @@ const resources = {
       },
       placeholder: {
         addTag: 'הוסיפו תגית..',
+        searchFriend: 'חפשו חבר...',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',
         search: 'חיפוש..',
-        friend: 'הוסיפו חבר...',
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',

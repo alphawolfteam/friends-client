@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     fontSize: '1rem',
     fontFamily: config.style.fontFamily,
-    alignSelf: 'flex-end',
   },
   closeButton: {
     position: 'absolute',

@@ -16,7 +16,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   return (
     <TextareaAutosize
       cols="5"
-      rows="2"
+      rowsMax={2}
       placeholder={t('placeholder.description')}
       value={group.description}
       onChange={(e) => handleOnChange(e)}

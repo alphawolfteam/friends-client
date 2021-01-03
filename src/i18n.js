@@ -28,6 +28,8 @@ const resources = {
         privateGroup: 'קבוצה פרטית',
         publicGroup: 'קבוצה ציבורית',
         hierarchy: 'היררכיה',
+        managerRole: 'מנהל',
+        friendRole: 'חבר',
       },
       placeholder: {
         addTag: 'הוסיפו תגית..',

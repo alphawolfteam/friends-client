@@ -17,6 +17,13 @@ const useStyles = makeStyles(() => ({
   buttonBase: {
     width: '100%',
   },
+  roleIcon: {
+    left: '0.2em',
+    top: '0.2em',
+    position: 'absolute',
+    fontSize: '2em',
+    color: config.style.fontColor,
+  },
   cardContent: {
     direction: 'rtl',
     color: config.style.fontColor,

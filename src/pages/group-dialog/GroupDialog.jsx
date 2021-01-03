@@ -1,5 +1,5 @@
 import React, {
-  useContext, useMemo, useState, useEffect,
+  useContext, useState, useEffect,
 } from 'react';
 import { Info, People, Close } from '@material-ui/icons';
 import {
@@ -28,7 +28,12 @@ const getManagersCount = (groupsUsers) => groupsUsers.filter(
   (user) => user.role === getRole('manager').code,
 ).length;
 
-const GroupDialog = ({ group, open, onClose }) => {
+const GroupDialog = ({
+  group,
+  open,
+  onClose,
+  currentUserRole,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
@@ -42,15 +47,6 @@ const GroupDialog = ({ group, open, onClose }) => {
   useEffect(async () => {
     setGroupUsers(await GroupService.getGroupUsers(group._id));
   }, []);
-
-  const currentUserRole = useMemo(() => {
-    return GroupService.getUserRoleCode(group, currentUser.id);
-  }, [group, currentUser]);
-
-  const isAFriend = useMemo(
-    () => groupUsers.map((groupUser) => groupUser.id).includes(currentUser.id),
-    [groupUsers, currentUser],
-  );
 
   const handleEditGroup = () => {
     setOpenEditGroupDialog(true);
@@ -122,7 +118,7 @@ const GroupDialog = ({ group, open, onClose }) => {
           {t('button.edit')}
         </Button>
       )}
-      {isAFriend && (
+      {currentUserRole !== undefined && (
         <Button
           variant="contained"
           className={classes.button}

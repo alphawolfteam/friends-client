@@ -6,10 +6,14 @@ import {
   Typography,
   ButtonBase,
 } from '@material-ui/core';
+import { Star, StarBorder } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import TagsList from '../tags-list/TagsList';
+import config from '../../appConf';
+
+const { getRole } = config;
 
 const getSortedTagsByString = (tagsList, string) => {
   const matchedTags = [];
@@ -24,7 +28,12 @@ const getSortedTagsByString = (tagsList, string) => {
   return [...matchedTags, ...unmatchedTags];
 };
 
-const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
+const GroupRaw = ({
+  searchValue,
+  group,
+  setSelectedGroup,
+  currentUserRole,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -37,6 +46,16 @@ const GroupRaw = ({ searchValue, group, setSelectedGroup }) => {
         className={classes.buttonBase}
         onClick={() => setSelectedGroup(group)}
       >
+        {currentUserRole === getRole('manager').code && (
+          <Tooltip title={t('tooltip.managerRole')}>
+            <Star className={classes.roleIcon} />
+          </Tooltip>
+        )}
+        {currentUserRole === getRole('friend').code && (
+          <Tooltip title={t('tooltip.friendRole')}>
+            <StarBorder className={classes.roleIcon} />
+          </Tooltip>
+        )}
         <CardContent className={classes.cardContent}>
           <div className={classes.mainContent}>
             <div className={classes.groupIcon}>

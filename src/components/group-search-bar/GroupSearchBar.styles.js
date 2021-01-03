@@ -18,11 +18,11 @@ const useStyles = makeStyles(() => ({
   },
   searchIcon: {
     color: config.style.secondaryColor,
-    backgroundColor: 'white',
+    background: 'none',
     boxShadow: 'none',
     width: '8%',
     height: '50%',
-    marginLeft: '1%',
+    marginLeft: '0.5em',
     '&:hover': {
       background: 'none',
       color: config.style.primaryColor,
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     padding: '0.7%',
     paddingRight: '3%',
     width: '100%',
-    fontSize: '0.9vw',
+    fontSize: '1rem',
     color: config.style.primaryColor,
     background: 'none',
     fontFamily: config.style.fontFamily,

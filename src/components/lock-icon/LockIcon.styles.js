@@ -6,6 +6,9 @@ const useStyles = makeStyles(() => ({
     color: config.style.primaryColor,
     marginTop: '7%',
   },
+  icon: {
+    fontSize: '2rem',
+  },
 }));
 
 export default useStyles;

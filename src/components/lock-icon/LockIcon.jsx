@@ -14,12 +14,12 @@ const LockIcon = ({ type }) => {
         type === 'private'
           ? (
             <Tooltip title={t('tooltip.privateGroup')}>
-              <Lock fontSize="large" />
+              <Lock className={classes.icon} />
             </Tooltip>
           )
           : (
             <Tooltip title={t('tooltip.publicGroup')}>
-              <LockOpen fontSize="large" />
+              <LockOpen className={classes.icon} />
             </Tooltip>
           )
       }

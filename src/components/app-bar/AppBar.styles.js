@@ -11,15 +11,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
   },
   logo: {
-    width: '15%',
-    height: '10%',
+    width: '15em',
+    height: '4em',
     paddingRight: '1%',
-    paddingBottom: '0.5%',
   },
   username: {
     color: config.style.fontColor,
     fontFamily: config.style.fontFamily,
-    fontSize: '1.3vw',
+    fontSize: '1.3rem',
     fontWeight: '500',
   },
 }));

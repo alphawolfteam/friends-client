@@ -23,16 +23,16 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     fontFamily: config.style.fontFamily,
     width: '100%',
-    fontSize: '1vw',
   },
   info: {
     fontWeight: '700',
     width: '70%',
     minWidth: '70%',
+    fontSize: '1.2rem',
   },
   hierarchy: {
     fontFamily: config.style.fontFamily,
-    fontSize: '1vw',
+    fontSize: '1rem',
     fontWeight: '500',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
   },
   role: {
     fontWeight: '500',
-    fontSize: '0.8vw',
+    fontSize: '0.8rem',
     paddingLeft: '1%',
   },
 }));

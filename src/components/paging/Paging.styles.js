@@ -29,13 +29,13 @@ const useStyles = makeStyles(() => ({
   },
   arrowIcon: {
     color: 'black',
-    width: '2vw',
-    fontSize: '2vw',
+    width: '1em',
+    fontSize: '2em',
   },
   disabledArrowIcon: {
     color: 'lightgrey',
-    width: '2vw',
-    fontSize: '2vw',
+    width: '1em',
+    fontSize: '2em',
   },
 }));
 

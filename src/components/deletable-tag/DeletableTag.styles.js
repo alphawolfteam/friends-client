@@ -10,8 +10,8 @@ const useStyles = makeStyles(() => ({
     backgroundColor: 'white',
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
-    fontSize: '1vw',
-    maxWidth: '15vw',
+    fontSize: '1em',
+    maxWidth: '15em',
     direction: 'rtl',
     whiteSpace: 'nowrap',
     '&:focus': {

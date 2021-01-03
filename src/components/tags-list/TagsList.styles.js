@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     color: config.style.primaryColor,
     fontFamily: config.style.fontFamily,
     fontWeight: '700',
-    fontSize: '1vw',
+    fontSize: '0.9rem',
     maxWidth: '10vw',
   },
   moreMessage: {

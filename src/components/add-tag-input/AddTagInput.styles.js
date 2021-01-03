@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     marginTop: '3%',
     height: '3vh',
-    width: '11vw',
+    width: '11em',
     border: '0.1vw solid grey',
     borderRadius: 30,
     '&:focus, &:hover': {
@@ -20,13 +20,13 @@ const useStyles = makeStyles(() => ({
     direction: 'rtl',
     fontFamily: config.style.fontFamily,
     paddingRight: '2%',
-    fontSize: '1vw',
+    fontSize: '1em',
     fontWeight: '600',
     width: '100%',
   },
   addIcon: {
     color: 'grey',
-    fontSize: '1.3vw',
+    fontSize: '1.3em',
     marginLeft: '5%',
     '&:hover': {
       color: config.style.primaryColor,

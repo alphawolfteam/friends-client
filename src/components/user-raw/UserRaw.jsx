@@ -24,11 +24,13 @@ const UserRaw = ({ user, role }) => {
             {user.name.firstName}
             {' '}
             {user.name.lastName}
-            <Tooltip title={user.hierarchyFlat}>
-              <div className={classes.hierarchy}>
-                {user.hierarchyFlat}
-              </div>
-            </Tooltip>
+            {user.hierarchyFlat && (
+              <Tooltip title={user.hierarchyFlat}>
+                <div className={classes.hierarchy}>
+                  {user.hierarchyFlat}
+                </div>
+              </Tooltip>
+            )}
           </div>
           <div className={classes.role}>
             {role.code !== getRole('friend').code && role.displayName}

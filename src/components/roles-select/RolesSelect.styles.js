@@ -3,9 +3,9 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '5vw',
+    width: '5rem',
     fontFamily: config.style.fontFamily,
-    fontSize: '0.8vw',
+    fontSize: '0.8rem',
     '&:before': {
       borderColor: 'grey',
     },
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   item: {
     fontFamily: config.style.fontFamily,
-    fontSize: '0.8vw',
+    fontSize: '0.8rem',
   },
 }));
 

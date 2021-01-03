@@ -34,6 +34,7 @@ config.style.button = {
   fontFamily: config.style.fontFamily,
   border: `0.1vw solid ${config.style.primaryColor}`,
   margin: '0.5%',
+  fontSize: '0.9rem',
   fontWeight: '700',
   '&:hover': {
     color: config.style.primaryColor,
@@ -45,7 +46,7 @@ config.style.input = {
   borderRadius: 10,
   padding: '2%',
   fontWeight: '600',
-  fontSize: '1vw',
+  fontSize: '1rem',
   fontFamily: config.style.fontFamily,
   position: 'relative',
   outline: 'none',

@@ -5,13 +5,12 @@ const useStyles = makeStyles(() => ({
   iconButton: {
     position: 'relative',
     zIndex: 2,
-    top: '110%',
-    left: '5%',
+    top: '6rem',
     background: '#e4e6eb',
     color: 'black',
     padding: '5%',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
-    fontSize: '2vw',
+    fontSize: '2rem',
     '&:hover': {
       backgroundColor: 'white',
     },

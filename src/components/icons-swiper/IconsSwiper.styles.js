@@ -12,8 +12,8 @@ const useStyles = makeStyles(() => ({
   },
   img: {
     maxWidth: '100%',
-    width: '3.5em',
-    height: '3.5em',
+    width: '7rem',
+    height: '7rem',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
     borderRadius: '50%',
     zIndex: 1,

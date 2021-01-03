@@ -23,13 +23,13 @@ const resources = {
       },
       tooltip: {
         addNewPhoto: 'הוספת תמונה חדשה',
-        addTag: 'הוסיפו תגית..',
         delete: 'מחיקה',
         privateGroup: 'קבוצה פרטית',
         publicGroup: 'קבוצה ציבורית',
         hierarchy: 'היררכיה',
       },
       placeholder: {
+        addTag: 'הוסיפו תגית..',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',
         search: 'חיפוש..',

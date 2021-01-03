@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   dividerText: {
     fontFamily: config.style.fontFamily,
     fontWeight: '600',
-    fontSize: '1.2vw',
+    fontSize: '1.2rem',
     direction: 'rtl',
     textAlign: 'center',
     color: config.style.primaryColor,

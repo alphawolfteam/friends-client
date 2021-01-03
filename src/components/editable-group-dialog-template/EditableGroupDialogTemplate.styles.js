@@ -6,8 +6,7 @@ const useStyles = makeStyles(() => ({
   dialogTitle: {
     display: 'flex',
     alignItems: 'center',
-    marginTop: '7%',
-    marginRight: '20%',
+    marginRight: '6.5rem',
     width: '100%',
   },
   titleIcon: {

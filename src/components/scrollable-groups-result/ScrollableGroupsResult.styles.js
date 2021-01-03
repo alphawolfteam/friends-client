@@ -4,7 +4,7 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
     marginTop: '1%',
-    width: '60vw',
+    width: '65vw',
     height: '65vh',
     background: config.style.backgroundColor,
     borderRadius: 10,

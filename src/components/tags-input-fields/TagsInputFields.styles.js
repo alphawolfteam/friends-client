@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: '50vw',
+    maxWidth: '90vw',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

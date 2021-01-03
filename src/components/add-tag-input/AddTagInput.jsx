@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import useStyles from './AddTagInput.styles';
 
 const ENTER_CHAR_CODE = 13;
+const MIN_TAG_LENGTH = 2;
 
 const AddTagInput = ({ onAdd }) => {
   const classes = useStyles();
@@ -16,15 +17,17 @@ const AddTagInput = ({ onAdd }) => {
   };
 
   const handleOnKeyPress = (event) => {
-    if (event.keyCode === ENTER_CHAR_CODE) {
-      onAdd(inputValue);
+    if (event.keyCode === ENTER_CHAR_CODE && inputValue.length >= MIN_TAG_LENGTH) {
+      onAdd(inputValue.toLowerCase());
       setInputValue('');
     }
   };
 
   const handleOnClick = () => {
-    onAdd(inputValue);
-    setInputValue('');
+    if (inputValue.length >= MIN_TAG_LENGTH) {
+      onAdd(inputValue.toLowerCase());
+      setInputValue('');
+    }
   };
 
   return (
@@ -34,7 +37,7 @@ const AddTagInput = ({ onAdd }) => {
         placeholder={t('placeholder.addTag')}
         onChange={(e) => handleOnChange(e)}
         onKeyDown={(e) => handleOnKeyPress(e)}
-        value={inputValue}
+        value={inputValue.toLowerCase()}
         className={classes.input}
       />
     </div>

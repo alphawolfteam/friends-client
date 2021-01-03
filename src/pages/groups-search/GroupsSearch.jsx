@@ -12,26 +12,12 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
+import { getSortedPrivateGroups } from '../../shared/functions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
-import config from '../../appConf';
 
-const { getRole } = config;
-
-const getSortedPrivateGroups = (privateGroups, userId) => {
-  const ownedGroups = [];
-  const unownedGroups = [];
-  privateGroups.forEach((group) => {
-    if (GroupsService.getUserRoleCode(group, userId) === getRole('manager').code) {
-      ownedGroups.push(group);
-    } else {
-      unownedGroups.push(group);
-    }
-  });
-
-  return [...ownedGroups, ...unownedGroups];
-};
+const MIN_SEARCH_VALUE_LENGTH = 2;
 
 const GroupsSearch = () => {
   const classes = useStyles();
@@ -55,7 +41,7 @@ const GroupsSearch = () => {
 
   const handleOnSearch = async (value) => {
     // TODO: Add loader
-    if (value.length === 0) {
+    if (value.length < MIN_SEARCH_VALUE_LENGTH) {
       handleInit();
     } else {
       setFilteredPrivateGroups(

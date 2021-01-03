@@ -1,6 +1,28 @@
 import { makeStyles } from '@material-ui/core/styles';
+import nextArrow from '../../images/nextArrow.svg';
+import prevArrow from '../../images/prevArrow.svg';
 
 const useStyles = makeStyles(() => ({
+  '@global': {
+    '.swiper-button-next': {
+      'background-image': `url(${nextArrow})`,
+      'background-repeat': 'no-repeat',
+      'background-size': '100% auto',
+      'background-position': 'center',
+    },
+    '.swiper-button-next::after': {
+      display: 'none',
+    },
+    '.swiper-button-prev': {
+      'background-image': `url(${prevArrow})`,
+      'background-repeat': 'no-repeat',
+      'background-size': '100% auto',
+      'background-position': 'center',
+    },
+    '.swiper-button-prev::after': {
+      display: 'none',
+    },
+  },
   root: {
     marginTop: '6%',
     paddingTop: '22%',

@@ -7,23 +7,11 @@ import {
   ButtonBase,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { getSortedTagsByString } from '../../shared/functions';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import RoleIcon from '../role-icon/RoleIcon';
 import TagsList from '../tags-list/TagsList';
-
-const getSortedTagsByString = (tagsList, string) => {
-  const matchedTags = [];
-  const unmatchedTags = [];
-  tagsList.forEach((tag) => {
-    if (tag.startsWith(string)) {
-      matchedTags.push(tag);
-    } else {
-      unmatchedTags.push(tag);
-    }
-  });
-  return [...matchedTags, ...unmatchedTags];
-};
 
 const GroupRaw = ({
   searchValue,

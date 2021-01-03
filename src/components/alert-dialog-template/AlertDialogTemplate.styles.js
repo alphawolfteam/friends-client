@@ -4,11 +4,10 @@ import config from '../../appConf';
 const useStyles = makeStyles(() => ({
   root: {
   },
-  message: {
-    fontFamily: config.style.fontFamily,
-    direction: 'rtl',
-    fontWeight: '600',
-    fontSize: '1.2vw',
+  actions: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    width: '100%',
   },
   mainButton: {
     ...config.style.button,

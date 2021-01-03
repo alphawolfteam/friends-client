@@ -99,98 +99,98 @@ const groups = [
     icon: groupIconsCodes[0],
     _id: '5',
   },
-  // {
-  //   name: 'מבצע סודי',
-  //   description: 'קבוצה סודית מאוד',
-  //   tags: ['סודי ביותר', 'חיזבאללה', 'צפון'],
-  //   type: 'private',
-  //   users: [
-  //     {
-  //       role: 0,
-  //       id: '1111',
-  //     },
-  //     {
-  //       role: 1,
-  //       id: '3333',
-  //     },
-  //     {
-  //       role: 0,
-  //       id: '2222',
-  //     },
-  //     {
-  //       role: 1,
-  //       id: '4444',
-  //     },
-  //   ],
-  //   lastModified: new Date(),
-  //   createdAt: new Date(),
-  //   modifiedBy: '5e5688324203fc40043591aa',
-  //   exchangeAddress: '',
-  //   externalSystems: {},
-  //   createdBy: '5e5688324203fc40043591aa',
-  //   icon: groupIconsCodes[0],
-  //   _id: '1',
-  // },
-  // {
-  //   name: 'חד"כ דולפין',
-  //   description: 'מלא מלא ספורט',
-  //   tags: [],
-  //   type: 'private',
-  //   users: [
-  //     {
-  //       role: 0,
-  //       id: '1111',
-  //     },
-  //     {
-  //       role: 1,
-  //       id: '3333',
-  //     },
-  //     {
-  //       role: 1,
-  //       id: '4444',
-  //     },
-  //   ],
-  //   lastModified: new Date(),
-  //   createdAt: new Date(),
-  //   modifiedBy: '5e5688324203fc40043591aa',
-  //   exchangeAddress: '',
-  //   externalSystems: {},
-  //   createdBy: '5e5688324203fc40043591aa',
-  //   icon: groupIconsCodes[0],
-  //   _id: '2',
-  // },
-  // {
-  //   name: 'מנהלי friends',
-  //   description: 'קבוצה סודית מאוד',
-  //   tags: [],
-  //   type: 'private',
-  //   users: [
-  //     {
-  //       role: 1,
-  //       id: '1111',
-  //     },
-  //     {
-  //       role: 0,
-  //       id: '2222',
-  //     },
-  //     {
-  //       role: 1,
-  //       id: '3333',
-  //     },
-  //     {
-  //       role: 0,
-  //       id: '4444',
-  //     },
-  //   ],
-  //   lastModified: new Date(),
-  //   createdAt: new Date(),
-  //   modifiedBy: '5e5688324203fc40043591aa',
-  //   exchangeAddress: '',
-  //   externalSystems: {},
-  //   createdBy: '5e5688324203fc40043591aa',
-  //   icon: groupIconsCodes[0],
-  //   _id: '3',
-  // },
+  {
+    name: 'מבצע סודי',
+    description: 'קבוצה סודית מאוד',
+    tags: ['סודי ביותר', 'חיזבאללה', 'צפון'],
+    type: 'private',
+    users: [
+      {
+        role: 0,
+        id: '1111',
+      },
+      {
+        role: 1,
+        id: '3333',
+      },
+      {
+        role: 0,
+        id: '2222',
+      },
+      {
+        role: 1,
+        id: '4444',
+      },
+    ],
+    lastModified: new Date(),
+    createdAt: new Date(),
+    modifiedBy: '5e5688324203fc40043591aa',
+    exchangeAddress: '',
+    externalSystems: {},
+    createdBy: '5e5688324203fc40043591aa',
+    icon: groupIconsCodes[0],
+    _id: '1',
+  },
+  {
+    name: 'חד"כ דולפין',
+    description: 'מלא מלא ספורט',
+    tags: [],
+    type: 'private',
+    users: [
+      {
+        role: 0,
+        id: '1111',
+      },
+      {
+        role: 1,
+        id: '3333',
+      },
+      {
+        role: 1,
+        id: '4444',
+      },
+    ],
+    lastModified: new Date(),
+    createdAt: new Date(),
+    modifiedBy: '5e5688324203fc40043591aa',
+    exchangeAddress: '',
+    externalSystems: {},
+    createdBy: '5e5688324203fc40043591aa',
+    icon: groupIconsCodes[0],
+    _id: '2',
+  },
+  {
+    name: 'מנהלי friends',
+    description: 'קבוצה סודית מאוד',
+    tags: [],
+    type: 'private',
+    users: [
+      {
+        role: 1,
+        id: '1111',
+      },
+      {
+        role: 0,
+        id: '2222',
+      },
+      {
+        role: 1,
+        id: '3333',
+      },
+      {
+        role: 0,
+        id: '4444',
+      },
+    ],
+    lastModified: new Date(),
+    createdAt: new Date(),
+    modifiedBy: '5e5688324203fc40043591aa',
+    exchangeAddress: '',
+    externalSystems: {},
+    createdBy: '5e5688324203fc40043591aa',
+    icon: groupIconsCodes[0],
+    _id: '3',
+  },
 ];
 
 const users = [{

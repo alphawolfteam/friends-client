@@ -1,7 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import config from './appConf';
-import nextArrow from './images/nextArrow.svg';
-import prevArrow from './images/prevArrow.svg';
 
 const useStyles = makeStyles(() => ({
   '@global': {
@@ -18,24 +16,6 @@ const useStyles = makeStyles(() => ({
     },
     'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active': {
       '-webkit-box-shadow': '0 0 0 30vw white inset !important',
-    },
-    '.swiper-button-next': {
-      'background-image': `url(${nextArrow})`,
-      'background-repeat': 'no-repeat',
-      'background-size': '100% auto',
-      'background-position': 'center',
-    },
-    '.swiper-button-next::after': {
-      display: 'none',
-    },
-    '.swiper-button-prev': {
-      'background-image': `url(${prevArrow})`,
-      'background-repeat': 'no-repeat',
-      'background-size': '100% auto',
-      'background-position': 'center',
-    },
-    '.swiper-button-prev::after': {
-      display: 'none',
     },
   },
   app: {

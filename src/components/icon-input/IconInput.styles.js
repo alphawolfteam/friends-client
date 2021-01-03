@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
   root: {
     width: '50%',
     height: '10vh',
-    marginBottom: '3.5em',
+    marginBottom: '6rem',
     paddingTop: '0',
   },
 }));

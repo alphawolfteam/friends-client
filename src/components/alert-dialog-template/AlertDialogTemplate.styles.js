@@ -10,11 +10,21 @@ const useStyles = makeStyles(() => ({
     fontWeight: '600',
     fontSize: '1.2vw',
   },
-  mainButton: config.style.button,
+  mainButton: {
+    ...config.style.button,
+    '&:hover': {
+      backgroundColor: config.style.hoverColor,
+      color: 'grey',
+    },
+  },
   secondaryButton: {
     ...config.style.button,
     backgroundColor: 'white',
     color: config.style.primaryColor,
+    '&:hover': {
+      backgroundColor: config.style.hoverColor,
+      color: 'grey',
+    },
   },
 }));
 

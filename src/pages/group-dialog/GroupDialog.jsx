@@ -20,8 +20,13 @@ import UsersList from '../../components/users-list/UsersList';
 import GroupService from '../../services/GroupsService';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import config from '../../appConf';
+import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 
 const { getRole } = config;
+
+const getManagersCount = (groupsUsers) => groupsUsers.filter(
+  (user) => user.role === getRole('manager').code,
+).length;
 
 const GroupDialog = ({ group, open, onClose }) => {
   const classes = useStyles();
@@ -30,6 +35,7 @@ const GroupDialog = ({ group, open, onClose }) => {
   const refreshData = useContext(refreshDataContext);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
+  const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [groupUsers, setGroupUsers] = useState([]);
 
@@ -60,7 +66,11 @@ const GroupDialog = ({ group, open, onClose }) => {
   }, [dialogLeaveAnswer]);
 
   const handleLeaveGroup = () => {
-    setOpenAlertLeaveDialog(true);
+    if (currentUserRole === getRole('manager').code && getManagersCount(group.users) === 1) {
+      setOpenAlertLeaveMessage(true);
+    } else {
+      setOpenAlertLeaveDialog(true);
+    }
   };
 
   const dialogTitle = () => (
@@ -146,6 +156,11 @@ const GroupDialog = ({ group, open, onClose }) => {
             onClose={() => setOpenAlertLeaveDialog(false)}
             handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
             preferredAnswer="disagree"
+          />
+          <AlertMessageTemplate
+            message={t('alertMessage.cantLeaveGroup')}
+            open={openAlertLeaveMessage}
+            onClose={() => setOpenAlertLeaveMessage(false)}
           />
         </>
       ) : (

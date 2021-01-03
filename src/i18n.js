@@ -20,6 +20,7 @@ const resources = {
         deleteGroup: 'מחיקת קבוצה',
         agree: 'כן :)',
         disagree: 'בעצם לא..',
+        ok: 'אוקיי',
       },
       tooltip: {
         addNewPhoto: 'הוספת תמונה חדשה',
@@ -42,6 +43,7 @@ const resources = {
         noFriendsFound: '(: אין חברים בקבוצה.. צרפו כמה',
       },
       alertMessage: {
+        cantLeaveGroup: 'כדי לצאת מהקבוצה מנו מנהלים חדשים :)',
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         saveChanges: 'נראה טוב! לשמור את השינויים?',

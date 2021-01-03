@@ -5,7 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {},
   label: {
     margin: '0.5%',
-    paddingLeft: '1.1%',
+    paddingLeft: '5%',
     border: `0.1vw solid ${config.style.primaryColor}`,
     backgroundColor: 'white',
     fontFamily: config.style.fontFamily,

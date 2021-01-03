@@ -77,6 +77,11 @@ class GroupsService {
 
   static async updateGroup(group, newGroup) {
     this._updateGroupDetails(group._id, newGroup);
+    this._updateGroupTags(group, newGroup);
+    this._updateGroupUsers(group, newGroup);
+  }
+
+  static async _updateGroupUsers(group, newGroup) {
     const prevUsersList = group.users;
     const newUsersList = newGroup.users;
     this._removeUsersFromGroup(group._id, prevUsersList, newUsersList);
@@ -117,18 +122,6 @@ class GroupsService {
     });
   }
 
-  static async _updateGroupDetails(groupId, newGroup) {
-    // TODO: Axios request
-    // await axios.put(`/${groupId}`, newGroup);
-
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.name = newGroup.name;
-    groupToUpdate.description = newGroup.description;
-    groupToUpdate.type = newGroup.type;
-    groupToUpdate.tags = newGroup.tags;
-    groupToUpdate.icon = newGroup.icon;
-  }
-
   static async _addUserToGroup(groupId, newUser) {
     // TODO: Axios request
     // await axios.post(`/${groupId}/users`, newUser);
@@ -145,6 +138,54 @@ class GroupsService {
     const userToUpdate = groupToUpdate.users[
       groupToUpdate.users.map((user) => user.id).indexOf(userId)];
     userToUpdate.role = newRole;
+  }
+
+  static async _updateGroupDetails(groupId, newGroup) {
+    // TODO: Axios request
+    // await axios.put(`/${groupId}`, newGroup);
+
+    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+    groupToUpdate.name = newGroup.name;
+    groupToUpdate.description = newGroup.description;
+    groupToUpdate.type = newGroup.type;
+    groupToUpdate.icon = newGroup.icon;
+  }
+
+  static async _updateGroupTags(group, newGroup) {
+    const prevTagsList = group.tags;
+    const newTagsList = newGroup.tags;
+    this._removeTagsFromGroup(group._id, prevTagsList, newTagsList);
+    this._addTagsToGroup(group._id, prevTagsList, newTagsList);
+  }
+
+  static _removeTagsFromGroup(groupId, prevTagsList, newTagsList) {
+    prevTagsList.forEach((prevTag) => {
+      if (!newTagsList.includes(prevTag)) {
+        this.removeTagFromGroup(groupId, prevTag);
+      }
+    });
+  }
+
+  static _addTagsToGroup(groupId, prevTagsList, newTagsList) {
+    newTagsList.forEach((newTag) => {
+      if (!prevTagsList.includes(newTag)) {
+        this._addTagToGroup(groupId, newTag);
+      }
+    });
+  }
+
+  static async _addTagToGroup(groupId, newTag) {
+    // TODO: Axios request
+
+    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+    groupToUpdate.tags.push(newTag);
+  }
+
+  static async _removeTagFromGroup(groupId, tagToRemove) {
+    // TODO: Axios request
+
+    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+    groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag !== tagToRemove);
   }
 }
 

@@ -6,7 +6,7 @@ const groups = [
   {
     name: 'כל דולפין',
     description: 'כללללל דולפין',
-    tags: ['רמת אביב'],
+    tags: [{ label: 'רמת אביב' }],
     type: 'public',
     users: [
       {
@@ -46,7 +46,7 @@ const groups = [
   {
     name: 'סגני דולפין',
     description: 'הסגנים של דולפין',
-    tags: ['קצונה'],
+    tags: [{ label: 'קצונה' }],
     type: 'public',
     users: [
       {
@@ -78,7 +78,7 @@ const groups = [
   {
     name: 'סרני דולפין',
     description: 'הסגנים של דולפין',
-    tags: ['קצונה'],
+    tags: [{ label: 'קצונה' }],
     type: 'public',
     users: [
       {
@@ -102,7 +102,11 @@ const groups = [
   {
     name: 'מבצע סודי',
     description: 'קבוצה סודית מאוד',
-    tags: ['סודי ביותר', 'חיזבאללה', 'צפון'],
+    tags: [
+      { label: 'חיזבאללה' },
+      { label: 'סודי ביותר' },
+      { label: 'צפון' },
+    ],
     type: 'private',
     users: [
       {

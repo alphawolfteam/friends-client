@@ -5,6 +5,8 @@ import useStyles from './UserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import Autocomplete from '../autocomplete/Autocomplete';
 
+const MIN_SEARCH_VALUE_LENGTH = 2;
+
 const UserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -12,7 +14,7 @@ const UserSearchBar = ({ setSelectedUser }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(async () => {
-    if (searchValue.length < 2) {
+    if (searchValue.length < MIN_SEARCH_VALUE_LENGTH) {
       setOptions([]);
     } else {
       setOptions(await UsersService.searchUsers(searchValue));

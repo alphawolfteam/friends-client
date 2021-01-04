@@ -21,7 +21,7 @@ export const getSortedTagsByString = (tagsList, string) => {
   const matchedTags = [];
   const unmatchedTags = [];
   tagsList.forEach((tag) => {
-    if (tag.startsWith(string)) {
+    if (tag.label.startsWith(string)) {
       matchedTags.push(tag);
     } else {
       unmatchedTags.push(tag);

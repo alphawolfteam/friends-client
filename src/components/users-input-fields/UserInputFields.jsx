@@ -15,10 +15,6 @@ import userContext from '../../stores/userStore';
 
 const { getRole, getRoleByCode } = config;
 
-const isExist = (usersList, userToCheck) => {
-  return usersList.map((user) => user.id).includes(userToCheck.id);
-};
-
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -59,7 +55,7 @@ const UserInputFields = ({ group, setGroup }) => {
   // its reset the pages to 1 and populates the users again
 
   useEffect(() => {
-    if (selectedUser && !isExist(group.users, selectedUser)) {
+    if (selectedUser && !GroupsService.isUserExist(group.users, selectedUser.id)) {
       addUser(selectedUser, getRole('friend').code);
       setSelectedUser(undefined);
     }

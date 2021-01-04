@@ -10,12 +10,20 @@ const isIncludesInSentence = (sentence, portion) => (
   || sentence.split(' ').filter((word) => word.startsWith(portion)).length > 0
 );
 
-const getUserFromList = (usersList, userIdToFind) => {
-  return usersList.find((user) => user.id === userIdToFind);
-};
-
 // TODO: Error handler
 class GroupsService {
+  static isTagExist(tagsList, tagLabelToFind) {
+    return tagsList.find((tag) => tag.label === tagLabelToFind) !== undefined;
+  }
+
+  static isUserExist(usersList, userIdToFind) {
+    return this._getUserFromList(usersList, userIdToFind) !== undefined;
+  }
+
+  static _getUserFromList(usersList, userIdToFind) {
+    return usersList.find((user) => user.id === userIdToFind);
+  }
+
   static getUserRoleCode(group, userId) {
     let role = false;
     group.users.forEach((groupUser) => {
@@ -31,7 +39,8 @@ class GroupsService {
 
     return (await this.getPrivateGroups(userId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
-        || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
+        || publicGroup.tags
+          .filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);
   }
 
   static async searchPublicGroups(searchValue) {
@@ -39,7 +48,7 @@ class GroupsService {
 
     const publicGroups = groups.filter((group) => group.type === 'public');
     return publicGroups.filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
-      || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
+      || publicGroup.tags.filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);
   }
 
   static async getPrivateGroups(userId) {
@@ -99,7 +108,7 @@ class GroupsService {
 
   static _removeUsersFromGroup(groupId, prevUsersList, newUsersList) {
     prevUsersList.forEach((prevUser) => {
-      if (!getUserFromList(newUsersList, prevUser.id)) {
+      if (!this.isUserExist(newUsersList, prevUser.id)) {
         this.removeUserFromGroup(groupId, prevUser.id);
       }
     });
@@ -107,7 +116,7 @@ class GroupsService {
 
   static _addUsersToGroup(groupId, prevUsersList, newUsersList) {
     newUsersList.forEach((newUser) => {
-      if (!getUserFromList(prevUsersList, newUser.id)) {
+      if (!this.isUserExist(prevUsersList, newUser.id)) {
         this._addUserToGroup(groupId, newUser);
       }
     });
@@ -115,8 +124,8 @@ class GroupsService {
 
   static _updateUsersRole(groupId, prevUsersList, newUsersList) {
     newUsersList.forEach((newUser) => {
-      if (getUserFromList(prevUsersList, newUser.id)
-        && getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
+      if (this.isUserExist(prevUsersList, newUser.id)
+        && this._getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
         this._updateUserRole(groupId, newUser.id, newUser.role);
       }
     });
@@ -160,15 +169,15 @@ class GroupsService {
 
   static _removeTagsFromGroup(groupId, prevTagsList, newTagsList) {
     prevTagsList.forEach((prevTag) => {
-      if (!newTagsList.includes(prevTag)) {
-        this.removeTagFromGroup(groupId, prevTag);
+      if (!this.isTagExist(newTagsList, prevTag)) {
+        this._removeTagFromGroup(groupId, prevTag);
       }
     });
   }
 
   static _addTagsToGroup(groupId, prevTagsList, newTagsList) {
     newTagsList.forEach((newTag) => {
-      if (!prevTagsList.includes(newTag)) {
+      if (!this.isTagExist(prevTagsList, newTag)) {
         this._addTagToGroup(groupId, newTag);
       }
     });
@@ -176,16 +185,17 @@ class GroupsService {
 
   static async _addTagToGroup(groupId, newTag) {
     // TODO: Axios request
-
+    // Add newTag.label
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.tags.push(newTag);
   }
 
   static async _removeTagFromGroup(groupId, tagToRemove) {
     // TODO: Axios request
+    // Remove tagToRemove.label
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag !== tagToRemove);
+    groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag.label !== tagToRemove.label);
   }
 }
 

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  Typography,
-} from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import UserInfo from '../user-info/UserInfo';
 import useStyles from './UserRaw.styles';
 import config from '../../appConf';

@@ -13,6 +13,8 @@ import LockIcon from '../lock-icon/LockIcon';
 import RoleIcon from '../role-icon/RoleIcon';
 import TagsList from '../tags-list/TagsList';
 
+const MAX_TAGS_COUNT = 3;
+
 const GroupRaw = ({
   searchValue,
   group,
@@ -60,7 +62,7 @@ const GroupRaw = ({
               tags={
                 getSortedTagsByString(group.tags, searchValue)
               }
-              maxTagsCount={3}
+              maxTagsCount={MAX_TAGS_COUNT}
             />
           </div>
           {info()}

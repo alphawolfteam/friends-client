@@ -3,11 +3,8 @@ import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
+import GroupService from '../../services/GroupsService';
 import useStyles from './TagsInputFields.styles';
-
-const isExist = (tag, tagList) => {
-  return tagList.includes(tag);
-};
 
 const TagsInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -15,17 +12,17 @@ const TagsInputFields = ({ group, setGroup }) => {
 
   const handleRemoveTag = (tagToRemove) => {
     setGroup((prevValue) => {
-      const tagsList = [...prevValue.tags].filter((tag) => tag !== tagToRemove);
+      const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
       return { ...prevValue, tags: tagsList };
     });
   };
 
   const handleAddTag = (newTag) => {
     // TODO: Add alert
-    if (newTag !== '' && !isExist(newTag, group.tags)) {
+    if (newTag !== '' && !GroupService.isTagExist(group.tags, newTag)) {
       setGroup((prevValue) => {
         const tagsList = [...prevValue.tags];
-        tagsList.push(newTag);
+        tagsList.push({ label: newTag });
         return { ...prevValue, tags: tagsList };
       });
     }
@@ -39,9 +36,9 @@ const TagsInputFields = ({ group, setGroup }) => {
           <>
             {group.tags.map((tag) => (
               <DeletableTag
-                tag={tag}
-                key={tag}
-                onDelete={() => handleRemoveTag(tag)}
+                tag={tag.label}
+                key={tag.label}
+                onDelete={() => handleRemoveTag(tag.label)}
               />
             ))}
           </>

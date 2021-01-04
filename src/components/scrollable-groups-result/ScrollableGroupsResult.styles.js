@@ -21,6 +21,10 @@ const useStyles = makeStyles(() => ({
       color: config.style.primaryColor,
     },
   },
+  loader: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   startMessage: {
     display: 'flex',
     flexDirection: 'column',

@@ -12,6 +12,11 @@ const isIncludesInSentence = (sentence, portion) => (
 
 // TODO: Error handler
 class GroupsService {
+  // TODO: Delete
+  static timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   static isTagExist(tagsList, tagLabelToFind) {
     return tagsList.find((tag) => tag.label === tagLabelToFind) !== undefined;
   }
@@ -37,6 +42,7 @@ class GroupsService {
   static async searchPrivateGroups(userId, searchValue) {
     // TODO: Axios request
 
+    await this.timeout(3000);
     return (await this.getPrivateGroups(userId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags
@@ -46,9 +52,16 @@ class GroupsService {
   static async searchPublicGroups(searchValue) {
     // TODO: Axios request
 
+    await this.timeout(3000);
     const publicGroups = groups.filter((group) => group.type === 'public');
-    return publicGroups.filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
-      || publicGroup.tags.filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);
+    return publicGroups.filter((publicGroup) => isIncludesInSentence(
+      publicGroup.name,
+      searchValue,
+    )
+      || publicGroup.tags.filter((tag) => isIncludesInSentence(
+        tag.label,
+        searchValue,
+      )).length > 0);
   }
 
   static async getPrivateGroups(userId) {
@@ -56,6 +69,7 @@ class GroupsService {
     // const { data } = await axios.get(`/groups/users/:${userId}`);
     // return data;
 
+    await this.timeout(3000);
     return groups.filter((group) => group.type === 'private'
       && group.users.map((user) => user.id).includes(userId));
   }
@@ -64,6 +78,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.post('/', newGroup);
 
+    await this.timeout(3000);
     const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
     groups.push({ ...newGroup, _id: uint32.toString(16) });
   }
@@ -72,6 +87,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.get(`/${groupId}/users`);
 
+    // await this.timeout(3000);
     const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
     return groupToFind.users;
   }
@@ -80,6 +96,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.delete(`/${groupId}`);
 
+    await this.timeout(3000);
     const groupIndexInArray = groups.map((group) => group._id).indexOf(groupId);
     groups.splice(groupIndexInArray, 1);
   }
@@ -102,6 +119,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.post(`/${groupId}/users/${userId}`);
 
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
   }
@@ -135,6 +153,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.post(`/${groupId}/users`, newUser);
 
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.users.push(newUser);
   }
@@ -143,6 +162,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.post(`/${groupId}/users/${userId}`, newRole);
 
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     const userToUpdate = groupToUpdate.users[
       groupToUpdate.users.map((user) => user.id).indexOf(userId)];
@@ -153,6 +173,7 @@ class GroupsService {
     // TODO: Axios request
     // await axios.put(`/${groupId}`, newGroup);
 
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.name = newGroup.name;
     groupToUpdate.description = newGroup.description;
@@ -186,6 +207,8 @@ class GroupsService {
   static async _addTagToGroup(groupId, newTag) {
     // TODO: Axios request
     // Add newTag.label
+
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.tags.push(newTag);
   }
@@ -194,6 +217,7 @@ class GroupsService {
     // TODO: Axios request
     // Remove tagToRemove.label
 
+    await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag.label !== tagToRemove.label);
   }

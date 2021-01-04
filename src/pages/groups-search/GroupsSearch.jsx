@@ -4,6 +4,7 @@ import React,
   useEffect,
   useMemo,
   useState,
+  useCallback,
 } from 'react';
 import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
@@ -26,31 +27,45 @@ const GroupsSearch = () => {
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState(undefined);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const currentUser = useContext(userContext);
 
-  const handleInit = async () => {
-    // TODO: Add loader
-    setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
-    setFilteredPublicGroups(undefined);
-    setSearchValue('');
-  };
+  const handleInit = useCallback(() => {
+    setIsLoading(true);
+    GroupsService.getPrivateGroups(currentUser.id)
+      .then((res) => {
+        setFilteredPrivateGroups(res);
+        setFilteredPublicGroups(undefined);
+        setSearchValue('');
+        setIsLoading(false);
+      })
+      // TODO: Error handler
+      .catch((e) => console.log(e));
+  }, []);
 
   useEffect(async () => {
     handleInit();
   }, []);
 
-  const handleOnSearch = async (value) => {
-    // TODO: Add loader
+  const handleOnSearch = useCallback((value) => {
     if (value.length < MIN_SEARCH_VALUE_LENGTH) {
       handleInit();
     } else {
-      setFilteredPrivateGroups(
-        await GroupsService.searchPrivateGroups(currentUser.id, value),
-      );
-      setFilteredPublicGroups(await GroupsService.searchPublicGroups(value));
+      setIsLoading(true);
+      Promise.all([
+        GroupsService.searchPrivateGroups(currentUser.id, value),
+        GroupsService.searchPublicGroups(value),
+      ])
+        .then((results) => {
+          setFilteredPrivateGroups(results[0]);
+          setFilteredPublicGroups(results[1]);
+          setIsLoading(false);
+        })
+        // TODO: Error handler
+        .catch((error) => console.log(`Error in promises ${error}`));
     }
-  };
+  }, []);
 
   const sortedPrivateGroups = useMemo(() => (
     getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
@@ -82,6 +97,7 @@ const GroupsSearch = () => {
           publicGroups={filteredPublicGroups}
           searchValue={searchValue}
           setOpenAddGroupDialog={(value) => setOpenAddGroupDialog(value)}
+          isLoading={isLoading}
         />
         {openAddGroupDialog && (
           <AddGroupDialog

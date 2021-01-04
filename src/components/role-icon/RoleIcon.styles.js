@@ -8,9 +8,10 @@ const useStyles = makeStyles(() => ({
     left: '0.2em',
     top: '0.2em',
     position: 'absolute',
-    fontSize: '2em',
+    fontSize: '1.5em',
     color: config.style.fontColor,
     cursor: 'auto',
+    // display: 'inline-block',
   },
 }));
 

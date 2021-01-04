@@ -41,7 +41,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '8',
+    _id: '4524216344',
   },
   {
     name: 'סגני דולפין',
@@ -73,7 +73,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '4',
+    _id: '465997590756',
   },
   {
     name: 'סרני דולפין',
@@ -97,7 +97,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '5',
+    _id: '2678765432',
   },
   {
     name: 'מבצע סודי',
@@ -133,7 +133,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '1',
+    _id: '2626753788686',
   },
   {
     name: 'חד"כ דולפין',
@@ -161,7 +161,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '2',
+    _id: '9876543214',
   },
   {
     name: 'מנהלי friends',
@@ -193,7 +193,7 @@ const groups = [
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
     icon: groupIconsCodes[0],
-    _id: '3',
+    _id: '45376568098765',
   },
 ];
 

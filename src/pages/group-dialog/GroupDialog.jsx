@@ -81,6 +81,10 @@ const GroupDialog = ({
             {group.name}
           </Typography>
         </Tooltip>
+        <Typography className={classes.groupId}>
+          #
+          {group._id.slice(0, 4)}
+        </Typography>
         <LockIcon type={group.type} />
       </div>
     </>

@@ -51,6 +51,14 @@ const useStyles = makeStyles(() => ({
     fontSize: '1em',
     fontWeight: '700',
   },
+  groupId: {
+    fontFamily: config.style.fontFamily,
+    direction: 'ltr',
+    marginRight: '5%',
+    textAlign: 'right',
+    fontSize: '1.5em',
+    fontWeight: '700',
+  },
   groupName: {
     fontFamily: config.style.fontFamily,
     textAlign: 'right',

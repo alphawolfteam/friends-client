@@ -14,7 +14,8 @@ import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
 import { getSortedPrivateGroups } from '../../shared/functions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
-import ScrollableGroupsResult from '../../components/scrollable-groups-result/ScrollableGroupsResult';
+import ScrollableGroupsResult from
+  '../../components/scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
 
 const MIN_SEARCH_VALUE_LENGTH = 2;
@@ -29,7 +30,7 @@ const GroupsSearch = () => {
   const currentUser = useContext(userContext);
 
   const handleInit = async () => {
-  // TODO: Add loader
+    // TODO: Add loader
     setFilteredPrivateGroups(await GroupsService.getPrivateGroups(currentUser.id));
     setFilteredPublicGroups(undefined);
     setSearchValue('');
@@ -55,22 +56,26 @@ const GroupsSearch = () => {
     getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
   [filteredPrivateGroups, currentUser]);
 
+  const renderHeader = () => (
+    <div className={classes.header}>
+      <Button
+        className={classes.addButton}
+        onClick={() => setOpenAddGroupDialog(true)}
+      >
+        {t('button.addNewGroup')}
+        <Add className={classes.icon} />
+      </Button>
+      <GroupSearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        onSearch={(value) => handleOnSearch(value)}
+      />
+    </div>
+  );
+
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-        <Button
-          className={classes.addButton}
-          onClick={() => setOpenAddGroupDialog(true)}
-        >
-          {t('button.addNewGroup')}
-          <Add className={classes.icon} />
-        </Button>
-        <GroupSearchBar
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          onSearch={(value) => handleOnSearch(value)}
-        />
-      </div>
+      {renderHeader()}
       <refreshDataContext.Provider value={() => handleInit()}>
         <ScrollableGroupsResult
           privateGroups={sortedPrivateGroups}

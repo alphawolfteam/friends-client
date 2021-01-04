@@ -39,10 +39,11 @@ const UserInputFields = ({ group, setGroup }) => {
 
   const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
     return GroupsService.getUserRoleCode(group, firstUser.id)
-    - GroupsService.getUserRoleCode(group, secondUser.id);
+      - GroupsService.getUserRoleCode(group, secondUser.id);
   }),
   [usersListToEdit]);
 
+  // TODO: Maybe delete
   // TODO: On changeing page
   useEffect(async () => {
     // TODO: Populate first 5 users
@@ -61,7 +62,16 @@ const UserInputFields = ({ group, setGroup }) => {
     }
   }, [selectedUser]);
 
-  const userInputField = (user) => (
+  const renderCurrentUserField = () => (
+    <div className={classes.field}>
+      <UserRaw
+        user={currentUser}
+        role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.id))}
+      />
+    </div>
+  );
+
+  const renderUserInputField = (user) => (
     <div key={user.id} className={classes.field}>
       <EditableUserRaw
         user={user}
@@ -77,14 +87,9 @@ const UserInputFields = ({ group, setGroup }) => {
       <div className={classes.scrollBar}>
         <Scrollbar>
           <div className={classes.fieldList}>
-            <div className={classes.field}>
-              <UserRaw
-                user={currentUser}
-                role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.id))}
-              />
-            </div>
+            {renderCurrentUserField()}
             {populatedUsers.length > 0 ? populatedUsers.map((user) => (
-              userInputField(user)
+              renderUserInputField(user)
             ))
               : (
                 <Typography className={classes.message}>

@@ -15,7 +15,7 @@ const Paging = ({ pages }) => {
     }
   };
 
-  const buttonsSection = () => (
+  const renderButtonsSection = () => (
     <div className={classes.buttonSection}>
       <NavigateBefore
         className={`${currentPageIndex < pages.length - 1
@@ -47,7 +47,7 @@ const Paging = ({ pages }) => {
           {pages[currentPageIndex]}
         </Scrollbar>
       </div>
-      {buttonsSection()}
+      {renderButtonsSection()}
     </div>
   );
 };

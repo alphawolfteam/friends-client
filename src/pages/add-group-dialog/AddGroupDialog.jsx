@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import useStyles from './AddGroupDialog.styles';
-import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
+import EditableGroupDialogTemplate from
+  '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
@@ -35,7 +36,8 @@ const AddGroupDialog = ({ open, onClose }) => {
 
   const handleAdd = async () => {
     // TODO: Add loader
-    if (newGroup.name && newGroup.description && newGroup.users.length > 1) {
+    if (newGroup.name && newGroup.description
+      && newGroup.users.length > 1) {
       await GroupsService.createGroup(newGroup);
       refreshData();
       onClose();
@@ -44,7 +46,7 @@ const AddGroupDialog = ({ open, onClose }) => {
     }
   };
 
-  const dialogActions = () => (
+  const dialogActions = (
     <>
       <Button
         variant="contained"
@@ -68,7 +70,7 @@ const AddGroupDialog = ({ open, onClose }) => {
       <EditableGroupDialogTemplate
         newGroup={newGroup}
         setNewGroup={setNewGroup}
-        actions={dialogActions()}
+        actions={dialogActions}
         open={open}
       />
       <AlertMessageTemplate

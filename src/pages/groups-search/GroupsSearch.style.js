@@ -16,13 +16,6 @@ const useStyles = makeStyles(() => ({
     marginTop: '2%',
     marginBottom: '1%',
   },
-  loading: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    width: '100vw',
-  },
   icon: {
     paddingRight: '5%',
   },

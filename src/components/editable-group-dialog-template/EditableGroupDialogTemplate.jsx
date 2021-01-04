@@ -14,7 +14,7 @@ const EditableGroupDialogTemplate = ({
 }) => {
   const classes = useStyles();
 
-  const dialogTitle = () => (
+  const renderDialogTitle = () => (
     <>
       <IconInput group={newGroup} setGroup={setNewGroup} />
       <div className={classes.title}>
@@ -24,25 +24,25 @@ const EditableGroupDialogTemplate = ({
     </>
   );
 
-  const firstPage = () => (
+  const firstPage = (
     <UserInputFields group={newGroup} setGroup={setNewGroup} />
   );
 
-  const secondPage = () => (
+  const secondPage = (
     <div className={classes.page}>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
     </div>
   );
 
-  const dialogContent = () => (
-    <Paging pages={[firstPage(), secondPage()]} />
+  const renderDialogContent = () => (
+    <Paging pages={[firstPage, secondPage]} />
   );
 
   return (
     <DialogTemplate
-      title={dialogTitle()}
-      content={dialogContent()}
+      title={renderDialogTitle()}
+      content={renderDialogContent()}
       actions={actions}
       open={open}
     />

@@ -11,7 +11,6 @@ const { getRoleByCode } = config;
 const UsersList = ({ users, group }) => {
   const classes = useStyles();
   const [populatedUsers, setPopulatedUsers] = useState([]);
-  // const [page, setPage] = useState(1);
 
   const sortedUsers = useMemo(() => users.sort((firstUser, secondUser) => {
     return GroupsService.getUserRoleCode(group, firstUser.id)
@@ -19,13 +18,13 @@ const UsersList = ({ users, group }) => {
   }),
   [users]);
 
+  // TODO: Maybe delete
   useEffect(async () => {
     // TODO: Send 5 users at a time
     setPopulatedUsers(
       await UsersService.getPopulatedUsersList(sortedUsers.map((user) => user.id)),
     );
   }, [sortedUsers]);
-  // }, [page]);
 
   return (
     <div className={classes.root}>

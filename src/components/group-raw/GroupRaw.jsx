@@ -24,7 +24,7 @@ const GroupRaw = ({
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const mainContent = () => (
+  const renderMainContent = () => (
     <div className={classes.mainContent}>
       <div className={classes.groupIcon}>
         <img className={classes.img} src={group.icon} alt="icon" />
@@ -37,7 +37,7 @@ const GroupRaw = ({
     </div>
   );
 
-  const info = () => (
+  const renderInfo = () => (
     <div className={classes.info}>
       <LockIcon type={group.type} />
       <Typography className={classes.groupAmount}>
@@ -56,7 +56,7 @@ const GroupRaw = ({
       >
         <RoleIcon role={currentUserRole} />
         <CardContent className={classes.cardContent}>
-          {mainContent()}
+          {renderMainContent()}
           <div className={classes.tagsList}>
             <TagsList
               tags={
@@ -65,7 +65,7 @@ const GroupRaw = ({
               maxTagsCount={MAX_TAGS_COUNT}
             />
           </div>
-          {info()}
+          {renderInfo()}
         </CardContent>
       </ButtonBase>
     </Card>

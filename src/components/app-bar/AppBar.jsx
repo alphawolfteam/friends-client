@@ -11,7 +11,7 @@ const AppBarComponent = () => {
   const currentUser = useContext(userContext);
   const currentHour = (new Date()).getHours();
 
-  const getGreeting = () => {
+  const renderGreeting = () => {
     if (currentHour < 12) {
       return t('timeGreeting.morning');
     }
@@ -26,7 +26,7 @@ const AppBarComponent = () => {
       <Toolbar className={classes.toolBar}>
         <ReactLogo className={classes.logo} />
         <Typography variant="h6" className={classes.username}>
-          {getGreeting()}
+          {renderGreeting()}
           {', '}
           <strong>
             {currentUser.name.firstName}

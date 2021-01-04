@@ -46,7 +46,7 @@ const ScrollableGroupsResult = ({
     </>
   );
 
-  const getGroupsList = () => {
+  const renderGroupsList = () => {
     if (privateGroups.length === 0 && (publicGroups && publicGroups.length === 0)) {
       return noGroupsFound;
     }
@@ -65,7 +65,7 @@ const ScrollableGroupsResult = ({
     <Paper elevation={2} className={classes.root}>
       <Scrollbar>
         <div className={classes.scrollBarContent}>
-          {getGroupsList()}
+          {renderGroupsList()}
         </div>
       </Scrollbar>
     </Paper>

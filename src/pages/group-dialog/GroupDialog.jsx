@@ -62,28 +62,31 @@ const GroupDialog = ({
   }, [dialogLeaveAnswer]);
 
   const handleLeaveGroup = () => {
-    if (currentUserRole === getRole('manager').code && getManagersCount(group.users) === 1) {
+    if (currentUserRole === getRole('manager').code
+      && getManagersCount(group.users) === 1) {
       setOpenAlertLeaveMessage(true);
     } else {
       setOpenAlertLeaveDialog(true);
     }
   };
 
-  const dialogTitle = () => (
+  const dialogTitle = (
     <>
       <div className={classes.groupIcon}>
         <img className={classes.img} src={group.icon} alt="icon" />
       </div>
       <div className={classes.groupTitle}>
         <Tooltip title={group.name}>
-          <Typography className={classes.groupName}>{group.name}</Typography>
+          <Typography className={classes.groupName}>
+            {group.name}
+          </Typography>
         </Tooltip>
         <LockIcon type={group.type} />
       </div>
     </>
   );
 
-  const dialogContent = () => (
+  const dialogContent = (
     <div className={classes.content}>
       <Typography className={classes.title}>
         <Info className={classes.titleIcon} />
@@ -107,7 +110,7 @@ const GroupDialog = ({
     </div>
   );
 
-  const dialogActions = () => (
+  const dialogActions = (
     <div className={classes.actions}>
       {currentUserRole === getRole('manager').code && (
         <Button
@@ -130,43 +133,45 @@ const GroupDialog = ({
     </div>
   );
 
+  const renderGroupDialog = () => (
+    <>
+      <DialogTemplate
+        title={dialogTitle}
+        content={dialogContent}
+        actions={dialogActions}
+        open={open}
+        onClose={onClose}
+        closeButton={(
+          <IconButton onClick={onClose} className={classes.closeButton}>
+            <Close />
+          </IconButton>
+        )}
+      />
+      <AlertDialogTemplate
+        message={t('alertMessage.leaveGroup')}
+        open={openAlertLeaveDialog}
+        onClose={() => setOpenAlertLeaveDialog(false)}
+        handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
+        preferredAnswer="disagree"
+      />
+      <AlertMessageTemplate
+        message={t('alertMessage.cantLeaveGroup')}
+        open={openAlertLeaveMessage}
+        onClose={() => setOpenAlertLeaveMessage(false)}
+      />
+    </>
+  );
+
   return (
     <>
-      {!openEditGroupDialog ? (
-        <>
-          <DialogTemplate
-            title={dialogTitle()}
-            content={dialogContent()}
-            actions={dialogActions()}
-            open={open}
-            onClose={onClose}
-            closeButton={(
-              <IconButton onClick={onClose} className={classes.closeButton}>
-                <Close />
-              </IconButton>
-            )}
-          />
-          <AlertDialogTemplate
-            message={t('alertMessage.leaveGroup')}
-            open={openAlertLeaveDialog}
-            onClose={() => setOpenAlertLeaveDialog(false)}
-            handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
-            preferredAnswer="disagree"
-          />
-          <AlertMessageTemplate
-            message={t('alertMessage.cantLeaveGroup')}
-            open={openAlertLeaveMessage}
-            onClose={() => setOpenAlertLeaveMessage(false)}
-          />
-        </>
-      ) : (
+      {openEditGroupDialog ? (
         <EditGroupDialog
           open={openEditGroupDialog}
           onCancel={() => setOpenEditGroupDialog(false)}
           onClose={() => onClose()}
           group={{ ...group, users: groupUsers }}
         />
-      )}
+      ) : renderGroupDialog()}
     </>
   );
 };

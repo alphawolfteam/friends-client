@@ -10,7 +10,7 @@ const AlertDialogTemplate = ({
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const answerButton = (answer) => (
+  const renderAnswerButton = (answer) => (
     <Button
       onClick={() => {
         handleAnswer(answer);
@@ -33,8 +33,8 @@ const AlertDialogTemplate = ({
       message={message}
       actions={(
         <div className={classes.actions}>
-          {answerButton('agree')}
-          {answerButton('disagree')}
+          {renderAnswerButton('agree')}
+          {renderAnswerButton('disagree')}
         </div>
       )}
     />

@@ -3,7 +3,8 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import useStyles from './EditGroupDialog.styles';
 import refreshDataContext from '../../stores/refreshDataStore';
-import EditableGroupDialogTemplate from '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
+import EditableGroupDialogTemplate from
+  '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import GroupsService from '../../services/GroupsService';
@@ -50,7 +51,8 @@ const EditGroupDialog = ({
   }, [dialogDeleteAnswer]);
 
   const handleSave = () => {
-    if (newGroup.name && newGroup.description && newGroup.users.length > 1) {
+    if (newGroup.name && newGroup.description
+      && newGroup.users.length > 1) {
       setAlertSaveDialog(true);
     } else {
       setAlertMessage(true);
@@ -61,7 +63,7 @@ const EditGroupDialog = ({
     setAlertDeleteDialog(true);
   };
 
-  const dialogActions = () => (
+  const dialogActions = (
     <>
       <Button
         variant="contained"
@@ -92,7 +94,7 @@ const EditGroupDialog = ({
       <EditableGroupDialogTemplate
         newGroup={newGroup}
         setNewGroup={setNewGroup}
-        actions={dialogActions()}
+        actions={dialogActions}
         open={open}
       />
       <AlertDialogTemplate

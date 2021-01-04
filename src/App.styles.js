@@ -7,11 +7,12 @@ const useStyles = makeStyles(() => ({
       width: '0.4em',
     },
     '*::-webkit-scrollbar-track': {
-      background: '#E5E5E5',
+      background: config.style.secondaryColor,
+
       'border-radius': '50em',
     },
     '*::-webkit-scrollbar-thumb': {
-      background: '#898989',
+      background: config.style.primaryColor,
       'border-radius': '50em',
     },
     'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active': {

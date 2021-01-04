@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavigateNext, NavigateBefore } from '@material-ui/icons';
-import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './Paging.styles';
 
 const Paging = ({ pages }) => {
@@ -43,9 +42,7 @@ const Paging = ({ pages }) => {
   return (
     <div className={classes.root}>
       <div className={classes.page}>
-        <Scrollbar>
-          {pages[currentPageIndex]}
-        </Scrollbar>
+        {pages[currentPageIndex]}
       </div>
       {renderButtonsSection()}
     </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Paper } from '@material-ui/core';
 import { GroupAdd } from '@material-ui/icons';
-import Scrollbar from 'react-scrollbars-custom';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
 import GroupsLoader from '../groups-loader/GroupsLoader';
@@ -65,11 +64,9 @@ const ScrollableGroupsResult = ({
 
   return (
     <Paper elevation={2} className={classes.root}>
-      <Scrollbar>
-        <div className={classes.scrollBarContent}>
-          {isLoading ? <GroupsLoader /> : renderGroupsList()}
-        </div>
-      </Scrollbar>
+      <div className={classes.scrollBarContent}>
+        {isLoading ? <GroupsLoader /> : renderGroupsList()}
+      </div>
     </Paper>
   );
 };

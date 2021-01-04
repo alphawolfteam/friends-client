@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   scrollBar: {
     width: '90%',
     height: '10em',
+    overflow: 'auto',
   },
   fieldsList: {
     display: 'flex',

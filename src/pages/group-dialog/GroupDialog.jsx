@@ -56,6 +56,7 @@ const GroupDialog = ({
     // TODO: Add loader
     if (dialogLeaveAnswer === 'agree') {
       await GroupService.removeUserFromGroup(group._id, currentUser.id);
+      // TODO: Update only
       refreshData();
       onClose();
     }

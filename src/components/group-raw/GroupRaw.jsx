@@ -29,7 +29,7 @@ const GroupRaw = ({
       <div className={classes.groupIcon}>
         <img className={classes.img} src={group.icon} alt="icon" />
       </div>
-      <div>
+      <div className={classes.groupTitle}>
         <Tooltip title={group.name}>
           <Typography className={classes.groupName}>
             {group.name}

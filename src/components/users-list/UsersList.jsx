@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import Scrollbar from 'react-scrollbars-custom';
 import UserRaw from '../user-raw/UserRaw';
 import useStyles from './UsersList.styles';
 import GroupsService from '../../services/GroupsService';
@@ -14,7 +13,7 @@ const UsersList = ({ users, group }) => {
 
   const sortedUsers = useMemo(() => users.sort((firstUser, secondUser) => {
     return GroupsService.getUserRoleCode(group, firstUser.id)
-    - GroupsService.getUserRoleCode(group, secondUser.id);
+      - GroupsService.getUserRoleCode(group, secondUser.id);
   }),
   [users]);
 
@@ -28,17 +27,15 @@ const UsersList = ({ users, group }) => {
 
   return (
     <div className={classes.root}>
-      <Scrollbar>
-        <div className={classes.scrollBarContent}>
-          {populatedUsers.map((user) => (
-            <UserRaw
-              key={user.id}
-              user={user}
-              role={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
-            />
-          ))}
-        </div>
-      </Scrollbar>
+      <div className={classes.scrollBarContent}>
+        {populatedUsers.map((user) => (
+          <UserRaw
+            key={user.id}
+            user={user}
+            role={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
+          />
+        ))}
+      </div>
     </div>
   );
 };

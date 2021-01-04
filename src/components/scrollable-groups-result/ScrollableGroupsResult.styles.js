@@ -8,6 +8,7 @@ const useStyles = makeStyles(() => ({
     height: '65vh',
     background: config.style.backgroundColor,
     borderRadius: 10,
+    overflow: 'auto',
   },
   scrollBarContent: {
     display: 'flex',

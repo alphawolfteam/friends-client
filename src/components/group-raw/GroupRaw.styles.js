@@ -46,6 +46,9 @@ const useStyles = makeStyles(() => ({
   tagsList: {
     width: '30%',
   },
+  groupTitle: {
+    paddingRight: '1em',
+  },
   groupAmount: {
     fontFamily: config.style.fontFamily,
     fontSize: '1em',

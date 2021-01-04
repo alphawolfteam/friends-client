@@ -24,11 +24,11 @@ const EditGroupDialog = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
-  const [openAlertSaveDialog, setAlertSaveDialog] = useState(false);
+  const [openAlertSaveDialog, setOpenAlertSaveDialog] = useState(false);
   const [dialogSaveAnswer, setDialogSaveAnswer] = useState(undefined);
-  const [openAlertDeleteDialog, setAlertDeleteDialog] = useState(false);
+  const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
-  const [openAlertMessage, setAlertMessage] = useState(false);
+  const [openAlertMessage, setOpenAlertMessage] = useState(false);
 
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
@@ -36,6 +36,7 @@ const EditGroupDialog = ({
     // TODO: Add loader
     if (dialogSaveAnswer === 'agree') {
       await GroupsService.updateGroup(group, newGroup);
+      // TODO: Update only
       refreshData();
       onClose();
     }
@@ -45,6 +46,7 @@ const EditGroupDialog = ({
     // TODO: Add loader
     if (dialogDeleteAnswer === 'agree') {
       await GroupsService.deleteGroup(group._id);
+      // TODO: Update only
       refreshData();
       onClose();
     }
@@ -53,14 +55,14 @@ const EditGroupDialog = ({
   const handleSave = () => {
     if (newGroup.name && newGroup.description
       && newGroup.users.length > 1) {
-      setAlertSaveDialog(true);
+      setOpenAlertSaveDialog(true);
     } else {
-      setAlertMessage(true);
+      setOpenAlertMessage(true);
     }
   };
 
   const handleDeleteGroup = () => {
-    setAlertDeleteDialog(true);
+    setOpenAlertDeleteDialog(true);
   };
 
   const dialogActions = (
@@ -100,21 +102,21 @@ const EditGroupDialog = ({
       <AlertDialogTemplate
         message={t('alertMessage.saveChanges')}
         open={openAlertSaveDialog}
-        onClose={() => setAlertSaveDialog(false)}
+        onClose={() => setOpenAlertSaveDialog(false)}
         handleAnswer={(answer) => setDialogSaveAnswer(answer)}
         preferredAnswer="agree"
       />
       <AlertDialogTemplate
         message={t('alertMessage.deleteGroup')}
         open={openAlertDeleteDialog}
-        onClose={() => setAlertDeleteDialog(false)}
+        onClose={() => setOpenAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
         preferredAnswer="disagree"
       />
       <AlertMessageTemplate
         message={t('alertMessage.saveValidation')}
         open={openAlertMessage}
-        onClose={() => setAlertMessage(false)}
+        onClose={() => setOpenAlertMessage(false)}
       />
     </>
   );

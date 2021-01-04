@@ -20,7 +20,7 @@ const AddGroupDialog = ({ open, onClose }) => {
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
-  const [openAlertMessage, setAlertMessage] = useState(false);
+  const [openAlertMessage, setOpenAlertMessage] = useState(false);
   const [newGroup, setNewGroup] = useState({
     name: '',
     description: '',
@@ -39,10 +39,11 @@ const AddGroupDialog = ({ open, onClose }) => {
     if (newGroup.name && newGroup.description
       && newGroup.users.length > 1) {
       await GroupsService.createGroup(newGroup);
+      // TODO: Update only
       refreshData();
       onClose();
     } else {
-      setAlertMessage(true);
+      setOpenAlertMessage(true);
     }
   };
 
@@ -76,7 +77,7 @@ const AddGroupDialog = ({ open, onClose }) => {
       <AlertMessageTemplate
         message={t('alertMessage.addValidation')}
         open={openAlertMessage}
-        onClose={() => setAlertMessage(false)}
+        onClose={() => setOpenAlertMessage(false)}
       />
     </>
   );

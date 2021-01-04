@@ -7,7 +7,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '100%',
     border: `0.1vw solid ${config.style.primaryColor}`,
     borderRadius: 30,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.1vw 0.2vw, rgba(0, 0, 0, 0.23) 0 0.1vw 0.2vw',

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { InputBase } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import useStyles from './UserSearchBar.styles';
+import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import Autocomplete from '../autocomplete/Autocomplete';
 
 const MIN_SEARCH_VALUE_LENGTH = 2;
 
-const UserSearchBar = ({ setSelectedUser }) => {
+const AddUserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
@@ -45,4 +45,4 @@ const UserSearchBar = ({ setSelectedUser }) => {
     </div>
   );
 };
-export default UserSearchBar;
+export default AddUserSearchBar;

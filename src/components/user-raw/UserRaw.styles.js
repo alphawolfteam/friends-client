@@ -3,7 +3,7 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
-    margin: '1%',
+    marginBottom: '1.5%',
     width: '90%',
     height: '50%',
     boxShadow: 'inset 0 0 0.1vw 0 grey',

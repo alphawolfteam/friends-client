@@ -16,9 +16,8 @@ const useStyles = makeStyles(() => ({
     height: '70%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignSelf: 'stretch',
-    alignItems: 'center',
+    overflow: 'auto',
     overflowX: 'hidden',
   },
   buttonSection: {

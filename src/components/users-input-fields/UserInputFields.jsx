@@ -3,12 +3,11 @@ import React, {
 } from 'react';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import Scrollbar from 'react-scrollbars-custom';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import config from '../../appConf';
-import UserSearchBar from '../user-search-bar/UserSearchBar';
+import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 import UsersService from '../../services/UsersService';
 import GroupsService from '../../services/GroupsService';
 import userContext from '../../stores/userStore';
@@ -83,21 +82,19 @@ const UserInputFields = ({ group, setGroup }) => {
 
   return (
     <div className={classes.root}>
-      <UserSearchBar setSelectedUser={setSelectedUser} />
+      <AddUserSearchBar setSelectedUser={setSelectedUser} />
       <div className={classes.scrollBar}>
-        <Scrollbar>
-          <div className={classes.fieldList}>
-            {renderCurrentUserField()}
-            {populatedUsers.length > 0 ? populatedUsers.map((user) => (
-              renderUserInputField(user)
-            ))
-              : (
-                <Typography className={classes.message}>
-                  {t('message.noFriendsFound')}
-                </Typography>
-              )}
-          </div>
-        </Scrollbar>
+        <div className={classes.fieldList}>
+          {renderCurrentUserField()}
+          {populatedUsers.length > 0 ? populatedUsers.map((user) => (
+            renderUserInputField(user)
+          ))
+            : (
+              <Typography className={classes.message}>
+                {t('message.noFriendsFound')}
+              </Typography>
+            )}
+        </div>
       </div>
     </div>
   );

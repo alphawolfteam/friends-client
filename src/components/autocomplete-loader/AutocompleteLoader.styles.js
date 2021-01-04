@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
   },
   optionCard: {
-    width: '17em',
+    width: '19em',
     borderRadius: 0,
     border: '0.08vw solid grey',
     display: 'flex',

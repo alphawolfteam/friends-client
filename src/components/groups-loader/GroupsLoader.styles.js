@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
   img: {
     width: '6em',
     height: '6em',
-    marginRight: '5em',
+    marginRight: '3em',
     borderRadius: '50%',
     backgroundColor: 'lightgrey',
   },

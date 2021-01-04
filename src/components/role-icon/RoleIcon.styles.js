@@ -3,15 +3,21 @@ import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
+    left: '0em',
+    top: '0em',
+    position: 'absolute',
+    height: '50%',
+    borderRight: `0.1em solid ${config.style.primaryColor}`,
+    transform: 'skew(-45deg)',
   },
   icon: {
-    left: '0.2em',
-    top: '0.2em',
-    position: 'absolute',
+    right: '0.4em',
+    top: '0.1em',
+    position: 'relative',
     fontSize: '1.5em',
     color: config.style.fontColor,
     cursor: 'auto',
-    // display: 'inline-block',
+    transform: 'skew(45deg)',
   },
 }));
 

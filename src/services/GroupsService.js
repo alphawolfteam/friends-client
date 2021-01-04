@@ -25,7 +25,7 @@ class GroupsService {
   }
 
   static getUserRoleCode(group, userId) {
-    let role = false;
+    let role;
     group.users.forEach((groupUser) => {
       if (userId === groupUser.id) {
         role = groupUser.role;

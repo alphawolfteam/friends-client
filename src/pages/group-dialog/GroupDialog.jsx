@@ -55,7 +55,7 @@ const GroupDialog = ({
   useEffect(async () => {
     // TODO: Add loader
     if (dialogLeaveAnswer === 'agree') {
-      await GroupService.removeUserFromGroup(group._id, currentUser.id);
+      await GroupService.removeUserFromGroup(group._id, currentUser.genesisId);
       // TODO: Update only
       refreshData();
       onClose();

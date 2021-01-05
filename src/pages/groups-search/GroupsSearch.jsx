@@ -33,7 +33,7 @@ const GroupsSearch = () => {
 
   const handleInit = useCallback(() => {
     setIsLoading(true);
-    GroupsService.getPrivateGroups(currentUser.id)
+    GroupsService.getPrivateGroups(currentUser.genesisId)
       .then((res) => {
         setFilteredPrivateGroups(res);
         setFilteredPublicGroups(undefined);
@@ -54,7 +54,7 @@ const GroupsSearch = () => {
     } else {
       setIsLoading(true);
       Promise.all([
-        GroupsService.searchPrivateGroups(currentUser.id, value),
+        GroupsService.searchPrivateGroups(currentUser.genesisId, value),
         GroupsService.searchPublicGroups(value),
       ])
         .then((results) => {
@@ -68,7 +68,7 @@ const GroupsSearch = () => {
   }, []);
 
   const sortedPrivateGroups = useMemo(() => (
-    getSortedPrivateGroups(filteredPrivateGroups, currentUser.id)),
+    getSortedPrivateGroups(filteredPrivateGroups, currentUser.genesisId)),
   [filteredPrivateGroups, currentUser]);
 
   const renderHeader = () => (

@@ -32,7 +32,7 @@ const UserInputFields = ({ group, setGroup }) => {
   };
 
   const usersListToEdit = useMemo(
-    () => group.users.filter((groupUser) => groupUser.id !== currentUser.id),
+    () => group.users.filter((groupUser) => groupUser.id !== currentUser.genesisId),
     [group.users, currentUser],
   );
 
@@ -65,7 +65,7 @@ const UserInputFields = ({ group, setGroup }) => {
     <div className={classes.field}>
       <UserRaw
         user={currentUser}
-        role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.id))}
+        role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.genesisId))}
       />
     </div>
   );

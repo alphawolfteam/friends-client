@@ -87,7 +87,6 @@ class GroupsService {
     // TODO: Axios request
     // await axios.get(`/${groupId}/users`);
 
-    // await this.timeout(3000);
     const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
     return groupToFind.users;
   }

@@ -6,21 +6,21 @@ import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 import config from '../../appConf';
 
-const { getRoleByDisplayName } = config;
+const { getRoleByDisplayName, getRoleByCode } = config;
 
-const getUserIndex = (usersList, userToFind) => {
-  return usersList.map((user) => user.id).indexOf(userToFind.id);
+const getUserIndex = (usersList, userObjectToFind) => {
+  return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);
 };
 
-const UserRawActions = ({ user, initialRole, setGroup }) => {
+const UserRawActions = ({ userObject, setGroup }) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [role, setRole] = useState(initialRole);
+  const [role, setRole] = useState(getRoleByCode(userObject.role));
 
-  const handleRemoveUser = (userToRemove) => {
+  const handleRemoveUser = () => {
     setGroup((prevValue) => {
       const usersList = [...prevValue.users];
-      usersList.splice(getUserIndex(usersList, userToRemove), 1);
+      usersList.splice(getUserIndex(usersList, userObject), 1);
       return { ...prevValue, users: usersList };
     });
   };
@@ -29,7 +29,7 @@ const UserRawActions = ({ user, initialRole, setGroup }) => {
     setGroup((prevValue) => {
       const usersList = [...prevValue.users];
       const newRole = getRoleByDisplayName(newRoleDisplayName);
-      usersList[getUserIndex(usersList, user)].role = newRole.code;
+      usersList[getUserIndex(usersList, userObject)].role = newRole.code;
       setRole(newRole);
       return { ...prevValue, users: usersList };
     });
@@ -46,7 +46,7 @@ const UserRawActions = ({ user, initialRole, setGroup }) => {
       <Tooltip title={t('tooltip.delete')}>
         <Delete
           className={classes.iconButton}
-          onClick={() => handleRemoveUser(user)}
+          onClick={() => handleRemoveUser()}
         />
       </Tooltip>
     </Typography>

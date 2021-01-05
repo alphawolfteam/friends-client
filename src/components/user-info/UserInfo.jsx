@@ -2,18 +2,16 @@ import React from 'react';
 import { Tooltip } from '@material-ui/core';
 import useStyles from './UserInfo.styles';
 
-const UserRaw = ({ user }) => {
+const UserRaw = ({ userObject }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      {user.name.firstName}
-      {' '}
-      {user.name.lastName}
-      {user.hierarchyFlat && (
-        <Tooltip title={user.hierarchyFlat}>
+      {userObject.user.fullName}
+      {userObject.user.hierarchyFlat && (
+        <Tooltip title={userObject.user.hierarchyFlat}>
           <div className={classes.hierarchy}>
-            {user.hierarchyFlat}
+            {userObject.user.hierarchyFlat}
           </div>
         </Tooltip>
       )}

@@ -29,7 +29,6 @@ const EditGroupDialog = ({
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const [openAlertMessage, setOpenAlertMessage] = useState(false);
-
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
   useEffect(async () => {

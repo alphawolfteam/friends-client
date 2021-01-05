@@ -18,7 +18,7 @@ const MAX_TAGS_COUNT = 3;
 const GroupRaw = ({
   searchValue,
   group,
-  setSelectedGroup,
+  setSelectedGroupId,
   currentUserRole,
 }) => {
   const classes = useStyles();
@@ -58,7 +58,7 @@ const GroupRaw = ({
     <Card className={classes.root}>
       <ButtonBase
         className={classes.buttonBase}
-        onClick={() => setSelectedGroup(group)}
+        onClick={() => setSelectedGroupId(group._id)}
       >
         <RoleIcon role={currentUserRole} />
         <CardContent className={classes.cardContent}>

@@ -2,7 +2,7 @@
 // import axios from "axios";
 
 // TODO: Delete
-import { groups } from './MockData';
+import { groups, users } from './MockData';
 
 // TODO: delete
 const isIncludesInSentence = (sentence, portion) => (
@@ -26,7 +26,7 @@ class GroupsService {
   }
 
   static _getUserFromList(usersList, userIdToFind) {
-    return usersList.find((user) => user.id === userIdToFind);
+    return usersList.find((userObject) => userObject.user.id === userIdToFind);
   }
 
   static getUserRoleCode(group, userId) {
@@ -39,11 +39,21 @@ class GroupsService {
     return role;
   }
 
+  static getUserRoleCodeFromPopulatedGroup(group, userId) {
+    let role;
+    group.users.forEach((userObject) => {
+      if (userId === userObject.user.id) {
+        role = userObject.role;
+      }
+    });
+    return role;
+  }
+
   static async searchPrivateGroups(userId, searchValue) {
     // TODO: Axios request
 
     await this.timeout(3000);
-    return (await this.getPrivateGroups(userId))
+    return (await this.getUserGroups(userId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags
           .filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);
@@ -64,14 +74,13 @@ class GroupsService {
       )).length > 0);
   }
 
-  static async getPrivateGroups(userId) {
+  static async getUserGroups(userId) {
     // TODO: Axios request
     // const { data } = await axios.get(`/groups/users/:${userId}`);
     // return data;
 
     await this.timeout(3000);
-    return groups.filter((group) => group.type === 'private'
-      && group.users.map((user) => user.id).includes(userId));
+    return groups.filter((group) => group.users.map((user) => user.id).includes(userId));
   }
 
   static async createGroup(newGroup) {
@@ -80,15 +89,30 @@ class GroupsService {
 
     await this.timeout(3000);
     const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
-    groups.push({ ...newGroup, _id: uint32.toString(16) });
+    groups.push({
+      ...newGroup,
+      users: [...newGroup.users.map((userObject) => {
+        return { id: userObject.user.id, role: userObject.role };
+      })],
+      _id: uint32.toString(16),
+    });
   }
 
-  static async getGroupUsers(groupId) {
+  static async getGroupById(groupId) {
     // TODO: Axios request
-    // await axios.get(`/${groupId}/users`);
 
+    // await this.timeout(3000);
     const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
-    return groupToFind.users;
+    return {
+      ...groupToFind,
+      users: groupToFind.users
+        .map((groupUser) => {
+          return {
+            user: { ...users.find((user) => user.id === groupUser.id) },
+            role: groupUser.role,
+          };
+        }),
+    };
   }
 
   static async deleteGroup(groupId) {
@@ -124,26 +148,28 @@ class GroupsService {
   }
 
   static _removeUsersFromGroup(groupId, prevUsersList, newUsersList) {
-    prevUsersList.forEach((prevUser) => {
-      if (!this.isUserExist(newUsersList, prevUser.id)) {
-        this.removeUserFromGroup(groupId, prevUser.id);
+    prevUsersList.forEach((prevUserObject) => {
+      if (!this.isUserExist(newUsersList, prevUserObject.user.id)) {
+        this.removeUserFromGroup(groupId, prevUserObject.user.id);
       }
     });
   }
 
   static _addUsersToGroup(groupId, prevUsersList, newUsersList) {
-    newUsersList.forEach((newUser) => {
-      if (!this.isUserExist(prevUsersList, newUser.id)) {
-        this._addUserToGroup(groupId, newUser);
+    newUsersList.forEach((newUserObject) => {
+      if (!this.isUserExist(prevUsersList, newUserObject.user.id)) {
+        this._addUserToGroup(groupId, newUserObject);
       }
     });
   }
 
   static _updateUsersRole(groupId, prevUsersList, newUsersList) {
-    newUsersList.forEach((newUser) => {
-      if (this.isUserExist(prevUsersList, newUser.id)
-        && this._getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
-        this._updateUserRole(groupId, newUser.id, newUser.role);
+    newUsersList.forEach((newUserObject) => {
+      if (this.isUserExist(prevUsersList, newUserObject.user.id)
+        && this._getUserFromList(
+          prevUsersList, newUserObject.user.id,
+        ).role !== newUserObject.role) {
+        this._updateUserRole(groupId, newUserObject.user.id, newUserObject.role);
       }
     });
   }
@@ -154,7 +180,7 @@ class GroupsService {
 
     await this.timeout(3000);
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.users.push(newUser);
+    groupToUpdate.users.push({ id: newUser.user.id, role: newUser.role });
   }
 
   static async _updateUserRole(groupId, userId, newRole) {

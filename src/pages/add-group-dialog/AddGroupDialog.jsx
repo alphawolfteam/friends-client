@@ -28,7 +28,10 @@ const AddGroupDialog = ({ open, onClose }) => {
     type: DEFAULT_TYPE,
     users: [
       {
-        id: currentUser.genesisId,
+        user: {
+          id: currentUser.genesisId,
+          fullName: `${currentUser.name.firstName} ${currentUser.name.lastName}`,
+        },
         role: getRole('manager').code,
       }],
     icon: DEFAULT_ICON,

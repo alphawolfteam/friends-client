@@ -32,7 +32,6 @@ const GroupDialog = ({
   group,
   open,
   onClose,
-  currentUserRole,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -42,11 +41,10 @@ const GroupDialog = ({
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
-  const [groupUsers, setGroupUsers] = useState([]);
-
-  useEffect(async () => {
-    setGroupUsers(await GroupService.getGroupUsers(group._id));
-  }, []);
+  const currentUserRole = GroupService.getUserRoleCodeFromPopulatedGroup(
+    group,
+    currentUser.genesisId,
+  );
 
   const handleEditGroup = () => {
     setOpenEditGroupDialog(true);
@@ -111,7 +109,7 @@ const GroupDialog = ({
         <People className={classes.titleIcon} />
         {t('title.friends')}
       </Typography>
-      <UsersList users={groupUsers} group={group} />
+      <UsersList users={group.users} />
     </div>
   );
 
@@ -174,7 +172,7 @@ const GroupDialog = ({
           open={openEditGroupDialog}
           onCancel={() => setOpenEditGroupDialog(false)}
           onClose={() => onClose()}
-          group={{ ...group, users: groupUsers }}
+          group={group}
         />
       ) : renderGroupDialog()}
     </>

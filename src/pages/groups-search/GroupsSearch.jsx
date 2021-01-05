@@ -33,7 +33,7 @@ const GroupsSearch = () => {
 
   const handleInit = useCallback(() => {
     setIsLoading(true);
-    GroupsService.getPrivateGroups(currentUser.genesisId)
+    GroupsService.getUserGroups(currentUser.genesisId)
       .then((res) => {
         setFilteredPrivateGroups(res);
         setFilteredPublicGroups(undefined);

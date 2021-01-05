@@ -4,7 +4,7 @@ import UserRawActions from '../user-raw-actions/UserRawActions';
 import UserInfo from '../user-info/UserInfo';
 import useStyles from './EditableUserRaw.styles';
 
-const EditableUserRaw = ({ user, initialRole, setGroup }) => {
+const EditableUserRaw = ({ userObject, setGroup }) => {
   const classes = useStyles();
 
   return (
@@ -14,10 +14,9 @@ const EditableUserRaw = ({ user, initialRole, setGroup }) => {
           component="span"
           className={classes.main}
         >
-          <UserInfo user={user} />
+          <UserInfo userObject={userObject} />
           <UserRawActions
-            user={user}
-            initialRole={initialRole}
+            userObject={userObject}
             setGroup={setGroup}
           />
         </Typography>

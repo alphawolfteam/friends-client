@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import GroupDialog from '../../pages/group-dialog/GroupDialog';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../stores/userStore';
@@ -8,7 +8,20 @@ import useStyles from './GroupsList.styles';
 const GroupsList = ({ groups, searchValue }) => {
   const classes = useStyles();
   const currentUser = useContext(userContext);
+  const [selectedGroupId, setSelectedGroupId] = useState(undefined);
   const [selectedGroup, setSelectedGroup] = useState(undefined);
+
+  useEffect(() => {
+    if (selectedGroupId !== undefined) {
+      // TODO: Add loader
+      GroupService.getGroupById(selectedGroupId)
+        .then((res) => {
+          setSelectedGroup(res);
+        })
+      // TODO: Error handler
+        .catch((e) => console.log(e));
+    }
+  }, [selectedGroupId]);
 
   return (
     <>
@@ -17,7 +30,7 @@ const GroupsList = ({ groups, searchValue }) => {
           <GroupRaw
             key={group._id}
             group={group}
-            setSelectedGroup={setSelectedGroup}
+            setSelectedGroupId={(value) => setSelectedGroupId(value)}
             searchValue={searchValue}
             currentUserRole={
               GroupService.getUserRoleCode(group, currentUser.genesisId)
@@ -25,14 +38,14 @@ const GroupsList = ({ groups, searchValue }) => {
           />
         ))}
       </div>
-      {selectedGroup && (
+      {selectedGroup && selectedGroupId && (
         <GroupDialog
           group={selectedGroup}
-          open={selectedGroup !== undefined}
-          onClose={() => setSelectedGroup(undefined)}
-          currentUserRole={
-            GroupService.getUserRoleCode(selectedGroup, currentUser.genesisId)
-          }
+          open={selectedGroup !== undefined && selectedGroupId !== undefined}
+          onClose={() => {
+            setSelectedGroupId(undefined);
+            setSelectedGroup(undefined);
+          }}
         />
       )}
     </>

@@ -8,51 +8,35 @@ import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import config from '../../appConf';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
-import UsersService from '../../services/UsersService';
 import GroupsService from '../../services/GroupsService';
 import userContext from '../../stores/userStore';
 
-const { getRole, getRoleByCode } = config;
+const { getRole } = config;
 
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
-  const [populatedUsers, setPopulatedUsers] = useState([]);
 
   const addUser = (newUser, userRoleCode) => {
     setGroup((prevValue) => ({
       ...prevValue,
       users: [
         ...prevValue.users,
-        { id: newUser.id, role: userRoleCode },
+        { user: { ...newUser }, role: userRoleCode },
       ],
     }));
   };
 
   const usersListToEdit = useMemo(
-    () => group.users.filter((groupUser) => groupUser.id !== currentUser.genesisId),
+    () => group.users.filter((userObject) => userObject.user.id !== currentUser.genesisId),
     [group.users, currentUser],
   );
 
   const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
-    return GroupsService.getUserRoleCode(group, firstUser.id)
-      - GroupsService.getUserRoleCode(group, secondUser.id);
-  }),
-  [usersListToEdit]);
-
-  // TODO: Maybe delete
-  // TODO: On changeing page
-  useEffect(async () => {
-    // TODO: Populate first 5 users
-    setPopulatedUsers(
-      await UsersService.getPopulatedUsersList(sortedUsers.map((user) => user.id)),
-    );
-  }, [sortedUsers]);
-
-  // TODO: (?) Add useEffect that when changing someone from and to be a manager
-  // its reset the pages to 1 and populates the users again
+    return firstUser.role - secondUser.role;
+  }), [usersListToEdit]);
 
   useEffect(() => {
     if (selectedUser && !GroupsService.isUserExist(group.users, selectedUser.id)) {
@@ -64,17 +48,21 @@ const UserInputFields = ({ group, setGroup }) => {
   const renderCurrentUserField = () => (
     <div className={classes.field}>
       <UserRaw
-        user={currentUser}
-        role={getRoleByCode(GroupsService.getUserRoleCode(group, currentUser.genesisId))}
+        userObject={{
+          user: {
+            id: currentUser.genesisId,
+            fullName: `${currentUser.name.firstName} ${currentUser.name.lastName}`,
+          },
+          role: getRole('manager').code,
+        }}
       />
     </div>
   );
 
-  const renderUserInputField = (user) => (
-    <div key={user.id} className={classes.field}>
+  const renderUserInputField = (userObject) => (
+    <div key={userObject.user.id} className={classes.field}>
       <EditableUserRaw
-        user={user}
-        initialRole={getRoleByCode(GroupsService.getUserRoleCode(group, user.id))}
+        userObject={userObject}
         setGroup={setGroup}
       />
     </div>
@@ -86,7 +74,7 @@ const UserInputFields = ({ group, setGroup }) => {
       <div className={classes.scrollBar}>
         <div className={classes.fieldList}>
           {renderCurrentUserField()}
-          {populatedUsers.length > 0 ? populatedUsers.map((user) => (
+          {sortedUsers.length > 0 ? sortedUsers.map((user) => (
             renderUserInputField(user)
           ))
             : (

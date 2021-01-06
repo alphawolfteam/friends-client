@@ -40,7 +40,9 @@ const GroupDialog = ({
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
+  const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
+  const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const currentUserRole = GroupService.getUserRoleCodeFromPopulatedGroup(
     group,
     currentUser.genesisId,
@@ -60,8 +62,20 @@ const GroupDialog = ({
     }
   }, [dialogLeaveAnswer]);
 
+  useEffect(async () => {
+    // TODO: Add loader
+    if (dialogDeleteAnswer === 'agree') {
+      await GroupService.deleteGroup(group._id);
+      // TODO: Update only
+      refreshData();
+      onClose();
+    }
+  }, [dialogDeleteAnswer]);
+
   const handleLeaveGroup = () => {
-    if (currentUserRole === getRole('manager').code
+    if (group.users.length === 1) {
+      setOpenAlertDeleteDialog(true);
+    } else if (currentUserRole === getRole('manager').code
       && getManagersCount(group.users) === 1) {
       setOpenAlertLeaveMessage(true);
     } else {
@@ -155,6 +169,13 @@ const GroupDialog = ({
         open={openAlertLeaveDialog}
         onClose={() => setOpenAlertLeaveDialog(false)}
         handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
+        preferredAnswer="disagree"
+      />
+      <AlertDialogTemplate
+        message={t('alertMessage.theGroupWillBeDeleted')}
+        open={openAlertDeleteDialog}
+        onClose={() => setOpenAlertDeleteDialog(false)}
+        handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
         preferredAnswer="disagree"
       />
       <AlertMessageTemplate

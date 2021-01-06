@@ -45,6 +45,7 @@ const resources = {
       },
       alertMessage: {
         cantLeaveGroup: 'כדי לצאת מהקבוצה מנו מנהלים חדשים :)',
+        theGroupWillBeDeleted: 'אוי חבל הקבוצה תמחק.. לצאת מהקבוצה?',
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         saveChanges: 'נראה טוב! לשמור את השינויים?',

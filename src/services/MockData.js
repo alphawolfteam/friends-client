@@ -4,6 +4,26 @@ import groupIconsCodes from '../images/group-icons/group-icons-base64-codes';
 
 const groups = [
   {
+    name: 'רק אנייי',
+    description: 'רק אני פהה',
+    tags: [{ label: 'לבד' }],
+    type: 'private',
+    users: [
+      {
+        role: 0,
+        id: '5e5688324203fc40043591aa',
+      },
+    ],
+    lastModified: new Date(),
+    createdAt: new Date(),
+    modifiedBy: '5e5688324203fc40043591aa',
+    exchangeAddress: '',
+    externalSystems: {},
+    createdBy: '5e5688324203fc40043591aa',
+    icon: groupIconsCodes[0],
+    _id: '456416344',
+  },
+  {
     name: 'כל דולפין',
     description: 'כללללל דולפין',
     tags: [{ label: 'רמת אביב' }],

@@ -3,10 +3,11 @@ import config from '../appConf';
 
 const { getRole } = config;
 
-export const getSortedPrivateGroups = (privateGroups, userId) => {
+export const getSortedGroups = (groupsList, userId) => {
   const ownedGroups = [];
   const unownedGroups = [];
-  privateGroups.forEach((group) => {
+
+  groupsList.forEach((group) => {
     if (GroupsService.getUserRoleCode(group, userId) === getRole('manager').code) {
       ownedGroups.push(group);
     } else {

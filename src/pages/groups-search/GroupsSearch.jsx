@@ -13,7 +13,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
-import { getSortedPrivateGroups } from '../../shared/functions';
+import { getSortedGroups } from '../../shared/functions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
   '../../components/scrollable-groups-result/ScrollableGroupsResult';
@@ -24,7 +24,8 @@ const MIN_SEARCH_VALUE_LENGTH = 2;
 const GroupsSearch = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [filteredPrivateGroups, setFilteredPrivateGroups] = useState([]);
+  const [currentUserGroups, setCurrentUserGroups] = useState(undefined);
+  const [filteredPrivateGroups, setFilteredPrivateGroups] = useState(undefined);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState(undefined);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +36,8 @@ const GroupsSearch = () => {
     setIsLoading(true);
     GroupsService.getUserGroups(currentUser.genesisId)
       .then((res) => {
-        setFilteredPrivateGroups(res);
+        setCurrentUserGroups(res);
+        setFilteredPrivateGroups(undefined);
         setFilteredPublicGroups(undefined);
         setSearchValue('');
         setIsLoading(false);
@@ -58,6 +60,7 @@ const GroupsSearch = () => {
         GroupsService.searchPublicGroups(value),
       ])
         .then((results) => {
+          setCurrentUserGroups(undefined);
           setFilteredPrivateGroups(results[0]);
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
@@ -67,9 +70,23 @@ const GroupsSearch = () => {
     }
   }, []);
 
-  const sortedPrivateGroups = useMemo(() => (
-    getSortedPrivateGroups(filteredPrivateGroups, currentUser.genesisId)),
-  [filteredPrivateGroups, currentUser]);
+  const sortedCurrentUserGroups = useMemo(() => {
+    if (currentUserGroups) {
+      return getSortedGroups(currentUserGroups, currentUser.genesisId);
+    }
+  }, [currentUserGroups, currentUser]);
+
+  const sortedPrivateGroups = useMemo(() => {
+    if (filteredPrivateGroups) {
+      return getSortedGroups(filteredPrivateGroups, currentUser.genesisId);
+    }
+  }, [filteredPrivateGroups, currentUser]);
+
+  const sortedPublicGroups = useMemo(() => {
+    if (filteredPublicGroups) {
+      return getSortedGroups(filteredPublicGroups, currentUser.genesisId);
+    }
+  }, [filteredPublicGroups, currentUser]);
 
   const renderHeader = () => (
     <div className={classes.header}>
@@ -93,8 +110,9 @@ const GroupsSearch = () => {
       {renderHeader()}
       <refreshDataContext.Provider value={() => handleInit()}>
         <ScrollableGroupsResult
+          currentUserGroups={sortedCurrentUserGroups}
           privateGroups={sortedPrivateGroups}
-          publicGroups={filteredPublicGroups}
+          publicGroups={sortedPublicGroups}
           searchValue={searchValue}
           setOpenAddGroupDialog={(value) => setOpenAddGroupDialog(value)}
           isLoading={isLoading}

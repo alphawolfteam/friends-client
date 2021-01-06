@@ -8,6 +8,7 @@ import TextDivider from '../text-divider/TextDivider';
 import useStyles from './ScrollableGroupsResult.styles';
 
 const ScrollableGroupsResult = ({
+  currentUserGroups,
   privateGroups,
   publicGroups,
   searchValue,
@@ -23,9 +24,9 @@ const ScrollableGroupsResult = ({
     </Typography>
   );
 
-  const noPrivateGroupsFound = (
+  const noCurrentUserGroupsFound = (
     <div className={classes.startMessage}>
-      {t('message.noPrivateGroupsFound')}
+      {t('message.noCurrentUserGroupsFound')}
       <GroupAdd
         className={classes.button}
         onClick={() => setOpenAddGroupDialog(true)}
@@ -33,9 +34,16 @@ const ScrollableGroupsResult = ({
     </div>
   );
 
+  const currentUserGroupsList = (
+    <>
+      <TextDivider text={t('title.currentUserGroups')} />
+      <GroupsList groups={currentUserGroups} searchValue={searchValue} />
+    </>
+  );
+
   const privateGroupsList = (
     <>
-      <TextDivider text={t('title.myGroups')} />
+      <TextDivider text={t('title.privateGroups')} />
       <GroupsList groups={privateGroups} searchValue={searchValue} />
     </>
   );
@@ -48,15 +56,17 @@ const ScrollableGroupsResult = ({
   );
 
   const renderGroupsList = () => {
-    if (privateGroups.length === 0 && (publicGroups && publicGroups.length === 0)) {
+    if (((privateGroups && privateGroups.length === 0)
+    && (publicGroups && publicGroups.length === 0))) {
       return noGroupsFound;
     }
-    if (privateGroups.length === 0 && !publicGroups) {
-      return noPrivateGroupsFound;
+    if (currentUserGroups && currentUserGroups.length === 0) {
+      return noCurrentUserGroupsFound;
     }
     return (
       <>
-        {privateGroups.length > 0 && (privateGroupsList)}
+        {currentUserGroups && currentUserGroups.length > 0 && (currentUserGroupsList)}
+        {privateGroups && privateGroups.length > 0 && (privateGroupsList)}
         {publicGroups && publicGroups.length > 0 && (publicGroupsList)}
       </>
     );

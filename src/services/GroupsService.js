@@ -53,7 +53,7 @@ class GroupsService {
     // TODO: Axios request
 
     await this.timeout(3000);
-    return (await this.getUserGroups(userId))
+    return groups.filter((group) => group.type === 'private' && group.users.map((user) => user.id).includes(userId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags
           .filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);

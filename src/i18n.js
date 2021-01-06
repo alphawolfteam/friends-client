@@ -7,7 +7,8 @@ const resources = {
       title: {
         description: 'תיאור',
         friends: 'חברים',
-        myGroups: 'הקבוצות שלי',
+        currentUserGroups: 'הקבוצות שלי',
+        privateGroups: 'קבוצות פרטיות',
         publicGroups: 'קבוצות ציבוריות',
       },
       button: {
@@ -38,7 +39,7 @@ const resources = {
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
-        noPrivateGroupsFound: 'אין לכם קבוצות פרטיות! צרו אחת :)',
+        noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',
         noFriendsFound: '(: אין חברים בקבוצה.. צרפו כמה',
       },

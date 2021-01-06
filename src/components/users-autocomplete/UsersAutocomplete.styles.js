@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: '3%',
     marginRight: '3%',
     marginBottom: '4%',
-    background: 'white',
+    background: 'none',
     boxShadow: 'none',
     direction: 'rtl',
     display: 'flex',

@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     border: `0.1vw solid ${config.style.primaryColor}`,
     background: 'white',
+    zIndex: 1000,
     borderRadius: 25,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.1vw 0.2vw, rgba(0, 0, 0, 0.23) 0 0.1vw 0.2vw',
   },

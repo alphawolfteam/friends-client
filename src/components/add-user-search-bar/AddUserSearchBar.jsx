@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
-import AutocompleteLoader from '../autocomplete-loader/AutocompleteLoader';
 
 const MIN_SEARCH_VALUE_LENGTH = 2;
 
@@ -12,18 +11,15 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
 
   useEffect(async () => {
     if (searchValue.length < MIN_SEARCH_VALUE_LENGTH) {
       setOptions([]);
     } else {
-      setIsLoading(true);
       UsersService.searchUsers(searchValue)
         .then((res) => {
           setOptions(res);
-          setIsLoading(false);
         })
         // TODO: Error handler
         .catch((e) => console.log(e));
@@ -43,16 +39,14 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         onChange={(e) => handleOnChange(e)}
         className={classes.searchBar}
       />
-      {isLoading ? <AutocompleteLoader /> : (
-        <UsersAutocomplete
-          options={options}
-          setSelectedOption={(selectedOption) => {
-            setSelectedUser(selectedOption);
-            setSearchValue('');
-          }}
-          setOptions={(value) => setOptions(value)}
-        />
-      )}
+      <UsersAutocomplete
+        options={options}
+        setSelectedOption={(selectedOption) => {
+          setSelectedUser(selectedOption);
+          setSearchValue('');
+        }}
+        setOptions={(value) => setOptions(value)}
+      />
     </div>
   );
 };

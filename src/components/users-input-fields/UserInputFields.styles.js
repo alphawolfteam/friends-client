@@ -6,9 +6,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: '1em',
   },
   scrollBar: {
     width: '90%',
+    marginTop: '4em',
     height: '10em',
     overflow: 'auto',
   },

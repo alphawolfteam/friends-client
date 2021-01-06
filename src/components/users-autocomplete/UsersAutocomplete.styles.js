@@ -9,29 +9,25 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     top: '10%',
     zIndex: 1,
-    borderRadius: 0,
   },
   optionsDiv: {
     position: 'absolute',
   },
   optionCard: {
     width: '19em',
-    borderRadius: 0,
     border: '0.08vw solid grey',
+    borderRadius: 0,
     direction: 'rtl',
     display: 'flex',
     wordBreak: 'break-all',
+    '&:hover': {
+      background: '#EEEEEE',
+    },
   },
   optionContent: {
     fontWeight: '500',
     fontFamily: config.style.fontFamily,
     fontSize: '1em',
-  },
-  icon: {
-    paddingLeft: '1%',
-    '&:hover': {
-      color: 'lightgrey',
-    },
   },
 }));
 

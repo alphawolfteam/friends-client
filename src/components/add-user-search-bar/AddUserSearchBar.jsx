@@ -3,7 +3,7 @@ import { InputBase } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../services/UsersService';
-import Autocomplete from '../autocomplete/Autocomplete';
+import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
 import AutocompleteLoader from '../autocomplete-loader/AutocompleteLoader';
 
 const MIN_SEARCH_VALUE_LENGTH = 2;
@@ -44,7 +44,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         className={classes.searchBar}
       />
       {isLoading ? <AutocompleteLoader /> : (
-        <Autocomplete
+        <UsersAutocomplete
           options={options}
           setSelectedOption={(selectedOption) => {
             setSelectedUser(selectedOption);

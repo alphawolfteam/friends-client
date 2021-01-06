@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     background: config.style.primaryColor,
   },
   searchIcon: {
-    color: config.style.secondaryColor,
+    color: config.style.primaryColor,
     background: 'none',
     boxShadow: 'none',
     width: '8%',
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: '0.5em',
     '&:hover': {
       background: 'none',
-      color: config.style.primaryColor,
+      color: config.style.secondaryColor,
     },
   },
   input: {

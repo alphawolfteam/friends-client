@@ -16,23 +16,25 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
       && (
       <div className={classes.root}>
         <hr className={classes.divider} />
-        {options.map((userObject) => (
-          <Card
-            key={userObject.id}
-            className={classes.optionCard}
-          >
-            <Typography
-              className={classes.optionContent}
-              onClick={() => handleOnClick(userObject)}
+        <div className={classes.optionsList}>
+          {options.map((userObject) => (
+            <Card
+              key={userObject.id}
+              className={classes.optionCard}
             >
-              <strong>
-                {userObject.fullName}
-              </strong>
-              {'- '}
-              {userObject.hierarchyFlat}
-            </Typography>
-          </Card>
-        ))}
+              <Typography
+                className={classes.optionContent}
+                onClick={() => handleOnClick(userObject)}
+              >
+                <strong>
+                  {userObject.fullName}
+                </strong>
+                {'- '}
+                {userObject.hierarchyFlat}
+              </Typography>
+            </Card>
+          ))}
+        </div>
       </div>
       )}
     </>

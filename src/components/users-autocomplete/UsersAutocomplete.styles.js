@@ -6,8 +6,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    position: 'relative',
-    zIndex: 1,
+    overflow: 'hidden',
   },
   divider: {
     border: '0',
@@ -17,8 +16,15 @@ const useStyles = makeStyles(() => ({
     height: '0.01vh',
     backgroundColor: config.style.primaryColor,
   },
+  optionsList: {
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    height: '50%',
+    minHeight: '50%',
+  },
   optionCard: {
     width: '17em',
+    minHeight: '3em',
     marginLeft: '3%',
     marginRight: '3%',
     marginBottom: '4%',

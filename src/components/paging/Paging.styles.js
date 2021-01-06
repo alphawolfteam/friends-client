@@ -7,12 +7,11 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '95%',
-    minHeight: '95%',
+    height: '100%',
+    minHeight: '100%',
   },
   page: {
     position: 'relative',
-    marginBottom: '5%',
     minHeight: '75%',
     height: '75%',
     display: 'flex',
@@ -22,7 +21,6 @@ const useStyles = makeStyles(() => ({
     overflowX: 'hidden',
   },
   buttonSection: {
-    marginTop: '3%',
     width: '10%',
     display: 'flex',
     justifyContent: 'center',

@@ -13,10 +13,10 @@ class AuthService {
     //   // TODO: Redirect to auth service
     //   window.location.replace(config.authServiceURI);
     // } else {
-    // axios.interceptors.request.use((requestsConfig) => {
-    //   requestsConfig.headers.Authorization = `Bearer ${cookie}`;
-    //   return requestsConfig;
-    // });
+    //   axios.interceptors.request.use((requestsConfig) => {
+    //     requestsConfig.headers.Authorization = `Bearer ${cookie}`;
+    //     return requestsConfig;
+    //   });
     //   return jwt_decode(cookie).user;
     // }
     return currentUser;

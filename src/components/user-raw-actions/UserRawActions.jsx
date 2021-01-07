@@ -4,9 +4,7 @@ import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
-import config from '../../appConf';
-
-const { getRoleByDisplayName, getRoleByValue } = config;
+import { getRoleByDisplayName, getRoleByValue } from '../../utils/sharedFunctions';
 
 const getUserIndex = (usersList, userObjectToFind) => {
   return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);

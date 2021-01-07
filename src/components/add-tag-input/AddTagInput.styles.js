@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -12,13 +11,13 @@ const useStyles = makeStyles(() => ({
     border: '0.1vw solid grey',
     borderRadius: 30,
     '&:focus, &:hover': {
-      border: `0.1vw solid ${config.style.primaryColor}`,
+      border: `0.1vw solid ${theme.palette.primary.main}`,
     },
     marginBottom: '3%',
   },
   input: {
     direction: 'rtl',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     paddingRight: '2%',
     fontSize: '1em',
     fontWeight: '600',
@@ -30,7 +29,7 @@ const useStyles = makeStyles(() => ({
     marginLeft: '5%',
     cursor: 'pointer',
     '&:hover': {
-      color: config.style.primaryColor,
+      color: theme.palette.primary.main,
     },
   },
 }));

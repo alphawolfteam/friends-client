@@ -1,22 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import useStyles from './AddGroupDialog.styles';
 import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
-import config from '../../appConf';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 import GroupsService from '../../services/GroupsService';
+import { getRole } from '../../utils/sharedFunctions';
 
-const { getRole } = config;
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
 
 const AddGroupDialog = ({ open, onClose }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
@@ -57,18 +54,10 @@ const AddGroupDialog = ({ open, onClose }) => {
 
   const dialogActions = (
     <>
-      <Button
-        variant="contained"
-        className={classes.button}
-        onClick={() => handleAdd()}
-      >
+      <Button onClick={() => handleAdd()}>
         {t('button.add')}
       </Button>
-      <Button
-        variant="contained"
-        className={classes.button}
-        onClick={() => onClose()}
-      >
+      <Button onClick={() => onClose()}>
         {t('button.cancel')}
       </Button>
     </>

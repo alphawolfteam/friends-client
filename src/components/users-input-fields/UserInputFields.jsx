@@ -6,12 +6,10 @@ import { useTranslation } from 'react-i18next';
 import useStyles from './UserInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
-import config from '../../appConf';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 import GroupsService from '../../services/GroupsService';
 import userContext from '../../stores/userStore';
-
-const { getRole } = config;
+import { getRole } from '../../utils/sharedFunctions';
 
 const UserInputFields = ({ group, setGroup }) => {
   const classes = useStyles();

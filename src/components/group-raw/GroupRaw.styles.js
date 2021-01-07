@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: '1%',
     width: '85%',
     borderRadius: 15,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.2vw 0.4vw, rgba(0, 0, 0, 0.23) 0 0.2vw 0.4vw',
-    border: `0.1vw solid ${config.style.primaryColor}`,
+    border: `0.1vw solid ${theme.palette.primary.main}`,
     '&:hover': {
       boxShadow: 'rgba(0, 0, 0, 0.25) 0 1vw 1.5vw, rgba(0, 0, 0, 0.22) 0px 0.5vw 0.5vw',
     },
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   cardContent: {
     direction: 'rtl',
-    color: config.style.fontColor,
+    color: theme.palette.font.main,
     padding: '0.5%',
     width: '100%',
     height: '13vh',
@@ -50,12 +49,12 @@ const useStyles = makeStyles(() => ({
     paddingRight: '1em',
   },
   groupAmount: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     fontWeight: '700',
   },
   groupId: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     direction: 'ltr',
     marginRight: '5%',
     textAlign: 'right',
@@ -63,7 +62,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: '700',
   },
   groupName: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     textAlign: 'right',
     width: '10vw',
     fontSize: '1.8em',

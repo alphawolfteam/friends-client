@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    border: `0.1vw solid ${config.style.primaryColor}`,
+    border: `0.1vw solid ${theme.palette.primary.main}`,
     background: 'white',
     maxHeight: '15em',
     zIndex: 1000,
@@ -21,8 +20,8 @@ const useStyles = makeStyles(() => ({
     width: '19rem',
     direction: 'rtl',
     fontSize: '0.9em',
-    color: config.style.primaryColor,
-    fontFamily: config.style.fontFamily,
+    color: theme.palette.primary.main,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
     position: 'relative',
   },

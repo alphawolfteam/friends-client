@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   message: {
-    fontFamily: config.style.fontFamily,
-    color: config.style.primaryColor,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.primary.main,
     fontWeight: '600',
     textAlign: 'center',
   },

@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: '25vw',
   },
   groupName: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
     fontSize: '1em',
     marginLeft: '2%',
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
   groupId: {
     direction: 'ltr',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
     fontSize: '1em',
     marginLeft: '2%',
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'rtl',
     display: 'flex',
     alignSelf: 'flex-end',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
   },
   groupDescription: {
@@ -62,14 +61,14 @@ const useStyles = makeStyles((theme) => ({
     width: '95%',
     overflow: 'auto',
     fontSize: '1rem',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     wordBreak: 'break-all',
   },
   closeButton: {
     position: 'absolute',
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: config.style.primaryColor,
+    color: theme.palette.primary.main,
   },
   img: {
     position: 'absolute',
@@ -91,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
   actions: {
     flex: '1 0 0',
   },
-  button: config.style.button,
 }));
 
 export default useStyles;

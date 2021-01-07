@@ -19,10 +19,8 @@ import TagsList from '../../components/tags-list/TagsList';
 import UsersList from '../../components/users-list/UsersList';
 import GroupsService from '../../services/GroupsService';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
-import config from '../../appConf';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
-
-const { getRole } = config;
+import { getRole } from '../../utils/sharedFunctions';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
   (user) => user.role === getRole('manager').value,
@@ -137,8 +135,6 @@ const GroupDialog = ({
     <div className={classes.actions}>
       {currentUserRole === getRole('manager').value && (
         <Button
-          variant="contained"
-          className={classes.button}
           onClick={() => handleEditGroup()}
         >
           {t('button.edit')}
@@ -146,8 +142,6 @@ const GroupDialog = ({
       )}
       {currentUserRole !== undefined && (
         <Button
-          variant="contained"
-          className={classes.button}
           onClick={() => handleLeaveGroup()}
         >
           {t('button.leaveGroup')}

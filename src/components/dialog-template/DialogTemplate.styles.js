@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginRight: theme.spacing(15),
     marginLeft: theme.spacing(15),
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
     fontSize: '2vw',
   },

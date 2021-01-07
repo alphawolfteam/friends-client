@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -24,11 +23,11 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '0.2%',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
   },
   message: {
-    fontFamily: config.style.fontFamily,
-    color: config.style.primaryColor,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.primary.main,
     fontWeight: '600',
     textAlign: 'center',
   },

@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '5rem',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '0.8rem',
     '&:before': {
       borderColor: 'grey',
@@ -14,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   item: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '0.8rem',
   },
 }));

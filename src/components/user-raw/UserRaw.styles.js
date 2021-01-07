@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: '1.5%',
     width: '90%',
@@ -21,7 +20,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     width: '100%',
   },
   role: {

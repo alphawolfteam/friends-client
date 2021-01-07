@@ -1,12 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1%',
     width: '65vw',
     height: '65vh',
-    background: config.style.backgroundColor,
+    background: theme.palette.background.main,
     borderRadius: 10,
     overflow: 'auto',
   },
@@ -15,11 +14,11 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
   },
   button: {
-    color: config.style.fontColor,
+    color: theme.palette.font.main,
     fontSize: '3em',
     borderRadius: '50%',
     '&:hover': {
-      color: config.style.primaryColor,
+      color: theme.palette.primary.main,
     },
   },
   loader: {
@@ -33,19 +32,19 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     direction: 'rtl',
     marginTop: '5em',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1.5vw',
     fontWeight: '600',
-    color: config.style.fontColor,
+    color: theme.palette.font.main,
   },
   message: {
     direction: 'rtl',
     marginTop: '2%',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1.5vw',
     textAlign: 'center',
     fontWeight: '600',
-    color: config.style.fontColor,
+    color: theme.palette.font.main,
   },
 }));
 

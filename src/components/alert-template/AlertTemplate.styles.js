@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
   },
   message: {
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     direction: 'rtl',
     fontWeight: '600',
     fontSize: '1.2vw',

@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'white',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
@@ -16,8 +15,8 @@ const useStyles = makeStyles(() => ({
     paddingRight: '1%',
   },
   username: {
-    color: config.style.fontColor,
-    fontFamily: config.style.fontFamily,
+    color: theme.palette.font.main,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1.3rem',
     fontWeight: '500',
   },

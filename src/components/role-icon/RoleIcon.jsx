@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCog, faUser } from '@fortawesome/free-solid-svg-icons';
 import useStyles from './RoleIcon.styles';
-import config from '../../appConf';
-
-const { getRole } = config;
+import { getRole } from '../../utils/sharedFunctions';
 
 const RoleIcon = ({ role }) => {
   const classes = useStyles();

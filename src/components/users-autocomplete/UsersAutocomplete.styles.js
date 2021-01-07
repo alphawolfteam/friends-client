@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -14,7 +13,7 @@ const useStyles = makeStyles(() => ({
     display: 'block',
     width: '90%',
     height: '0.05vh',
-    backgroundColor: config.style.primaryColor,
+    backgroundColor: theme.palette.primary.main,
   },
   optionsList: {
     overflowY: 'auto',
@@ -34,13 +33,13 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     wordBreak: 'break-all',
     '&:hover': {
-      background: '#EEEEEE',
+      background: theme.palette.hover.main,
       boxShadow: 'none',
     },
   },
   optionContent: {
     fontWeight: '500',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
   },
 }));

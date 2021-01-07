@@ -1,7 +1,17 @@
 import GroupsService from '../services/GroupsService';
 import config from '../appConf';
 
-const { getRole } = config;
+export const getRole = (role) => {
+  return config.roles.filter((currentRole) => currentRole.role === role)[0];
+};
+
+export const getRoleByValue = (roleValue) => {
+  return config.roles.filter((currentRole) => currentRole.value === roleValue)[0];
+};
+
+export const getRoleByDisplayName = (roleDisplayName) => {
+  return config.roles.filter((currentRole) => currentRole.displayName === roleDisplayName)[0];
+};
 
 export const getSortedGroupsByRole = (groupsList, userId) => {
   const ownedGroups = [];

@@ -1,14 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   label: {
     margin: '0.5%',
     paddingLeft: '5%',
-    border: `0.1vw solid ${config.style.primaryColor}`,
+    border: `0.1vw solid ${theme.palette.primary.main}`,
     backgroundColor: 'white',
-    fontFamily: config.style.fontFamily,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
     fontSize: '1em',
     maxWidth: '15em',
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   closeIcon: {
-    color: config.style.primaryColor,
+    color: theme.palette.primary.main,
   },
 }));
 

@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,7 +19,6 @@ const useStyles = makeStyles(() => ({
     paddingRight: '5%',
   },
   addButton: {
-    ...config.style.button,
     fontSize: '1em',
     padding: '0.2%',
     paddingRight: '0.5%',

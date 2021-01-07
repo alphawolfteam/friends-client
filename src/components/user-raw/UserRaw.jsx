@@ -2,9 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import UserInfo from '../user-info/UserInfo';
 import useStyles from './UserRaw.styles';
-import config from '../../appConf';
-
-const { getRole, getRoleByValue } = config;
+import { getRole, getRoleByValue } from '../../utils/sharedFunctions';
 
 const UserRaw = ({ userObject }) => {
   const classes = useStyles();

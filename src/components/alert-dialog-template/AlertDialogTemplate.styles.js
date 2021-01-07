@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
   },
   actions: {
@@ -10,18 +9,16 @@ const useStyles = makeStyles(() => ({
     width: '100%',
   },
   mainButton: {
-    ...config.style.button,
     '&:hover': {
-      backgroundColor: config.style.hoverColor,
+      backgroundColor: theme.palette.hover.main,
       color: 'grey',
     },
   },
   secondaryButton: {
-    ...config.style.button,
     backgroundColor: 'white',
-    color: config.style.primaryColor,
+    color: theme.palette.primary.main,
     '&:hover': {
-      backgroundColor: config.style.hoverColor,
+      backgroundColor: theme.palette.hover.main,
       color: 'grey',
     },
   },

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import useStyles from './AlertMessageTemplate.styles';
 import AlertTemplate from '../alert-template/AlertTemplate';
 
 const AlertMessageTemplate = ({ open, onClose, message }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
 
   return (
@@ -16,7 +14,6 @@ const AlertMessageTemplate = ({ open, onClose, message }) => {
       actions={(
         <Button
           onClick={() => onClose()}
-          className={classes.button}
         >
           {t('button.ok')}
         </Button>

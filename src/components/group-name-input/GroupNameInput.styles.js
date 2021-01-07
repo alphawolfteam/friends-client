@@ -1,11 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    ...config.style.input,
     zIndex: 1,
     direction: 'rtl',
+    border: '0.1vw solid grey',
+    '&:focus, &:hover': {
+      border: `0.1vw solid ${theme.palette.primary.main}`,
+    },
   },
 }));
 

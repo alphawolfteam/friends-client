@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
     width: '100%',
@@ -15,18 +14,18 @@ const useStyles = makeStyles(() => ({
   label: {
     direction: 'rtl',
     margin: '1.3%',
-    border: `0.1vw solid ${config.style.primaryColor}`,
+    border: `0.1vw solid ${theme.palette.primary.main}`,
     underline: 'auto',
     backgroundColor: 'white',
-    color: config.style.primaryColor,
-    fontFamily: config.style.fontFamily,
+    color: theme.palette.primary.main,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
     fontSize: '0.9rem',
     maxWidth: '10vw',
   },
   moreMessage: {
-    color: config.style.primaryColor,
-    fontFamily: config.style.fontFamily,
+    color: theme.palette.primary.main,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
     fontSize: '1vw',
   },

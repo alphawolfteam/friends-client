@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import config from '../../appConf';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     left: '0em',
     top: '0em',
@@ -9,7 +8,7 @@ const useStyles = makeStyles(() => ({
     minWidth: '1.8em',
     width: '1.8em',
     height: '50%',
-    borderRight: `0.15em solid ${config.style.primaryColor}`,
+    borderRight: `0.15em solid ${theme.palette.primary.main}`,
     boxShadow: '0.2vw 0 0.2vw -0.15vw grey',
     transform: 'skew(-45deg)',
   },
@@ -18,7 +17,7 @@ const useStyles = makeStyles(() => ({
     top: '0.1em',
     position: 'relative',
     fontSize: '1.5em',
-    color: config.style.fontColor,
+    color: theme.palette.font.main,
     cursor: 'auto',
     transform: 'skew(45deg)',
   },

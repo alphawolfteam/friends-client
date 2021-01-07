@@ -7,7 +7,7 @@ import {
   ButtonBase,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { getSortedTagsByString } from '../../shared/functions';
+import { getSortedTagsByString } from '../../utils/sharedFunctions';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../lock-icon/LockIcon';
 import RoleIcon from '../role-icon/RoleIcon';

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import nextArrow from '../../images/nextArrow.svg';
-import prevArrow from '../../images/prevArrow.svg';
+import nextArrow from '../../utils/images/nextArrow.svg';
+import prevArrow from '../../utils/images/prevArrow.svg';
 
 const useStyles = makeStyles(() => ({
   '@global': {

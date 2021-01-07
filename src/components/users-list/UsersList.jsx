@@ -6,7 +6,7 @@ const UsersList = ({ users }) => {
   const classes = useStyles();
 
   const sortedUsers = useMemo(() => users.sort((firstUser, secondUser) => {
-    return firstUser.role - secondUser.role;
+    return secondUser.role - firstUser.role;
   }),
   [users]);
 

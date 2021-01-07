@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
+import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 import useStyles from './IconInput.styles';
 import IconsSwiper from '../icons-swiper/IconsSwiper';
 import AddIconButton from '../add-icon-button/AddIconButton';

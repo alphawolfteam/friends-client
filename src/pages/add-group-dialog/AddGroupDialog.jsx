@@ -8,7 +8,7 @@ import AlertMessageTemplate from '../../components/alert-message-template/AlertM
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import config from '../../appConf';
-import groupIconsCodes from '../../images/group-icons/group-icons-base64-codes';
+import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 import GroupsService from '../../services/GroupsService';
 
 const { getRole } = config;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as AddPhotoIcon } from '../../images/addPicture.svg';
+import { ReactComponent as AddPhotoIcon } from '../../utils/images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
 
 const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {

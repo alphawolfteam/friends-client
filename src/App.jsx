@@ -8,8 +8,8 @@ import {
 import AppBarComponent from './components/app-bar/AppBar';
 import userContext from './stores/userStore';
 import GroupsSearch from './pages/groups-search/GroupsSearch';
-import { ReactComponent as FriendsLogo } from './images/logo.svg';
-import { ReactComponent as UnitLogo } from './images/unitLogo.svg';
+import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
+import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
 

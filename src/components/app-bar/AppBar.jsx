@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { ReactComponent as ReactLogo } from '../../images/logo.svg';
+import { ReactComponent as ReactLogo } from '../../utils/images/logo.svg';
 import userContext from '../../stores/userStore';
 import useStyles from './AppBar.styles';
 

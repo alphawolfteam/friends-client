@@ -35,7 +35,7 @@ const UserInputFields = ({ group, setGroup }) => {
   );
 
   const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
-    return firstUser.role - secondUser.role;
+    return secondUser.role - firstUser.role;
   }), [usersListToEdit]);
 
   useEffect(() => {

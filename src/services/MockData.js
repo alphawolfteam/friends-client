@@ -1,6 +1,6 @@
 // TODO: Delete file
 
-import groupIconsCodes from '../images/group-icons/group-icons-base64-codes';
+import groupIconsCodes from '../utils/images/group-icons/group-icons-base64-codes';
 
 const groups = [
   {

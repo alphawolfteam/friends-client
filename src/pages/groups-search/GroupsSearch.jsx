@@ -13,7 +13,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
-import { getSortedGroupsByRole, getSortedGroupsByType } from '../../shared/functions';
+import { getSortedGroupsByRole, getSortedGroupsByType } from '../../utils/sharedFunctions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
   '../../components/scrollable-groups-result/ScrollableGroupsResult';

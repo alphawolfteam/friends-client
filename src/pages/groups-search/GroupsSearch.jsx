@@ -72,7 +72,7 @@ const GroupsSearch = () => {
 
   const sortedCurrentUserGroups = useMemo(() => {
     if (currentUserGroups) {
-      return getSortedGroupsByType(getSortedGroupsByRole(currentUserGroups, currentUser.genesisId));
+      return getSortedGroupsByRole(getSortedGroupsByType(currentUserGroups), currentUser.genesisId);
     }
   }, [currentUserGroups, currentUser]);
 

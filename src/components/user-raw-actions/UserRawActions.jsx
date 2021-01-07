@@ -6,7 +6,7 @@ import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 import config from '../../appConf';
 
-const { getRoleByDisplayName, getRoleByCode } = config;
+const { getRoleByDisplayName, getRoleByValue } = config;
 
 const getUserIndex = (usersList, userObjectToFind) => {
   return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);
@@ -15,7 +15,7 @@ const getUserIndex = (usersList, userObjectToFind) => {
 const UserRawActions = ({ userObject, setGroup }) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [role, setRole] = useState(getRoleByCode(userObject.role));
+  const [role, setRole] = useState(getRoleByValue(userObject.role));
 
   const handleRemoveUser = () => {
     setGroup((prevValue) => {
@@ -29,7 +29,7 @@ const UserRawActions = ({ userObject, setGroup }) => {
     setGroup((prevValue) => {
       const usersList = [...prevValue.users];
       const newRole = getRoleByDisplayName(newRoleDisplayName);
-      usersList[getUserIndex(usersList, userObject)].role = newRole.code;
+      usersList[getUserIndex(usersList, userObject)].role = newRole.value;
       setRole(newRole);
       return { ...prevValue, users: usersList };
     });

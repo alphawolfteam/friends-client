@@ -4,7 +4,7 @@ import UserInfo from '../user-info/UserInfo';
 import useStyles from './UserRaw.styles';
 import config from '../../appConf';
 
-const { getRole, getRoleByCode } = config;
+const { getRole, getRoleByValue } = config;
 
 const UserRaw = ({ userObject }) => {
   const classes = useStyles();
@@ -18,8 +18,8 @@ const UserRaw = ({ userObject }) => {
         >
           <UserInfo userObject={userObject} />
           <div className={classes.role}>
-            {userObject.role !== getRole('friend').code
-            && getRoleByCode(userObject.role).displayName}
+            {userObject.role !== getRole('friend').value
+            && getRoleByValue(userObject.role).displayName}
           </div>
         </Typography>
       </CardContent>

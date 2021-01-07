@@ -19,12 +19,12 @@ const UserInputFields = ({ group, setGroup }) => {
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
 
-  const addUser = (newUser, userRoleCode) => {
+  const addUser = (newUser, userRoleValue) => {
     setGroup((prevValue) => ({
       ...prevValue,
       users: [
         ...prevValue.users,
-        { user: { ...newUser }, role: userRoleCode },
+        { user: { ...newUser }, role: userRoleValue },
       ],
     }));
   };
@@ -40,7 +40,7 @@ const UserInputFields = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (selectedUser && !GroupsService.isUserExist(group.users, selectedUser.id)) {
-      addUser(selectedUser, getRole('friend').code);
+      addUser(selectedUser, getRole('friend').value);
       setSelectedUser(undefined);
     }
   }, [selectedUser]);
@@ -53,7 +53,7 @@ const UserInputFields = ({ group, setGroup }) => {
             id: currentUser.genesisId,
             fullName: `${currentUser.name.firstName} ${currentUser.name.lastName}`,
           },
-          role: getRole('manager').code,
+          role: getRole('manager').value,
         }}
       />
     </div>

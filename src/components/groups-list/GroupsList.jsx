@@ -33,7 +33,7 @@ const GroupsList = ({ groups, searchValue }) => {
             setSelectedGroupId={(value) => setSelectedGroupId(value)}
             searchValue={searchValue}
             currentUserRole={
-              GroupService.getUserRoleCode(group, currentUser.genesisId)
+              GroupService.getUserRoleValue(group, currentUser.genesisId)
             }
           />
         ))}

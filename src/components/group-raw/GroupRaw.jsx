@@ -37,7 +37,7 @@ const GroupRaw = ({
         </Tooltip>
         <Typography className={classes.groupId}>
           #
-          {group._id.slice(0, 4)}
+          {group._id.substr(group._id.length - 4)}
         </Typography>
       </div>
     </div>

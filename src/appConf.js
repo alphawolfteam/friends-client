@@ -8,8 +8,8 @@ const config = {
     fontFamily: 'Alef',
   },
   roles: [
-    { role: 'friend', displayName: 'חבר/ה', code: 0 },
-    { role: 'manager', displayName: 'מנהל/ת', code: 2 },
+    { role: 'friend', displayName: 'חבר/ה', value: 0 },
+    { role: 'manager', displayName: 'מנהל/ת', value: 2 },
   ],
 };
 
@@ -46,8 +46,8 @@ config.getRole = (role) => {
   return config.roles.filter((currentRole) => currentRole.role === role)[0];
 };
 
-config.getRoleByCode = (roleCode) => {
-  return config.roles.filter((currentRole) => currentRole.code === roleCode)[0];
+config.getRoleByValue = (roleValue) => {
+  return config.roles.filter((currentRole) => currentRole.value === roleValue)[0];
 };
 
 config.getRoleByDisplayName = (roleDisplayName) => {

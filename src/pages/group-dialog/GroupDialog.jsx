@@ -25,7 +25,7 @@ import AlertMessageTemplate from '../../components/alert-message-template/AlertM
 const { getRole } = config;
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
-  (user) => user.role === getRole('manager').code,
+  (user) => user.role === getRole('manager').value,
 ).length;
 
 const GroupDialog = ({
@@ -43,7 +43,7 @@ const GroupDialog = ({
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
-  const currentUserRole = GroupService.getUserRoleCodeFromPopulatedGroup(
+  const currentUserRole = GroupService.getUserRoleValueFromPopulatedGroup(
     group,
     currentUser.genesisId,
   );
@@ -75,7 +75,7 @@ const GroupDialog = ({
   const handleLeaveGroup = () => {
     if (group.users.length === 1) {
       setOpenAlertDeleteDialog(true);
-    } else if (currentUserRole === getRole('manager').code
+    } else if (currentUserRole === getRole('manager').value
       && getManagersCount(group.users) === 1) {
       setOpenAlertLeaveMessage(true);
     } else {
@@ -96,7 +96,7 @@ const GroupDialog = ({
         </Tooltip>
         <Typography className={classes.groupId}>
           #
-          {group._id.slice(0, 4)}
+          {group._id.substr(group._id.length - 4)}
         </Typography>
         <LockIcon type={group.type} />
       </div>
@@ -129,7 +129,7 @@ const GroupDialog = ({
 
   const dialogActions = (
     <div className={classes.actions}>
-      {currentUserRole === getRole('manager').code && (
+      {currentUserRole === getRole('manager').value && (
         <Button
           variant="contained"
           className={classes.button}

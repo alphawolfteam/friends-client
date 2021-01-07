@@ -8,7 +8,7 @@ export const getSortedGroupsByRole = (groupsList, userId) => {
   const unownedGroups = [];
 
   groupsList.forEach((group) => {
-    if (GroupsService.getUserRoleCode(group, userId) === getRole('manager').code) {
+    if (GroupsService.getUserRoleValue(group, userId) === getRole('manager').value) {
       ownedGroups.push(group);
     } else {
       unownedGroups.push(group);

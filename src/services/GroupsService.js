@@ -29,7 +29,7 @@ class GroupsService {
     return usersList.find((userObject) => userObject.user.id === userIdToFind);
   }
 
-  static getUserRoleCode(group, userId) {
+  static getUserRoleValue(group, userId) {
     let role;
     group.users.forEach((groupUser) => {
       if (userId === groupUser.id) {
@@ -39,7 +39,7 @@ class GroupsService {
     return role;
   }
 
-  static getUserRoleCodeFromPopulatedGroup(group, userId) {
+  static getUserRoleValueFromPopulatedGroup(group, userId) {
     let role;
     group.users.forEach((userObject) => {
       if (userId === userObject.user.id) {

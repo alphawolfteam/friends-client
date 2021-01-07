@@ -12,6 +12,7 @@ import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
+import ConfigService from './services/ConfigService';
 
 const App = () => {
   const classes = useStyles();
@@ -33,10 +34,13 @@ const App = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      initAuthUser();
-    }
+  useEffect(async () => {
+    ConfigService.getConfigVariables().then(() => {
+      if (!isAuthenticated) {
+        initAuthUser();
+      }
+      // TODO: Display error
+    }).catch((e) => console.log(e));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

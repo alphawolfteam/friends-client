@@ -8,8 +8,8 @@ const config = {
     fontFamily: 'Alef',
   },
   roles: [
-    { role: 'friend', displayName: 'חבר/ה', value: 0 },
-    { role: 'manager', displayName: 'מנהל/ת', value: 2 },
+    { role: 'friend', displayName: 'חבר/ה' },
+    { role: 'manager', displayName: 'מנהל/ת' },
   ],
 };
 

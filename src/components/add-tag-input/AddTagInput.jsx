@@ -3,9 +3,9 @@ import { InputBase } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './AddTagInput.styles';
+import config from '../../appConf';
 
 const ENTER_CHAR_CODE = 13;
-const MIN_TAG_LENGTH = 2;
 
 const AddTagInput = ({ onAdd }) => {
   const classes = useStyles();
@@ -17,14 +17,14 @@ const AddTagInput = ({ onAdd }) => {
   };
 
   const handleOnKeyPress = (event) => {
-    if (event.keyCode === ENTER_CHAR_CODE && inputValue.length >= MIN_TAG_LENGTH) {
+    if (event.keyCode === ENTER_CHAR_CODE && inputValue.length >= config.minTagLength) {
       onAdd(inputValue.toLowerCase());
       setInputValue('');
     }
   };
 
   const handleOnClick = () => {
-    if (inputValue.length >= MIN_TAG_LENGTH) {
+    if (inputValue.length >= config.minTagLength) {
       onAdd(inputValue.toLowerCase());
       setInputValue('');
     }

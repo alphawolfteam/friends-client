@@ -1,5 +1,8 @@
 // import jwt_decode from 'jwt-decode';
 // import Cookies from 'js-cookie';
+// import config from '../appConf';
+
+// TODO: Delete
 import { currentUser } from './MockData';
 
 class AuthService {
@@ -7,7 +10,7 @@ class AuthService {
     // const cookie = Cookies.get('friends-token');
     // if (!cookie) {
     //   // TODO: Redirect to auth service
-    //   window.location.replace('https://localhost:3002/api/login');
+    //   window.location.replace(config.authServiceURI);
     // } else {
     //   return jwt_decode(cookie).user;
     // }

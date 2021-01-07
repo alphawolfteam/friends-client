@@ -4,8 +4,7 @@ import { useTranslation } from 'react-i18next';
 import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
-
-const MIN_SEARCH_VALUE_LENGTH = 2;
+import config from '../../appConf';
 
 const AddUserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
@@ -14,14 +13,14 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(async () => {
-    if (searchValue.length < MIN_SEARCH_VALUE_LENGTH) {
+    if (searchValue.length < config.minUserSearchValue) {
       setOptions([]);
     } else {
       UsersService.searchUsers(searchValue)
         .then((res) => {
           setOptions(res);
         })
-        // TODO: Error handler
+        // TODO: Display error
         .catch((e) => console.log(e));
     }
   }, [searchValue]);

@@ -18,7 +18,7 @@ const GroupsList = ({ groups, searchValue }) => {
         .then((res) => {
           setSelectedGroup(res);
         })
-      // TODO: Error handler
+      // TODO: Display error
         .catch((e) => console.log(e));
     }
   }, [selectedGroupId]);

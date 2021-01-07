@@ -18,8 +18,7 @@ import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
   '../../components/scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
-
-const MIN_SEARCH_VALUE_LENGTH = 2;
+import config from '../../appConf';
 
 const GroupsSearch = () => {
   const classes = useStyles();
@@ -42,7 +41,7 @@ const GroupsSearch = () => {
         setSearchValue('');
         setIsLoading(false);
       })
-      // TODO: Error handler
+      // TODO: Display error
       .catch((e) => console.log(e));
   }, []);
 
@@ -51,7 +50,7 @@ const GroupsSearch = () => {
   }, []);
 
   const handleOnSearch = useCallback((value) => {
-    if (value.length < MIN_SEARCH_VALUE_LENGTH) {
+    if (value.length < config.minGroupNameLength) {
       handleInit();
     } else {
       setIsLoading(true);
@@ -65,14 +64,17 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        // TODO: Error handler
-        .catch((error) => console.log(`Error in promises ${error}`));
+        // TODO: Display error
+        .catch((e) => console.log(e));
     }
   }, []);
 
   const sortedCurrentUserGroups = useMemo(() => {
     if (currentUserGroups) {
-      return getSortedGroupsByRole(getSortedGroupsByType(currentUserGroups), currentUser.genesisId);
+      return getSortedGroupsByRole(
+        getSortedGroupsByType(currentUserGroups),
+        currentUser.genesisId,
+      );
     }
   }, [currentUserGroups, currentUser]);
 

@@ -3,7 +3,7 @@ import config from '../appConf';
 
 const { getRole } = config;
 
-export const getSortedGroups = (groupsList, userId) => {
+export const getSortedGroupsByRole = (groupsList, userId) => {
   const ownedGroups = [];
   const unownedGroups = [];
 
@@ -16,6 +16,21 @@ export const getSortedGroups = (groupsList, userId) => {
   });
 
   return [...ownedGroups, ...unownedGroups];
+};
+
+export const getSortedGroupsByType = (groupsList) => {
+  const privateGroups = [];
+  const publicGroups = [];
+
+  groupsList.forEach((group) => {
+    if (group.type === 'private') {
+      privateGroups.push(group);
+    } else {
+      publicGroups.push(group);
+    }
+  });
+
+  return [...privateGroups, ...publicGroups];
 };
 
 export const getSortedTagsByString = (tagsList, string) => {

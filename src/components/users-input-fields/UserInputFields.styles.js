@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
   scrollBar: {
     width: '90%',
     marginTop: '4em',
-    height: '10em',
+    height: '11.5em',
     overflow: 'auto',
   },
   fieldsList: {

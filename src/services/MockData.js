@@ -10,27 +10,27 @@ const groups = [
     type: 'public',
     users: [
       {
-        role: 0,
+        role: 2,
         id: '5e5688324203fc40043591aa',
       },
       {
-        role: 0,
+        role: 2,
         id: '2222',
       },
       {
-        role: 1,
+        role: 0,
         id: '3333',
       },
       {
-        role: 1,
+        role: 0,
         id: '4444',
       },
       {
-        role: 0,
+        role: 2,
         id: '5555',
       },
       {
-        role: 1,
+        role: 0,
         id: '6666',
       },
     ],
@@ -50,19 +50,19 @@ const groups = [
     type: 'public',
     users: [
       {
-        role: 1,
+        role: 0,
         id: '5e5688324203fc40043591aa',
       },
       {
-        role: 0,
+        role: 2,
         id: '2222',
       },
       {
-        role: 1,
+        role: 0,
         id: '3333',
       },
       {
-        role: 1,
+        role: 0,
         id: '4444',
       },
     ],
@@ -82,11 +82,11 @@ const groups = [
     type: 'public',
     users: [
       {
-        role: 0,
+        role: 2,
         id: '5555',
       },
       {
-        role: 1,
+        role: 0,
         id: '6666',
       },
     ],
@@ -110,19 +110,19 @@ const groups = [
     type: 'private',
     users: [
       {
-        role: 0,
+        role: 2,
         id: '5e5688324203fc40043591aa',
       },
       {
-        role: 1,
+        role: 0,
         id: '3333',
       },
       {
-        role: 0,
+        role: 2,
         id: '2222',
       },
       {
-        role: 1,
+        role: 0,
         id: '4444',
       },
     ],
@@ -142,15 +142,15 @@ const groups = [
     type: 'private',
     users: [
       {
-        role: 0,
+        role: 2,
         id: '5e5688324203fc40043591aa',
       },
       {
-        role: 1,
+        role: 0,
         id: '3333',
       },
       {
-        role: 1,
+        role: 0,
         id: '4444',
       },
     ],
@@ -170,19 +170,19 @@ const groups = [
     type: 'private',
     users: [
       {
-        role: 1,
+        role: 0,
         id: '5e5688324203fc40043591aa',
       },
       {
-        role: 0,
+        role: 2,
         id: '2222',
       },
       {
-        role: 1,
+        role: 0,
         id: '3333',
       },
       {
-        role: 0,
+        role: 2,
         id: '4444',
       },
     ],

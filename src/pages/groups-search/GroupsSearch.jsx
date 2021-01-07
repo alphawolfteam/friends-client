@@ -13,7 +13,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 import GroupsService from '../../services/GroupsService';
-import { getSortedGroups } from '../../shared/functions';
+import { getSortedGroupsByRole, getSortedGroupsByType } from '../../shared/functions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
   '../../components/scrollable-groups-result/ScrollableGroupsResult';
@@ -72,19 +72,19 @@ const GroupsSearch = () => {
 
   const sortedCurrentUserGroups = useMemo(() => {
     if (currentUserGroups) {
-      return getSortedGroups(currentUserGroups, currentUser.genesisId);
+      return getSortedGroupsByType(getSortedGroupsByRole(currentUserGroups, currentUser.genesisId));
     }
   }, [currentUserGroups, currentUser]);
 
   const sortedPrivateGroups = useMemo(() => {
     if (filteredPrivateGroups) {
-      return getSortedGroups(filteredPrivateGroups, currentUser.genesisId);
+      return getSortedGroupsByRole(filteredPrivateGroups, currentUser.genesisId);
     }
   }, [filteredPrivateGroups, currentUser]);
 
   const sortedPublicGroups = useMemo(() => {
     if (filteredPublicGroups) {
-      return getSortedGroups(filteredPublicGroups, currentUser.genesisId);
+      return getSortedGroupsByRole(filteredPublicGroups, currentUser.genesisId);
     }
   }, [filteredPublicGroups, currentUser]);
 

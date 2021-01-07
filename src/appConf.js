@@ -6,24 +6,11 @@ const config = {
     hoverColor: '#E4E6E9',
     fontColor: '#56575D',
     fontFamily: 'Alef',
-    button: {},
   },
   roles: [
-    { role: 'manager', displayName: 'מנהל/ת', code: 0 },
-    { role: 'friend', displayName: 'חבר/ה', code: 1 },
+    { role: 'friend', displayName: 'חבר/ה', code: 0 },
+    { role: 'manager', displayName: 'מנהל/ת', code: 2 },
   ],
-};
-
-config.getRole = (role) => {
-  return config.roles.filter((currentRole) => currentRole.role === role)[0];
-};
-
-config.getRoleByCode = (roleCode) => {
-  return config.roles.filter((currentRole) => currentRole.code === roleCode)[0];
-};
-
-config.getRoleByDisplayName = (roleDisplayName) => {
-  return config.roles.filter((currentRole) => currentRole.displayName === roleDisplayName)[0];
 };
 
 config.style.button = {
@@ -53,6 +40,18 @@ config.style.input = {
   '&:focus, &:hover': {
     border: `0.1vw solid ${config.style.primaryColor}`,
   },
+};
+
+config.getRole = (role) => {
+  return config.roles.filter((currentRole) => currentRole.role === role)[0];
+};
+
+config.getRoleByCode = (roleCode) => {
+  return config.roles.filter((currentRole) => currentRole.code === roleCode)[0];
+};
+
+config.getRoleByDisplayName = (roleDisplayName) => {
+  return config.roles.filter((currentRole) => currentRole.displayName === roleDisplayName)[0];
 };
 
 export default config;

@@ -7,10 +7,18 @@ const config = {
     fontColor: '#56575D',
     fontFamily: 'Alef',
   },
+  // Default values
   roles: [
-    { role: 'friend', displayName: 'חבר/ה' },
-    { role: 'manager', displayName: 'מנהל/ת' },
+    { role: 'friend', displayName: 'חבר/ה', value: 0 },
+    { role: 'manager', displayName: 'מנהל/ת', value: 2 },
   ],
+  apiGatewayURI: 'http://localhost:3001',
+  authServiceURI: 'http://localhost:3002',
+  configServiceURI: 'http://localhost:3003',
+  authServiceToken: 'friends-token',
+  minGroupNameLength: 2,
+  minTagLength: 2,
+  minUserSearchValue: 2,
 };
 
 config.style.button = {

@@ -1,20 +1,15 @@
-// import axiosInstance from '../axiosConf';
-// import axios from "axios";
+// import { apiGatewayInstance } from '../axiosConf';
 
 // TODO: Delete
 import { users } from './MockData';
 
 // TODO: Error handler
 class UsersService {
-  static async getPopulatedUsersList(idsList) {
-    // TODO: Axios request- Get populated users from api-gateway
-
-    const usersList = await this.searchUsers('');
-    return idsList.map((id) => usersList.find((user) => user.id === id));
-  }
-
   static async searchUsers(searchValue) {
-    // TODO: Axios request- Get 20 first users by searchValue
+    // TODO: Axios request
+    // const { data } = await apiGatewayInstance.get(`/users`,
+    // { params: { partialName : searchValue } });
+    // return data;
 
     if (searchValue !== undefined) {
       return users.filter((user) => user.name.lastName.startsWith(searchValue)

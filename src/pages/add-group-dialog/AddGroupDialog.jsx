@@ -41,10 +41,15 @@ const AddGroupDialog = ({ open, onClose }) => {
     // TODO: Add loader
     if (newGroup.name && newGroup.description
       && newGroup.users.length > 1) {
-      await GroupsService.createGroup(newGroup);
-      // TODO: Update only
-      refreshData();
-      onClose();
+      // TODO: Add loader
+      GroupsService.createGroup(newGroup)
+        .then(() => {
+          // TODO: Update only
+          refreshData();
+          onClose();
+        })
+      // TODO: Display error
+        .catch((e) => console.log(e));
     } else {
       setOpenAlertMessage(true);
     }

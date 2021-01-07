@@ -1,5 +1,4 @@
-// import axiosInstance from '../axiosConf';
-// import axios from "axios";
+// import { apiGatewayInstance } from '../axiosConf';
 
 // TODO: Delete
 import { groups, users } from './MockData';
@@ -46,6 +45,9 @@ class GroupsService {
 
   static async searchPrivateGroups(userId, searchValue) {
     // TODO: Axios request
+    // const { data } = await apiGatewayInstance.get('/groups',
+    // { params: { partial  : searchValue, type: 'private' } });
+    // return data;
 
     return groups.filter((group) => group.type === 'private'
       && group.users.map((user) => user.id).includes(userId))
@@ -56,6 +58,9 @@ class GroupsService {
 
   static async searchPublicGroups(searchValue) {
     // TODO: Axios request
+    // const { data } = await apiGatewayInstance.get('/groups',
+    // { params: { partial  : searchValue, type: 'public' } });
+    // return data;
 
     const publicGroups = groups.filter((group) => group.type === 'public');
     return publicGroups.filter((publicGroup) => isIncludesInSentence(
@@ -70,7 +75,7 @@ class GroupsService {
 
   static async getUserGroups(userId) {
     // TODO: Axios request
-    // const { data } = await axios.get(`/groups/users/:${userId}`);
+    // const { data } = await apiGatewayInstance.get(`/users/:${userId}/groups`);
     // return data;
 
     return groups.filter((group) => group.users.map((user) => user.id).includes(userId));
@@ -78,7 +83,14 @@ class GroupsService {
 
   static async createGroup(newGroup) {
     // TODO: Axios request
-    // await axios.post('/', newGroup);
+    // const { data } = await apiGatewayInstance.post('/groups', {
+    //   {
+    //     ...newGroup,
+    //     users: [...newGroup.users.map((userObject) => {
+    //       return { id: userObject.user.id, role: userObject.role };
+    //     })]
+    // });
+    // return data;
 
     const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
     groups.push({
@@ -92,6 +104,8 @@ class GroupsService {
 
   static async getGroupById(groupId) {
     // TODO: Axios request
+    // const { data } = await apiGatewayInstance.get(`/groups/${groupId}`);
+    // return data;
 
     const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
     return {
@@ -108,7 +122,7 @@ class GroupsService {
 
   static async deleteGroup(groupId) {
     // TODO: Axios request
-    // await axios.delete(`/${groupId}`);
+    // await apiGatewayInstance.delete(`/groups/${groupId}`);
 
     const groupIndexInArray = groups.map((group) => group._id).indexOf(groupId);
     groups.splice(groupIndexInArray, 1);
@@ -130,7 +144,7 @@ class GroupsService {
 
   static async removeUserFromGroup(groupId, userId) {
     // TODO: Axios request
-    // await axios.post(`/${groupId}/users/${userId}`);
+    // await apiGatewayInstance.delete(`/groups/${groupId}/users/${userId}`);
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
@@ -165,7 +179,8 @@ class GroupsService {
 
   static async _addUserToGroup(groupId, newUser) {
     // TODO: Axios request
-    // await axios.post(`/${groupId}/users`, newUser);
+    // await apiGatewayInstance.post(`/groups/${groupId}/users`,
+    // { id: newUser.user.id, role: newUser.role });
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.users.push({ id: newUser.user.id, role: newUser.role });
@@ -173,7 +188,7 @@ class GroupsService {
 
   static async _updateUserRole(groupId, userId, newRole) {
     // TODO: Axios request
-    // await axios.post(`/${groupId}/users/${userId}`, newRole);
+    // await axios.patch(`/${groupId}/users/${userId}`, { role: newRole });
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     const userToUpdate = groupToUpdate.users[
@@ -183,7 +198,9 @@ class GroupsService {
 
   static async _updateGroupDetails(groupId, newGroup) {
     // TODO: Axios request
-    // await axios.put(`/${groupId}`, newGroup);
+    // await axios.patch(`groups/${groupId}`,
+    // { name: newGroup.name, description: newGroup.description,
+    // type: newGroup.type, icon: newGroup.icon });
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.name = newGroup.name;
@@ -217,7 +234,7 @@ class GroupsService {
 
   static async _addTagToGroup(groupId, newTag) {
     // TODO: Axios request
-    // Add newTag.label
+    // await axios.put(`groups/${groupId}/tags/${newTag.label}`);
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.tags.push(newTag);
@@ -225,7 +242,7 @@ class GroupsService {
 
   static async _removeTagFromGroup(groupId, tagToRemove) {
     // TODO: Axios request
-    // Remove tagToRemove.label
+    // await axios.delete(`groups/${groupId}/tags/${tagToRemove.label}`);
 
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag.label !== tagToRemove.label);

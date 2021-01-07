@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import GroupDialog from '../../pages/group-dialog/GroupDialog';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../stores/userStore';
-import GroupService from '../../services/GroupsService';
+import GroupsService from '../../services/GroupsService';
 import useStyles from './GroupsList.styles';
 
 const GroupsList = ({ groups, searchValue }) => {
@@ -14,7 +14,7 @@ const GroupsList = ({ groups, searchValue }) => {
   useEffect(() => {
     if (selectedGroupId !== undefined) {
       // TODO: Add loader
-      GroupService.getGroupById(selectedGroupId)
+      GroupsService.getGroupById(selectedGroupId)
         .then((res) => {
           setSelectedGroup(res);
         })
@@ -33,7 +33,7 @@ const GroupsList = ({ groups, searchValue }) => {
             setSelectedGroupId={(value) => setSelectedGroupId(value)}
             searchValue={searchValue}
             currentUserRole={
-              GroupService.getUserRoleValue(group, currentUser.genesisId)
+              GroupsService.getUserRoleValue(group, currentUser.genesisId)
             }
           />
         ))}

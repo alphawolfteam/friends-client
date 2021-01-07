@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
-import GroupService from '../../services/GroupsService';
+import GroupsService from '../../services/GroupsService';
 import useStyles from './TagsInputFields.styles';
 
 const TagsInputFields = ({ group, setGroup }) => {
@@ -19,7 +19,7 @@ const TagsInputFields = ({ group, setGroup }) => {
 
   const handleAddTag = (newTag) => {
     // TODO: Add alert
-    if (newTag !== '' && !GroupService.isTagExist(group.tags, newTag)) {
+    if (newTag !== '' && !GroupsService.isTagExist(group.tags, newTag)) {
       setGroup((prevValue) => {
         const tagsList = [...prevValue.tags];
         tagsList.push({ label: newTag });

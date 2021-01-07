@@ -32,22 +32,30 @@ const EditGroupDialog = ({
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
   useEffect(async () => {
-    // TODO: Add loader
     if (dialogSaveAnswer === 'agree') {
-      await GroupsService.updateGroup(group, newGroup);
-      // TODO: Update only
-      refreshData();
-      onClose();
+      // TODO: Add loader
+      GroupsService.updateGroup(group, newGroup)
+        .then(() => {
+          // TODO: Update only
+          refreshData();
+          onClose();
+        })
+      // TODO: Display error
+        .catch((e) => console.log(e));
     }
   }, [dialogSaveAnswer]);
 
   useEffect(async () => {
-    // TODO: Add loader
     if (dialogDeleteAnswer === 'agree') {
-      await GroupsService.deleteGroup(group._id);
-      // TODO: Update only
-      refreshData();
-      onClose();
+      // TODO: Add loader
+      GroupsService.deleteGroup(group._id)
+        .then(() => {
+          // TODO: Update only
+          refreshData();
+          onClose();
+        })
+      // TODO: Display error
+        .catch((e) => console.log(e));
     }
   }, [dialogDeleteAnswer]);
 

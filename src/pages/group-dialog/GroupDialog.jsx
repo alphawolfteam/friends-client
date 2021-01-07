@@ -17,7 +17,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../../components/tags-list/TagsList';
 import UsersList from '../../components/users-list/UsersList';
-import GroupService from '../../services/GroupsService';
+import GroupsService from '../../services/GroupsService';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import config from '../../appConf';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
@@ -43,7 +43,7 @@ const GroupDialog = ({
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
-  const currentUserRole = GroupService.getUserRoleValueFromPopulatedGroup(
+  const currentUserRole = GroupsService.getUserRoleValueFromPopulatedGroup(
     group,
     currentUser.genesisId,
   );
@@ -55,20 +55,26 @@ const GroupDialog = ({
   useEffect(async () => {
     // TODO: Add loader
     if (dialogLeaveAnswer === 'agree') {
-      await GroupService.removeUserFromGroup(group._id, currentUser.genesisId);
-      // TODO: Update only
-      refreshData();
-      onClose();
+      GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
+        .then(() => {
+        // TODO: Update only
+          refreshData();
+          onClose();
+          // TODO: Display error
+        }).catch((e) => console.log(e));
     }
   }, [dialogLeaveAnswer]);
 
   useEffect(async () => {
     // TODO: Add loader
     if (dialogDeleteAnswer === 'agree') {
-      await GroupService.deleteGroup(group._id);
-      // TODO: Update only
-      refreshData();
-      onClose();
+      GroupsService.deleteGroup(group._id)
+        .then(() => {
+          // TODO: Update only
+          refreshData();
+          onClose();
+        // TODO: Display error
+        }).catch((e) => console.log(e));
     }
   }, [dialogDeleteAnswer]);
 

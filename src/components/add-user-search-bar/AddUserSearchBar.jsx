@@ -38,6 +38,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         value={searchValue}
         onChange={(e) => handleOnChange(e)}
         className={classes.searchBar}
+        autoComplete="off"
       />
       <UsersAutocomplete
         options={options}

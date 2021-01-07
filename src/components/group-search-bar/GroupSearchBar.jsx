@@ -47,6 +47,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
         onKeyDown={(e) => handleOnKeyPress(e)}
         onChange={(e) => handleOnChange(e)}
         className={classes.input}
+        autoComplete="off"
       />
     </div>
   );

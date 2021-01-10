@@ -68,7 +68,7 @@ const resources = {
       },
       validation: {
         emptyNameInput: 'יש לבחור שם',
-        emptyDescriptionInput: 'יש למלא תיאור',
+        emptyDescriptionInput: 'יש למלא את התיאור',
         noMembersInList: 'יש להוסיף חברים',
         nameTooShort: `השם צריך להכיל לפחות ${config.minGroupNameLength} תווים`,
       },

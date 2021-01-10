@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress, Backdrop } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
@@ -39,6 +39,7 @@ const AddGroupDialog = ({ open, onClose }) => {
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
   const [openValidationMessage, setOpenValidationMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [validationArray, setValidationArray] = useState([]);
   const [newGroup, setNewGroup] = useState({
     name: '',
@@ -61,7 +62,7 @@ const AddGroupDialog = ({ open, onClose }) => {
       const newValue = ValidationService.validateGroupObject(newGroup);
 
       if (newValue.length === 0) {
-        // TODO: Add loader
+        setIsLoading(true);
         GroupsService.createGroup({
           ...newGroup,
           users: [...newGroup.users.map((userObject) => {
@@ -73,7 +74,10 @@ const AddGroupDialog = ({ open, onClose }) => {
             refreshData();
             onClose();
           })
-          .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+          .catch(() => {
+            setIsLoading(false);
+            enqueueSnackbar(t('error.server'), { variant: 'error' });
+          });
       } else {
         setOpenValidationMessage(true);
       }
@@ -151,6 +155,9 @@ const AddGroupDialog = ({ open, onClose }) => {
         open={openValidationMessage}
         onClose={() => setOpenValidationMessage(false)}
       />
+      <Backdrop className={classes.backdrop} open={isLoading}>
+        <CircularProgress color="primary" />
+      </Backdrop>
     </>
   );
 };

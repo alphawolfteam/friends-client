@@ -40,7 +40,7 @@ class GroupsService {
 
   static async searchPrivateGroups(searchValue) {
     return groups.filter((group) => group.type === 'private'
-      && group.users.map((user) => user.id).includes(currentUser.id))
+      && group.users.map((user) => user.id).includes(currentUser.genesisId))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags
           .filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);

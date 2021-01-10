@@ -60,19 +60,17 @@ const theme = createMuiTheme({
         outline: 'none',
       },
     },
+    MuiSnackbar: {
+      root: {
+        bottom: '50%',
+      },
+    },
   },
 });
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <SnackbarProvider
-      preventDuplicate
-      maxSnack={3}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'center',
-      }}
-    >
+    <SnackbarProvider preventDuplicate maxSnack={3}>
       <App />
     </SnackbarProvider>
   </ThemeProvider>,

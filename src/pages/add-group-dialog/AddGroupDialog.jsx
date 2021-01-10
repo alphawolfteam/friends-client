@@ -43,7 +43,6 @@ const AddGroupDialog = ({ open, onClose }) => {
     setValidationArray(() => {
       const newValue = ValidationService.validateGroupObject(newGroup);
 
-      // TODO: Add loader
       if (newValue.length === 0) {
         // TODO: Add loader
         GroupsService.createGroup(newGroup)

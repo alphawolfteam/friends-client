@@ -30,6 +30,8 @@ const resources = {
         privateGroup: 'קבוצה פרטית',
         publicGroup: 'קבוצה ציבורית',
         hierarchy: 'היררכיה',
+        manager: 'מנהל/ת',
+        member: 'חבר/ה',
       },
       placeholder: {
         addTag: 'הוסיפו תגית..',
@@ -65,10 +67,10 @@ const resources = {
         evening: 'ערב טוב',
       },
       validation: {
-        emptyNameInput: 'יש לבחור שם לקבוצה',
-        emptyDescriptionInput: 'יש למלא תיאור לקבוצה',
-        noMembersInList: 'יש להוסיף חברים לקבוצה',
-        nameTooShort: `שם קבוצה צריך להכיל לפחות ${config.minGroupNameLength} תווים`,
+        emptyNameInput: 'יש לבחור שם',
+        emptyDescriptionInput: 'יש למלא תיאור',
+        noMembersInList: 'יש להוסיף חברים',
+        nameTooShort: `השם צריך להכיל לפחות ${config.minGroupNameLength} תווים`,
       },
     },
   },

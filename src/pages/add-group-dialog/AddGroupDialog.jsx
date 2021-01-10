@@ -2,9 +2,15 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import EditableGroupDialogTemplate from
-  '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
+import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
+import IconInput from '../../components/icon-input/IconInput';
+import GroupNameInput from '../../components/group-name-input/GroupNameInput';
+import LockIconInput from '../../components/lock-icon-input/LockIconInput';
+import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
+import Paging from '../../components/paging/Paging';
+import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
+import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
@@ -12,11 +18,13 @@ import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-c
 import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
 import { getRole } from '../../utils/sharedFunctions';
+import useStyles from './AddGroupDialog.styles';
 
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
 
 const AddGroupDialog = ({ open, onClose }) => {
+  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
@@ -60,7 +68,32 @@ const AddGroupDialog = ({ open, onClose }) => {
     });
   };
 
-  const dialogActions = (
+  const renderDialogTitle = () => (
+    <>
+      <IconInput group={newGroup} setGroup={setNewGroup} />
+      <div className={classes.title}>
+        <GroupNameInput group={newGroup} setGroup={setNewGroup} />
+        <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
+      </div>
+    </>
+  );
+
+  const firstPage = (
+    <UsersInputFields group={newGroup} setGroup={setNewGroup} />
+  );
+
+  const secondPage = (
+    <div className={classes.page}>
+      <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+      <TagsInputFields group={newGroup} setGroup={setNewGroup} />
+    </div>
+  );
+
+  const renderDialogContent = () => (
+    <Paging pages={[firstPage, secondPage]} />
+  );
+
+  const renderDialogActions = () => (
     <>
       <Button onClick={() => handleAdd()}>
         {t('button.add')}
@@ -73,10 +106,10 @@ const AddGroupDialog = ({ open, onClose }) => {
 
   return (
     <>
-      <EditableGroupDialogTemplate
-        newGroup={newGroup}
-        setNewGroup={setNewGroup}
-        actions={dialogActions}
+      <DialogTemplate
+        title={renderDialogTitle()}
+        content={renderDialogContent()}
+        actions={renderDialogActions()}
         open={open}
       />
       <AlertValidationMessage

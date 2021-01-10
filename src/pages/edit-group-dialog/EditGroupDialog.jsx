@@ -3,13 +3,20 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../stores/refreshDataStore';
-import EditableGroupDialogTemplate from
-  '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
-import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
+import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
+import IconInput from '../../components/icon-input/IconInput';
+import GroupNameInput from '../../components/group-name-input/GroupNameInput';
+import LockIconInput from '../../components/lock-icon-input/LockIconInput';
+import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
+import Paging from '../../components/paging/Paging';
+import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
+import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
+import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
+import useStyles from './EditGroupDialog.styles';
 
 const getNestedGroupCopy = (group) => {
   return {
@@ -23,6 +30,7 @@ const getNestedGroupCopy = (group) => {
 const EditGroupDialog = ({
   group, open, onClose, onCancel,
 }) => {
+  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
@@ -78,7 +86,32 @@ const EditGroupDialog = ({
     setOpenAlertDeleteDialog(true);
   };
 
-  const dialogActions = (
+  const renderDialogTitle = () => (
+    <>
+      <IconInput group={newGroup} setGroup={setNewGroup} />
+      <div className={classes.title}>
+        <GroupNameInput group={newGroup} setGroup={setNewGroup} />
+        <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
+      </div>
+    </>
+  );
+
+  const firstPage = (
+    <UsersInputFields group={newGroup} setGroup={setNewGroup} />
+  );
+
+  const secondPage = (
+    <div className={classes.page}>
+      <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+      <TagsInputFields group={newGroup} setGroup={setNewGroup} />
+    </div>
+  );
+
+  const renderDialogContent = () => (
+    <Paging pages={[firstPage, secondPage]} />
+  );
+
+  const renderDialogActions = () => (
     <>
       <Button onClick={() => handleSave()}>
         {t('button.save')}
@@ -94,10 +127,10 @@ const EditGroupDialog = ({
 
   return (
     <>
-      <EditableGroupDialogTemplate
-        newGroup={newGroup}
-        setNewGroup={setNewGroup}
-        actions={dialogActions}
+      <DialogTemplate
+        title={renderDialogTitle()}
+        content={renderDialogContent()}
+        actions={renderDialogActions()}
         open={open}
       />
       <AlertDialogTemplate

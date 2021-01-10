@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import useStyles from './UserInputFields.styles';
+import useStyles from './UsersInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';

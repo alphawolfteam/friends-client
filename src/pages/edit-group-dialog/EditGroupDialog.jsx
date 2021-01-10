@@ -10,7 +10,8 @@ import LockIconInput from '../../components/lock-icon-input/LockIconInput';
 import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
 import Paging from '../../components/paging/Paging';
 import { getUserIndex } from '../../utils/sharedFunctions';
-import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
+import EditableGroupDescription from
+  '../../components/editable-group-description/EditableGroupDescription';
 import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 // import GroupsService from '../../services/GroupsService';
@@ -138,8 +139,7 @@ const EditGroupDialog = ({
 
   const secondPage = (
     <div className={classes.page}>
-      {/* TODO: New component */}
-      <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+      <EditableGroupDescription group={newGroup} setGroup={setNewGroup} />
       <TagsInputFields
         tagsList={newGroup.tags}
         onAdd={(newTag) => {

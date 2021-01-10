@@ -70,7 +70,12 @@ const AddGroupDialog = ({ open, onClose }) => {
 
   const renderDialogTitle = () => (
     <>
-      <IconInput group={newGroup} setGroup={setNewGroup} />
+      <IconInput
+        initialIcon={DEFAULT_ICON}
+        onChange={(newIcon) => setNewGroup((prevValue) => {
+          return { ...prevValue, icon: newIcon };
+        })}
+      />
       <div className={classes.title}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
         <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />

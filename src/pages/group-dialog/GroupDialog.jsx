@@ -192,7 +192,6 @@ const GroupDialog = ({
       {openEditGroupDialog ? (
         <EditGroupDialog
           open={openEditGroupDialog}
-          onCancel={() => setOpenEditGroupDialog(false)}
           onClose={() => onClose()}
           group={group}
         />

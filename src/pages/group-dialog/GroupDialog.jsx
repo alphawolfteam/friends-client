@@ -60,7 +60,6 @@ const GroupDialog = ({
         .then(() => {
           // TODO: Update only
           refreshData();
-          onClose();
         }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [dialogLeaveAnswer]);
@@ -72,7 +71,6 @@ const GroupDialog = ({
         .then(() => {
           // TODO: Update only
           refreshData();
-          onClose();
         }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);

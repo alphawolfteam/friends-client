@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../stores/refreshDataStore';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import IconInput from '../../components/icon-input/IconInput';
-import GroupNameInput from '../../components/group-name-input/GroupNameInput';
+import EditableGroupName from '../../components/editable-group-name/EditableGroupName';
 import LockIconInput from '../../components/lock-icon-input/LockIconInput';
 import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
 import Paging from '../../components/paging/Paging';
@@ -66,8 +66,7 @@ const EditGroupDialog = ({
         }}
       />
       <div className={classes.title}>
-        {/* TODO: New component */}
-        <GroupNameInput group={newGroup} setGroup={setNewGroup} />
+        <EditableGroupName group={newGroup} setGroup={setNewGroup} />
         <LockIconInput
           type={newGroup.type}
           onChange={(newType) => {

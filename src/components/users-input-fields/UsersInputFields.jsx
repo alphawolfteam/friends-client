@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import useStyles from './UsersInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
@@ -12,25 +13,21 @@ import GroupsService from '../../services/Mock/GroupsService';
 import userContext from '../../stores/userStore';
 import { getRole } from '../../utils/sharedFunctions';
 
-const UserInputFields = ({ group, setGroup }) => {
+const UserInputFields = ({
+  groupUsers,
+  onAdd,
+  onRemove,
+  onChangeRole,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
 
-  const addUser = (newUser, userRoleValue) => {
-    setGroup((prevValue) => ({
-      ...prevValue,
-      users: [
-        ...prevValue.users,
-        { user: { ...newUser }, role: userRoleValue },
-      ],
-    }));
-  };
-
   const usersListToEdit = useMemo(
-    () => group.users.filter((userObject) => userObject.user.id !== currentUser.genesisId),
-    [group.users, currentUser],
+    () => groupUsers.filter((userObject) => userObject.user.id !== currentUser.genesisId),
+    [groupUsers, currentUser],
   );
 
   const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
@@ -38,9 +35,13 @@ const UserInputFields = ({ group, setGroup }) => {
   }), [usersListToEdit]);
 
   useEffect(() => {
-    if (selectedUser && !GroupsService.isUserExist(group.users, selectedUser.id)) {
-      addUser(selectedUser, getRole('member').value);
-      setSelectedUser(undefined);
+    if (selectedUser) {
+      if (!GroupsService.isUserExist(groupUsers, selectedUser.id)) {
+        onAdd(selectedUser, getRole('member').value);
+        setSelectedUser(undefined);
+      } else {
+        enqueueSnackbar(t('error.userAlreadyExist'));
+      }
     }
   }, [selectedUser]);
 
@@ -62,7 +63,8 @@ const UserInputFields = ({ group, setGroup }) => {
     <div key={userObject.user.id} className={classes.field}>
       <EditableUserRaw
         userObject={userObject}
-        setGroup={setGroup}
+        onRemove={() => onRemove(userObject)}
+        onChangeRole={(newRole) => onChangeRole(userObject, newRole)}
       />
     </div>
   );

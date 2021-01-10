@@ -57,7 +57,7 @@ const GroupsSearch = () => {
     } else {
       setIsLoading(true);
       Promise.all([
-        GroupsService.searchPrivateGroups(currentUser.genesisId, value),
+        GroupsService.searchPrivateGroups(value),
         GroupsService.searchPublicGroups(value),
       ])
         .then((results) => {

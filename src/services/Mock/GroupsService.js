@@ -1,4 +1,4 @@
-import { groups, users } from './MockData';
+import { groups, users, currentUser } from './MockData';
 
 const isIncludesInSentence = (sentence, portion) => (
   sentence.startsWith(portion)
@@ -38,9 +38,9 @@ class GroupsService {
     return role;
   }
 
-  static async searchPrivateGroups(userId, searchValue) {
+  static async searchPrivateGroups(searchValue) {
     return groups.filter((group) => group.type === 'private'
-      && group.users.map((user) => user.id).includes(userId))
+      && group.users.map((user) => user.id).includes(currentUser.id))
       .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
         || publicGroup.tags
           .filter((tag) => isIncludesInSentence(tag.label, searchValue)).length > 0);
@@ -66,9 +66,6 @@ class GroupsService {
     const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
     groups.push({
       ...newGroup,
-      users: [...newGroup.users.map((userObject) => {
-        return { id: userObject.user.id, role: userObject.role };
-      })],
       _id: uint32.toString(16),
     });
   }
@@ -99,7 +96,7 @@ class GroupsService {
 
   static async addUserToGroup(groupId, newUser) {
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.users.push({ id: newUser.user.id, role: newUser.role });
+    groupToUpdate.users.push(newUser);
   }
 
   static async updateUserRole(groupId, userId, newRole) {

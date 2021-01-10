@@ -17,7 +17,7 @@ import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-c
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
-import { getRole } from '../../utils/sharedFunctions';
+import { getRole, getUserIndex } from '../../utils/sharedFunctions';
 import useStyles from './AddGroupDialog.styles';
 
 const DEFAULT_TYPE = 'private';
@@ -53,7 +53,12 @@ const AddGroupDialog = ({ open, onClose }) => {
 
       if (newValue.length === 0) {
         // TODO: Add loader
-        GroupsService.createGroup(newGroup)
+        GroupsService.createGroup({
+          ...newGroup,
+          users: [...newGroup.users.map((userObject) => {
+            return { id: userObject.user.id, role: userObject.role };
+          })],
+        })
           .then(() => {
             // TODO: Update only
             refreshData();
@@ -90,7 +95,32 @@ const AddGroupDialog = ({ open, onClose }) => {
   );
 
   const firstPage = (
-    <UsersInputFields group={newGroup} setGroup={setNewGroup} />
+    <UsersInputFields
+      groupUsers={newGroup.users}
+      onAdd={(userToAdd, role) => {
+        setNewGroup((prevValue) => ({
+          ...prevValue,
+          users: [
+            ...prevValue.users,
+            { user: { ...userToAdd }, role },
+          ],
+        }));
+      }}
+      onRemove={(userObject) => {
+        setNewGroup((prevValue) => {
+          const usersList = [...prevValue.users];
+          usersList.splice(getUserIndex(usersList, userObject), 1);
+          return { ...prevValue, users: usersList };
+        });
+      }}
+      onChangeRole={(userObject, newRole) => {
+        setNewGroup((prevValue) => {
+          const usersList = [...prevValue.users];
+          usersList[getUserIndex(usersList, userObject)].role = newRole;
+          return { ...prevValue, users: usersList };
+        });
+      }}
+    />
   );
 
   const secondPage = (

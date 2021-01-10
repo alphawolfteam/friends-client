@@ -56,3 +56,7 @@ export const getSortedTagsByString = (tagsList, string) => {
   });
   return [...matchedTags, ...unmatchedTags];
 };
+
+export const getUserIndex = (usersList, userObjectToFind) => {
+  return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);
+};

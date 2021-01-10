@@ -33,7 +33,7 @@ class GroupsService {
     return role;
   }
 
-  static async searchPrivateGroups(userId, searchValue) {
+  static async searchPrivateGroups(searchValue) {
     const { data } = await apiGatewayInstance.get('/groups',
       { params: { partial: searchValue, type: 'private' } });
     return data;
@@ -51,12 +51,7 @@ class GroupsService {
   }
 
   static async createGroup(newGroup) {
-    const { data } = await apiGatewayInstance.post('/groups', {
-      ...newGroup,
-      users: [...newGroup.users.map((userObject) => {
-        return { id: userObject.user.id, role: userObject.role };
-      })],
-    });
+    const { data } = await apiGatewayInstance.post('/groups', newGroup);
     return data;
   }
 
@@ -74,8 +69,7 @@ class GroupsService {
   }
 
   static async addUserToGroup(groupId, newUser) {
-    await apiGatewayInstance.post(`/groups/${groupId}/users`,
-      { id: newUser.user.id, role: newUser.role });
+    await apiGatewayInstance.post(`/groups/${groupId}/users`, newUser);
   }
 
   static async updateUserRole(groupId, userId, newRole) {

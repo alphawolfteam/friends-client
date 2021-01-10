@@ -8,7 +8,10 @@ const LockIconInput = ({ type, onChange }) => {
 
   return (
     <div className={classes.root}>
-      <Fab className={classes.lockIcon} onClick={() => onChange(type === 'private' ? 'public' : 'private')}>
+      <Fab
+        className={classes.lockIcon}
+        onClick={() => onChange(type === 'private' ? 'public' : 'private')}
+      >
         <LockIcon type={type} />
       </Fab>
       <Switch

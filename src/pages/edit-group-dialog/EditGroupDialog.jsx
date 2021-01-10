@@ -9,6 +9,7 @@ import GroupNameInput from '../../components/group-name-input/GroupNameInput';
 import LockIconInput from '../../components/lock-icon-input/LockIconInput';
 import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
 import Paging from '../../components/paging/Paging';
+import { getUserIndex } from '../../utils/sharedFunctions';
 import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
 import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
@@ -34,7 +35,6 @@ const EditGroupDialog = ({
         .then(() => {
           // TODO: Update only
           refreshData();
-          onClose();
         })
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
@@ -88,7 +88,53 @@ const EditGroupDialog = ({
   );
 
   const firstPage = (
-    <UsersInputFields group={newGroup} setGroup={setNewGroup} />
+    <UsersInputFields
+      groupUsers={newGroup.users}
+      onAdd={(userToAdd, role) => {
+        // TODO: Add loader
+        GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
+          .then(() => {
+            setNewGroup((prevValue) => ({
+              ...prevValue,
+              users: [
+                ...prevValue.users,
+                { user: { ...userToAdd }, role },
+              ],
+            }));
+          })
+          .catch(() => {
+            enqueueSnackbar(t('error.server'), { variant: 'error' });
+          });
+      }}
+      onRemove={(userObject) => {
+        // TODO: Add loader
+        GroupsService.removeUserFromGroup(group._id, userObject.user.id)
+          .then(() => {
+            setNewGroup((prevValue) => {
+              const usersList = [...prevValue.users];
+              usersList.splice(getUserIndex(usersList, userObject), 1);
+              return { ...prevValue, users: usersList };
+            });
+          })
+          .catch(() => {
+            enqueueSnackbar(t('error.server'), { variant: 'error' });
+          });
+      }}
+      onChangeRole={(userObject, newRole) => {
+        // TODO: Add loader
+        GroupsService.updateUserRole(group._id, userObject.user.id, newRole)
+          .then(() => {
+            setNewGroup((prevValue) => {
+              const usersList = [...prevValue.users];
+              usersList[getUserIndex(usersList, userObject)].role = newRole;
+              return { ...prevValue, users: usersList };
+            });
+          })
+          .catch(() => {
+            enqueueSnackbar(t('error.server'), { variant: 'error' });
+          });
+      }}
+    />
   );
 
   const secondPage = (

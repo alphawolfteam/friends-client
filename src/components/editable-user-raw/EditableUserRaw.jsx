@@ -4,7 +4,7 @@ import UserRawActions from '../user-raw-actions/UserRawActions';
 import UserInfo from '../user-info/UserInfo';
 import useStyles from './EditableUserRaw.styles';
 
-const EditableUserRaw = ({ userObject, setGroup }) => {
+const EditableUserRaw = ({ userObject, onRemove, onChangeRole }) => {
   const classes = useStyles();
 
   return (
@@ -17,7 +17,8 @@ const EditableUserRaw = ({ userObject, setGroup }) => {
           <UserInfo userObject={userObject} />
           <UserRawActions
             userObject={userObject}
-            setGroup={setGroup}
+            onRemove={() => onRemove()}
+            onChangeRole={(newRole) => onChangeRole(newRole)}
           />
         </Typography>
       </CardContent>

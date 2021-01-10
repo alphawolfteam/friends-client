@@ -2,7 +2,7 @@
 // import config from '../appConf';
 
 class ConfigService {
-  static async getConfigVariables() {
+  static async getConfigObject() {
     // TODO: Axios request
     // const { data } = await configInstance.get(`/`);
     // config = { ...config, ...data };

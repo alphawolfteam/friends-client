@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { setNewGroupName } from '../../utils/sharedFunctions';
 import useStyles from './EditableGroupName.styles';
 
 const GroupNameInput = ({ group, setGroup }) => {
@@ -8,9 +9,7 @@ const GroupNameInput = ({ group, setGroup }) => {
   const { t } = useTranslation();
 
   const handleOnChange = (event) => {
-    setGroup((prevValue) => {
-      return { ...prevValue, name: event.target.value };
-    });
+    setNewGroupName(setGroup, event.target.value);
   };
 
   return (

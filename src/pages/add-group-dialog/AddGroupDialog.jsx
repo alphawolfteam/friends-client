@@ -17,7 +17,16 @@ import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-c
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
-import { getRole, getUserIndex } from '../../utils/sharedFunctions';
+import {
+  getRole,
+  setNewGroupIcon,
+  setNewGroupType,
+  setNewGroupUser,
+  removeGroupUser,
+  setNewGroupUserRole,
+  setNewGroupTag,
+  removeGroupTag,
+} from '../../utils/sharedFunctions';
 import useStyles from './AddGroupDialog.styles';
 
 const DEFAULT_TYPE = 'private';
@@ -78,17 +87,13 @@ const AddGroupDialog = ({ open, onClose }) => {
       <IconInput
         shownIcon={newGroup.icon}
         initialIcon={DEFAULT_ICON}
-        onChange={(newIcon) => setNewGroup((prevValue) => {
-          return { ...prevValue, icon: newIcon };
-        })}
+        onChange={(newIcon) => setNewGroupIcon(setNewGroup, newIcon)}
       />
       <div className={classes.title}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
         <LockIconInput
           type={newGroup.type}
-          onChange={(newType) => setNewGroup((prevValue) => {
-            return { ...prevValue, type: newType };
-          })}
+          onChange={(newType) => setNewGroupType(setNewGroup, newType)}
         />
       </div>
     </>
@@ -97,29 +102,13 @@ const AddGroupDialog = ({ open, onClose }) => {
   const firstPage = (
     <UsersInputFields
       groupUsers={newGroup.users}
-      onAdd={(userToAdd, role) => {
-        setNewGroup((prevValue) => ({
-          ...prevValue,
-          users: [
-            ...prevValue.users,
-            { user: { ...userToAdd }, role },
-          ],
-        }));
-      }}
-      onRemove={(userObject) => {
-        setNewGroup((prevValue) => {
-          const usersList = [...prevValue.users];
-          usersList.splice(getUserIndex(usersList, userObject), 1);
-          return { ...prevValue, users: usersList };
-        });
-      }}
-      onChangeRole={(userObject, newRole) => {
-        setNewGroup((prevValue) => {
-          const usersList = [...prevValue.users];
-          usersList[getUserIndex(usersList, userObject)].role = newRole;
-          return { ...prevValue, users: usersList };
-        });
-      }}
+      onAdd={(userToAdd, role) => setNewGroupUser(setNewGroup, userToAdd, role)}
+      onRemove={(userObjectToRemove) => removeGroupUser(setNewGroup, userObjectToRemove)}
+      onChangeRole={(userObjectToUpdate, newRole) => setNewGroupUserRole(
+        setNewGroup,
+        userObjectToUpdate,
+        newRole,
+      )}
     />
   );
 
@@ -128,19 +117,8 @@ const AddGroupDialog = ({ open, onClose }) => {
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <TagsInputFields
         tagsList={newGroup.tags}
-        onAdd={(newTag) => {
-          setNewGroup((prevValue) => {
-            const tagsList = [...prevValue.tags];
-            tagsList.push({ label: newTag });
-            return { ...prevValue, tags: tagsList };
-          });
-        }}
-        onRemove={(tagToRemove) => {
-          setNewGroup((prevValue) => {
-            const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
-            return { ...prevValue, tags: tagsList };
-          });
-        }}
+        onAdd={(newTag) => setNewGroupTag(setNewGroup, newTag)}
+        onRemove={(tagToRemove) => removeGroupTag(setNewGroup, tagToRemove)}
       />
     </div>
   );

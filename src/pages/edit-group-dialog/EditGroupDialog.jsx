@@ -9,7 +9,15 @@ import EditableGroupName from '../../components/editable-group-name/EditableGrou
 import LockIconInput from '../../components/lock-icon-input/LockIconInput';
 import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
 import Paging from '../../components/paging/Paging';
-import { getUserIndex } from '../../utils/sharedFunctions';
+import {
+  setNewGroupIcon,
+  setNewGroupType,
+  setNewGroupUser,
+  removeGroupUser,
+  setNewGroupUserRole,
+  setNewGroupTag,
+  removeGroupTag,
+} from '../../utils/sharedFunctions';
 import EditableGroupDescription from
   '../../components/editable-group-description/EditableGroupDescription';
 import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
@@ -52,16 +60,11 @@ const EditGroupDialog = ({
         initialIcon={group.icon}
         onChange={(newIcon) => {
           let prevIcon;
-          setNewGroup((prevValue) => {
-            prevIcon = prevValue.icon;
-            return { ...prevValue, icon: newIcon };
-          });
+          setNewGroupIcon(setNewGroup, newIcon);
           // TODO: Add loader
           GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
             .catch(() => {
-              setNewGroup((prevValue) => {
-                return { ...prevValue, icon: prevIcon };
-              });
+              setNewGroupIcon(setNewGroup, prevIcon);
               enqueueSnackbar(t('error.server'), { variant: 'error' });
             });
         }}
@@ -74,9 +77,7 @@ const EditGroupDialog = ({
             // TODO: Add loader
             GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
               .then(() => {
-                setNewGroup((prevValue) => {
-                  return { ...prevValue, type: newType };
-                });
+                setNewGroupType(setNewGroup, newType);
               })
               .catch(() => {
                 enqueueSnackbar(t('error.server'), { variant: 'error' });
@@ -94,41 +95,27 @@ const EditGroupDialog = ({
         // TODO: Add loader
         GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
           .then(() => {
-            setNewGroup((prevValue) => ({
-              ...prevValue,
-              users: [
-                ...prevValue.users,
-                { user: { ...userToAdd }, role },
-              ],
-            }));
+            setNewGroupUser(setNewGroup, userToAdd, role);
           })
           .catch(() => {
             enqueueSnackbar(t('error.server'), { variant: 'error' });
           });
       }}
-      onRemove={(userObject) => {
+      onRemove={(userObjectToRemove) => {
         // TODO: Add loader
-        GroupsService.removeUserFromGroup(group._id, userObject.user.id)
+        GroupsService.removeUserFromGroup(group._id, userObjectToRemove.user.id)
           .then(() => {
-            setNewGroup((prevValue) => {
-              const usersList = [...prevValue.users];
-              usersList.splice(getUserIndex(usersList, userObject), 1);
-              return { ...prevValue, users: usersList };
-            });
+            removeGroupUser(setNewGroup, userObjectToRemove);
           })
           .catch(() => {
             enqueueSnackbar(t('error.server'), { variant: 'error' });
           });
       }}
-      onChangeRole={(userObject, newRole) => {
+      onChangeRole={(userObjectToUpdate, newRole) => {
         // TODO: Add loader
-        GroupsService.updateUserRole(group._id, userObject.user.id, newRole)
+        GroupsService.updateUserRole(group._id, userObjectToUpdate.user.id, newRole)
           .then(() => {
-            setNewGroup((prevValue) => {
-              const usersList = [...prevValue.users];
-              usersList[getUserIndex(usersList, userObject)].role = newRole;
-              return { ...prevValue, users: usersList };
-            });
+            setNewGroupUserRole(setNewGroup, userObjectToUpdate, newRole);
           })
           .catch(() => {
             enqueueSnackbar(t('error.server'), { variant: 'error' });
@@ -146,11 +133,7 @@ const EditGroupDialog = ({
           // TODO: Add loader
           GroupsService.addTagToGroup(group._id, newTag)
             .then(() => {
-              setNewGroup((prevValue) => {
-                const tagsList = [...prevValue.tags];
-                tagsList.push({ label: newTag });
-                return { ...prevValue, tags: tagsList };
-              });
+              setNewGroupTag(setNewGroup, newTag);
             })
             .catch(() => {
               enqueueSnackbar(t('error.server'), { variant: 'error' });
@@ -160,10 +143,7 @@ const EditGroupDialog = ({
           // TODO: Add loader
           GroupsService.removeTagFromGroup(group._id, tagToRemove)
             .then(() => {
-              setNewGroup((prevValue) => {
-                const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
-                return { ...prevValue, tags: tagsList };
-              });
+              removeGroupTag(setNewGroup, tagToRemove);
             })
             .catch(() => {
               enqueueSnackbar(t('error.server'), { variant: 'error' });

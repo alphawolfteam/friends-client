@@ -60,3 +60,68 @@ export const getSortedTagsByString = (tagsList, string) => {
 export const getUserIndex = (usersList, userObjectToFind) => {
   return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);
 };
+
+export const setNewGroupName = (setGroup, newName) => {
+  setGroup((prevValue) => {
+    return { ...prevValue, name: newName };
+  });
+};
+
+export const setNewGroupDescription = (setGroup, newDescription) => {
+  setGroup((prevValue) => {
+    return { ...prevValue, description: newDescription };
+  });
+};
+
+export const setNewGroupIcon = (setGroup, newIcon) => {
+  setGroup((prevValue) => {
+    return { ...prevValue, icon: newIcon };
+  });
+};
+
+export const setNewGroupType = (setGroup, newType) => {
+  setGroup((prevValue) => {
+    return { ...prevValue, type: newType };
+  });
+};
+
+export const setNewGroupUser = (setGroup, userToAdd, role) => {
+  setGroup((prevValue) => ({
+    ...prevValue,
+    users: [
+      ...prevValue.users,
+      { user: { ...userToAdd }, role },
+    ],
+  }));
+};
+
+export const removeGroupUser = (setGroup, userObjectToRemove) => {
+  setGroup((prevValue) => {
+    const usersList = [...prevValue.users];
+    usersList.splice(getUserIndex(usersList, userObjectToRemove), 1);
+    return { ...prevValue, users: usersList };
+  });
+};
+
+export const setNewGroupUserRole = (setGroup, userObjectToUpdate, newRole) => {
+  setGroup((prevValue) => {
+    const usersList = [...prevValue.users];
+    usersList[getUserIndex(usersList, userObjectToUpdate)].role = newRole;
+    return { ...prevValue, users: usersList };
+  });
+};
+
+export const setNewGroupTag = (setGroup, newTag) => {
+  setGroup((prevValue) => {
+    const tagsList = [...prevValue.tags];
+    tagsList.push({ label: newTag });
+    return { ...prevValue, tags: tagsList };
+  });
+};
+
+export const removeGroupTag = (setGroup, tagToRemove) => {
+  setGroup((prevValue) => {
+    const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
+    return { ...prevValue, tags: tagsList };
+  });
+};

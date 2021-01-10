@@ -1,6 +1,7 @@
 import { TextareaAutosize } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { setNewGroupDescription } from '../../utils/sharedFunctions';
 import useStyles from './GroupDescriptionInput.styles';
 
 const GroupDescriptionInput = ({ group, setGroup }) => {
@@ -8,9 +9,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   const { t } = useTranslation();
 
   const handleOnChange = (event) => {
-    setGroup((prevValue) => {
-      return { ...prevValue, description: event.target.value };
-    });
+    setNewGroupDescription(setGroup, event.target.value);
   };
 
   return (

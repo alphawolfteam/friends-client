@@ -52,7 +52,7 @@ const AddGroupDialog = ({ open, onClose }) => {
             refreshData();
             onClose();
           })
-          .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+          .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
       } else {
         setOpenValidationMessage(true);
       }

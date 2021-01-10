@@ -23,7 +23,7 @@ const GroupsList = ({ groups, searchValue }) => {
         .then((res) => {
           setSelectedGroup(res);
         })
-        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [selectedGroupId]);
 

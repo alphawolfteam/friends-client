@@ -43,7 +43,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [dialogSaveAnswer]);
 
@@ -56,7 +56,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);
 

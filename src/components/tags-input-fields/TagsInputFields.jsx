@@ -1,14 +1,15 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
-// import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/MockGroupsService';
+import ValidationService from '../../services/ValidationService';
 import useStyles from './TagsInputFields.styles';
 
 const TagsInputFields = ({ group, setGroup }) => {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
   const handleRemoveTag = (tagToRemove) => {
@@ -19,13 +20,15 @@ const TagsInputFields = ({ group, setGroup }) => {
   };
 
   const handleAddTag = (newTag) => {
-    // TODO: Add alert
-    if (newTag !== '' && !GroupsService.isTagExist(group.tags, newTag)) {
+    const validationResult = ValidationService.validateNewGroupTag(group.tags, newTag);
+    if (validationResult === null) {
       setGroup((prevValue) => {
         const tagsList = [...prevValue.tags];
         tagsList.push({ label: newTag });
         return { ...prevValue, tags: tagsList };
       });
+    } else {
+      enqueueSnackbar(t(`error.${validationResult}`));
     }
   };
 

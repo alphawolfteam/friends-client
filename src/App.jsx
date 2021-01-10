@@ -45,7 +45,7 @@ const App = () => {
       if (!isAuthenticated) {
         initAuthUser();
       }
-    }).catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+    }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

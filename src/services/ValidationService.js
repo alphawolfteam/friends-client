@@ -1,4 +1,6 @@
 import config from '../appConf';
+import GroupsService from './Mock/MockGroupsService';
+// import GroupsService from './GroupsService';
 
 class ValidationService {
   static validateGroupObject(groupObject) {
@@ -29,6 +31,19 @@ class ValidationService {
     }
     if (groupName.length < config.minGroupNameLength) {
       return 'nameTooShort';
+    }
+    return null;
+  }
+
+  static validateNewGroupTag(groupTags, newTag) {
+    if (!newTag || newTag === '') {
+      return 'emptyTagInput';
+    }
+    if (newTag.length < config.minTagLength) {
+      return 'tagTooShort';
+    }
+    if (GroupsService.isTagExist(groupTags, newTag)) {
+      return 'tagAlreadyExist';
     }
     return null;
   }

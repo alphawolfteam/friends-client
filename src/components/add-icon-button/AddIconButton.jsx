@@ -23,7 +23,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
         setSelectedIcon(newIcon);
       };
     } else {
-      enqueueSnackbar(t('message.fileError'), { variant: 'error' });
+      enqueueSnackbar(t('error.file'), { variant: 'error' });
     }
   };
 

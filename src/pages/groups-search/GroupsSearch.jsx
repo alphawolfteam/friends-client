@@ -44,7 +44,7 @@ const GroupsSearch = () => {
         setSearchValue('');
         setIsLoading(false);
       })
-      .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+      .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
   }, []);
 
   useEffect(async () => {
@@ -66,7 +66,7 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, []);
 

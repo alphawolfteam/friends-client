@@ -38,9 +38,14 @@ const resources = {
         name: 'הוסיפו שם..',
         search: 'חיפוש..',
       },
+      error: {
+        file: 'יש לבחור תמונה',
+        server: 'קרתה בעיה.. נסו שוב מאוחר יותר',
+        emptyTagInput: 'יש למלא תגית',
+        tagAlreadyExist: 'התגית כבר קיימת',
+        tagTooShort: `תגית צריכה להיות לפחות ${config.minTagLength} תווים`,
+      },
       message: {
-        serverError: 'קרתה בעיה.. נסו שוב מאוחר יותר',
-        fileError: 'יש לבחור תמונה',
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',

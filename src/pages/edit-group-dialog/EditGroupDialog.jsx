@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../stores/refreshDataStore';
 import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -21,6 +22,7 @@ const getNestedGroupCopy = (group) => {
 const EditGroupDialog = ({
   group, open, onClose, onCancel,
 }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
   const [openAlertSaveDialog, setOpenAlertSaveDialog] = useState(false);
@@ -40,8 +42,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        // TODO: Display error
-        .catch((e) => console.log(e));
+        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [dialogSaveAnswer]);
 
@@ -54,8 +55,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        // TODO: Display error
-        .catch((e) => console.log(e));
+        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);
 

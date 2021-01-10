@@ -5,6 +5,8 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import AppBarComponent from './components/app-bar/AppBar';
 import userContext from './stores/userStore';
 import GroupsSearch from './pages/groups-search/GroupsSearch';
@@ -16,6 +18,8 @@ import ConfigService from './services/ConfigService';
 
 const App = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -39,8 +43,7 @@ const App = () => {
       if (!isAuthenticated) {
         initAuthUser();
       }
-      // TODO: Display error
-    }).catch((e) => console.log(e));
+    }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

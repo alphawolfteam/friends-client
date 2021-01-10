@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
@@ -15,6 +16,7 @@ const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
 
 const AddGroupDialog = ({ open, onClose }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
@@ -49,8 +51,7 @@ const AddGroupDialog = ({ open, onClose }) => {
             refreshData();
             onClose();
           })
-          // TODO: Display error
-          .catch((e) => console.log(e));
+          .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
       } else {
         setOpenValidationMessage(true);
       }

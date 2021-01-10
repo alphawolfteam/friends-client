@@ -8,6 +8,7 @@ import React,
 } from 'react';
 import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
@@ -22,6 +23,7 @@ import config from '../../appConf';
 
 const GroupsSearch = () => {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [currentUserGroups, setCurrentUserGroups] = useState(undefined);
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState(undefined);
@@ -41,8 +43,7 @@ const GroupsSearch = () => {
         setSearchValue('');
         setIsLoading(false);
       })
-      // TODO: Display error
-      .catch((e) => console.log(e));
+      .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
   }, []);
 
   useEffect(async () => {
@@ -64,8 +65,7 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        // TODO: Display error
-        .catch((e) => console.log(e));
+        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, []);
 

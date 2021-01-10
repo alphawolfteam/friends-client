@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import GroupDialog from '../../pages/group-dialog/GroupDialog';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../stores/userStore';
@@ -7,6 +9,8 @@ import useStyles from './GroupsList.styles';
 
 const GroupsList = ({ groups, searchValue }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
   const [selectedGroupId, setSelectedGroupId] = useState(undefined);
   const [selectedGroup, setSelectedGroup] = useState(undefined);
@@ -18,8 +22,7 @@ const GroupsList = ({ groups, searchValue }) => {
         .then((res) => {
           setSelectedGroup(res);
         })
-      // TODO: Display error
-        .catch((e) => console.log(e));
+        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [selectedGroupId]);
 

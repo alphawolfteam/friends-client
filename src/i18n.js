@@ -39,6 +39,7 @@ const resources = {
         search: 'חיפוש..',
       },
       message: {
+        error: 'קרתה בעיה.. נסו שוב מאוחר יותר',
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',

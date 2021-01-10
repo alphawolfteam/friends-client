@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import useStyles from './GroupDialog.styles';
 import LockIcon from '../../components/lock-icon/LockIcon';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
@@ -32,6 +33,7 @@ const GroupDialog = ({
   onClose,
 }) => {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
@@ -55,11 +57,10 @@ const GroupDialog = ({
     if (dialogLeaveAnswer === 'agree') {
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
         .then(() => {
-        // TODO: Update only
+          // TODO: Update only
           refreshData();
           onClose();
-          // TODO: Display error
-        }).catch((e) => console.log(e));
+        }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [dialogLeaveAnswer]);
 
@@ -71,8 +72,7 @@ const GroupDialog = ({
           // TODO: Update only
           refreshData();
           onClose();
-        // TODO: Display error
-        }).catch((e) => console.log(e));
+        }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);
 

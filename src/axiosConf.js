@@ -16,4 +16,4 @@ const configInstance = axios.create({
   },
 });
 
-export default { apiGatewayInstance, configInstance };
+export { apiGatewayInstance, configInstance };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { InputBase } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../services/UsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
@@ -8,6 +9,7 @@ import config from '../../appConf';
 
 const AddUserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [options, setOptions] = useState([]);
@@ -20,8 +22,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         .then((res) => {
           setOptions(res);
         })
-        // TODO: Display error
-        .catch((e) => console.log(e));
+        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
     }
   }, [searchValue]);
 

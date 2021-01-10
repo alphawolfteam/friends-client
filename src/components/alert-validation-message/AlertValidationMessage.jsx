@@ -9,7 +9,7 @@ const AlertValidationMessage = ({ open, onClose, validationArray }) => {
   const { t } = useTranslation();
 
   const validationMessage = (
-    <div className={classes.message}>
+    <Typography component="span" className={classes.message}>
       <Typography component="span" className={classes.title}>
         {t('alertMessage.validationMessage')}
       </Typography>
@@ -20,7 +20,7 @@ const AlertValidationMessage = ({ open, onClose, validationArray }) => {
           </Typography>
         ))}
       </Typography>
-    </div>
+    </Typography>
   );
 
   return (

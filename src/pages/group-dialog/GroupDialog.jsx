@@ -14,6 +14,7 @@ import useStyles from './GroupDialog.styles';
 import LockIcon from '../../components/lock-icon/LockIcon';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
+import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../../components/tags-list/TagsList';
@@ -38,6 +39,7 @@ const GroupDialog = ({
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
@@ -54,24 +56,30 @@ const GroupDialog = ({
   };
 
   useEffect(async () => {
-    // TODO: Add loader
+    setIsLoading(true);
     if (dialogLeaveAnswer === 'agree') {
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
         .then(() => {
           // TODO: Update only
           refreshData();
-        }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+        }).catch(() => {
+          setIsLoading(false);
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
+        });
     }
   }, [dialogLeaveAnswer]);
 
   useEffect(async () => {
-    // TODO: Add loader
+    setIsLoading(true);
     if (dialogDeleteAnswer === 'agree') {
       GroupsService.deleteGroup(group._id)
         .then(() => {
           // TODO: Update only
           refreshData();
-        }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+        }).catch(() => {
+          setIsLoading(false);
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
+        });
     }
   }, [dialogDeleteAnswer]);
 
@@ -182,6 +190,7 @@ const GroupDialog = ({
         open={openAlertLeaveMessage}
         onClose={() => setOpenAlertLeaveMessage(false)}
       />
+      <CustomeBackdrop open={isLoading} />
     </>
   );
 

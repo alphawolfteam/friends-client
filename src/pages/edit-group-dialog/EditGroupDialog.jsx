@@ -25,6 +25,7 @@ import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDia
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import useStyles from './EditGroupDialog.styles';
+import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
 
 const EditGroupDialog = ({
   group, open, onClose,
@@ -34,18 +35,22 @@ const EditGroupDialog = ({
   const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const [newGroup, setNewGroup] = useState(group);
 
   useEffect(async () => {
     if (dialogDeleteAnswer === 'agree') {
-      // TODO: Add loader
+      setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
           // TODO: Update only
           refreshData();
         })
-        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+        .catch(() => {
+          setIsLoading(false);
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
+        });
     }
   }, [dialogDeleteAnswer]);
 
@@ -179,6 +184,7 @@ const EditGroupDialog = ({
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
         preferredAnswer="disagree"
       />
+      <CustomeBackdrop open={isLoading} />
     </>
   );
 };

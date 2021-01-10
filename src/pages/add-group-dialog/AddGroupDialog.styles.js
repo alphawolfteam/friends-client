@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
   title: {
     display: 'flex',
@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  backdrop: {
-    zIndex: theme.zIndex.snackbar + 1,
-    color: '#fff',
   },
 }));
 

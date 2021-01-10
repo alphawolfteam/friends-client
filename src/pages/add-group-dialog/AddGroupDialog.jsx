@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Button, CircularProgress, Backdrop } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
@@ -10,6 +10,7 @@ import LockIconInput from '../../components/lock-icon-input/LockIconInput';
 import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
 import Paging from '../../components/paging/Paging';
 import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
+import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
 import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
@@ -155,9 +156,7 @@ const AddGroupDialog = ({ open, onClose }) => {
         open={openValidationMessage}
         onClose={() => setOpenValidationMessage(false)}
       />
-      <Backdrop className={classes.backdrop} open={isLoading}>
-        <CircularProgress color="primary" />
-      </Backdrop>
+      <CustomeBackdrop open={isLoading} />
     </>
   );
 };

@@ -13,8 +13,10 @@ import GroupsSearch from './pages/groups-search/GroupsSearch';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
-import AuthService from './services/AuthService';
-import ConfigService from './services/ConfigService';
+import AuthService from './services/Mock/MockAuthService';
+// import AuthService from './services/AuthService';
+import ConfigService from './services/Mock/MockConfigService';
+// import ConfigService from './services/ConfigService';
 
 const App = () => {
   const classes = useStyles();
@@ -43,7 +45,7 @@ const App = () => {
       if (!isAuthenticated) {
         initAuthUser();
       }
-    }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+    }).catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

@@ -7,7 +7,8 @@ import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
-import GroupsService from '../../services/GroupsService';
+// import GroupsService from '../../services/GroupsService';
+import GroupsService from '../../services/Mock/MockGroupsService';
 import ValidationService from '../../services/ValidationService';
 
 const getNestedGroupCopy = (group) => {
@@ -42,7 +43,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, [dialogSaveAnswer]);
 
@@ -55,7 +56,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);
 

@@ -18,7 +18,8 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../../components/tags-list/TagsList';
 import UsersList from '../../components/users-list/UsersList';
-import GroupsService from '../../services/GroupsService';
+// import GroupsService from '../../services/GroupsService';
+import GroupsService from '../../services/Mock/MockGroupsService';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import { getRole } from '../../utils/sharedFunctions';
@@ -60,7 +61,7 @@ const GroupDialog = ({
           // TODO: Update only
           refreshData();
           onClose();
-        }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        }).catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, [dialogLeaveAnswer]);
 
@@ -72,7 +73,7 @@ const GroupDialog = ({
           // TODO: Update only
           refreshData();
           onClose();
-        }).catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        }).catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, [dialogDeleteAnswer]);
 

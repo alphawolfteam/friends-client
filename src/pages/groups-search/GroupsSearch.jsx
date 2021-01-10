@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
-import GroupsService from '../../services/GroupsService';
+// import GroupsService from '../../services/GroupsService';
+import GroupsService from '../../services/Mock/MockGroupsService';
 import { getSortedGroupsByRole, getSortedGroupsByType } from '../../utils/sharedFunctions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
@@ -43,7 +44,7 @@ const GroupsSearch = () => {
         setSearchValue('');
         setIsLoading(false);
       })
-      .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+      .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
   }, []);
 
   useEffect(async () => {
@@ -65,7 +66,7 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, []);
 

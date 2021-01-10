@@ -3,7 +3,8 @@ import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
-import GroupsService from '../../services/GroupsService';
+// import GroupsService from '../../services/GroupsService';
+import GroupsService from '../../services/Mock/MockGroupsService';
 import useStyles from './TagsInputFields.styles';
 
 const TagsInputFields = ({ group, setGroup }) => {

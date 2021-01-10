@@ -1,5 +1,6 @@
 import React from 'react';
 import { IconButton, Tooltip } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as AddPhotoIcon } from '../../utils/images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
@@ -7,9 +8,9 @@ import useStyles from './AddIconButton.styles';
 const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleOnChange = async (event) => {
-    // TODO: Alert error
     const file = event.target.files[0];
     if (file && file.type.startsWith('image')) {
       const reader = new FileReader();
@@ -21,6 +22,8 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
         }
         setSelectedIcon(newIcon);
       };
+    } else {
+      enqueueSnackbar(t('message.fileError'), { variant: 'error' });
     }
   };
 

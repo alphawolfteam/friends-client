@@ -8,7 +8,8 @@ import AlertValidationMessage from '../../components/alert-validation-message/Al
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
-import GroupsService from '../../services/GroupsService';
+// import GroupsService from '../../services/GroupsService';
+import GroupsService from '../../services/Mock/MockGroupsService';
 import ValidationService from '../../services/ValidationService';
 import { getRole } from '../../utils/sharedFunctions';
 
@@ -51,7 +52,7 @@ const AddGroupDialog = ({ open, onClose }) => {
             refreshData();
             onClose();
           })
-          .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+          .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
       } else {
         setOpenValidationMessage(true);
       }

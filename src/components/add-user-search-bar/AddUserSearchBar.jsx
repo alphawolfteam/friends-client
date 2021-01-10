@@ -3,7 +3,8 @@ import { InputBase } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './AddUserSearchBar.styles';
-import UsersService from '../../services/UsersService';
+// import UsersService from '../../services/UsersService';
+import UsersService from '../../services/Mock/MockUsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
 import config from '../../appConf';
 
@@ -22,7 +23,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         .then((res) => {
           setOptions(res);
         })
-        .catch(() => enqueueSnackbar(t('message.error'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(t('message.serverError'), { variant: 'error' }));
     }
   }, [searchValue]);
 

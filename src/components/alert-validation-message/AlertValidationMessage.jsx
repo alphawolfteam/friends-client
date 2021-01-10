@@ -9,16 +9,18 @@ const AlertValidationMessage = ({ open, onClose, validationArray }) => {
   const { t } = useTranslation();
 
   const validationMessage = (
-    <>
+    <div className={classes.message}>
       <Typography component="span" className={classes.title}>
         {t('alertMessage.validationMessage')}
       </Typography>
-      {validationArray.map((validationTitle) => (
-        <Typography component="span" key={validationTitle} className={classes.field}>
-          { t(`validation.${validationTitle}`)}
-        </Typography>
-      ))}
-    </>
+      <Typography component="span" className={classes.fieldsList}>
+        {validationArray.map((validationTitle) => (
+          <Typography component="span" key={validationTitle} className={classes.field}>
+            { t(`validation.${validationTitle}`)}
+          </Typography>
+        ))}
+      </Typography>
+    </div>
   );
 
   return (

@@ -6,7 +6,7 @@ const resources = {
     translation: {
       title: {
         description: 'תיאור',
-        friends: 'חברים',
+        members: 'חברים',
         currentUserGroups: 'הקבוצות שלי',
         privateGroups: 'קבוצות פרטיות',
         publicGroups: 'קבוצות ציבוריות',
@@ -41,7 +41,7 @@ const resources = {
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',
-        noFriendsFound: '(: אין חברים בקבוצה.. צרפו כמה',
+        noMembersFound: '(: אין חברים בקבוצה.. צרפו כמה',
       },
       alertMessage: {
         cantLeaveGroup: 'כדי לצאת מהקבוצה מנו מנהלים חדשים :)',
@@ -56,6 +56,11 @@ const resources = {
         morning: 'בוקר טוב',
         afternoon: 'צהריים טובים',
         evening: 'ערב טוב',
+      },
+      validation: {
+        emptyNameInput: 'יש לבחור שם לקבוצה',
+        emptyDescriptionInput: 'יש למלא תיאור לקבוצה',
+        noMembersInList: 'יש להוסיף חברים לקבוצה',
       },
     },
   },

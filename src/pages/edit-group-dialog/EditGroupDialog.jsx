@@ -7,6 +7,7 @@ import EditableGroupDialogTemplate from
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import GroupsService from '../../services/GroupsService';
+import ValidationService from '../../services/ValidationService';
 
 const getNestedGroupCopy = (group) => {
   return {
@@ -58,8 +59,7 @@ const EditGroupDialog = ({
   }, [dialogDeleteAnswer]);
 
   const handleSave = () => {
-    if (newGroup.name && newGroup.description
-      && newGroup.users.length > 1) {
+    if (ValidationService.validateGroupObject(newGroup).length === 0) {
       setOpenAlertSaveDialog(true);
     } else {
       setOpenAlertMessage(true);

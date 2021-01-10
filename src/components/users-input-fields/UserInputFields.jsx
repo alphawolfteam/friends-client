@@ -77,7 +77,7 @@ const UserInputFields = ({ group, setGroup }) => {
           ))
             : (
               <Typography className={classes.message}>
-                {t('message.noFriendsFound')}
+                {t('message.noMembersFound')}
               </Typography>
             )}
         </div>

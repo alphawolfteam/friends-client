@@ -125,7 +125,7 @@ const GroupDialog = ({
       )}
       <Typography className={classes.title}>
         <People className={classes.titleIcon} />
-        {t('title.friends')}
+        {t('title.members')}
       </Typography>
       <UsersList users={group.users} />
     </div>

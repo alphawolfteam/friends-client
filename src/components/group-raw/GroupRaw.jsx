@@ -49,7 +49,7 @@ const GroupRaw = ({
       <Typography className={classes.groupAmount}>
         {group.users.length}
         {' '}
-        {t('title.friends')}
+        {t('title.members')}
       </Typography>
     </div>
   );

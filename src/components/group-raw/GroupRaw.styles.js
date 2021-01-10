@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     fontWeight: '700',
+    whiteSpace: 'nowrap',
   },
   groupId: {
     fontFamily: theme.typography.fontFamily,

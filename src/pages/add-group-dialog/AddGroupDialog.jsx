@@ -8,6 +8,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 import GroupsService from '../../services/GroupsService';
+import ValidationService from '../../services/ValidationService';
 import { getRole } from '../../utils/sharedFunctions';
 
 const DEFAULT_TYPE = 'private';
@@ -36,8 +37,7 @@ const AddGroupDialog = ({ open, onClose }) => {
 
   const handleAdd = async () => {
     // TODO: Add loader
-    if (newGroup.name && newGroup.description
-      && newGroup.users.length > 1) {
+    if (ValidationService.validateGroupObject(newGroup).length === 0) {
       // TODO: Add loader
       GroupsService.createGroup(newGroup)
         .then(() => {

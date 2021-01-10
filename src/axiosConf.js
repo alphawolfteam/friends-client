@@ -3,12 +3,17 @@ import config from './appConf';
 
 const apiGatewayInstance = axios.create({
   baseURL: config.apiGatewayURI,
-  headers: {},
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
 });
 
 const configInstance = axios.create({
   baseURL: config.configServiceURI,
-  headers: {},
+  headers: {
+    Accept: 'application/json',
+  },
 });
 
 export default { apiGatewayInstance, configInstance };

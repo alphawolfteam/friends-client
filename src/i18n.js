@@ -40,10 +40,10 @@ const resources = {
       },
       error: {
         file: 'יש לבחור תמונה',
-        server: 'קרתה בעיה.. נסו שוב מאוחר יותר',
-        emptyTagInput: 'יש למלא תגית',
+        server: 'קרתה תקלה.. נסו שוב מאוחר יותר',
+        emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
-        tagTooShort: `תגית צריכה להיות לפחות ${config.minTagLength} תווים`,
+        tagTooShort: `תגית צריכה להכיל לפחות ${config.minTagLength} תווים`,
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
@@ -68,7 +68,7 @@ const resources = {
         emptyNameInput: 'יש לבחור שם לקבוצה',
         emptyDescriptionInput: 'יש למלא תיאור לקבוצה',
         noMembersInList: 'יש להוסיף חברים לקבוצה',
-        nameTooShort: `שם קבוצה צריך להיות לפחות ${config.minGroupNameLength} תווים`,
+        nameTooShort: `שם קבוצה צריך להכיל לפחות ${config.minGroupNameLength} תווים`,
       },
     },
   },

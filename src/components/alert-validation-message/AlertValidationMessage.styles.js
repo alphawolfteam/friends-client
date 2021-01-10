@@ -6,9 +6,10 @@ const useStyles = makeStyles(() => ({
   message: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   title: {
-    fontSize: '1.3em',
+    fontSize: '1.4em',
     fontWeight: '700',
     textAlign: 'center',
     marginBottom: '3%',
@@ -22,6 +23,7 @@ const useStyles = makeStyles(() => ({
   field: {
     width: '15em',
     fontSize: '1em',
+    textAlign: 'center',
   },
 }));
 

@@ -9,7 +9,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 // import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/MockGroupsService';
+import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
 import { getRole } from '../../utils/sharedFunctions';
 

@@ -13,9 +13,9 @@ import GroupsSearch from './pages/groups-search/GroupsSearch';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
-import AuthService from './services/Mock/MockAuthService';
+import AuthService from './services/Mock/AuthService';
 // import AuthService from './services/AuthService';
-import ConfigService from './services/Mock/MockConfigService';
+import ConfigService from './services/Mock/ConfigService';
 // import ConfigService from './services/ConfigService';
 
 const App = () => {

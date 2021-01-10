@@ -8,7 +8,7 @@ import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 // import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/MockGroupsService';
+import GroupsService from '../../services/Mock/GroupsService';
 import userContext from '../../stores/userStore';
 import { getRole } from '../../utils/sharedFunctions';
 

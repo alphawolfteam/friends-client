@@ -14,7 +14,7 @@ import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './GroupsSearch.style';
 // import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/MockGroupsService';
+import GroupsService from '../../services/Mock/GroupsService';
 import { getSortedGroupsByRole, getSortedGroupsByType } from '../../utils/sharedFunctions';
 import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from

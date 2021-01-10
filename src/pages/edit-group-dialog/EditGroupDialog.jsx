@@ -8,7 +8,7 @@ import EditableGroupDialogTemplate from
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
 // import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/MockGroupsService';
+import GroupsService from '../../services/Mock/GroupsService';
 import ValidationService from '../../services/ValidationService';
 
 const getNestedGroupCopy = (group) => {

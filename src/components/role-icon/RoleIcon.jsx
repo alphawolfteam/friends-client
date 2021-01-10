@@ -1,7 +1,7 @@
 import React from 'react';
 import { SettingsOutlined, PersonOutline } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
-import { Tooltip } from '@material-ui/core';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './RoleIcon.styles';
 import { getRole } from '../../utils/sharedFunctions';
 
@@ -14,14 +14,22 @@ const RoleIcon = ({ role }) => {
       {role !== undefined && (
         <div className={classes.root}>
           {role === getRole('manager').value && (
-            <Tooltip className={classes.icon} title={t('tooltip.manager')}>
-              <SettingsOutlined />
-            </Tooltip>
+            <CustomeTooltip
+              title={t('tooltip.manager')}
+              className={classes.icon}
+              element={(
+                <SettingsOutlined />
+              )}
+            />
           )}
           {role === getRole('member').value && (
-            <Tooltip className={classes.icon} title={t('tooltip.member')}>
-              <PersonOutline />
-            </Tooltip>
+            <CustomeTooltip
+              title={t('tooltip.member')}
+              className={classes.icon}
+              element={(
+                <PersonOutline />
+              )}
+            />
           )}
         </div>
       )}

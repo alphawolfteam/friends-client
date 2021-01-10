@@ -1,7 +1,8 @@
 import React from 'react';
-import { Tooltip, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 import { getRoleByDisplayName, getRoleByValue } from '../../utils/sharedFunctions';
@@ -20,12 +21,15 @@ const UserRawActions = ({ userObject, onRemove, onChangeRole }) => {
           )}
         />
       </div>
-      <Tooltip title={t('tooltip.delete')}>
-        <Delete
-          className={classes.iconButton}
-          onClick={() => onRemove()}
-        />
-      </Tooltip>
+      <CustomeTooltip
+        title={t('tooltip.delete')}
+        element={(
+          <Delete
+            className={classes.iconButton}
+            onClick={() => onRemove()}
+          />
+        )}
+      />
     </Typography>
   );
 };

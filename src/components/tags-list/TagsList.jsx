@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { Chip, Tooltip, Typography } from '@material-ui/core';
+import { Chip, Typography } from '@material-ui/core';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './TagsList.styles';
 
 const TagsList = ({ tags, maxTagsCount }) => {
@@ -14,9 +15,13 @@ const TagsList = ({ tags, maxTagsCount }) => {
       {slicedTagsList.length > 0 && (
         <div className={classes.tagsList}>
           {slicedTagsList.map((tag) => (
-            <Tooltip title={tag.label} key={tag.label}>
-              <Chip className={classes.label} label={`#${tag.label}`} />
-            </Tooltip>
+            <CustomeTooltip
+              title={tag.label}
+              key={tag.label}
+              element={(
+                <Chip className={classes.label} label={`#${tag.label}`} />
+              )}
+            />
           ))}
           {tags.length > maxTagsCount
             && <Typography className={classes.moreMessage}>...</Typography>}

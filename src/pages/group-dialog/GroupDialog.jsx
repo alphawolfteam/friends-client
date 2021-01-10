@@ -6,7 +6,6 @@ import {
   Button,
   Typography,
   IconButton,
-  Tooltip,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
@@ -15,6 +14,7 @@ import LockIcon from '../../components/lock-icon/LockIcon';
 import DialogTemplate from '../../components/dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group-dialog/EditGroupDialog';
 import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
+import CustomeTooltip from '../../components/custome-tooltip/CustomeTooltip';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import TagsList from '../../components/tags-list/TagsList';
@@ -56,8 +56,8 @@ const GroupDialog = ({
   };
 
   useEffect(async () => {
-    setIsLoading(true);
     if (dialogLeaveAnswer === 'agree') {
+      setIsLoading(true);
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
         .then(() => {
           // TODO: Update only
@@ -70,8 +70,8 @@ const GroupDialog = ({
   }, [dialogLeaveAnswer]);
 
   useEffect(async () => {
-    setIsLoading(true);
     if (dialogDeleteAnswer === 'agree') {
+      setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
           // TODO: Update only
@@ -100,11 +100,14 @@ const GroupDialog = ({
         <img className={classes.img} src={group.icon} alt="icon" />
       </div>
       <div className={classes.groupTitle}>
-        <Tooltip title={group.name}>
-          <Typography className={classes.groupName}>
-            {group.name}
-          </Typography>
-        </Tooltip>
+        <CustomeTooltip
+          title={group.name}
+          element={(
+            <Typography className={classes.groupName}>
+              {group.name}
+            </Typography>
+          )}
+        />
         <Typography className={classes.groupId}>
           #
           {group._id.substr(group._id.length - 4)}

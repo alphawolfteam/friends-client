@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip } from '@material-ui/core';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './UserInfo.styles';
 
 const UserRaw = ({ userObject }) => {
@@ -9,11 +9,14 @@ const UserRaw = ({ userObject }) => {
     <div className={classes.root}>
       {userObject.user.fullName}
       {userObject.user.hierarchyFlat && (
-        <Tooltip title={userObject.user.hierarchyFlat}>
-          <div className={classes.hierarchy}>
-            {userObject.user.hierarchyFlat}
-          </div>
-        </Tooltip>
+        <CustomeTooltip
+          title={userObject.user.hierarchyFlat}
+          element={(
+            <div className={classes.hierarchy}>
+              {userObject.user.hierarchyFlat}
+            </div>
+          )}
+        />
       )}
     </div>
   );

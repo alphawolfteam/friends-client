@@ -1,20 +1,25 @@
 import React from 'react';
-import { Chip, Tooltip } from '@material-ui/core';
+import { Chip } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './DeletableTag.styles';
 
 const DeletableTag = ({ tag, onRemove }) => {
   const classes = useStyles();
 
   return (
-    <Tooltip className={classes.root} title={tag}>
-      <Chip
-        className={classes.label}
-        label={`#${tag}`}
-        onDelete={onRemove}
-        deleteIcon={<Close className={classes.closeIcon} />}
-      />
-    </Tooltip>
+    <CustomeTooltip
+      title={tag}
+      className={classes.root}
+      element={(
+        <Chip
+          className={classes.label}
+          label={`#${tag}`}
+          onDelete={onRemove}
+          deleteIcon={<Close className={classes.closeIcon} />}
+        />
+      )}
+    />
   );
 };
 

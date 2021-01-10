@@ -1,7 +1,8 @@
 import React from 'react';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import { ReactComponent as AddPhotoIcon } from '../../utils/images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
 
@@ -28,22 +29,26 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   };
 
   return (
-    <Tooltip title={t('tooltip.addNewPhoto')} className={classes.root}>
-      <IconButton
-        variant="contained"
-        component="label"
-        className={classes.iconButton}
-      >
-        <AddPhotoIcon className={classes.icon} />
-        <input
-          accept="image/*"
-          type="file"
-          hidden
-          multiple
-          onChange={(e) => handleOnChange(e)}
-        />
-      </IconButton>
-    </Tooltip>
+    <CustomeTooltip
+      title={t('tooltip.addNewPhoto')}
+      className={classes.root}
+      element={(
+        <IconButton
+          variant="contained"
+          component="label"
+          className={classes.iconButton}
+        >
+          <AddPhotoIcon className={classes.icon} />
+          <input
+            accept="image/*"
+            type="file"
+            hidden
+            multiple
+            onChange={(e) => handleOnChange(e)}
+          />
+        </IconButton>
+      )}
+    />
   );
 };
 

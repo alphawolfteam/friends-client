@@ -79,7 +79,12 @@ const AddGroupDialog = ({ open, onClose }) => {
       />
       <div className={classes.title}>
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
-        <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
+        <LockIconInput
+          type={newGroup.type}
+          onChange={(newType) => setNewGroup((prevValue) => {
+            return { ...prevValue, type: newType };
+          })}
+        />
       </div>
     </>
   );

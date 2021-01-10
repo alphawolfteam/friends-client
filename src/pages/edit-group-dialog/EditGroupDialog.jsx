@@ -68,7 +68,21 @@ const EditGroupDialog = ({
       <div className={classes.title}>
         {/* TODO: New component */}
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
-        <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
+        <LockIconInput
+          type={newGroup.type}
+          onChange={(newType) => {
+            // TODO: Add loader
+            GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
+              .then(() => {
+                setNewGroup((prevValue) => {
+                  return { ...prevValue, type: newType };
+                });
+              })
+              .catch(() => {
+                enqueueSnackbar(t('error.server'), { variant: 'error' });
+              });
+          }}
+        />
       </div>
     </>
   );

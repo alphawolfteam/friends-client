@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
-import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
+import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
@@ -18,7 +18,8 @@ const AddGroupDialog = ({ open, onClose }) => {
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
   const refreshData = useContext(refreshDataContext);
-  const [openAlertMessage, setOpenAlertMessage] = useState(false);
+  const [openValidationMessage, setOpenValidationMessage] = useState(false);
+  const [validationArray, setValidationArray] = useState([]);
   const [newGroup, setNewGroup] = useState({
     name: '',
     description: '',
@@ -36,20 +37,26 @@ const AddGroupDialog = ({ open, onClose }) => {
   });
 
   const handleAdd = async () => {
-    // TODO: Add loader
-    if (ValidationService.validateGroupObject(newGroup).length === 0) {
+    setValidationArray(() => {
+      const newValue = ValidationService.validateGroupObject(newGroup);
+
       // TODO: Add loader
-      GroupsService.createGroup(newGroup)
-        .then(() => {
-          // TODO: Update only
-          refreshData();
-          onClose();
-        })
-      // TODO: Display error
-        .catch((e) => console.log(e));
-    } else {
-      setOpenAlertMessage(true);
-    }
+      if (newValue.length === 0) {
+        // TODO: Add loader
+        GroupsService.createGroup(newGroup)
+          .then(() => {
+            // TODO: Update only
+            refreshData();
+            onClose();
+          })
+          // TODO: Display error
+          .catch((e) => console.log(e));
+      } else {
+        setOpenValidationMessage(true);
+      }
+
+      return newValue;
+    });
   };
 
   const dialogActions = (
@@ -71,10 +78,10 @@ const AddGroupDialog = ({ open, onClose }) => {
         actions={dialogActions}
         open={open}
       />
-      <AlertMessageTemplate
-        message={t('alertMessage.addValidation')}
-        open={openAlertMessage}
-        onClose={() => setOpenAlertMessage(false)}
+      <AlertValidationMessage
+        validationArray={validationArray}
+        open={openValidationMessage}
+        onClose={() => setOpenValidationMessage(false)}
       />
     </>
   );

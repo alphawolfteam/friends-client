@@ -5,7 +5,7 @@ import refreshDataContext from '../../stores/refreshDataStore';
 import EditableGroupDialogTemplate from
   '../../components/editable-group-dialog-template/EditableGroupDialogTemplate';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
-import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
+import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
 import GroupsService from '../../services/GroupsService';
 import ValidationService from '../../services/ValidationService';
 
@@ -27,7 +27,8 @@ const EditGroupDialog = ({
   const [dialogSaveAnswer, setDialogSaveAnswer] = useState(undefined);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
-  const [openAlertMessage, setOpenAlertMessage] = useState(false);
+  const [openValidationMessage, setOpenValidationMessage] = useState(false);
+  const [validationArray, setValidationArray] = useState([]);
   const [newGroup, setNewGroup] = useState(getNestedGroupCopy(group));
 
   useEffect(async () => {
@@ -39,7 +40,7 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-      // TODO: Display error
+        // TODO: Display error
         .catch((e) => console.log(e));
     }
   }, [dialogSaveAnswer]);
@@ -53,17 +54,23 @@ const EditGroupDialog = ({
           refreshData();
           onClose();
         })
-      // TODO: Display error
+        // TODO: Display error
         .catch((e) => console.log(e));
     }
   }, [dialogDeleteAnswer]);
 
   const handleSave = () => {
-    if (ValidationService.validateGroupObject(newGroup).length === 0) {
-      setOpenAlertSaveDialog(true);
-    } else {
-      setOpenAlertMessage(true);
-    }
+    setValidationArray(() => {
+      const newValue = ValidationService.validateGroupObject(newGroup);
+
+      if (newValue.length === 0) {
+        setOpenAlertSaveDialog(true);
+      } else {
+        setOpenValidationMessage(true);
+      }
+
+      return newValue;
+    });
   };
 
   const handleDeleteGroup = () => {
@@ -106,10 +113,10 @@ const EditGroupDialog = ({
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
         preferredAnswer="disagree"
       />
-      <AlertMessageTemplate
-        message={t('alertMessage.saveValidation')}
-        open={openAlertMessage}
-        onClose={() => setOpenAlertMessage(false)}
+      <AlertValidationMessage
+        validationArray={validationArray}
+        open={openValidationMessage}
+        onClose={() => setOpenValidationMessage(false)}
       />
     </>
   );

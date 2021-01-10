@@ -4,7 +4,7 @@ import useStyles from './IconInput.styles';
 import IconsSwiper from '../icons-swiper/IconsSwiper';
 import AddIconButton from '../add-icon-button/AddIconButton';
 
-const IconInput = ({ initialIcon, onChange }) => {
+const IconInput = ({ shownIcon, initialIcon, onChange }) => {
   const classes = useStyles();
   const [iconsOptions, setIconsOptions] = useState(groupIconsCodes);
   const [selectedIcon, setSelectedIcon] = useState(initialIcon);
@@ -16,22 +16,21 @@ const IconInput = ({ initialIcon, onChange }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedIcon) {
-      onChange(selectedIcon);
-    }
+    onChange(selectedIcon);
   }, [selectedIcon]);
 
   return (
     <div className={classes.root}>
       <AddIconButton
         iconsOptions={iconsOptions}
-        setIconsOptions={setIconsOptions}
         setSelectedIcon={setSelectedIcon}
+        setIconsOptions={setIconsOptions}
       />
       <IconsSwiper
+        iconsOptions={iconsOptions}
         selectedIcon={selectedIcon}
         setSelectedIcon={setSelectedIcon}
-        iconsOptions={iconsOptions}
+        shownIcon={shownIcon}
       />
     </div>
   );

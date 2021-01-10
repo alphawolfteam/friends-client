@@ -47,19 +47,26 @@ const EditGroupDialog = ({
   const renderDialogTitle = () => (
     <>
       <IconInput
+        shownIcon={newGroup.icon}
         initialIcon={group.icon}
         onChange={(newIcon) => {
+          let prevIcon;
+          setNewGroup((prevValue) => {
+            prevIcon = prevValue.icon;
+            return { ...prevValue, icon: newIcon };
+          });
           // TODO: Add loader
           GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
-            .then(() => {
+            .catch(() => {
               setNewGroup((prevValue) => {
-                return { ...prevValue, icon: newIcon };
+                return { ...prevValue, icon: prevIcon };
               });
-            })
-            .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+              enqueueSnackbar(t('error.server'), { variant: 'error' });
+            });
         }}
       />
       <div className={classes.title}>
+        {/* TODO: New component */}
         <GroupNameInput group={newGroup} setGroup={setNewGroup} />
         <LockIconInput newGroup={newGroup} setNewGroup={setNewGroup} />
       </div>
@@ -72,6 +79,7 @@ const EditGroupDialog = ({
 
   const secondPage = (
     <div className={classes.page}>
+      {/* TODO: New component */}
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
       <TagsInputFields group={newGroup} setGroup={setNewGroup} />
     </div>

@@ -8,16 +8,16 @@ import 'swiper/components/navigation/navigation.scss';
 SwiperCore.use([Navigation, Controller]);
 
 const IconsSwiper = ({
-  selectedIcon, setSelectedIcon, iconsOptions,
+  shownIcon, setSelectedIcon, iconsOptions,
 }) => {
   const classes = useStyles();
   const [controlledSwiper, setControlledSwiper] = useState(null);
 
   useEffect(() => {
     if (controlledSwiper) {
-      controlledSwiper.slideTo(iconsOptions.indexOf(selectedIcon));
+      controlledSwiper.slideTo(iconsOptions.indexOf(shownIcon));
     }
-  }, [selectedIcon, controlledSwiper]);
+  }, [shownIcon, controlledSwiper]);
 
   return (
     <Swiper

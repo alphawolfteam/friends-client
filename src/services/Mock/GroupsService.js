@@ -114,14 +114,17 @@ class GroupsService {
     groupToUpdate.icon = newGroup.icon;
   }
 
+  // eslint-disable-next-line no-unused-vars
   static async addTagToGroup(groupId, newTag) {
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.tags.push(newTag);
+    // const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+    // if (!groupToUpdate.tags.map((tag) => tag.label).includes(newTag)) {
+    //   groupToUpdate.tags.push({ label: newTag });
+    // }
   }
 
   static async removeTagFromGroup(groupId, tagToRemove) {
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag.label !== tagToRemove.label);
+    groupToUpdate.tags = groupToUpdate.tags.filter((tag) => tag.label !== tagToRemove);
   }
 }
 

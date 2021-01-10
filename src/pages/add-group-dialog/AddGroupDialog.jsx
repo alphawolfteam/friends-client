@@ -126,7 +126,22 @@ const AddGroupDialog = ({ open, onClose }) => {
   const secondPage = (
     <div className={classes.page}>
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
-      <TagsInputFields group={newGroup} setGroup={setNewGroup} />
+      <TagsInputFields
+        tagsList={newGroup.tags}
+        onAdd={(newTag) => {
+          setNewGroup((prevValue) => {
+            const tagsList = [...prevValue.tags];
+            tagsList.push({ label: newTag });
+            return { ...prevValue, tags: tagsList };
+          });
+        }}
+        onRemove={(tagToRemove) => {
+          setNewGroup((prevValue) => {
+            const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
+            return { ...prevValue, tags: tagsList };
+          });
+        }}
+      />
     </div>
   );
 

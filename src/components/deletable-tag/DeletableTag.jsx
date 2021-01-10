@@ -3,7 +3,7 @@ import { Chip, Tooltip } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import useStyles from './DeletableTag.styles';
 
-const DeletableTag = ({ tag, onDelete }) => {
+const DeletableTag = ({ tag, onRemove }) => {
   const classes = useStyles();
 
   return (
@@ -11,7 +11,7 @@ const DeletableTag = ({ tag, onDelete }) => {
       <Chip
         className={classes.label}
         label={`#${tag}`}
-        onDelete={onDelete}
+        onDelete={onRemove}
         deleteIcon={<Close className={classes.closeIcon} />}
       />
     </Tooltip>

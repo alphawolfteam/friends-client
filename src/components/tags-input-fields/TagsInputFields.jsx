@@ -7,26 +7,15 @@ import DeletableTag from '../deletable-tag/DeletableTag';
 import ValidationService from '../../services/ValidationService';
 import useStyles from './TagsInputFields.styles';
 
-const TagsInputFields = ({ group, setGroup }) => {
+const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
-  const handleRemoveTag = (tagToRemove) => {
-    setGroup((prevValue) => {
-      const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
-      return { ...prevValue, tags: tagsList };
-    });
-  };
-
   const handleAddTag = (newTag) => {
-    const validationResult = ValidationService.validateNewGroupTag(group.tags, newTag);
+    const validationResult = ValidationService.validateNewGroupTag(tagsList, newTag);
     if (validationResult === null) {
-      setGroup((prevValue) => {
-        const tagsList = [...prevValue.tags];
-        tagsList.push({ label: newTag });
-        return { ...prevValue, tags: tagsList };
-      });
+      onAdd(newTag);
     } else {
       enqueueSnackbar(t(`error.${validationResult}`));
     }
@@ -36,13 +25,13 @@ const TagsInputFields = ({ group, setGroup }) => {
     <div className={classes.root}>
       <AddTagInput onAdd={(newTag) => handleAddTag(newTag)} />
       <div className={classes.tagsList}>
-        {group.tags.length > 0 ? (
+        {tagsList.length > 0 ? (
           <>
-            {group.tags.map((tag) => (
+            {tagsList.map((tag) => (
               <DeletableTag
                 tag={tag.label}
                 key={tag.label}
-                onDelete={() => handleRemoveTag(tag.label)}
+                onRemove={() => onRemove(tag.label)}
               />
             ))}
           </>

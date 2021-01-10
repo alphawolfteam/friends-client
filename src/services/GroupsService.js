@@ -88,11 +88,11 @@ class GroupsService {
   }
 
   static async addTagToGroup(groupId, newTag) {
-    await apiGatewayInstance.put(`groups/${groupId}/tags/${newTag.label}`);
+    await apiGatewayInstance.put(`groups/${groupId}/tags/${newTag}`);
   }
 
   static async removeTagFromGroup(groupId, tagToRemove) {
-    await apiGatewayInstance.delete(`groups/${groupId}/tags/${tagToRemove.label}`);
+    await apiGatewayInstance.delete(`groups/${groupId}/tags/${tagToRemove}`);
   }
 }
 

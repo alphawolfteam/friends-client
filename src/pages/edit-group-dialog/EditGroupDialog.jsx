@@ -141,7 +141,36 @@ const EditGroupDialog = ({
     <div className={classes.page}>
       {/* TODO: New component */}
       <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
-      <TagsInputFields group={newGroup} setGroup={setNewGroup} />
+      <TagsInputFields
+        tagsList={newGroup.tags}
+        onAdd={(newTag) => {
+          // TODO: Add loader
+          GroupsService.addTagToGroup(group._id, newTag)
+            .then(() => {
+              setNewGroup((prevValue) => {
+                const tagsList = [...prevValue.tags];
+                tagsList.push({ label: newTag });
+                return { ...prevValue, tags: tagsList };
+              });
+            })
+            .catch(() => {
+              enqueueSnackbar(t('error.server'), { variant: 'error' });
+            });
+        }}
+        onRemove={(tagToRemove) => {
+          // TODO: Add loader
+          GroupsService.removeTagFromGroup(group._id, tagToRemove)
+            .then(() => {
+              setNewGroup((prevValue) => {
+                const tagsList = [...prevValue.tags].filter((tag) => tag.label !== tagToRemove);
+                return { ...prevValue, tags: tagsList };
+              });
+            })
+            .catch(() => {
+              enqueueSnackbar(t('error.server'), { variant: 'error' });
+            });
+        }}
+      />
     </div>
   );
 

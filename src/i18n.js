@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import config from './appConf';
 
 const resources = {
   he: {
@@ -60,6 +61,7 @@ const resources = {
         emptyNameInput: 'יש לבחור שם לקבוצה',
         emptyDescriptionInput: 'יש למלא תיאור לקבוצה',
         noMembersInList: 'יש להוסיף חברים לקבוצה',
+        nameTooShort: `שם קבוצה צריך להיות לפחות ${config.minGroupNameLength} תווים`,
       },
     },
   },

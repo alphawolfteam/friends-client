@@ -1,18 +1,36 @@
+import config from '../appConf';
+
 class ValidationService {
   static validateGroupObject(groupObject) {
-    const validationArray = [];
+    return [
+      this.validateGroupName(groupObject.name),
+      this.validateGroupDescription(groupObject.description),
+      this.validateGroupUsers(groupObject.users),
+    ].filter((field) => field !== null);
+  }
 
-    if (!groupObject.name || groupObject.name === '') {
-      validationArray.push('emptyNameInput');
+  static validateGroupDescription(groupDescription) {
+    if (!groupDescription || groupDescription === '') {
+      return 'emptyDescriptionInput';
     }
-    if (!groupObject.description || groupObject.description === '') {
-      validationArray.push('emptyDescriptionInput');
-    }
-    if (!groupObject.users || groupObject.users.length <= 1) {
-      validationArray.push('noMembersInList');
-    }
+    return null;
+  }
 
-    return validationArray;
+  static validateGroupUsers(groupUsers) {
+    if (!groupUsers || groupUsers.length <= 1) {
+      return 'noMembersInList';
+    }
+    return null;
+  }
+
+  static validateGroupName(groupName) {
+    if (!groupName || groupName === '') {
+      return 'emptyNameInput';
+    }
+    if (groupName.length < config.minGroupNameLength) {
+      return 'nameTooShort';
+    }
+    return null;
   }
 }
 

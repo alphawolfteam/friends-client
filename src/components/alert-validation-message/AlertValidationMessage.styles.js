@@ -4,12 +4,12 @@ const useStyles = makeStyles(() => ({
   root: {
   },
   title: {
-    fontSize: '1.2em',
+    fontSize: '1.3em',
     fontWeight: '700',
     textAlign: 'center',
   },
   field: {
-    fontSize: '1em',
+    fontSize: '0.9em',
   },
 }));
 

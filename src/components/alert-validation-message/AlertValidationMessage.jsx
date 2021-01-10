@@ -10,12 +10,12 @@ const AlertValidationMessage = ({ open, onClose, validationArray }) => {
 
   const validationMessage = (
     <>
-      <Typography className={classes.title}>
+      <Typography component="span" className={classes.title}>
         {t('alertMessage.validationMessage')}
       </Typography>
       {validationArray.map((validationTitle) => (
-        <Typography className={classes.field}>
-          {t(`validation.${validationTitle}`)}
+        <Typography component="span" key={validationTitle} className={classes.field}>
+          { t(`validation.${validationTitle}`)}
         </Typography>
       ))}
     </>

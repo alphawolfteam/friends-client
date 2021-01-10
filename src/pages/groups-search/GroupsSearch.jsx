@@ -21,6 +21,7 @@ import ScrollableGroupsResult from
   '../../components/scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
 import config from '../../appConf';
+import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupsSearch = () => {
   const classes = useStyles();
@@ -44,7 +45,10 @@ const GroupsSearch = () => {
         setSearchValue('');
         setIsLoading(false);
       })
-      .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+      .catch(() => enqueueSnackbar(
+        <CustomeSnackbarContent message={t('error.server')} />,
+        { variant: 'error' },
+      ));
   }, []);
 
   useEffect(async () => {
@@ -66,7 +70,10 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(
+          <CustomeSnackbarContent message={t('error.server')} />,
+          { variant: 'error' },
+        ));
     }
   }, []);
 

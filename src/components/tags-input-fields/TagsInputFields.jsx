@@ -6,6 +6,7 @@ import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
 import ValidationService from '../../services/ValidationService';
 import useStyles from './TagsInputFields.styles';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
   const classes = useStyles();
@@ -17,7 +18,7 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
     if (validationResult === null) {
       onAdd(newTag);
     } else {
-      enqueueSnackbar(t(`error.${validationResult}`));
+      enqueueSnackbar(<CustomeSnackbarContent message={t(`error.${validationResult}`)} />);
     }
   };
 

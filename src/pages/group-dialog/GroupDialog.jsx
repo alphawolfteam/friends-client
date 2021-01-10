@@ -24,6 +24,7 @@ import GroupsService from '../../services/Mock/GroupsService';
 import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../components/alert-message-template/AlertMessageTemplate';
 import { getRole } from '../../utils/sharedFunctions';
+import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
   (user) => user.role === getRole('manager').value,
@@ -64,7 +65,10 @@ const GroupDialog = ({
           refreshData();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(t('error.server'), { variant: 'error' });
+          enqueueSnackbar(
+            <CustomeSnackbarContent message={t('error.server')} />,
+            { variant: 'error' },
+          );
         });
     }
   }, [dialogLeaveAnswer]);
@@ -78,7 +82,10 @@ const GroupDialog = ({
           refreshData();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(t('error.server'), { variant: 'error' });
+          enqueueSnackbar(
+            <CustomeSnackbarContent message={t('error.server')} />,
+            { variant: 'error' },
+          );
         });
     }
   }, [dialogDeleteAnswer]);

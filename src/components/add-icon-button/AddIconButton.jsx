@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import { ReactComponent as AddPhotoIcon } from '../../utils/images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   const classes = useStyles();
@@ -24,7 +25,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
         setSelectedIcon(newIcon);
       };
     } else {
-      enqueueSnackbar(t('error.file'), { variant: 'error' });
+      enqueueSnackbar(<CustomeSnackbarContent message={t('error.file')} />, { variant: 'error' });
     }
   };
 

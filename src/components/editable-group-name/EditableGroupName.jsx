@@ -7,6 +7,7 @@ import ValidationService from '../../services/ValidationService';
 import GroupsService from '../../services/Mock/GroupsService';
 import { setNewGroupName } from '../../utils/sharedFunctions';
 import useStyles from './EditableGroupName.styles';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupNameInput = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -23,10 +24,13 @@ const GroupNameInput = ({ group, setGroup }) => {
           setNewGroupName(setGroup, name);
         })
         .catch(() => {
-          enqueueSnackbar(t('error.server'), { variant: 'error' });
+          enqueueSnackbar(
+            <CustomeSnackbarContent message={t('error.server')} />,
+            { variant: 'error' },
+          );
         });
     } else {
-      enqueueSnackbar(t(`validation.${validationResult}`));
+      enqueueSnackbar(<CustomeSnackbarContent message={t(`validation.${validationResult}`)} />);
     }
   };
 

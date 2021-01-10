@@ -26,6 +26,7 @@ import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDia
 import GroupsService from '../../services/Mock/GroupsService';
 import useStyles from './EditGroupDialog.styles';
 import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
+import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
 
 const EditGroupDialog = ({
   group, open, onClose,
@@ -49,7 +50,10 @@ const EditGroupDialog = ({
         })
         .catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(t('error.server'), { variant: 'error' });
+          enqueueSnackbar(
+            <CustomeSnackbarContent message={t('error.server')} />,
+            { variant: 'error' },
+          );
         });
     }
   }, [dialogDeleteAnswer]);
@@ -70,7 +74,10 @@ const EditGroupDialog = ({
           GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
             .catch(() => {
               setNewGroupIcon(setNewGroup, prevIcon);
-              enqueueSnackbar(t('error.server'), { variant: 'error' });
+              enqueueSnackbar(
+                <CustomeSnackbarContent message={t('error.server')} />,
+                { variant: 'error' },
+              );
             });
         }}
       />
@@ -85,7 +92,10 @@ const EditGroupDialog = ({
                 setNewGroupType(setNewGroup, newType);
               })
               .catch(() => {
-                enqueueSnackbar(t('error.server'), { variant: 'error' });
+                enqueueSnackbar(
+                  <CustomeSnackbarContent message={t('error.server')} />,
+                  { variant: 'error' },
+                );
               });
           }}
         />
@@ -103,7 +113,10 @@ const EditGroupDialog = ({
             setNewGroupUser(setNewGroup, userToAdd, role);
           })
           .catch(() => {
-            enqueueSnackbar(t('error.server'), { variant: 'error' });
+            enqueueSnackbar(
+              <CustomeSnackbarContent message={t('error.server')} />,
+              { variant: 'error' },
+            );
           });
       }}
       onRemove={(userObjectToRemove) => {
@@ -113,7 +126,10 @@ const EditGroupDialog = ({
             removeGroupUser(setNewGroup, userObjectToRemove);
           })
           .catch(() => {
-            enqueueSnackbar(t('error.server'), { variant: 'error' });
+            enqueueSnackbar(
+              <CustomeSnackbarContent message={t('error.server')} />,
+              { variant: 'error' },
+            );
           });
       }}
       onChangeRole={(userObjectToUpdate, newRole) => {
@@ -123,7 +139,10 @@ const EditGroupDialog = ({
             setNewGroupUserRole(setNewGroup, userObjectToUpdate, newRole);
           })
           .catch(() => {
-            enqueueSnackbar(t('error.server'), { variant: 'error' });
+            enqueueSnackbar(
+              <CustomeSnackbarContent message={t('error.server')} />,
+              { variant: 'error' },
+            );
           });
       }}
     />
@@ -141,7 +160,10 @@ const EditGroupDialog = ({
               setNewGroupTag(setNewGroup, newTag);
             })
             .catch(() => {
-              enqueueSnackbar(t('error.server'), { variant: 'error' });
+              enqueueSnackbar(
+                <CustomeSnackbarContent message={t('error.server')} />,
+                { variant: 'error' },
+              );
             });
         }}
         onRemove={(tagToRemove) => {
@@ -151,7 +173,10 @@ const EditGroupDialog = ({
               removeGroupTag(setNewGroup, tagToRemove);
             })
             .catch(() => {
-              enqueueSnackbar(t('error.server'), { variant: 'error' });
+              enqueueSnackbar(
+                <CustomeSnackbarContent message={t('error.server')} />,
+                { variant: 'error' },
+              );
             });
         }}
       />

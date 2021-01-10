@@ -29,6 +29,7 @@ import {
   removeGroupTag,
 } from '../../utils/sharedFunctions';
 import useStyles from './AddGroupDialog.styles';
+import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
 
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
@@ -77,7 +78,10 @@ const AddGroupDialog = ({ open, onClose }) => {
           })
           .catch(() => {
             setIsLoading(false);
-            enqueueSnackbar(t('error.server'), { variant: 'error' });
+            enqueueSnackbar(
+              <CustomeSnackbarContent message={t('error.server')} />,
+              { variant: 'error' },
+            );
           });
       } else {
         setOpenValidationMessage(true);

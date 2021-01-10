@@ -16,6 +16,7 @@ import useStyles from './App.styles';
 import AuthService from './services/Mock/AuthService';
 // import AuthService from './services/AuthService';
 import ConfigService from './services/Mock/ConfigService';
+import CustomeSnackbarContent from './components/custome-snackbar-content/CustomeSnackbarContent';
 // import ConfigService from './services/ConfigService';
 
 const App = () => {
@@ -45,7 +46,10 @@ const App = () => {
       if (!isAuthenticated) {
         initAuthUser();
       }
-    }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+    }).catch(() => enqueueSnackbar(
+      <CustomeSnackbarContent message={t('error.server')} />,
+      { variant: 'error' },
+    ));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

@@ -70,7 +70,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <SnackbarProvider preventDuplicate maxSnack={3}>
+    <SnackbarProvider maxSnack={3}>
       <App />
     </SnackbarProvider>
   </ThemeProvider>,

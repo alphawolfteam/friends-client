@@ -7,6 +7,7 @@ import userContext from '../../stores/userStore';
 import GroupsService from '../../services/Mock/GroupsService';
 // import GroupsService from '../../services/GroupsService';
 import useStyles from './GroupsList.styles';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupsList = ({ groups, searchValue }) => {
   const classes = useStyles();
@@ -23,7 +24,10 @@ const GroupsList = ({ groups, searchValue }) => {
         .then((res) => {
           setSelectedGroup(res);
         })
-        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
+        .catch(() => enqueueSnackbar(
+          <CustomeSnackbarContent message={t('error.server')} />,
+          { variant: 'error' },
+        ));
     }
   }, [selectedGroupId]);
 

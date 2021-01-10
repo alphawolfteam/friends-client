@@ -12,6 +12,7 @@ import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 import GroupsService from '../../services/Mock/GroupsService';
 import userContext from '../../stores/userStore';
 import { getRole } from '../../utils/sharedFunctions';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const UserInputFields = ({
   groupUsers,
@@ -40,7 +41,7 @@ const UserInputFields = ({
         onAdd(selectedUser, getRole('member').value);
         setSelectedUser(undefined);
       } else {
-        enqueueSnackbar(t('error.userAlreadyExist'));
+        enqueueSnackbar(<CustomeSnackbarContent message={t('error.userAlreadyExist')} />);
       }
     }
   }, [selectedUser]);

@@ -1,7 +1,7 @@
 const config = {
   // Default values
   roles: [
-    { role: 'friend', displayName: 'חבר/ה', value: 0 },
+    { role: 'member', displayName: 'חבר/ה', value: 0 },
     { role: 'manager', displayName: 'מנהל/ת', value: 2 },
   ],
   apiGatewayURI: 'http://localhost:3001',

@@ -16,7 +16,7 @@ const UserRaw = ({ userObject }) => {
         >
           <UserInfo userObject={userObject} />
           <div className={classes.role}>
-            {userObject.role !== getRole('friend').value
+            {userObject.role !== getRole('member').value
             && getRoleByValue(userObject.role).displayName}
           </div>
         </Typography>

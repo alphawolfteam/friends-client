@@ -14,7 +14,7 @@ const RoleIcon = ({ role }) => {
           {role === getRole('manager').value && (
             <FontAwesomeIcon icon={faUserCog} className={classes.icon} />
           )}
-          {role === getRole('friend').value && (
+          {role === getRole('member').value && (
             <FontAwesomeIcon icon={faUser} className={classes.icon} />
           )}
         </div>

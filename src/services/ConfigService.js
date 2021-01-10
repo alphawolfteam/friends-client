@@ -6,8 +6,18 @@ class ConfigService {
     // TODO: Axios request
     // const { data } = await configInstance.get(`/`);
     // config = { ...config, ...data };
-    // config.roles[0].value = data.memberRoleValue;
-    // config.roles[1].value = data.managerRoleValue;
+    // config.roles.forEach((roleObject) => {
+    //   switch (roleObject.role) {
+    //     case 'member':
+    //       roleObject.value = data.memberRoleValue;
+    //       break;
+    //     case 'manager':
+    //       roleObject.value = data.managerRoleValue;
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // });
   }
 }
 

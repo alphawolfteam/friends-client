@@ -38,7 +38,7 @@ const UserInputFields = ({ group, setGroup }) => {
 
   useEffect(() => {
     if (selectedUser && !GroupsService.isUserExist(group.users, selectedUser.id)) {
-      addUser(selectedUser, getRole('friend').value);
+      addUser(selectedUser, getRole('member').value);
       setSelectedUser(undefined);
     }
   }, [selectedUser]);

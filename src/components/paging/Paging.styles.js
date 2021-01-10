@@ -12,8 +12,8 @@ const useStyles = makeStyles(() => ({
   },
   page: {
     position: 'relative',
-    minHeight: '75%',
-    height: '75%',
+    minHeight: '80%',
+    height: '80%',
     display: 'flex',
     flexDirection: 'column',
     alignSelf: 'stretch',

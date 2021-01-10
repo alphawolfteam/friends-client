@@ -22,7 +22,7 @@ const AppBarComponent = () => {
   };
 
   return (
-    <AppBar position="static" className={classes.root}>
+    <AppBar position="fixed" className={classes.root}>
       <Toolbar className={classes.toolBar}>
         <ReactLogo className={classes.logo} />
         <Typography variant="h6" className={classes.username}>

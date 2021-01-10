@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
   },
   app: {
     backgroundColor: theme.palette.background.main,
-    height: 'calc(100vh - 16px)',
+    height: 'calc(100vh - 4.5em)',
+  },
+  page: {
+    marginTop: '4em',
   },
   loading: {
     display: 'flex',

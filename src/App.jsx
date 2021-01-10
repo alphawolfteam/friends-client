@@ -52,7 +52,7 @@ const App = () => {
           <div className={classes.app}>
             <userContext.Provider value={currentUser}>
               <AppBarComponent />
-              <div>
+              <div className={classes.page}>
                 <Switch>
                   <Route path="/">
                     <GroupsSearch />

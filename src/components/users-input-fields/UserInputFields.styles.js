@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   scrollBar: {
     width: '90%',
     marginTop: '4em',
-    height: '11.5em',
+    height: '12.5em',
     overflow: 'auto',
   },
   fieldsList: {

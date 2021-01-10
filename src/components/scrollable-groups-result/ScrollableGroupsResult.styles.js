@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.background.main,
     borderRadius: 10,
     overflow: 'auto',
+    transform: 'translateX(0)',
   },
   scrollBarContent: {
     display: 'flex',

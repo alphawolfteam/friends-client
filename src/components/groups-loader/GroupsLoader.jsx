@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 import useStyles from './GroupsLoader.styles';
 
 const GroupsLoader = () => {
@@ -8,10 +9,10 @@ const GroupsLoader = () => {
   const renderGroupRawPlaceholder = () => (
     <Card className={classes.card}>
       <CardContent className={classes.cardBody}>
-        <div className={`${classes.item} ${classes.info}`} />
+        <Skeleton variant="rect" className={classes.info} />
         <div className={classes.main}>
-          <div className={`${classes.item} ${classes.name}`} />
-          <div className={`${classes.item} ${classes.img}`} />
+          <Skeleton variant="text" className={classes.name} />
+          <Skeleton variant="circle" className={classes.img} />
         </div>
       </CardContent>
     </Card>

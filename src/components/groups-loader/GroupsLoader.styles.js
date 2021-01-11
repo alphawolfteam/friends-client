@@ -36,34 +36,16 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '1%',
     width: '5em',
     height: '2em',
-    backgroundColor: 'lightgrey',
   },
   name: {
     marginRight: '5%',
     width: '8em',
     height: '2em',
-    backgroundColor: 'lightgrey',
   },
   img: {
     width: '6em',
     height: '6em',
     marginRight: '3em',
-    borderRadius: '50%',
-    backgroundColor: 'lightgrey',
-  },
-  item: {
-    animation: '$loader 6s ease-in-out',
-  },
-  '@keyframes loader': {
-    '0%': {
-      backgroundColor: 'rgba(165, 165, 165, 0.1)',
-    },
-    '50%': {
-      backgroundColor: 'rgba(165, 165, 165, 0.3)',
-    },
-    '100%': {
-      backgroundColor: 'rgba(165, 165, 165, 0.1)',
-    },
   },
 }));
 

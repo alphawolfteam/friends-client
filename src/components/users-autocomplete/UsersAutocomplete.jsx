@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Typography } from '@material-ui/core';
-// import { Scrollbar } from 'swiper';
 import useStyles from './UsersAutocomplete.styles';
 
 const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
@@ -18,7 +17,6 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
       <div className={classes.root}>
         <hr className={classes.divider} />
         <div className={classes.optionsList}>
-          {/* <Scrollbar> */}
           {options.map((userObject) => (
             <Card
               key={userObject.id}
@@ -36,7 +34,6 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
               </Typography>
             </Card>
           ))}
-          {/* </Scrollbar> */}
         </div>
       </div>
       )}

@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     clear: 'both',
     display: 'block',
     width: '90%',
-    height: '0.05vh',
+    height: '0.01em',
+    marginTop: '0',
     backgroundColor: theme.palette.primary.main,
   },
   optionsList: {

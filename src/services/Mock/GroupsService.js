@@ -90,10 +90,8 @@ class GroupsService {
   }
 
   static async removeUserFromGroup(groupId, userId) {
-    if (groupId && userId);
-    throw new Error();
-    // const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    // groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
+    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+    groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
   }
 
   static async addUserToGroup(groupId, newUser) {

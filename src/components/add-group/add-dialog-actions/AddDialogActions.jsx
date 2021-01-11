@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
+import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import refreshDataContext from '../../../stores/refreshDataStore';
 // import GroupsService from '../../../services/GroupsService';
 import GroupsService from '../../../services/Mock/GroupsService';
 import ValidationService from '../../../services/ValidationService';
 
-const AddDialogActions = ({
-  newGroup,
-  setValidationArray,
-  setIsLoading,
-  setOpenValidationMessage,
-  onClose,
-}) => {
+const AddDialogActions = ({ newGroup, onClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const refreshData = useContext(refreshDataContext);
+  const [openValidationMessage, setOpenValidationMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [validationArray, setValidationArray] = useState([]);
 
   const handleAdd = async () => {
     setValidationArray(() => {
@@ -59,6 +58,12 @@ const AddDialogActions = ({
       <Button onClick={() => onClose()}>
         {t('button.cancel')}
       </Button>
+      <AlertValidationMessage
+        validationArray={validationArray}
+        open={openValidationMessage}
+        onClose={() => setOpenValidationMessage(false)}
+      />
+      <CustomeBackdrop open={isLoading} />
     </>
   );
 };

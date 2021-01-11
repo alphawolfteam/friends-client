@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2%',
     fontSize: '1rem',
     fontFamily: theme.typography.fontFamily,
+    fontWeight: '700',
     position: 'relative',
     outline: 'none',
     border: '0.1vw solid grey',

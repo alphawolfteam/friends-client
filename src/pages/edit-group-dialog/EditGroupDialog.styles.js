@@ -5,7 +5,8 @@ const useStyles = makeStyles(() => ({
   title: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '6.5rem',
+    marginTop: '0.2em',
+    marginRight: '7rem',
     width: '100%',
   },
   page: {

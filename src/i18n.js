@@ -13,8 +13,8 @@ const resources = {
         publicGroups: 'קבוצות ציבוריות',
       },
       button: {
-        add: 'הוסף',
-        edit: 'ערוך',
+        add: 'הוספה',
+        edit: 'עריכה',
         addNewGroup: 'קבוצה חדשה',
         leaveGroup: 'יציאה מהקבוצה',
         save: 'שמור',

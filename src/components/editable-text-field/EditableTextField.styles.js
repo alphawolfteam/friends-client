@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
+    direction: 'rtl',
+    justifyContent: 'space-between',
     position: 'relative',
     border: '0.1vw solid grey',
     borderRadius: 10,
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textbox: {
     zIndex: 1,
+    width: '100%',
     resize: 'none',
     direction: 'rtl',
     padding: '2%',
@@ -23,12 +25,15 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     background: 'none',
     fontFamily: theme.typography.fontFamily,
+    fontWeight: '700',
     outline: 'none',
   },
   iconsSection: {
     zIndex: 2,
     direction: 'ltr',
     display: 'flex',
+    alignSelf: 'flex-end',
+    paddingBottom: '0.25rem',
   },
   icon: {
     width: '1em',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Paper } from '@material-ui/core';
-import { GroupAdd } from '@material-ui/icons';
+import { GroupAddOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
 import GroupsLoader from '../groups-loader/GroupsLoader';
@@ -27,7 +27,7 @@ const ScrollableGroupsResult = ({
   const noCurrentUserGroupsFound = (
     <div className={classes.startMessage}>
       {t('message.noCurrentUserGroupsFound')}
-      <GroupAdd
+      <GroupAddOutlined
         className={classes.button}
         onClick={() => setOpenAddGroupDialog(true)}
       />

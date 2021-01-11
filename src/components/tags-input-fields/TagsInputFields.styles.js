@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    marginTop: '1em',
   },
   tagsList: {
     display: 'flex',

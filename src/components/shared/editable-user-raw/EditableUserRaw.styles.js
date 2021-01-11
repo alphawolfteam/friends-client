@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  root: {},
+  card: {
     margin: '1%',
     width: '90%',
     height: '50%',

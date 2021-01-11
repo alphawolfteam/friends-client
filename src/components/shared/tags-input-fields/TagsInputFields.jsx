@@ -13,18 +13,21 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
-  const handleAddTag = (newTag) => {
+  const isValidated = (newTag) => {
     const validationResult = ValidationService.validateNewGroupTag(tagsList, newTag);
     if (validationResult === null) {
-      onAdd(newTag);
-    } else {
-      enqueueSnackbar(<CustomeSnackbarContent message={t(`error.${validationResult}`)} />);
+      return true;
     }
+    enqueueSnackbar(<CustomeSnackbarContent message={t(`error.${validationResult}`)} />);
+    return false;
   };
 
   return (
     <div className={classes.root}>
-      <AddTagInput onAdd={(newTag) => handleAddTag(newTag)} />
+      <AddTagInput
+        onAdd={(newTag) => onAdd(newTag)}
+        isValidated={(newTag) => isValidated(newTag)}
+      />
       <div className={classes.tagsList}>
         {tagsList.length > 0 ? (
           <>

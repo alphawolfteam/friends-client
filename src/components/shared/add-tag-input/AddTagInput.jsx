@@ -6,7 +6,7 @@ import useStyles from './AddTagInput.styles';
 
 const ENTER_CHAR_CODE = 13;
 
-const AddTagInput = ({ onAdd }) => {
+const AddTagInput = ({ onAdd, isValidated }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');
@@ -16,15 +16,19 @@ const AddTagInput = ({ onAdd }) => {
   };
 
   const handleOnKeyPress = (event) => {
-    if (event.keyCode === ENTER_CHAR_CODE) {
-      onAdd(inputValue.toLowerCase());
+    const newTag = inputValue.toLowerCase();
+    if (event.keyCode === ENTER_CHAR_CODE && isValidated(newTag)) {
+      onAdd(newTag);
       setInputValue('');
     }
   };
 
   const handleOnClick = () => {
-    onAdd(inputValue.toLowerCase());
-    setInputValue('');
+    const newTag = inputValue.toLowerCase();
+    if (isValidated(newTag)) {
+      onAdd(newTag);
+      setInputValue('');
+    }
   };
 
   return (

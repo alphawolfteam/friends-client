@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '3%',
+    marginTop: '1em',
     height: '3vh',
     width: '11em',
     border: '0.1vw solid grey',

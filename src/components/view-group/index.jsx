@@ -10,21 +10,21 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './index.styles';
-import LockIcon from '../lock-icon/LockIcon';
-import DialogTemplate from '../dialog-template/DialogTemplate';
+import LockIcon from '../shared/lock-icon/LockIcon';
+import DialogTemplate from '../shared/dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group/index';
-import CustomeBackdrop from '../custome-backdrop/CustomeBackdrop';
-import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
+import CustomeBackdrop from '../shared/custome-backdrop/CustomeBackdrop';
+import CustomeTooltip from '../shared/custome-tooltip/CustomeTooltip';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
-import TagsList from '../tags-list/TagsList';
-import UsersList from '../users-list/UsersList';
+import TagsList from '../shared/tags-list/TagsList';
+import UsersList from './users-list/UsersList';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
-import AlertDialogTemplate from '../alert-dialog-template/AlertDialogTemplate';
-import AlertMessageTemplate from '../alert-message-template/AlertMessageTemplate';
-import { getRole } from '../../utils/sharedFunctions';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
+import AlertDialogTemplate from '../shared/alert-dialog-template/AlertDialogTemplate';
+import AlertMessageTemplate from '../shared/alert-message-template/AlertMessageTemplate';
+import { getRole } from '../shared/sharedFunctions';
+import CustomeSnackbarContent from '../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
   (user) => user.role === getRole('manager').value,

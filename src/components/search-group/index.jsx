@@ -15,13 +15,13 @@ import refreshDataContext from '../../stores/refreshDataStore';
 import useStyles from './index.style';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
-import { getSortedGroupsByRole, getSortedGroupsByType } from '../../utils/sharedFunctions';
-import GroupSearchBar from '../group-search-bar/GroupSearchBar';
+import { getSortedGroupsByRole, getSortedGroupsByType } from '../shared/sharedFunctions';
+import CustomeSnackbarContent from '../shared/custome-snackbar-content/CustomeSnackbarContent';
+import GroupSearchBar from './group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
-  '../scrollable-groups-result/ScrollableGroupsResult';
+  './scrollable-groups-result/ScrollableGroupsResult';
 import AddGroupDialog from '../add-group/index';
 import config from '../../appConf';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupsSearch = () => {
   const classes = useStyles();

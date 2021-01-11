@@ -3,12 +3,12 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../stores/refreshDataStore';
-import DialogTemplate from '../dialog-template/DialogTemplate';
-import IconInput from '../icon-input/IconInput';
-import EditableGroupName from '../editable-group-name/EditableGroupName';
-import LockIconInput from '../lock-icon-input/LockIconInput';
-import UsersInputFields from '../users-input-fields/UsersInputFields';
-import Paging from '../paging/Paging';
+import DialogTemplate from '../shared/dialog-template/DialogTemplate';
+import IconInput from '../shared/icon-input/IconInput';
+import EditableGroupName from './editable-group-name/EditableGroupName';
+import LockIconInput from '../shared/lock-icon-input/LockIconInput';
+import UsersInputFields from '../shared/users-input-fields/UsersInputFields';
+import Paging from '../shared/paging/Paging';
 import {
   setNewGroupIcon,
   setNewGroupType,
@@ -17,16 +17,16 @@ import {
   setNewGroupUserRole,
   setNewGroupTag,
   removeGroupTag,
-} from '../../utils/sharedFunctions';
+} from '../shared/sharedFunctions';
 import EditableGroupDescription from
-  '../editable-group-description/EditableGroupDescription';
-import TagsInputFields from '../tags-input-fields/TagsInputFields';
-import AlertDialogTemplate from '../alert-dialog-template/AlertDialogTemplate';
+  './editable-group-description/EditableGroupDescription';
+import TagsInputFields from '../shared/tags-input-fields/TagsInputFields';
+import AlertDialogTemplate from '../shared/alert-dialog-template/AlertDialogTemplate';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import useStyles from './index.styles';
-import CustomeBackdrop from '../custome-backdrop/CustomeBackdrop';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
+import CustomeBackdrop from '../shared/custome-backdrop/CustomeBackdrop';
+import CustomeSnackbarContent from '../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const EditGroupDialog = ({
   group, open, onClose,

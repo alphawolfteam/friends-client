@@ -2,16 +2,17 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import DialogTemplate from '../dialog-template/DialogTemplate';
-import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
-import IconInput from '../icon-input/IconInput';
-import GroupNameInput from '../group-name-input/GroupNameInput';
-import LockIconInput from '../lock-icon-input/LockIconInput';
-import UsersInputFields from '../users-input-fields/UsersInputFields';
-import Paging from '../paging/Paging';
-import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
-import CustomeBackdrop from '../custome-backdrop/CustomeBackdrop';
-import TagsInputFields from '../tags-input-fields/TagsInputFields';
+import DialogTemplate from '../shared/dialog-template/DialogTemplate';
+import AlertValidationMessage from './alert-validation-message/AlertValidationMessage';
+import IconInput from '../shared/icon-input/IconInput';
+import GroupNameInput from './group-name-input/GroupNameInput';
+import LockIconInput from '../shared/lock-icon-input/LockIconInput';
+import UsersInputFields from '../shared/users-input-fields/UsersInputFields';
+import Paging from '../shared/paging/Paging';
+import GroupDescriptionInput from './group-description-input/GroupDescriptionInput';
+import CustomeBackdrop from '../shared/custome-backdrop/CustomeBackdrop';
+import CustomeSnackbarContent from '../shared/custome-snackbar-content/CustomeSnackbarContent';
+import TagsInputFields from '../shared/tags-input-fields/TagsInputFields';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
@@ -27,9 +28,8 @@ import {
   setNewGroupUserRole,
   setNewGroupTag,
   removeGroupTag,
-} from '../../utils/sharedFunctions';
+} from '../shared/sharedFunctions';
 import useStyles from './index.styles';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];

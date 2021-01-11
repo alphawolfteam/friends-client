@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import AppBarComponent from './components/app-bar/AppBar';
+import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
@@ -16,7 +16,7 @@ import useStyles from './App.styles';
 import AuthService from './services/Mock/AuthService';
 // import AuthService from './services/AuthService';
 import ConfigService from './services/Mock/ConfigService';
-import CustomeSnackbarContent from './components/custome-snackbar-content/CustomeSnackbarContent';
+import CustomeSnackbarContent from './components/shared/custome-snackbar-content/CustomeSnackbarContent';
 // import ConfigService from './services/ConfigService';
 
 const App = () => {

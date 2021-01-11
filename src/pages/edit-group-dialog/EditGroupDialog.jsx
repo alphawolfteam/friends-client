@@ -74,7 +74,7 @@ const EditGroupDialog = ({
           if (prevIcon !== newIcon) {
             setNewGroupIcon(setNewGroup, newIcon);
             setIsIconLoading(true);
-            GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
+            GroupsService.updateGroupDetails(group._id, { ...newGroup, icon: newIcon })
               .catch(() => {
                 setNewGroupIcon(setNewGroup, prevIcon);
                 enqueueSnackbar(
@@ -94,7 +94,7 @@ const EditGroupDialog = ({
           type={newGroup.type}
           onChange={(newType) => {
             setIsLockLoading(true);
-            GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
+            GroupsService.updateGroupDetails(group._id, { ...newGroup, type: newType })
               .then(() => {
                 setNewGroupType(setNewGroup, newType);
               })

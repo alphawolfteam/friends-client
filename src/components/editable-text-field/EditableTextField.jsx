@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextareaAutosize } from '@material-ui/core';
-import { EditOutlined, CheckOutlined } from '@material-ui/icons';
+import { EditOutlined, CheckOutlined, ClearOutlined } from '@material-ui/icons';
 import useStyles from './EditableTextField.styles';
 
 const EditableTextField = ({
@@ -9,9 +9,10 @@ const EditableTextField = ({
   placeholder,
   value,
   onSave,
+  editMode,
+  setEditMode,
 }) => {
   const classes = useStyles();
-  const [editMode, setEditMode] = useState(false);
   const [textareaValue, setTextareaValue] = useState(value);
 
   return (
@@ -22,26 +23,32 @@ const EditableTextField = ({
         placeholder={placeholder}
         value={textareaValue}
         onChange={(e) => setTextareaValue(e.target.value)}
-        className={classes.textbox}
+        className={`${classes.textbox} ${editMode ? classes.active : ''}`}
         disabled={!editMode}
       />
       { editMode
         ? (
-          <CheckOutlined
-            onClick={() => {
-              console.log(onSave(textareaValue));
-              if (onSave(textareaValue)) {
+          <div className={classes.iconsSection}>
+            <CheckOutlined
+              onClick={() => onSave(textareaValue)}
+              className={classes.icon}
+            />
+            <ClearOutlined
+              onClick={() => {
+                setTextareaValue(value);
                 setEditMode(false);
-              }
-            }}
-            className={classes.icon}
-          />
+              }}
+              className={classes.icon}
+            />
+          </div>
         )
         : (
-          <EditOutlined
-            onClick={() => setEditMode(true)}
-            className={classes.icon}
-          />
+          <div className={classes.iconsSection}>
+            <EditOutlined
+              onClick={() => setEditMode(true)}
+              className={classes.icon}
+            />
+          </div>
         )}
     </div>
   );

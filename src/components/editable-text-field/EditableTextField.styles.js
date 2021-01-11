@@ -17,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamily,
     outline: 'none',
     border: '0.1vw solid grey',
-    '&:focus, &:hover': {
-      border: `0.1vw solid ${theme.palette.primary.main}`,
-    },
+  },
+  active: {
+    border: `0.1vw solid ${theme.palette.primary.main}`,
+  },
+  iconsSection: {
+    zIndex: 2,
+    direction: 'rtl',
+    display: 'flex',
   },
   icon: {
-    cursor: 'pointer',
-    zIndex: 2,
-    bottom: '0.3em',
-    left: 0,
-    position: 'absolute',
     '&:hover': {
       color: theme.palette.primary.main,
     },

@@ -1,5 +1,7 @@
 import { groups, users, currentUser } from './MockData';
 
+// await new Promise((res) => setTimeout(res, 3000));
+
 const isIncludesInSentence = (sentence, portion) => (
   sentence.startsWith(portion)
   || sentence.split(' ').filter((word) => word.startsWith(portion)).length > 0

@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginRight: '1%',
+    position: 'relative',
   },
   lockIcon: {
     background: 'none',
@@ -14,6 +15,9 @@ const useStyles = makeStyles(() => ({
       background: 'none',
       boxShadow: 'none',
     },
+  },
+  fabProgress: {
+    position: 'absolute',
   },
 }));
 

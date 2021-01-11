@@ -37,6 +37,7 @@ const EditGroupDialog = ({
   const refreshData = useContext(refreshDataContext);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLockLoading, setIsLockLoading] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const [newGroup, setNewGroup] = useState(group);
 
@@ -86,18 +87,21 @@ const EditGroupDialog = ({
         <LockIconInput
           type={newGroup.type}
           onChange={(newType) => {
-            // TODO: Add loader
+            setIsLockLoading(true);
             GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
               .then(() => {
                 setNewGroupType(setNewGroup, newType);
+                setIsLockLoading(false);
               })
               .catch(() => {
                 enqueueSnackbar(
                   <CustomeSnackbarContent message={t('error.server')} />,
                   { variant: 'error' },
                 );
+                setIsLockLoading(false);
               });
           }}
+          isLoading={isLockLoading}
         />
       </div>
     </>

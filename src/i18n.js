@@ -32,6 +32,9 @@ const resources = {
         hierarchy: 'היררכיה',
         manager: 'מנהל/ת',
         member: 'חבר/ה',
+        edit: 'עריכה',
+        save: 'שמירה',
+        cancel: 'ביטול',
       },
       placeholder: {
         addTag: 'הוסיפו תגית..',

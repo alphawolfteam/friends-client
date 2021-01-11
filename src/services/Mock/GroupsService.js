@@ -109,8 +109,6 @@ class GroupsService {
   }
 
   static async updateGroupDetails(groupId, newGroup) {
-    await new Promise((res) => setTimeout(res, 3000));
-    // eslint-disable-next-line no-unreachable
     const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
     groupToUpdate.name = newGroup.name;
     groupToUpdate.description = newGroup.description;

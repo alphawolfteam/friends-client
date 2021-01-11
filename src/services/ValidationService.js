@@ -29,7 +29,7 @@ class ValidationService {
     if (!groupName || groupName === '') {
       return 'emptyNameInput';
     }
-    if (groupName.length < config.minGroupNameLength) {
+    if (groupName.length < config.length_limitations.min_group_name_length) {
       return 'nameTooShort';
     }
     return null;
@@ -39,7 +39,7 @@ class ValidationService {
     if (!newTag || newTag === '') {
       return 'emptyTagInput';
     }
-    if (newTag.length < config.minTagLength) {
+    if (newTag.length < config.length_limitations.min_tag_length) {
       return 'tagTooShort';
     }
     if (GroupsService.isTagExist(groupTags, newTag)) {

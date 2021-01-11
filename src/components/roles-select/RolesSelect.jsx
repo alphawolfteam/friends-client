@@ -3,7 +3,7 @@ import { Select, MenuItem } from '@material-ui/core';
 import config from '../../appConf';
 import useStyles from './RolesSelect.styles';
 
-const { roles } = config;
+const { roles_objects } = config;
 
 const RolesSelect = ({ role, onChange }) => {
   const classes = useStyles();
@@ -19,13 +19,13 @@ const RolesSelect = ({ role, onChange }) => {
       onChange={(e) => handleOnChange(e)}
       className={classes.root}
     >
-      {roles.map((currentRole) => (
+      {roles_objects.map((roleObject) => (
         <MenuItem
-          key={currentRole.displayName}
+          key={roleObject.displayName}
           className={classes.item}
-          value={currentRole.displayName}
+          value={roleObject.displayName}
         >
-          {currentRole.displayName}
+          {roleObject.displayName}
         </MenuItem>
       ))}
     </Select>

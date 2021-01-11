@@ -3,15 +3,18 @@ import config from '../appConf';
 
 class ConfigService {
   static async getConfigObject() {
-    const { data } = await configInstance.get('/');
-    config = { ...config, ...data };
-    config.roles.forEach((roleObject) => {
+    const { data } = await configInstance.get('/config');
+    config.uri.api_gateway_uri = data.uri.api_gateway_uri;
+    config.uri.auth_service_uri = data.uri.auth_service_uri;
+    config.length_limitations = { ...data.length_limitations };
+    config.auth_service_token = data.auth_service_token;
+    config.roles_objects.forEach((roleObject) => {
       switch (roleObject.role) {
         case 'member':
-          roleObject.value = data.memberRoleValue;
+          roleObject.value = data.roles.member_role_value;
           break;
         case 'manager':
-          roleObject.value = data.managerRoleValue;
+          roleObject.value = data.roles.manager_role_value;
           break;
         default:
           break;

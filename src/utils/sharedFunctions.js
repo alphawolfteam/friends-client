@@ -3,15 +3,17 @@ import GroupsService from '../services/Mock/GroupsService';
 import config from '../appConf';
 
 export const getRole = (role) => {
-  return config.roles.filter((currentRole) => currentRole.role === role)[0];
+  return config.roles_objects.filter((roleObject) => roleObject.role === role)[0];
 };
 
 export const getRoleByValue = (roleValue) => {
-  return config.roles.filter((currentRole) => currentRole.value === roleValue)[0];
+  return config.roles_objects.filter((roleObject) => roleObject.value === roleValue)[0];
 };
 
 export const getRoleByDisplayName = (roleDisplayName) => {
-  return config.roles.filter((currentRole) => currentRole.displayName === roleDisplayName)[0];
+  return config.roles_objects.filter(
+    (roleObject) => roleObject.displayName === roleDisplayName,
+  )[0];
 };
 
 export const getSortedGroupsByRole = (groupsList, userId) => {

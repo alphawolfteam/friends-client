@@ -49,7 +49,7 @@ const resources = {
         userAlreadyExist: 'החבר/ה כבר בקבוצה',
         emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
-        tagTooShort: `תגית צריכה להכיל לפחות ${config.minTagLength} תווים`,
+        tagTooShort: `תגית צריכה להכיל לפחות ${config.length_limitations.min_tag_length} תווים`,
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
@@ -73,7 +73,7 @@ const resources = {
         emptyNameInput: 'יש לבחור שם',
         emptyDescriptionInput: 'יש למלא את התיאור',
         noMembersInList: 'יש להוסיף חברים',
-        nameTooShort: `השם צריך להכיל לפחות ${config.minGroupNameLength} תווים`,
+        nameTooShort: `השם צריך להכיל לפחות ${config.length_limitations.min_group_name_length} תווים`,
       },
     },
   },

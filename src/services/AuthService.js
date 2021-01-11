@@ -5,9 +5,9 @@ import config from '../appConf';
 
 class AuthService {
   static async getAuthUser() {
-    const cookie = Cookies.get(config.authServiceToken);
+    const cookie = Cookies.get(config.auth_service_token);
     if (!cookie) {
-      window.location.replace(config.authServiceURI);
+      window.location.replace(config.uri.auth_service_uri);
     } else {
       axios.interceptors.request.use((requestsConfig) => {
         requestsConfig.headers.Authorization = `Bearer ${cookie}`;

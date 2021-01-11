@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import GroupDialog from '../../pages/group-dialog/GroupDialog';
+import GroupDialog from '../view-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../stores/userStore';
 import GroupsService from '../../services/Mock/GroupsService';

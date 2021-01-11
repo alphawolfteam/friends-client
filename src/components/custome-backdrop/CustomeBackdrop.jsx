@@ -7,7 +7,7 @@ const CustomeBackdrop = ({ open }) => {
 
   return (
     <Dialog className={classes.root} open={open}>
-      <Backdrop open>
+      <Backdrop open={open}>
         <CircularProgress color="primary" />
       </Backdrop>
     </Dialog>

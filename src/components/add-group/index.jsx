@@ -2,16 +2,16 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import DialogTemplate from '../../components/dialog-template/DialogTemplate';
-import AlertValidationMessage from '../../components/alert-validation-message/AlertValidationMessage';
-import IconInput from '../../components/icon-input/IconInput';
-import GroupNameInput from '../../components/group-name-input/GroupNameInput';
-import LockIconInput from '../../components/lock-icon-input/LockIconInput';
-import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
-import Paging from '../../components/paging/Paging';
-import GroupDescriptionInput from '../../components/group-description-input/GroupDescriptionInput';
-import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
-import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
+import DialogTemplate from '../dialog-template/DialogTemplate';
+import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
+import IconInput from '../icon-input/IconInput';
+import GroupNameInput from '../group-name-input/GroupNameInput';
+import LockIconInput from '../lock-icon-input/LockIconInput';
+import UsersInputFields from '../users-input-fields/UsersInputFields';
+import Paging from '../paging/Paging';
+import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
+import CustomeBackdrop from '../custome-backdrop/CustomeBackdrop';
+import TagsInputFields from '../tags-input-fields/TagsInputFields';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
@@ -28,8 +28,8 @@ import {
   setNewGroupTag,
   removeGroupTag,
 } from '../../utils/sharedFunctions';
-import useStyles from './AddGroupDialog.styles';
-import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
+import useStyles from './index.styles';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];

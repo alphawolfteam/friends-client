@@ -3,12 +3,12 @@ import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../stores/refreshDataStore';
-import DialogTemplate from '../../components/dialog-template/DialogTemplate';
-import IconInput from '../../components/icon-input/IconInput';
-import EditableGroupName from '../../components/editable-group-name/EditableGroupName';
-import LockIconInput from '../../components/lock-icon-input/LockIconInput';
-import UsersInputFields from '../../components/users-input-fields/UsersInputFields';
-import Paging from '../../components/paging/Paging';
+import DialogTemplate from '../dialog-template/DialogTemplate';
+import IconInput from '../icon-input/IconInput';
+import EditableGroupName from '../editable-group-name/EditableGroupName';
+import LockIconInput from '../lock-icon-input/LockIconInput';
+import UsersInputFields from '../users-input-fields/UsersInputFields';
+import Paging from '../paging/Paging';
 import {
   setNewGroupIcon,
   setNewGroupType,
@@ -19,14 +19,14 @@ import {
   removeGroupTag,
 } from '../../utils/sharedFunctions';
 import EditableGroupDescription from
-  '../../components/editable-group-description/EditableGroupDescription';
-import TagsInputFields from '../../components/tags-input-fields/TagsInputFields';
-import AlertDialogTemplate from '../../components/alert-dialog-template/AlertDialogTemplate';
+  '../editable-group-description/EditableGroupDescription';
+import TagsInputFields from '../tags-input-fields/TagsInputFields';
+import AlertDialogTemplate from '../alert-dialog-template/AlertDialogTemplate';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
-import useStyles from './EditGroupDialog.styles';
-import CustomeBackdrop from '../../components/custome-backdrop/CustomeBackdrop';
-import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
+import useStyles from './index.styles';
+import CustomeBackdrop from '../custome-backdrop/CustomeBackdrop';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const EditGroupDialog = ({
   group, open, onClose,

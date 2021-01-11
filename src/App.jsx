@@ -9,7 +9,7 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import AppBarComponent from './components/app-bar/AppBar';
 import userContext from './stores/userStore';
-import GroupsSearch from './pages/groups-search/GroupsSearch';
+import GroupsSearch from './components/search-group/index';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';

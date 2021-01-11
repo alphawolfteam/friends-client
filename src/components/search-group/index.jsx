@@ -12,16 +12,16 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
 import refreshDataContext from '../../stores/refreshDataStore';
-import useStyles from './GroupsSearch.style';
+import useStyles from './index.style';
 // import GroupsService from '../../services/GroupsService';
 import GroupsService from '../../services/Mock/GroupsService';
 import { getSortedGroupsByRole, getSortedGroupsByType } from '../../utils/sharedFunctions';
-import GroupSearchBar from '../../components/group-search-bar/GroupSearchBar';
+import GroupSearchBar from '../group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
-  '../../components/scrollable-groups-result/ScrollableGroupsResult';
-import AddGroupDialog from '../add-group-dialog/AddGroupDialog';
+  '../scrollable-groups-result/ScrollableGroupsResult';
+import AddGroupDialog from '../add-group/index';
 import config from '../../appConf';
-import CustomeSnackbarContent from '../../components/custome-snackbar-content/CustomeSnackbarContent';
+import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupsSearch = () => {
   const classes = useStyles();

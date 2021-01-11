@@ -38,6 +38,7 @@ const EditGroupDialog = ({
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLockLoading, setIsLockLoading] = useState(false);
+  const [isIconLoading, setIsIconLoading] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const [newGroup, setNewGroup] = useState(group);
 
@@ -69,18 +70,23 @@ const EditGroupDialog = ({
         shownIcon={newGroup.icon}
         initialIcon={group.icon}
         onChange={(newIcon) => {
-          let prevIcon;
-          setNewGroupIcon(setNewGroup, newIcon);
-          // TODO: Add loader
-          GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
-            .catch(() => {
-              setNewGroupIcon(setNewGroup, prevIcon);
-              enqueueSnackbar(
-                <CustomeSnackbarContent message={t('error.server')} />,
-                { variant: 'error' },
-              );
-            });
+          const prevIcon = newGroup.icon;
+          if (prevIcon !== newIcon) {
+            setNewGroupIcon(setNewGroup, newIcon);
+            setIsIconLoading(true);
+            GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
+              .catch(() => {
+                setNewGroupIcon(setNewGroup, prevIcon);
+                enqueueSnackbar(
+                  <CustomeSnackbarContent message={t('error.server')} />,
+                  { variant: 'error' },
+                );
+              }).finally(() => {
+                setIsIconLoading(false);
+              });
+          }
         }}
+        isLoading={isIconLoading}
       />
       <div className={classes.title}>
         <EditableGroupName group={newGroup} setGroup={setNewGroup} />
@@ -91,13 +97,13 @@ const EditGroupDialog = ({
             GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
               .then(() => {
                 setNewGroupType(setNewGroup, newType);
-                setIsLockLoading(false);
               })
               .catch(() => {
                 enqueueSnackbar(
                   <CustomeSnackbarContent message={t('error.server')} />,
                   { variant: 'error' },
                 );
+              }).finally(() => {
                 setIsLockLoading(false);
               });
           }}

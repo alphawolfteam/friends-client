@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { CircularProgress, Backdrop } from '@material-ui/core';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
 import useStyles from './IconInput.styles';
 import IconsSwiper from '../icons-swiper/IconsSwiper';
 import AddIconButton from '../add-icon-button/AddIconButton';
 
-const IconInput = ({ shownIcon, initialIcon, onChange }) => {
+const IconInput = ({
+  shownIcon,
+  initialIcon,
+  onChange,
+  isLoading,
+}) => {
   const classes = useStyles();
   const [iconsOptions, setIconsOptions] = useState(groupIconsCodes);
   const [selectedIcon, setSelectedIcon] = useState(initialIcon);
@@ -28,10 +34,28 @@ const IconInput = ({ shownIcon, initialIcon, onChange }) => {
       />
       <IconsSwiper
         iconsOptions={iconsOptions}
-        selectedIcon={selectedIcon}
         setSelectedIcon={setSelectedIcon}
         shownIcon={shownIcon}
       />
+      <Backdrop className={classes.backdrop} open={isLoading}>
+        <CircularProgress
+          variant="determinate"
+          className={classes.bottom}
+          size={50}
+          thickness={4}
+          value={100}
+        />
+        <CircularProgress
+          variant="indeterminate"
+          disableShrink
+          className={classes.top}
+          classes={{
+            circle: classes.circle,
+          }}
+          size={50}
+          thickness={4}
+        />
+      </Backdrop>
     </div>
   );
 };

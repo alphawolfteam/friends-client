@@ -12,12 +12,13 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [editMode, setEditMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSave = (newDescription) => {
     const validationResult = ValidationService.validateGroupDescription(newDescription);
     if (validationResult === null) {
       if (group.description !== newDescription) {
-        // TODO: Add loader
+        setIsLoading(true);
         GroupsService.updateGroupDetails(group._id, { ...group, description: newDescription })
           .then(() => {
             setNewGroupDescription(setGroup, newDescription);
@@ -28,6 +29,8 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
               <CustomeSnackbarContent message={t('error.server')} />,
               { variant: 'error' },
             );
+          }).finally(() => {
+            setIsLoading(false);
           });
       } else {
         setEditMode(false);
@@ -46,6 +49,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
       onSave={(value) => handleOnSave(value)}
       editMode={editMode}
       setEditMode={setEditMode}
+      isLoading={isLoading}
     />
   );
 };

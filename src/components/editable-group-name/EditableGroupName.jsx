@@ -12,12 +12,13 @@ const GroupNameInput = ({ group, setGroup }) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [editMode, setEditMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSave = (newName) => {
     const validationResult = ValidationService.validateGroupName(newName);
     if (validationResult === null) {
       if (group.name !== newName) {
-        // TODO: Add loader
+        setIsLoading(true);
         GroupsService.updateGroupDetails(group._id, { ...group, name: newName })
           .then(() => {
             setNewGroupName(setGroup, newName);
@@ -28,6 +29,8 @@ const GroupNameInput = ({ group, setGroup }) => {
               <CustomeSnackbarContent message={t('error.server')} />,
               { variant: 'error' },
             );
+          }).finally(() => {
+            setIsLoading(false);
           });
       } else {
         setEditMode(false);
@@ -46,6 +49,7 @@ const GroupNameInput = ({ group, setGroup }) => {
       onSave={(value) => handleOnSave(value)}
       editMode={editMode}
       setEditMode={setEditMode}
+      isLoading={isLoading}
     />
   );
 };

@@ -18,7 +18,6 @@
         "react"
     ],
     "rules": {
-        "@typescript-eslint/ban-ts-ignore": "off",
         "linebreak-style": 0,
         "no-underscore-dangle": 0,
         "arrow-body-style": 0,
@@ -27,6 +26,7 @@
         "react/no-array-index-key": 0,
         "consistent-return": 0,
         "no-param-reassign": 0,
+        "import/no-mutable-exports": 0,
         "react/jsx-props-no-spreading": 0,
         "react/jsx-filename-extension": [
             1,

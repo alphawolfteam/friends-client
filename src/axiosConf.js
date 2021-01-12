@@ -1,13 +1,17 @@
 import axios from 'axios';
 import config from './appConf';
 
-const apiGatewayInstance = axios.create({
-  baseURL: config.uri.api_gateway_uri,
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-});
+let apiGatewayInstance;
+
+const createApiGatewayInstance = () => {
+  apiGatewayInstance = axios.create({
+    baseURL: config.uri.api_gateway_uri,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+  });
+};
 
 const configInstance = axios.create({
   baseURL: config.uri.config_service_uri,
@@ -16,4 +20,4 @@ const configInstance = axios.create({
   },
 });
 
-export { apiGatewayInstance, configInstance };
+export { createApiGatewayInstance, apiGatewayInstance, configInstance };

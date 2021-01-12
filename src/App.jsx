@@ -17,6 +17,7 @@ import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
 import ConfigService from './services/ConfigService';
+import { createApiGatewayInstance } from './axiosConf';
 
 const App = () => {
   const classes = useStyles();
@@ -46,6 +47,7 @@ const App = () => {
 
   useEffect(async () => {
     ConfigService.setConfigVariables().then(() => {
+      createApiGatewayInstance();
       if (!isAuthenticated) {
         initAuthUser();
       }

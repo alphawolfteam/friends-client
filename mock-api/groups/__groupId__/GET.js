@@ -1,5 +1,5 @@
-const { users } = require('../../MockData');
-const { getGroupById } = require('../../sharedFunctions');
+import { users } from '../../MockData';
+import { getGroupById } from '../../sharedFunctions';
 
 module.exports = (req, res) => {
   const { groupId } = req.params;

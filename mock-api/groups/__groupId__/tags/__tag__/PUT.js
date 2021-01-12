@@ -1,4 +1,4 @@
-const { decodeQueryParam, getGroupById } = require('../../../../sharedFunctions');
+import { decodeQueryParam, getGroupById } from '../../../../sharedFunctions';
 
 module.exports = (req, res) => {
   const { groupId } = req.params;

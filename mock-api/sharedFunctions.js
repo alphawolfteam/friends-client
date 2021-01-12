@@ -1,6 +1,6 @@
-const { groups } = require('./MockData');
+import { groups } from './MockData';
 
-const decodeQueryParam = (str) => {
+export const decodeQueryParam = (str) => {
   str = str.split('%D7%90').join('א');
   str = str.split('%D7%91').join('ב');
   str = str.split('%D7%92').join('ג');
@@ -32,9 +32,6 @@ const decodeQueryParam = (str) => {
   return str;
 };
 
-const getGroupById = (groupId) => {
+export const getGroupById = (groupId) => {
   return groups[groups.map((group) => group._id).indexOf(groupId)];
 };
-
-exports.decodeQueryParam = decodeQueryParam;
-exports.getGroupById = getGroupById;

@@ -1,6 +1,6 @@
-const groupIconsCodes = require('../src/utils/images/group-icons/group-icons-base64-codes');
+import groupIconsCodes from '../src/utils/images/group-icons/group-icons-base64-codes';
 
-const groups = [
+export const groups = [
   {
     name: 'כל דולפין',
     description: 'כללללל דולפין',
@@ -195,7 +195,7 @@ const groups = [
   },
 ];
 
-const users = [{
+export const users = [{
   id: '5e5688324203fc40043591aa',
   fullName: 'נייקי אדידס',
   name: { firstName: 'נייקי', lastName: 'אדידס' },
@@ -233,7 +233,7 @@ const users = [{
 },
 ];
 
-const currentUser = {
+export const currentUser = {
   address: 'רחוב הממתקים 34',
   adfsId: 't23458789@jello.com',
   currentUnit: 'nitro unit',
@@ -252,7 +252,3 @@ const currentUser = {
   provider: 'Genesis',
   rank: 'mega',
 };
-
-exports.groups = groups;
-exports.users = users;
-exports.currentUser = currentUser;

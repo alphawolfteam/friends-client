@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-const express = require('express');
-const cors = require('cors');
-const apiMocker = require('connect-api-mocker');
+import express from 'express';
+import cors from 'cors';
+import apiMocker from 'connect-api-mocker';
 
 const port = 9000;
 const app = express();

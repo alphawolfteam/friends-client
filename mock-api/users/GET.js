@@ -1,7 +1,7 @@
-const url = require('url');
-const querystring = require('querystring');
-const { users } = require('../MockData');
-const { decodeQueryParam } = require('../sharedFunctions');
+import url from 'url';
+import querystring from 'querystring';
+import { users } from '../MockData';
+import { decodeQueryParam } from '../sharedFunctions';
 
 module.exports = (req, res) => {
   const parsedUrl = url.parse(req.url);

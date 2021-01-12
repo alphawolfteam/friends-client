@@ -1,4 +1,4 @@
-const { groups } = require('../../../MockData');
+import { groups } from '../../../MockData';
 
 module.exports = (req, res) => {
   const { userId } = req.params;

@@ -1,6 +1,6 @@
-const url = require('url');
-const querystring = require('querystring');
-const { groups, currentUser } = require('../MockData');
+import url from 'url';
+import querystring from 'querystring';
+import { groups, currentUser } from '../MockData';
 
 const isIncludesInSentence = (sentence, portion) => (
   sentence.startsWith(portion)

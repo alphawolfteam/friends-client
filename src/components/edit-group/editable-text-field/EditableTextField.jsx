@@ -36,28 +36,32 @@ const EditableTextField = ({
             <CustomeTooltip
               title={t('tooltip.save')}
               element={(
-                <IconButton
-                  disabled={isLoading}
-                  onClick={() => onSave(textareaValue)}
-                  className={classes.icon}
-                >
-                  <CheckOutlined />
-                </IconButton>
+                <div>
+                  <IconButton
+                    disabled={isLoading}
+                    onClick={() => onSave(textareaValue)}
+                    className={classes.icon}
+                  >
+                    <CheckOutlined />
+                  </IconButton>
+                </div>
               )}
             />
             <CustomeTooltip
               title={t('tooltip.cancel')}
               element={(
-                <IconButton
-                  disabled={isLoading}
-                  onClick={() => {
-                    setTextareaValue(value);
-                    setEditMode(false);
-                  }}
-                  className={classes.icon}
-                >
-                  <ClearOutlined />
-                </IconButton>
+                <div>
+                  <IconButton
+                    disabled={isLoading}
+                    onClick={() => {
+                      setTextareaValue(value);
+                      setEditMode(false);
+                    }}
+                    className={classes.icon}
+                  >
+                    <ClearOutlined />
+                  </IconButton>
+                </div>
               )}
             />
             { isLoading && <CircularProgress size={25} className={classes.fabProgress} />}

@@ -40,7 +40,7 @@ const App = () => {
   }, []);
 
   useEffect(async () => {
-    ConfigService.getConfigObject().then(() => {
+    ConfigService.setConfigVariables().then(() => {
       if (!isAuthenticated) {
         initAuthUser();
       }

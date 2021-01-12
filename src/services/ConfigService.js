@@ -2,7 +2,7 @@ import { configInstance } from '../axiosConf';
 import config from '../appConf';
 
 class ConfigService {
-  static async getConfigObject() {
+  static async setConfigVariables() {
     const { data } = await configInstance.get('/config');
     config.uri.api_gateway_uri = data.uri.api_gateway_uri;
     config.uri.auth_service_uri = data.uri.auth_service_uri;

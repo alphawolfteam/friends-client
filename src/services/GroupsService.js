@@ -1,4 +1,5 @@
 import { apiGatewayInstance } from '../axiosConf';
+import config from '../appConf';
 
 class GroupsService {
   static isTagExist(tagsList, tagLabelToFind) {
@@ -46,40 +47,41 @@ class GroupsService {
   }
 
   static async getUserGroups(userId) {
-    const { data } = await apiGatewayInstance.get(`/users/:${userId}/groups`);
+    const { data } = await apiGatewayInstance.get(`/users/${userId}/groups`);
     return data;
   }
 
   static async createGroup(newGroup) {
+    console.log(config);
     const { data } = await apiGatewayInstance.post('/groups', newGroup);
     return data;
   }
 
   static async getGroupById(groupId) {
-    const { data } = await apiGatewayInstance.get(`/groups/:${groupId}`);
+    const { data } = await apiGatewayInstance.get(`/groups/${groupId}`);
     return data;
   }
 
   static async deleteGroup(groupId) {
-    await apiGatewayInstance.delete(`/groups/:${groupId}`);
+    await apiGatewayInstance.delete(`/groups/${groupId}`);
   }
 
   static async removeUserFromGroup(groupId, userId) {
-    await apiGatewayInstance.delete(`/groups/:${groupId}/users/:${userId}`);
+    await apiGatewayInstance.delete(`/groups/${groupId}/users/${userId}`);
   }
 
   static async addUserToGroup(groupId, newUser) {
-    await apiGatewayInstance.post(`/groups/:${groupId}/users`, newUser);
+    await apiGatewayInstance.post(`/groups/${groupId}/users`, newUser);
   }
 
   static async updateUserRole(groupId, userId, newRole) {
-    const updatedUser = await apiGatewayInstance.patch(`/groups/:${groupId}/users/:${userId}`,
+    const updatedUser = await apiGatewayInstance.patch(`/groups/${groupId}/users/${userId}`,
       { role: newRole });
     return updatedUser;
   }
 
   static async updateGroupDetails(groupId, newGroup) {
-    await apiGatewayInstance.patch(`/groups/:${groupId}`,
+    await apiGatewayInstance.patch(`/groups/${groupId}`,
       {
         name: newGroup.name,
         description: newGroup.description,
@@ -89,11 +91,11 @@ class GroupsService {
   }
 
   static async addTagToGroup(groupId, newTag) {
-    await apiGatewayInstance.put(`/groups/:${groupId}/tags/:${newTag}`);
+    await apiGatewayInstance.put(`/groups/${groupId}/tags/${newTag}`);
   }
 
   static async removeTagFromGroup(groupId, tagToRemove) {
-    await apiGatewayInstance.delete(`/groups/:${groupId}/tags/:${tagToRemove}`);
+    await apiGatewayInstance.delete(`/groups/${groupId}/tags/${tagToRemove}`);
   }
 }
 

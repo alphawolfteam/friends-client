@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import useStyles from './ViewDialogActions.styles';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 import userContext from '../../../stores/userStore';
-import refreshDataContext from '../../../stores/refreshDataStore';
+import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
@@ -18,12 +18,12 @@ const getManagersCount = (groupsUsers) => groupsUsers.filter(
   (user) => user.role === getRole('manager').value,
 ).length;
 
-const ViewDialogActions = ({ group, setOpenEditGroupDialog }) => {
+const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const currentUser = useContext(userContext);
-  const refreshData = useContext(refreshDataContext);
+  const research = useContext(researchContext);
   const [isLoading, setIsLoading] = useState(false);
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
@@ -40,8 +40,8 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog }) => {
       setIsLoading(true);
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
         .then(() => {
-          // TODO: Update only
-          refreshData();
+          research();
+          onClose();
         }).catch(() => {
           setIsLoading(false);
           enqueueSnackbar(
@@ -57,8 +57,8 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog }) => {
       setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
-          // TODO: Update only
-          refreshData();
+          research();
+          onClose();
         }).catch(() => {
           setIsLoading(false);
           enqueueSnackbar(

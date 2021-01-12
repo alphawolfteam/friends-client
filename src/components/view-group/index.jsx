@@ -17,7 +17,8 @@ const GroupDialog = ({ group, open, onClose }) => {
       {openEditGroupDialog ? (
         <EditGroupDialog
           open={openEditGroupDialog}
-          onClose={() => setOpenEditGroupDialog(false)}
+          onClose={() => onClose()}
+          onReturn={() => setOpenEditGroupDialog(false)}
           group={group}
         />
       ) : (
@@ -32,6 +33,7 @@ const GroupDialog = ({ group, open, onClose }) => {
             <ViewDialogActions
               group={group}
               setOpenEditGroupDialog={setOpenEditGroupDialog}
+              onClose={onClose}
             />
           )}
           open={open}

@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
-import refreshDataContext from '../../../stores/refreshDataStore';
+import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import ValidationService from '../../../services/ValidationService';
 
 const AddDialogActions = ({ newGroup, onClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
-  const refreshData = useContext(refreshDataContext);
+  const research = useContext(researchContext);
   const [openValidationMessage, setOpenValidationMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [validationArray, setValidationArray] = useState([]);
@@ -30,8 +30,7 @@ const AddDialogActions = ({ newGroup, onClose }) => {
           })],
         })
           .then(() => {
-            // TODO: Update only
-            refreshData();
+            research();
             onClose();
           })
           .catch(() => {

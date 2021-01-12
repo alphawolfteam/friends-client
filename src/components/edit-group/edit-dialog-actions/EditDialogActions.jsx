@@ -2,16 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import refreshDataContext from '../../../stores/refreshDataStore';
+import researchContext from '../../../stores/researchStore';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import GroupsService from '../../../services/GroupsService';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 
-const EditDialogActions = ({ group }) => {
+const EditDialogActions = ({ group, onClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
-  const refreshData = useContext(refreshDataContext);
+  const research = useContext(researchContext);
   const [isLoading, setIsLoading] = useState(false);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
@@ -21,8 +21,8 @@ const EditDialogActions = ({ group }) => {
       setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
-          // TODO: Update only
-          refreshData();
+          research();
+          onClose();
         })
         .catch(() => {
           setIsLoading(false);

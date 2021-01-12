@@ -11,7 +11,7 @@ import { Add } from '@material-ui/icons';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';
-import refreshDataContext from '../../stores/refreshDataStore';
+import researchContext from '../../stores/researchStore';
 import useStyles from './index.style';
 import GroupsService from '../../services/GroupsService';
 import { getSortedGroupsByRole, getSortedGroupsByType } from '../shared/sharedFunctions';
@@ -31,7 +31,8 @@ const GroupsSearch = () => {
   const [filteredPublicGroups, setFilteredPublicGroups] = useState(undefined);
   const [openAddGroupDialog, setOpenAddGroupDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [currentSearchValue, setCurrentSearchValue] = useState('');
+  const [prevSearchValue, setPrevSearchValue] = useState('');
   const currentUser = useContext(userContext);
 
   const handleInit = useCallback(() => {
@@ -41,7 +42,7 @@ const GroupsSearch = () => {
         setCurrentUserGroups(res);
         setFilteredPrivateGroups(undefined);
         setFilteredPublicGroups(undefined);
-        setSearchValue('');
+        setCurrentSearchValue('');
         setIsLoading(false);
       })
       .catch(() => enqueueSnackbar(
@@ -55,6 +56,7 @@ const GroupsSearch = () => {
   }, []);
 
   const handleOnSearch = useCallback((value) => {
+    setPrevSearchValue(value);
     if (value.length < config.length_limitations.min_group_name_length) {
       handleInit();
     } else {
@@ -107,8 +109,8 @@ const GroupsSearch = () => {
         <Add className={classes.icon} />
       </Button>
       <GroupSearchBar
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        searchValue={currentSearchValue}
+        setSearchValue={setCurrentSearchValue}
         onSearch={(value) => handleOnSearch(value)}
       />
     </div>
@@ -117,12 +119,12 @@ const GroupsSearch = () => {
   return (
     <div className={classes.root}>
       {renderHeader()}
-      <refreshDataContext.Provider value={() => handleInit()}>
+      <researchContext.Provider value={() => handleOnSearch(prevSearchValue)}>
         <ScrollableGroupsResult
           currentUserGroups={sortedCurrentUserGroups}
           privateGroups={sortedPrivateGroups}
           publicGroups={sortedPublicGroups}
-          searchValue={searchValue}
+          searchValue={prevSearchValue}
           setOpenAddGroupDialog={(value) => setOpenAddGroupDialog(value)}
           isLoading={isLoading}
         />
@@ -132,7 +134,7 @@ const GroupsSearch = () => {
             onClose={() => setOpenAddGroupDialog(false)}
           />
         )}
-      </refreshDataContext.Provider>
+      </researchContext.Provider>
     </div>
   );
 };

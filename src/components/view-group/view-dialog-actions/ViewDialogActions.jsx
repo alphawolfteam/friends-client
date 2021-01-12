@@ -28,6 +28,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
+  const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const currentUserRole = GroupsService.getUserRoleValueFromPopulatedGroup(
@@ -69,8 +70,14 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     }
   }, [dialogDeleteAnswer]);
 
+  const handleDeleteGroup = () => {
+    setAlertDeleteDialogMessage(t('alertMessage.deleteGroup'));
+    setOpenAlertDeleteDialog(true);
+  };
+
   const handleLeaveGroup = () => {
     if (group.users.length === 1) {
+      setAlertDeleteDialogMessage(t('alertMessage.theGroupWillBeDeleted'));
       setOpenAlertDeleteDialog(true);
     } else if (currentUserRole === getRole('manager').value
       && getManagersCount(group.users) === 1) {
@@ -84,18 +91,28 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     <>
       <div className={classes.actions}>
         {currentUserRole === getRole('manager').value && (
+        <>
           <Button
             onClick={() => setOpenEditGroupDialog(true)}
           >
             {t('button.edit')}
           </Button>
-        )}
-        {currentUserRole !== undefined && (
+          <Button onClick={() => handleDeleteGroup()}>
+            {t('button.deleteGroup')}
+          </Button>
           <Button
             onClick={() => handleLeaveGroup()}
           >
             {t('button.leaveGroup')}
           </Button>
+        </>
+        )}
+        {currentUserRole === getRole('member').value && (
+        <Button
+          onClick={() => handleLeaveGroup()}
+        >
+          {t('button.leaveGroup')}
+        </Button>
         )}
       </div>
       <AlertDialogTemplate
@@ -106,7 +123,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
         preferredAnswer="disagree"
       />
       <AlertDialogTemplate
-        message={t('alertMessage.theGroupWillBeDeleted')}
+        message={alertDeleteDialogMessage}
         open={openAlertDeleteDialog}
         onClose={() => setOpenAlertDeleteDialog(false)}
         handleAnswer={(answer) => setDialogDeleteAnswer(answer)}

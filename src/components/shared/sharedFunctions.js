@@ -2,6 +2,8 @@ import GroupsService from '../../services/GroupsService';
 import config from '../../appConf';
 
 export const getRole = (role) => {
+  console.log('role', role);
+  console.log(config.roles_objects.filter((roleObject) => roleObject.role === role)[0]);
   return config.roles_objects.filter((roleObject) => roleObject.role === role)[0];
 };
 

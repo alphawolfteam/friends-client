@@ -1,8 +1,9 @@
-const { groups, users } = require('../../MockData');
+const { users } = require('../../MockData');
+const { getGroupById } = require('../../sharedFunctions');
 
 module.exports = (req, res) => {
   const { groupId } = req.params;
-  const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
+  const groupToFind = getGroupById(groupId);
   if (groupToFind) {
     res.status(200).json({
       ...groupToFind,

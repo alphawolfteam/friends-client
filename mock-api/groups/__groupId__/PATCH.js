@@ -1,9 +1,9 @@
-const { groups } = require('../../MockData');
+const { getGroupById } = require('../../sharedFunctions');
 
 module.exports = (req, res) => {
   const { groupId } = req.params;
   const newGroup = req.body;
-  const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+  const groupToUpdate = getGroupById(groupId);
   if (groupToUpdate) {
     groupToUpdate.name = newGroup.name;
     groupToUpdate.description = newGroup.description;

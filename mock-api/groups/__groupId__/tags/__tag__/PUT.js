@@ -1,10 +1,9 @@
-const { groups } = require('../../../../MockData');
-const { decodeQueryParam } = require('../../../../sharedFunctions');
+const { decodeQueryParam, getGroupById } = require('../../../../sharedFunctions');
 
 module.exports = (req, res) => {
   const { groupId } = req.params;
   const tag = decodeQueryParam(req.params.tag);
-  const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
+  const groupToUpdate = getGroupById(groupId);
   if (groupToUpdate) {
     if (!groupToUpdate.tags.map((groupTag) => groupTag.label).includes(tag)) {
       groupToUpdate.tags.push({ label: tag });

@@ -30,8 +30,8 @@ const AddDialogActions = ({ newGroup, onClose }) => {
           })],
         })
           .then(() => {
-            research();
             onClose();
+            research();
           })
           .catch(() => {
             setIsLoading(false);

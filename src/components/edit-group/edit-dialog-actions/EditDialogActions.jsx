@@ -21,8 +21,8 @@ const EditDialogActions = ({ group, onClose }) => {
       setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
-          research();
           onClose();
+          research();
         })
         .catch(() => {
           setIsLoading(false);

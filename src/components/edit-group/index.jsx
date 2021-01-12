@@ -41,14 +41,14 @@ const EditGroupDialog = ({
       )}
       open={open}
       onClose={() => {
-        research();
         onReturn();
+        research();
       }}
       closeButton={(
         <IconButton
           onClick={() => {
-            research();
             onReturn();
+            research();
           }}
           className={classes.closeButton}
         >

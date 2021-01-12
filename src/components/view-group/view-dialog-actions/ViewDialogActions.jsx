@@ -40,8 +40,8 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
       setIsLoading(true);
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
         .then(() => {
-          research();
           onClose();
+          research();
         }).catch(() => {
           setIsLoading(false);
           enqueueSnackbar(
@@ -57,8 +57,8 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
       setIsLoading(true);
       GroupsService.deleteGroup(group._id)
         .then(() => {
-          research();
           onClose();
+          research();
         }).catch(() => {
           setIsLoading(false);
           enqueueSnackbar(

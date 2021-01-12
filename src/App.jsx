@@ -10,14 +10,12 @@ import { useTranslation } from 'react-i18next';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';
+import CustomeSnackbarContent from './components/shared/custome-snackbar-content/CustomeSnackbarContent';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
-import AuthService from './services/Mock/AuthService';
-// import AuthService from './services/AuthService';
-import ConfigService from './services/Mock/ConfigService';
-import CustomeSnackbarContent from './components/shared/custome-snackbar-content/CustomeSnackbarContent';
-// import ConfigService from './services/ConfigService';
+import AuthService from './services/AuthService';
+import ConfigService from './services/ConfigService';
 
 const App = () => {
   const classes = useStyles();

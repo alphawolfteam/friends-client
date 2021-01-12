@@ -1,8 +1,8 @@
 const config = {
   uri: {
-    api_gateway_uri: 'http://localhost:3002',
-    auth_service_uri: 'http://localhost:3003',
-    config_service_uri: 'http://localhost:3001',
+    api_gateway_uri: 'http://localhost:9000',
+    auth_service_uri: 'http://localhost:9000',
+    config_service_uri: 'http://localhost:9000',
   },
   roles_objects: [
     { role: 'member', displayName: 'חבר/ה', value: 0 },

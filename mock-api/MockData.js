@@ -1,4 +1,4 @@
-import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
+const groupIconsCodes = require('../src/utils/images/group-icons/group-icons-base64-codes');
 
 const groups = [
   {
@@ -253,4 +253,6 @@ const currentUser = {
   rank: 'mega',
 };
 
-export { groups, users, currentUser };
+exports.groups = groups;
+exports.users = users;
+exports.currentUser = currentUser;

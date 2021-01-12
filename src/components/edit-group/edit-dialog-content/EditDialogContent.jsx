@@ -12,8 +12,7 @@ import {
 } from '../../shared/sharedFunctions';
 import EditableGroupDescription from '../editable-group-description/EditableGroupDescription';
 import TagsInputFields from '../../shared/tags-input-fields/TagsInputFields';
-// import GroupsService from '../../../services/GroupsService';
-import GroupsService from '../../../services/Mock/GroupsService';
+import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditDialogContent.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 

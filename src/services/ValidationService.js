@@ -1,6 +1,5 @@
 import config from '../appConf';
-import GroupsService from './Mock/GroupsService';
-// import GroupsService from './GroupsService';
+import GroupsService from './GroupsService';
 
 class ValidationService {
   static validateGroupObject(groupObject) {

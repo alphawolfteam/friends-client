@@ -4,8 +4,7 @@ import { useSnackbar } from 'notistack';
 import GroupDialog from '../../view-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../../stores/userStore';
-import GroupsService from '../../../services/Mock/GroupsService';
-// import GroupsService from '../../../services/GroupsService';
+import GroupsService from '../../../services/GroupsService';
 import useStyles from './GroupsList.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 

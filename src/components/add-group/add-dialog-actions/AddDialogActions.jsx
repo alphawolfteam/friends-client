@@ -6,8 +6,7 @@ import AlertValidationMessage from '../alert-validation-message/AlertValidationM
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import refreshDataContext from '../../../stores/refreshDataStore';
-// import GroupsService from '../../../services/GroupsService';
-import GroupsService from '../../../services/Mock/GroupsService';
+import GroupsService from '../../../services/GroupsService';
 import ValidationService from '../../../services/ValidationService';
 
 const AddDialogActions = ({ newGroup, onClose }) => {

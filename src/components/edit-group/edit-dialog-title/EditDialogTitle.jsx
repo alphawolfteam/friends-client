@@ -5,8 +5,7 @@ import IconInput from '../../shared/icon-input/IconInput';
 import EditableGroupName from '../editable-group-name/EditableGroupName';
 import LockIconInput from '../../shared/lock-icon-input/LockIconInput';
 import { setNewGroupIcon, setNewGroupType } from '../../shared/sharedFunctions';
-// import GroupsService from '../../../services/GroupsService';
-import GroupsService from '../../../services/Mock/GroupsService';
+import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditDialogTitle.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 

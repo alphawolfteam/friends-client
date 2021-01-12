@@ -5,8 +5,7 @@ import { useSnackbar } from 'notistack';
 import refreshDataContext from '../../../stores/refreshDataStore';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
-// import GroupsService from '../../../services/GroupsService';
-import GroupsService from '../../../services/Mock/GroupsService';
+import GroupsService from '../../../services/GroupsService';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 
 const EditDialogActions = ({ group }) => {

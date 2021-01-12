@@ -37,7 +37,7 @@ const IconInput = ({
         setSelectedIcon={setSelectedIcon}
         shownIcon={shownIcon}
       />
-      <Backdrop className={classes.backdrop} open={isLoading}>
+      <Backdrop className={classes.backdrop} open={isLoading === true}>
         <CircularProgress
           variant="determinate"
           className={classes.bottom}

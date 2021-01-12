@@ -1,5 +1,4 @@
-// import GroupsService from '../../services/GroupsService';
-import GroupsService from '../../services/Mock/GroupsService';
+import GroupsService from '../../services/GroupsService';
 import config from '../../appConf';
 
 export const getRole = (role) => {

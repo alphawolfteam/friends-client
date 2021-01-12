@@ -1,4 +1,3 @@
-import config from '../appConf';
 import GroupsService from './GroupsService';
 
 class ValidationService {
@@ -24,21 +23,21 @@ class ValidationService {
     return null;
   }
 
-  static validateGroupName(groupName) {
+  static validateGroupName(groupName, minGroupNameLength) {
     if (!groupName || groupName === '') {
       return 'emptyNameInput';
     }
-    if (groupName.length < config.length_limitations.min_group_name_length) {
+    if (groupName.length < minGroupNameLength) {
       return 'nameTooShort';
     }
     return null;
   }
 
-  static validateNewGroupTag(groupTags, newTag) {
+  static validateNewGroupTag(groupTags, newTag, minTagLength) {
     if (!newTag || newTag === '') {
       return 'emptyTagInput';
     }
-    if (newTag.length < config.length_limitations.min_tag_length) {
+    if (newTag.length < minTagLength) {
       return 'tagTooShort';
     }
     if (GroupsService.isTagExist(groupTags, newTag)) {

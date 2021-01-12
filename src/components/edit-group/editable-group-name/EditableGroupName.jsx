@@ -6,6 +6,7 @@ import GroupsService from '../../../services/GroupsService';
 import { setNewGroupName } from '../../shared/sharedFunctions';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import EditableTextField from '../editable-text-field/EditableTextField';
+import config from '../../../appConf';
 
 const GroupNameInput = ({ group, setGroup }) => {
   const { t } = useTranslation();
@@ -14,7 +15,10 @@ const GroupNameInput = ({ group, setGroup }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnSave = (newName) => {
-    const validationResult = ValidationService.validateGroupName(newName);
+    const validationResult = ValidationService.validateGroupName(
+      newName,
+      config.length_limitations.min_group_name_length,
+    );
     if (validationResult === null) {
       if (group.name !== newName) {
         setIsLoading(true);
@@ -35,7 +39,13 @@ const GroupNameInput = ({ group, setGroup }) => {
         setEditMode(false);
       }
     } else {
-      enqueueSnackbar(<CustomeSnackbarContent message={t(`validation.${validationResult}`)} />);
+      enqueueSnackbar(
+        <CustomeSnackbarContent message={t(
+          `validation.${validationResult}`,
+          { minGroupNameLength: config.length_limitations.min_group_name_length },
+        )}
+        />,
+      );
     }
   };
 

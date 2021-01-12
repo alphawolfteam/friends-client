@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import config from './appConf';
 
 const resources = {
   he: {
@@ -49,7 +48,7 @@ const resources = {
         userAlreadyExist: 'החבר/ה כבר בקבוצה',
         emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
-        tagTooShort: `תגית צריכה להכיל לפחות ${config.length_limitations.min_tag_length} תווים`,
+        tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
@@ -73,7 +72,7 @@ const resources = {
         emptyNameInput: 'יש לבחור שם',
         emptyDescriptionInput: 'יש למלא את התיאור',
         noMembersInList: 'יש להוסיף חברים',
-        nameTooShort: `השם צריך להכיל לפחות ${config.length_limitations.min_group_name_length} תווים`,
+        nameTooShort: 'השם צריך להכיל לפחות {{minGroupNameLength}} תווים',
       },
     },
   },

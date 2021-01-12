@@ -1,22 +1,12 @@
-// import jwt_decode from 'jwt-decode';
-// import Cookies from 'js-cookie';
-// import axios from 'axios';
-// import config from '../appConf';
-
-// TODO: Add to mock-api
+import jwt_decode from 'jwt-decode';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import config from '../appConf';
 
 class AuthService {
   static async getAuthUser() {
-    // const cookie = Cookies.get(config.auth_service_token);
-    // if (!cookie) {
-    //   window.location.replace(config.uri.auth_service_uri);
-    // } else {
-    //   axios.interceptors.request.use((requestsConfig) => {
-    //     requestsConfig.headers.Authorization = `Bearer ${cookie}`;
-    //     return requestsConfig;
-    //   });
-    //   return jwt_decode(cookie).user;
-    // }
+    const cookie = Cookies.get(config.auth_service_token);
+    // TODO: Delete
     return {
       address: 'רחוב הממתקים 34',
       adfsId: 't23458789@jello.com',
@@ -36,6 +26,17 @@ class AuthService {
       provider: 'Genesis',
       rank: 'mega',
     };
+    // eslint-disable-next-line no-unreachable
+    if (!cookie) {
+      window.location.replace(config.uri.auth_service_uri);
+    } else {
+      axios.interceptors.request.use((requestsConfig) => {
+        requestsConfig.headers.Authorization = `Bearer ${cookie}`;
+        return requestsConfig;
+      });
+      // eslint-disable-next-line no-unreachable
+      return jwt_decode(cookie).user;
+    }
   }
 }
 

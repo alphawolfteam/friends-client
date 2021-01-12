@@ -10,7 +10,8 @@ import { useTranslation } from 'react-i18next';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';
-import CustomeSnackbarContent from './components/shared/custome-snackbar-content/CustomeSnackbarContent';
+import CustomeSnackbarContent from
+  './components/shared/custome-snackbar-content/CustomeSnackbarContent';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
@@ -28,8 +29,12 @@ const App = () => {
   const initAuthUser = useCallback(() => {
     AuthService.getAuthUser()
       .then((res) => {
-        setCurrentUser(res);
-        setIsAuthenticated(true);
+        if (res) {
+          setCurrentUser(res);
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
       })
       .catch(() => setIsAuthenticated(false))
       .then(() => {

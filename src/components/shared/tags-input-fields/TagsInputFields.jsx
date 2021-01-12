@@ -7,6 +7,7 @@ import DeletableTag from '../deletable-tag/DeletableTag';
 import ValidationService from '../../../services/ValidationService';
 import useStyles from './TagsInputFields.styles';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
+import config from '../../../appConf';
 
 const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
   const classes = useStyles();
@@ -14,11 +15,21 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
   const { t } = useTranslation();
 
   const isValidated = (newTag) => {
-    const validationResult = ValidationService.validateNewGroupTag(tagsList, newTag);
+    const validationResult = ValidationService.validateNewGroupTag(
+      tagsList,
+      newTag,
+      config.length_limitations.min_tag_length,
+    );
     if (validationResult === null) {
       return true;
     }
-    enqueueSnackbar(<CustomeSnackbarContent message={t(`error.${validationResult}`)} />);
+    enqueueSnackbar(
+      <CustomeSnackbarContent message={t(
+        `error.${validationResult}`,
+        { minTagLength: String(config.length_limitations.min_tag_length) },
+      )}
+      />,
+    );
     return false;
   };
 

@@ -2,6 +2,12 @@ import React, {
   useContext, useState, useEffect,
 } from 'react';
 import { Button } from '@material-ui/core';
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/lab';
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExitToAppOutlined,
+} from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './ViewDialogActions.styles';
@@ -28,6 +34,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
+  const [openSpeedDial, setOpenSpeedDial] = useState(false);
   const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
@@ -87,34 +94,45 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     }
   };
 
+  const actions = [
+    { icon: <EditOutlined />, name: t('button.edit'), onClick: () => setOpenEditGroupDialog(true) },
+    { icon: <ExitToAppOutlined />, name: t('button.leaveGroup'), onClick: () => handleLeaveGroup() },
+    { icon: <DeleteOutlined />, name: t('button.deleteGroup'), onClick: () => handleDeleteGroup() },
+  ];
+
   return (
-    <>
-      <div className={classes.actions}>
-        {currentUserRole === getRole('manager').value && (
-        <>
-          <Button
-            onClick={() => setOpenEditGroupDialog(true)}
-          >
-            {t('button.edit')}
-          </Button>
-          <Button onClick={() => handleDeleteGroup()}>
-            {t('button.deleteGroup')}
-          </Button>
+    <div className={classes.root}>
+      {currentUserRole === getRole('manager').value && (
+        <SpeedDial
+          ariaLabel="speed dial"
+          className={classes.speedDialActions}
+          icon={<SpeedDialIcon className={classes.speedDialIcon} />}
+          onClose={() => setOpenSpeedDial(false)}
+          onOpen={() => setOpenSpeedDial(true)}
+          open={openSpeedDial}
+          direction="left"
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              tooltipPlacement="top"
+              onClick={action.onClick}
+            />
+          ))}
+        </SpeedDial>
+      )}
+      {currentUserRole === getRole('member').value && (
+        <div className={classes.actions}>
           <Button
             onClick={() => handleLeaveGroup()}
           >
             {t('button.leaveGroup')}
+            <ExitToAppOutlined className={classes.icon} />
           </Button>
-        </>
-        )}
-        {currentUserRole === getRole('member').value && (
-        <Button
-          onClick={() => handleLeaveGroup()}
-        >
-          {t('button.leaveGroup')}
-        </Button>
-        )}
-      </div>
+        </div>
+      )}
       <AlertDialogTemplate
         message={t('alertMessage.leaveGroup')}
         open={openAlertLeaveDialog}
@@ -135,7 +153,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
         onClose={() => setOpenAlertLeaveMessage(false)}
       />
       <CustomeBackdrop open={isLoading} />
-    </>
+    </div>
   );
 };
 

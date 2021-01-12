@@ -2,8 +2,8 @@ import React from 'react';
 import { IconButton } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import { AddPhotoAlternateOutlined } from '@material-ui/icons';
 import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
-import { ReactComponent as AddPhotoIcon } from '../../../utils/images/addPicture.svg';
 import useStyles from './AddIconButton.styles';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
@@ -39,7 +39,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
           component="label"
           className={classes.iconButton}
         >
-          <AddPhotoIcon className={classes.icon} />
+          <AddPhotoAlternateOutlined className={classes.icon} />
           <input
             accept="image/*"
             type="file"

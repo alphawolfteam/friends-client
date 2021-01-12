@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2%',
   },
   friendsLogo: {
-    width: '40vw',
-    height: '25vh',
+    width: '50vw',
+    height: '30vh',
   },
   unitLogo: {
     width: '30%',

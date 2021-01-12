@@ -41,6 +41,7 @@ const EditableTextField = ({
                     disabled={isLoading}
                     onClick={() => onSave(textareaValue)}
                     className={classes.icon}
+                    size="small"
                   >
                     <CheckOutlined />
                   </IconButton>
@@ -58,6 +59,7 @@ const EditableTextField = ({
                       setEditMode(false);
                     }}
                     className={classes.icon}
+                    size="small"
                   >
                     <ClearOutlined />
                   </IconButton>
@@ -75,6 +77,7 @@ const EditableTextField = ({
                 <IconButton
                   onClick={() => setEditMode(true)}
                   className={classes.icon}
+                  size="small"
                 >
                   <EditOutlined />
                 </IconButton>

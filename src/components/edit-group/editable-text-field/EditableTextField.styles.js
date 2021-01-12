@@ -36,15 +36,14 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '0.25rem',
   },
   icon: {
-    width: '1em',
-    height: '1em',
     '&:hover': {
       color: theme.palette.primary.main,
     },
   },
   fabProgress: {
     position: 'absolute',
-    bottom: '0.25em',
+    bottom: '0.3em',
+    left: '0.1em',
   },
 }));
 

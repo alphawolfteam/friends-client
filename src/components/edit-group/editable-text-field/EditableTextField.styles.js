@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fabProgress: {
     position: 'absolute',
+    bottom: '0.25em',
   },
 }));
 

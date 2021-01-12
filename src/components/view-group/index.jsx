@@ -17,8 +17,7 @@ const GroupDialog = ({ group, open, onClose }) => {
       {openEditGroupDialog ? (
         <EditGroupDialog
           open={openEditGroupDialog}
-          // TODO: Maybe change
-          onClose={() => onClose()}
+          onClose={() => setOpenEditGroupDialog(false)}
           group={group}
         />
       ) : (

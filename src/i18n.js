@@ -17,7 +17,6 @@ const resources = {
         addNewGroup: 'קבוצה חדשה',
         leaveGroup: 'יציאה מהקבוצה',
         save: 'שמור',
-        cancel: 'ביטול',
         deleteGroup: 'מחיקת קבוצה',
         agree: 'כן :)',
         disagree: 'בעצם לא..',

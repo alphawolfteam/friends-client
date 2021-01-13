@@ -53,9 +53,6 @@ const AddDialogActions = ({ newGroup, onClose }) => {
       <Button onClick={() => handleAdd()}>
         {t('button.add')}
       </Button>
-      <Button onClick={() => onClose()}>
-        {t('button.cancel')}
-      </Button>
       <AlertValidationMessage
         validationArray={validationArray}
         open={openValidationMessage}

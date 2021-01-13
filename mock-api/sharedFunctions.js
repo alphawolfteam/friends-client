@@ -1,6 +1,6 @@
 import { groups } from './MockData';
 
-export const decodeQueryParam = (str) => {
+export const decodeString = (str) => {
   str = str.split('%D7%90').join('א');
   str = str.split('%D7%91').join('ב');
   str = str.split('%D7%92').join('ג');

@@ -1,5 +1,3 @@
-import url from 'url';
-import querystring from 'querystring';
 import { groups, currentUser } from '../MockData';
 
 const isIncludesInSentence = (sentence, portion) => (
@@ -8,9 +6,7 @@ const isIncludesInSentence = (sentence, portion) => (
 );
 
 module.exports = (req, res) => {
-  const parsedUrl = url.parse(req.url);
-  const parsedQs = querystring.parse(parsedUrl.query);
-  const { partial, type } = parsedQs;
+  const { partial, type } = req.query;
   if (partial === undefined) {
     res.status(400).json({
       message: 'Please send a partial',

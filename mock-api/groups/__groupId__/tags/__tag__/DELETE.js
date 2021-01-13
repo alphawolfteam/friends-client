@@ -1,8 +1,8 @@
-import { decodeQueryParam, getGroupById } from '../../../../sharedFunctions';
+import { decodeString, getGroupById } from '../../../../sharedFunctions';
 
 module.exports = (req, res) => {
   const { groupId } = req.params;
-  const tag = decodeQueryParam(req.params.tag);
+  const tag = decodeString(req.params.tag);
   const groupToUpdate = getGroupById(groupId);
   if (groupToUpdate) {
     groupToUpdate.tags = groupToUpdate.tags.filter((groupTag) => groupTag.label !== tag);

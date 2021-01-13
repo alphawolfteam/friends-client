@@ -19,7 +19,7 @@ const EditInfoPage = ({ group, setGroup }) => {
 
   const handleAddTag = (newTag) => {
     setNewGroupTag(setGroup, newTag);
-    GroupsService.addTagToGroup(setGroup._id, newTag)
+    GroupsService.addTagToGroup(group._id, newTag)
       .catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,

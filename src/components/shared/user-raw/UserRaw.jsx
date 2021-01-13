@@ -1,11 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import UserInfo from '../user-info/UserInfo';
+import config from '../../../appConf';
 import useStyles from './UserRaw.styles';
-import { getRole, getRoleByValue } from '../sharedFunctions';
 
 const UserRaw = ({ userObject }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Card className={classes.root}>
@@ -16,8 +18,7 @@ const UserRaw = ({ userObject }) => {
         >
           <UserInfo userObject={userObject} />
           <div className={classes.role}>
-            {userObject.role !== getRole('member').value
-            && getRoleByValue(userObject.role).displayName}
+            {userObject.role === config.roles.manager_role_value && t('roles.manager')}
           </div>
         </Typography>
       </CardContent>

@@ -1,26 +1,11 @@
 import GroupsService from '../../services/GroupsService';
-import config from '../../appConf';
 
-export const getRole = (role) => {
-  return config.roles_objects.filter((roleObject) => roleObject.role === role)[0];
-};
-
-export const getRoleByValue = (roleValue) => {
-  return config.roles_objects.filter((roleObject) => roleObject.value === roleValue)[0];
-};
-
-export const getRoleByDisplayName = (roleDisplayName) => {
-  return config.roles_objects.filter(
-    (roleObject) => roleObject.displayName === roleDisplayName,
-  )[0];
-};
-
-export const getSortedGroupsByRole = (groupsList, userId) => {
+export const getSortedGroupsByRole = (groupsList, userId, managerRoleValue) => {
   const ownedGroups = [];
   const unownedGroups = [];
 
   groupsList.forEach((group) => {
-    if (GroupsService.getUserRoleValue(group, userId) === getRole('manager').value) {
+    if (GroupsService.getUserRoleValue(group, userId) === managerRoleValue) {
       ownedGroups.push(group);
     } else {
       unownedGroups.push(group);

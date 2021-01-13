@@ -17,11 +17,11 @@ import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
-import { getRole } from '../../shared/sharedFunctions';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
+import config from '../../../appConf';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
-  (user) => user.role === getRole('manager').value,
+  (user) => user.role === config.roles.manager_role_value,
 ).length;
 
 const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
@@ -86,7 +86,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     if (group.users.length === 1) {
       setAlertDeleteDialogMessage(t('alertMessage.theGroupWillBeDeleted'));
       setOpenAlertDeleteDialog(true);
-    } else if (currentUserRole === getRole('manager').value
+    } else if (currentUserRole === config.roles.manager_role_value
       && getManagersCount(group.users) === 1) {
       setOpenAlertLeaveMessage(true);
     } else {
@@ -102,7 +102,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
 
   return (
     <div className={classes.root}>
-      {currentUserRole === getRole('manager').value && (
+      {currentUserRole === config.roles.manager_role_value && (
         <SpeedDial
           ariaLabel="speed dial"
           className={classes.speedDialActions}
@@ -123,7 +123,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
           ))}
         </SpeedDial>
       )}
-      {currentUserRole === getRole('member').value && (
+      {currentUserRole === config.roles.member_role_value && (
         <div className={classes.actions}>
           <Button
             onClick={() => handleLeaveGroup()}

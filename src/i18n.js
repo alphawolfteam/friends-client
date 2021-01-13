@@ -75,6 +75,10 @@ const resources = {
         noMembersInList: 'יש להוסיף חברים',
         nameTooShort: 'השם צריך להכיל לפחות {{minGroupNameLength}} תווים',
       },
+      roles: {
+        member: 'חבר/ה',
+        manager: 'מנהל/ת',
+      },
     },
   },
 };

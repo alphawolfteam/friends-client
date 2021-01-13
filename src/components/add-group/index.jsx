@@ -5,9 +5,7 @@ import AddDialogActions from './add-dialog-actions/AddDialogActions';
 import AddDialogTitle from './add-dialog-title/AddDialogTitle';
 import userContext from '../../stores/userStore';
 import groupIconsCodes from '../../utils/images/group-icons/group-icons-base64-codes';
-import {
-  getRole,
-} from '../shared/sharedFunctions';
+import config from '../../appConf';
 
 const DEFAULT_TYPE = 'private';
 const DEFAULT_ICON = groupIconsCodes[0];
@@ -26,7 +24,7 @@ const AddGroupDialog = ({ open, onClose }) => {
           firstName: currentUser.name.firstName,
           lastName: currentUser.name.lastName,
         },
-        role: getRole('manager').value,
+        role: config.roles.manager_role_value,
       }],
     icon: DEFAULT_ICON,
   });

@@ -83,19 +83,28 @@ const GroupsSearch = () => {
       return getSortedGroupsByRole(
         getSortedGroupsByType(currentUserGroups),
         currentUser.genesisId,
+        config.roles.manager_role_value,
       );
     }
   }, [currentUserGroups, currentUser]);
 
   const sortedPrivateGroups = useMemo(() => {
     if (filteredPrivateGroups) {
-      return getSortedGroupsByRole(filteredPrivateGroups, currentUser.genesisId);
+      return getSortedGroupsByRole(
+        filteredPrivateGroups,
+        currentUser.genesisId,
+        config.roles.manager_role_value,
+      );
     }
   }, [filteredPrivateGroups, currentUser]);
 
   const sortedPublicGroups = useMemo(() => {
     if (filteredPublicGroups) {
-      return getSortedGroupsByRole(filteredPublicGroups, currentUser.genesisId);
+      return getSortedGroupsByRole(
+        filteredPublicGroups,
+        currentUser.genesisId,
+        config.roles.manager_role_value,
+      );
     }
   }, [filteredPublicGroups, currentUser]);
 

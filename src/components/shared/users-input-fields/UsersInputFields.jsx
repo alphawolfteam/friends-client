@@ -10,8 +10,8 @@ import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
-import { getRole } from '../sharedFunctions';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
+import config from '../../../appConf';
 
 const UsersInputFields = ({
   groupUsers,
@@ -39,7 +39,7 @@ const UsersInputFields = ({
   useEffect(() => {
     if (selectedUser) {
       if (!GroupsService.isUserExist(groupUsers, selectedUser.id)) {
-        onAdd(selectedUser, getRole('member').value);
+        onAdd(selectedUser, config.roles.member_role_value);
         setSelectedUser(undefined);
       } else {
         enqueueSnackbar(<CustomeSnackbarContent message={t('error.userAlreadyExist')} />);
@@ -56,7 +56,7 @@ const UsersInputFields = ({
             firstName: currentUser.name.firstName,
             lastName: currentUser.name.lastName,
           },
-          role: getRole('manager').value,
+          role: config.roles.manager_role_value,
         }}
       />
     </div>

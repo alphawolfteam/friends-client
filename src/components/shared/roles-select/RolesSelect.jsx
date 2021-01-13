@@ -1,12 +1,22 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Select, MenuItem } from '@material-ui/core';
 import config from '../../../appConf';
 import useStyles from './RolesSelect.styles';
 
-const { roles_objects } = config;
-
 const RolesSelect = ({ role, onChange }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const rolesObjects = [
+    {
+      displayName: t('roles.member'),
+      value: config.roles.member_role_value,
+    },
+    {
+      displayName: t('roles.manager'),
+      value: config.roles.manager_role_value,
+    },
+  ];
 
   const handleOnChange = (event) => {
     onChange(event.target.value);
@@ -19,11 +29,11 @@ const RolesSelect = ({ role, onChange }) => {
       onChange={(e) => handleOnChange(e)}
       className={classes.root}
     >
-      {roles_objects.map((roleObject) => (
+      {rolesObjects.map((roleObject) => (
         <MenuItem
           key={roleObject.displayName}
           className={classes.item}
-          value={roleObject.displayName}
+          value={roleObject.value}
         >
           {roleObject.displayName}
         </MenuItem>

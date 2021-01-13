@@ -10,7 +10,6 @@ import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
-import { getRoleByDisplayName, getRoleByValue } from '../sharedFunctions';
 
 const UserRawActions = ({
   userObject,
@@ -27,10 +26,8 @@ const UserRawActions = ({
       <div className={classes.rolesSelect}>
         <RolesSelect
           disabled={isUpdateLoading === true}
-          role={getRoleByValue(userObject.role).displayName}
-          onChange={(newRoleDisplayName) => onChangeRole(
-            getRoleByDisplayName(newRoleDisplayName).value,
-          )}
+          role={userObject.role}
+          onChange={onChangeRole}
         />
         <Backdrop open={isUpdateLoading === true} className={classes.backdrop}>
           <CircularProgress size={20} />

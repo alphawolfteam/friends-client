@@ -1,7 +1,9 @@
 import React, { useState, useContext } from 'react';
 import DialogTemplate from '../shared/dialog-template/DialogTemplate';
 import EditDialogTitle from './edit-dialog-title/EditDialogTitle';
-import EditDialogContent from './edit-dialog-content/EditDialogContent';
+import EditInfoPage from './edit-info-page/EditInfoPage';
+import EditUsersListPage from './edit-users-list-page/EditUsersListPage';
+import Paging from '../shared/paging/Paging';
 import researchContext from '../../stores/researchStore';
 
 const EditGroupDialog = ({ group, open, onClose }) => {
@@ -18,9 +20,10 @@ const EditGroupDialog = ({ group, open, onClose }) => {
         />
       )}
       content={(
-        <EditDialogContent
-          newGroup={newGroup}
-          setNewGroup={(value) => setNewGroup(value)}
+        <Paging pages={[
+          <EditInfoPage newGroup={newGroup} setNewGroup={setNewGroup} />,
+          <EditUsersListPage newGroup={newGroup} setNewGroup={setNewGroup} />,
+        ]}
         />
       )}
       open={open}

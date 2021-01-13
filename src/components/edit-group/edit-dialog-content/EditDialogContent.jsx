@@ -21,6 +21,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [removeUserLoaders, setRemoveUserLoaders] = useState([]);
+  const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
     // TODO: Add loader
@@ -37,7 +38,6 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   };
 
   const handleRemoveUser = (userObjectToRemove) => {
-    // TODO: Add loader
     setRemoveUserLoaders((prevValue) => [...prevValue, userObjectToRemove.user.id]);
     GroupsService.removeUserFromGroup(newGroup._id, userObjectToRemove.user.id)
       .then(() => {
@@ -55,7 +55,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   };
 
   const handleChangeRole = (userObjectToUpdate, newRole) => {
-    // TODO: Add loader
+    setUpdateUserLoaders((prevValue) => [...prevValue, userObjectToUpdate.user.id]);
     GroupsService.updateUserRole(newGroup._id, userObjectToUpdate.user.id, newRole)
       .then(() => {
         setNewGroupUserRole(setNewGroup, userObjectToUpdate, newRole);
@@ -65,6 +65,9 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
+      }).finally(() => {
+        setUpdateUserLoaders((prevValue) => prevValue.filter((id) => (
+          id !== userObjectToUpdate.user.id)));
       });
   };
 
@@ -99,21 +102,23 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   return (
     <Paging pages={[
       <div className={classes.page}>
-        <EditableGroupDescription group={newGroup} setGroup={setNewGroup} />
+        <EditableGroupDescription
+          group={newGroup}
+          setGroup={setNewGroup}
+        />
         <TagsInputFields
           tagsList={newGroup.tags}
-          onAdd={(newTag) => handleAddTag(newTag)}
-          onRemove={(tagToRemove) => handleRemoveTag(tagToRemove)}
+          onAdd={handleAddTag}
+          onRemove={handleRemoveTag}
         />
       </div>,
       <UsersInputFields
         groupUsers={newGroup.users}
-        onAdd={(userToAdd, role) => handleAddUser(userToAdd, role)}
-        onRemove={(userObjectToRemove) => handleRemoveUser(userObjectToRemove)}
-        onChangeRole={
-          (userObjectToUpdate, newRole) => handleChangeRole(userObjectToUpdate, newRole)
-        }
+        onAdd={handleAddUser}
+        onRemove={handleRemoveUser}
+        onChangeRole={handleChangeRole}
         removeUserLoaders={removeUserLoaders}
+        updateUserLoaders={updateUserLoaders}
       />,
     ]}
     />

@@ -9,6 +9,7 @@ const EditableUserRaw = ({
   onRemove,
   onChangeRole,
   isRemoveLoading,
+  isUpdateLoading,
 }) => {
   const classes = useStyles();
 
@@ -25,6 +26,7 @@ const EditableUserRaw = ({
             onRemove={() => onRemove()}
             onChangeRole={(newRole) => onChangeRole(newRole)}
             isRemoveLoading={isRemoveLoading}
+            isUpdateLoading={isUpdateLoading}
           />
         </Typography>
       </CardContent>

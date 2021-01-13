@@ -18,7 +18,7 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
     const validationResult = ValidationService.validateNewGroupTag(
       tagsList,
       newTag,
-      config.length_limitations.min_tag_length,
+      config.length_limitations.min_length_tag,
     );
     if (validationResult === null) {
       return true;
@@ -26,7 +26,7 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
     enqueueSnackbar(
       <CustomeSnackbarContent message={t(
         `error.${validationResult}`,
-        { minTagLength: String(config.length_limitations.min_tag_length) },
+        { minTagLength: String(config.length_limitations.min_length_tag) },
       )}
       />,
     );

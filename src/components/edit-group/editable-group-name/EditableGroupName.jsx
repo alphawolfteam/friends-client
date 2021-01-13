@@ -17,7 +17,7 @@ const GroupNameInput = ({ group, setGroup }) => {
   const handleOnSave = (newName) => {
     const validationResult = ValidationService.validateGroupName(
       newName,
-      config.length_limitations.min_group_name_length,
+      config.length_limitations.min_length_group_name,
     );
     if (validationResult === null) {
       if (group.name !== newName) {
@@ -42,7 +42,7 @@ const GroupNameInput = ({ group, setGroup }) => {
       enqueueSnackbar(
         <CustomeSnackbarContent message={t(
           `validation.${validationResult}`,
-          { minGroupNameLength: config.length_limitations.min_group_name_length },
+          { minGroupNameLength: config.length_limitations.min_length_group_name },
         )}
         />,
       );

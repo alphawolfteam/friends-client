@@ -5,8 +5,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginRight: '1%',
     position: 'relative',
+    marginRight: '1%',
   },
   lockIcon: {
     background: 'none',

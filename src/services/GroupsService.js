@@ -76,18 +76,21 @@ class GroupsService {
   }
 
   static async removeUserFromGroup(groupId, userId) {
+    // TODO: Delete
     await new Promise((res) => setTimeout(res, 3000));
     await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
       { ...headers });
   }
 
   static async addUserToGroup(groupId, newUser) {
+    // TODO: Delete
     await new Promise((res) => setTimeout(res, 3000));
     await axios.post(`${config.uri.api_gateway_uri}/groups/${groupId}/users`, newUser,
       { ...headers });
   }
 
   static async updateUserRole(groupId, userId, newRole) {
+    // TODO: Delete
     await new Promise((res) => setTimeout(res, 3000));
     const updatedUser = await axios.patch(
       `${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
@@ -109,11 +112,15 @@ class GroupsService {
   }
 
   static async addTagToGroup(groupId, newTag) {
+    // TODO: Delete
+    await new Promise((res) => setTimeout(res, 3000));
     await axios.put(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${newTag}`,
       { ...headers });
   }
 
   static async removeTagFromGroup(groupId, tagToRemove) {
+    // TODO: Delete
+    await new Promise((res) => setTimeout(res, 3000));
     await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${tagToRemove}`,
       { ...headers });
   }

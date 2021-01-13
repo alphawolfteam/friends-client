@@ -55,14 +55,17 @@ const EditDialogTitle = ({ newGroup, setNewGroup, initialIcon }) => {
       <IconInput
         shownIcon={newGroup.icon}
         initialIcon={initialIcon}
-        onChange={(newIcon) => handleOnIconChange(newIcon)}
+        onChange={handleOnIconChange}
         isLoading={isIconLoading}
       />
       <div className={classes.title}>
-        <EditableGroupName group={newGroup} setGroup={setNewGroup} />
+        <EditableGroupName
+          group={newGroup}
+          setGroup={setNewGroup}
+        />
         <LockIconInput
           type={newGroup.type}
-          onChange={(newType) => handleOnTypeChange(newType)}
+          onChange={handleOnTypeChange}
           isLoading={isLockLoading}
         />
       </div>

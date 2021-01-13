@@ -19,8 +19,69 @@ const EditableTextField = ({
   const { t } = useTranslation();
   const [textareaValue, setTextareaValue] = useState(value);
 
+  const renderDeafultButtons = () => (
+    <div className={classes.iconsSection}>
+      <CustomeTooltip
+        title={t('tooltip.edit')}
+        element={(
+          <IconButton
+            onClick={() => setEditMode(true)}
+            className={classes.icon}
+            size="small"
+          >
+            <EditOutlined />
+          </IconButton>
+        )}
+      />
+    </div>
+  );
+
+  const renderEditModeButtons = () => (
+    (
+      <div className={classes.iconsSection}>
+        <CustomeTooltip
+          title={t('tooltip.save')}
+          element={(
+            <div>
+              <IconButton
+                disabled={isLoading}
+                onClick={() => onSave(textareaValue)}
+                className={classes.icon}
+                size="small"
+              >
+                <CheckOutlined />
+              </IconButton>
+            </div>
+          )}
+        />
+        <CustomeTooltip
+          title={t('tooltip.cancel')}
+          element={(
+            <div>
+              <IconButton
+                disabled={isLoading}
+                onClick={() => {
+                  setTextareaValue(value);
+                  setEditMode(false);
+                }}
+                className={classes.icon}
+                size="small"
+              >
+                <ClearOutlined />
+              </IconButton>
+            </div>
+          )}
+        />
+        { isLoading && <CircularProgress size={25} />}
+      </div>
+    )
+  );
+
   return (
-    <div className={`${classes.root} ${editMode ? classes.active : ''}`} style={{ width }}>
+    <div
+      className={`${classes.root} ${editMode ? classes.active : ''}`}
+      style={{ width }}
+    >
       <TextareaAutosize
         rows={rows}
         rowsMax={rows}
@@ -31,60 +92,8 @@ const EditableTextField = ({
         disabled={!editMode}
       />
       { editMode
-        ? (
-          <div className={classes.iconsSection}>
-            <CustomeTooltip
-              title={t('tooltip.save')}
-              element={(
-                <div>
-                  <IconButton
-                    disabled={isLoading}
-                    onClick={() => onSave(textareaValue)}
-                    className={classes.icon}
-                    size="small"
-                  >
-                    <CheckOutlined />
-                  </IconButton>
-                </div>
-              )}
-            />
-            <CustomeTooltip
-              title={t('tooltip.cancel')}
-              element={(
-                <div>
-                  <IconButton
-                    disabled={isLoading}
-                    onClick={() => {
-                      setTextareaValue(value);
-                      setEditMode(false);
-                    }}
-                    className={classes.icon}
-                    size="small"
-                  >
-                    <ClearOutlined />
-                  </IconButton>
-                </div>
-              )}
-            />
-            { isLoading && <CircularProgress size={25} className={classes.fabProgress} />}
-          </div>
-        )
-        : (
-          <div className={classes.iconsSection}>
-            <CustomeTooltip
-              title={t('tooltip.edit')}
-              element={(
-                <IconButton
-                  onClick={() => setEditMode(true)}
-                  className={classes.icon}
-                  size="small"
-                >
-                  <EditOutlined />
-                </IconButton>
-              )}
-            />
-          </div>
-        )}
+        ? renderEditModeButtons()
+        : renderDeafultButtons()}
     </div>
   );
 };

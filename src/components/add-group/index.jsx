@@ -23,7 +23,8 @@ const AddGroupDialog = ({ open, onClose }) => {
       {
         user: {
           id: currentUser.genesisId,
-          fullName: `${currentUser.name.firstName} ${currentUser.name.lastName}`,
+          firstName: currentUser.name.firstName,
+          lastName: currentUser.name.lastName,
         },
         role: getRole('manager').value,
       }],

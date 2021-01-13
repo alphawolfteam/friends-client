@@ -57,7 +57,7 @@ const GroupsSearch = () => {
 
   const handleOnSearch = useCallback((value) => {
     setPrevSearchValue(value);
-    if (value.length < config.length_limitations.min_group_name_length) {
+    if (value.length < config.length_limitations.min_length_group_name) {
       handleInit();
     } else {
       setIsLoading(true);

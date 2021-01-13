@@ -4,8 +4,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     direction: 'rtl',
-    justifyContent: 'space-between',
-    position: 'relative',
     border: '0.1vw solid grey',
     borderRadius: 10,
     background: '#FAFAFA',
@@ -39,11 +37,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: theme.palette.primary.main,
     },
-  },
-  fabProgress: {
-    position: 'absolute',
-    bottom: '0.3em',
-    left: '0.1em',
   },
 }));
 

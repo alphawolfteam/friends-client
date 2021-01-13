@@ -19,6 +19,7 @@ const UsersInputFields = ({
   onRemove,
   onChangeRole,
   removeUserLoaders,
+  updateUserLoaders,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -52,7 +53,8 @@ const UsersInputFields = ({
         userObject={{
           user: {
             id: currentUser.genesisId,
-            fullName: `${currentUser.name.firstName} ${currentUser.name.lastName}`,
+            firstName: currentUser.name.firstName,
+            lastName: currentUser.name.lastName,
           },
           role: getRole('manager').value,
         }}
@@ -67,6 +69,7 @@ const UsersInputFields = ({
         onRemove={() => onRemove(userObject)}
         onChangeRole={(newRole) => onChangeRole(userObject, newRole)}
         isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(userObject.user.id)}
+        isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(userObject.user.id)}
       />
     </div>
   );

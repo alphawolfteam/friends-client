@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
   rolesSelect: {
     marginLeft: '0.5rem',
+    position: 'relative',
   },
   iconButton: {
     marginLeft: '15%',
@@ -18,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
     },
     position: 'relative',
+  },
+  backdrop: {
+    background: 'none',
+    width: '5em',
+    height: '2em',
+    position: 'absolute',
+    zIndex: theme.zIndex.snackbar + 1,
   },
   buttonProgress: {
     position: 'absolute',

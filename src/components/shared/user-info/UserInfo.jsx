@@ -7,7 +7,9 @@ const UserRaw = ({ userObject }) => {
 
   return (
     <div className={classes.root}>
-      {userObject.user.fullName}
+      {userObject.user.firstName}
+      {' '}
+      {userObject.user.lastName}
       {userObject.user.hierarchyFlat && (
         <CustomeTooltip
           title={userObject.user.hierarchyFlat}

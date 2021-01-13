@@ -11,9 +11,9 @@ export const config = {
     manager_role_value: 2,
   },
   length_limitations: {
-    min_group_name_length: 2,
-    min_tag_length: 2,
-    min_user_search_value_length: 2,
+    min_length_group_name: 2,
+    min_length_tag: 2,
+    min_length_user_search_value: 2,
   },
   token_name: 'friends_token',
 };
@@ -215,38 +215,38 @@ export const groups = [
 
 export const users = [{
   id: '5e5688324203fc40043591aa',
-  fullName: 'נייקי אדידס',
-  name: { firstName: 'נייקי', lastName: 'אדידס' },
+  firstName: 'נייקי',
+  lastName: 'אדידס',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '3333',
-  fullName: 'חיים כהן',
-  name: { firstName: 'חיים', lastName: 'כהן' },
+  firstName: 'חיים',
+  lastName: 'כהן',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '2222',
-  fullName: 'ישראל ישראלי',
-  name: { firstName: 'ישראל', lastName: 'ישראלי' },
+  firstName: 'ישראל',
+  lastName: 'ישראלי',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '4444',
-  fullName: 'עומר אדם',
-  name: { firstName: 'עומר', lastName: 'אדם' },
+  firstName: 'עומר',
+  lastName: 'אדם',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '5555',
-  fullName: 'איציק כהן',
-  name: { firstName: 'איציק', lastName: 'כהן' },
+  firstName: 'איציק',
+  lastName: 'כהן',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 {
   id: '6666',
-  fullName: 'ישראל אהרוני',
-  name: { firstName: 'ישראל', lastName: 'אהרוני' },
+  firstName: 'ישראל',
+  lastName: 'אהרוני',
   hierarchyFlat: 'היררכיההיררכיההיררכיההיררכיההיררכיההיררכיההיררכיה',
 },
 ];

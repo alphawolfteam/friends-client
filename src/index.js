@@ -60,11 +60,6 @@ const theme = createMuiTheme({
         outline: 'none',
       },
     },
-    MuiSnackbar: {
-      root: {
-        bottom: '50%',
-      },
-    },
     MuiTooltip: {
       tooltip: {
         direction: 'rtl',

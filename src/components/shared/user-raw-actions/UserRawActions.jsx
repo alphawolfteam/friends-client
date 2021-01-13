@@ -4,10 +4,10 @@ import {
   CircularProgress,
   IconButton,
   Backdrop,
+  Tooltip,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
-import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 import { getRoleByDisplayName, getRoleByValue } from '../sharedFunctions';
@@ -36,22 +36,18 @@ const UserRawActions = ({
           <CircularProgress size={20} />
         </Backdrop>
       </div>
-      <CustomeTooltip
-        title={t('tooltip.delete')}
-        element={(
-          <>
-            <IconButton
-              disabled={isRemoveLoading === true}
-              className={classes.iconButton}
-              onClick={() => onRemove()}
-            >
-              <Delete />
-              {isRemoveLoading
-                && <CircularProgress size={30} className={classes.buttonProgress} />}
-            </IconButton>
-          </>
-        )}
-      />
+      <Tooltip title={t('tooltip.delete')}>
+        <IconButton
+          disabled={isRemoveLoading === true}
+          className={classes.iconButton}
+          onClick={() => onRemove()}
+        >
+          <Delete />
+          {isRemoveLoading && (
+            <CircularProgress size={30} className={classes.buttonProgress} />
+          )}
+        </IconButton>
+      </Tooltip>
     </Typography>
   );
 };

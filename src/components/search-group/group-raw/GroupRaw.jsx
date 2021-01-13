@@ -4,9 +4,9 @@ import {
   CardContent,
   Typography,
   ButtonBase,
+  Tooltip
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import CustomeTooltip from '../../shared/custome-tooltip/CustomeTooltip';
 import { getSortedTagsByString } from '../../shared/sharedFunctions';
 import useStyles from './GroupRaw.styles';
 import LockIcon from '../../shared/lock-icon/LockIcon';
@@ -30,14 +30,11 @@ const GroupRaw = ({
         <img className={classes.img} src={group.icon} alt="icon" />
       </div>
       <div className={classes.groupTitle}>
-        <CustomeTooltip
-          title={group.name}
-          element={(
-            <Typography className={classes.groupName}>
-              {group.name}
-            </Typography>
-        )}
-        />
+        <Tooltip title={group.name}>
+          <Typography className={classes.groupName}>
+            {group.name}
+          </Typography>
+        </Tooltip>
         <Typography className={classes.groupId}>
           #
           {group._id.substr(group._id.length - 4)}

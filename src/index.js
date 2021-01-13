@@ -65,6 +65,12 @@ const theme = createMuiTheme({
         bottom: '50%',
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        direction: 'rtl',
+        fontSize: '0.85rem',
+      },
+    },
   },
 });
 

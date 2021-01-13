@@ -1,9 +1,8 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import { AddPhotoAlternateOutlined } from '@material-ui/icons';
-import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './AddIconButton.styles';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
@@ -25,31 +24,30 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
         setSelectedIcon(newIcon);
       };
     } else {
-      enqueueSnackbar(<CustomeSnackbarContent message={t('error.file')} />, { variant: 'error' });
+      enqueueSnackbar(
+        <CustomeSnackbarContent message={t('error.file')} />,
+        { variant: 'error' },
+      );
     }
   };
 
   return (
-    <CustomeTooltip
-      title={t('tooltip.addNewPhoto')}
-      className={classes.root}
-      element={(
-        <IconButton
-          variant="contained"
-          component="label"
-          className={classes.iconButton}
-        >
-          <AddPhotoAlternateOutlined className={classes.icon} />
-          <input
-            accept="image/*"
-            type="file"
-            hidden
-            multiple
-            onChange={(e) => handleOnChange(e)}
-          />
-        </IconButton>
-      )}
-    />
+    <Tooltip title={t('tooltip.addNewPhoto')} className={classes.root}>
+      <IconButton
+        variant="contained"
+        component="label"
+        className={classes.iconButton}
+      >
+        <AddPhotoAlternateOutlined className={classes.icon} />
+        <input
+          accept="image/*"
+          type="file"
+          hidden
+          multiple
+          onChange={(e) => handleOnChange(e)}
+        />
+      </IconButton>
+    </Tooltip>
   );
 };
 

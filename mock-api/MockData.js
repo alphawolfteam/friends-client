@@ -13,9 +13,9 @@ export const config = {
   length_limitations: {
     min_group_name_length: 2,
     min_tag_length: 2,
-    min_user_search_value: 2,
+    min_user_search_value_length: 2,
   },
-  auth_service_token: 'friends_token',
+  token_name: 'friends_token',
 };
 
 export const groups = [

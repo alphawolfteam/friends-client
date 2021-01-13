@@ -15,7 +15,7 @@ class ConfigService {
     config.uri.api_gateway_uri = data.uri.api_gateway_uri;
     config.uri.auth_service_uri = data.uri.auth_service_uri;
     config.length_limitations = { ...data.length_limitations };
-    config.auth_service_token = data.auth_service_token;
+    config.token_name = data.token_name;
     config.roles_objects.forEach((roleObject) => {
       switch (roleObject.role) {
         case 'member':

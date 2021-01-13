@@ -13,11 +13,12 @@ import userContext from '../../../stores/userStore';
 import { getRole } from '../sharedFunctions';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
-const UserInputFields = ({
+const UsersInputFields = ({
   groupUsers,
   onAdd,
   onRemove,
   onChangeRole,
+  removeUserLoaders,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -65,6 +66,7 @@ const UserInputFields = ({
         userObject={userObject}
         onRemove={() => onRemove(userObject)}
         onChangeRole={(newRole) => onChangeRole(userObject, newRole)}
+        isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(userObject.user.id)}
       />
     </div>
   );
@@ -89,4 +91,4 @@ const UserInputFields = ({
   );
 };
 
-export default UserInputFields;
+export default UsersInputFields;

@@ -76,16 +76,19 @@ class GroupsService {
   }
 
   static async removeUserFromGroup(groupId, userId) {
+    await new Promise((res) => setTimeout(res, 3000));
     await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
       { ...headers });
   }
 
   static async addUserToGroup(groupId, newUser) {
+    await new Promise((res) => setTimeout(res, 3000));
     await axios.post(`${config.uri.api_gateway_uri}/groups/${groupId}/users`, newUser,
       { ...headers });
   }
 
   static async updateUserRole(groupId, userId, newRole) {
+    await new Promise((res) => setTimeout(res, 3000));
     const updatedUser = await axios.patch(
       `${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
       { role: newRole },

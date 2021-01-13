@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, CircularProgress, IconButton } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
@@ -7,7 +7,12 @@ import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 import { getRoleByDisplayName, getRoleByValue } from '../sharedFunctions';
 
-const UserRawActions = ({ userObject, onRemove, onChangeRole }) => {
+const UserRawActions = ({
+  userObject,
+  onRemove,
+  onChangeRole,
+  isRemoveLoading,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -24,10 +29,17 @@ const UserRawActions = ({ userObject, onRemove, onChangeRole }) => {
       <CustomeTooltip
         title={t('tooltip.delete')}
         element={(
-          <Delete
-            className={classes.iconButton}
-            onClick={() => onRemove()}
-          />
+          <>
+            <IconButton
+              disabled={isRemoveLoading === true}
+              className={classes.iconButton}
+              onClick={() => onRemove()}
+            >
+              <Delete />
+              {isRemoveLoading
+                && <CircularProgress size={30} className={classes.buttonProgress} />}
+            </IconButton>
+          </>
         )}
       />
     </Typography>

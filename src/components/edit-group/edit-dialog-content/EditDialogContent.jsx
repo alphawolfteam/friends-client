@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
@@ -20,6 +20,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const [removeUserLoaders, setRemoveUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
     // TODO: Add loader
@@ -37,6 +38,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
 
   const handleRemoveUser = (userObjectToRemove) => {
     // TODO: Add loader
+    setRemoveUserLoaders((prevValue) => [...prevValue, userObjectToRemove.user.id]);
     GroupsService.removeUserFromGroup(newGroup._id, userObjectToRemove.user.id)
       .then(() => {
         removeGroupUser(setNewGroup, userObjectToRemove);
@@ -46,6 +48,9 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
+      }).finally(() => {
+        setRemoveUserLoaders((prevValue) => prevValue.filter((id) => (
+          id !== userObjectToRemove.user.id)));
       });
   };
 
@@ -108,6 +113,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
         onChangeRole={
           (userObjectToUpdate, newRole) => handleChangeRole(userObjectToUpdate, newRole)
         }
+        removeUserLoaders={removeUserLoaders}
       />,
     ]}
     />

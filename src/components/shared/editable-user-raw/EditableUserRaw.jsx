@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import UserRawActions from '../user-raw-actions/UserRawActions';
 import UserInfo from '../user-info/UserInfo';
 import useStyles from './EditableUserRaw.styles';
-import ExistTransition from '../exist-transition/ExistTransition';
 
-const duration = 300;
-
-const EditableUserRaw = ({ userObject, onRemove, onChangeRole }) => {
+const EditableUserRaw = ({
+  userObject,
+  onRemove,
+  onChangeRole,
+  isRemoveLoading,
+}) => {
   const classes = useStyles();
-  const [inProp, setInProp] = useState(true);
 
-  const userRawElement = (
+  return (
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
         <Typography
@@ -21,25 +22,13 @@ const EditableUserRaw = ({ userObject, onRemove, onChangeRole }) => {
           <UserInfo userObject={userObject} />
           <UserRawActions
             userObject={userObject}
-            onRemove={() => {
-              setInProp(false);
-              setTimeout(() => {
-                onRemove();
-              }, duration);
-            }}
+            onRemove={() => onRemove()}
             onChangeRole={(newRole) => onChangeRole(newRole)}
+            isRemoveLoading={isRemoveLoading}
           />
         </Typography>
       </CardContent>
     </Card>
-  );
-
-  return (
-    <ExistTransition
-      element={userRawElement}
-      duration={duration}
-      inProp={inProp}
-    />
   );
 };
 

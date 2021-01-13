@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '8vh',
     direction: 'rtl',
     width: '95%',
-    overflow: 'auto',
+    maxWidth: '95%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
     fontSize: '1rem',
     fontFamily: theme.typography.fontFamily,
-    wordBreak: 'break-all',
   },
   divider: {
     border: '0',

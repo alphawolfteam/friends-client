@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -17,6 +17,11 @@ const useStyles = makeStyles(() => ({
     '&:hover': {
       color: 'black',
     },
+    position: 'relative',
+  },
+  buttonProgress: {
+    position: 'absolute',
+    color: theme.palette.primary.main,
   },
 }));
 

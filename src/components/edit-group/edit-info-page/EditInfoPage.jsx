@@ -11,29 +11,29 @@ import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditInfoPage.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
-const EditInfoPage = ({ newGroup, setNewGroup }) => {
+const EditInfoPage = ({ group, setGroup }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [removeTagLoaders, setRemoveTagLoaders] = useState([]);
 
   const handleAddTag = (newTag) => {
-    setNewGroupTag(setNewGroup, newTag);
-    GroupsService.addTagToGroup(newGroup._id, newTag)
+    setNewGroupTag(setGroup, newTag);
+    GroupsService.addTagToGroup(setGroup._id, newTag)
       .catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
-        removeGroupTag(setNewGroup, newTag);
+        removeGroupTag(setGroup, newTag);
       });
   };
 
   const handleRemoveTag = (tagToRemove) => {
     setRemoveTagLoaders((prevValue) => [...prevValue, tagToRemove]);
-    GroupsService.removeTagFromGroup(newGroup._id, tagToRemove)
+    GroupsService.removeTagFromGroup(group._id, tagToRemove)
       .then(() => {
-        removeGroupTag(setNewGroup, tagToRemove);
+        removeGroupTag(setGroup, tagToRemove);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -49,11 +49,11 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
   return (
     <div className={classes.root}>
       <EditableGroupDescription
-        group={newGroup}
-        setGroup={setNewGroup}
+        group={group}
+        setGroup={setGroup}
       />
       <TagsInputFields
-        tagsList={newGroup.tags}
+        tagsList={group.tags}
         onAdd={handleAddTag}
         onRemove={handleRemoveTag}
         removeTagLoaders={removeTagLoaders}

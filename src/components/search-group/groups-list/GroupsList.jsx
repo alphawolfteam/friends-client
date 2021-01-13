@@ -8,7 +8,7 @@ import GroupsService from '../../../services/GroupsService';
 import useStyles from './GroupsList.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
-const GroupsList = ({ groups, searchValue }) => {
+const GroupsList = ({ groups, setGroups, searchValue }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -29,6 +29,22 @@ const GroupsList = ({ groups, searchValue }) => {
     }
   }, [selectedGroupId]);
 
+  useEffect(() => {
+    if (selectedGroup) {
+      setGroups((prevValue) => (
+        prevValue.map((group) => (
+          group._id === selectedGroup._id
+            ? {
+              ...selectedGroup,
+              users: selectedGroup.users.map((userObject) => (
+                {
+                  id: userObject.user.id,
+                  role: userObject.role,
+                })),
+            } : group))));
+    }
+  }, [selectedGroup]);
+
   return (
     <>
       <div className={classes.root}>
@@ -47,6 +63,7 @@ const GroupsList = ({ groups, searchValue }) => {
       {selectedGroup && selectedGroupId && (
         <GroupDialog
           group={selectedGroup}
+          setGroup={setSelectedGroup}
           open={selectedGroup !== undefined && selectedGroupId !== undefined}
           onClose={() => {
             setSelectedGroupId(undefined);

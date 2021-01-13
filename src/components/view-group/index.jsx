@@ -5,7 +5,12 @@ import ViewDialogTitle from './view-dialog-title/ViewDialogTitle';
 import ViewDialogContent from './view-dialog-content/ViewDialogContent';
 import ViewDialogActions from './view-dialog-actions/ViewDialogActions';
 
-const GroupDialog = ({ group, open, onClose }) => {
+const GroupDialog = ({
+  group,
+  setGroup,
+  open,
+  onClose,
+}) => {
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
 
   return (
@@ -13,8 +18,9 @@ const GroupDialog = ({ group, open, onClose }) => {
       {openEditGroupDialog ? (
         <EditGroupDialog
           open={openEditGroupDialog}
-          onClose={() => onClose()}
+          onClose={() => setOpenEditGroupDialog(false)}
           group={group}
+          setGroup={setGroup}
         />
       ) : (
         <DialogTemplate

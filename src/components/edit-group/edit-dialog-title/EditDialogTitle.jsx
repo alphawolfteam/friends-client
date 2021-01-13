@@ -9,7 +9,7 @@ import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditDialogTitle.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
-const EditDialogTitle = ({ newGroup, setNewGroup, initialIcon }) => {
+const EditDialogTitle = ({ group, setGroup, initialIcon }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -17,13 +17,13 @@ const EditDialogTitle = ({ newGroup, setNewGroup, initialIcon }) => {
   const [isIconLoading, setIsIconLoading] = useState(false);
 
   const handleOnIconChange = (newIcon) => {
-    const prevIcon = newGroup.icon;
+    const prevIcon = group.icon;
     if (prevIcon !== newIcon) {
-      setNewGroupIcon(setNewGroup, newIcon);
+      setNewGroupIcon(setGroup, newIcon);
       setIsIconLoading(true);
-      GroupsService.updateGroupDetails(newGroup._id, { ...newGroup, icon: newIcon })
+      GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
         .catch(() => {
-          setNewGroupIcon(setNewGroup, prevIcon);
+          setNewGroupIcon(setGroup, prevIcon);
           enqueueSnackbar(
             <CustomeSnackbarContent message={t('error.server')} />,
             { variant: 'error' },
@@ -36,9 +36,9 @@ const EditDialogTitle = ({ newGroup, setNewGroup, initialIcon }) => {
 
   const handleOnTypeChange = (newType) => {
     setIsLockLoading(true);
-    GroupsService.updateGroupDetails(newGroup._id, { ...newGroup, type: newType })
+    GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
       .then(() => {
-        setNewGroupType(setNewGroup, newType);
+        setNewGroupType(setGroup, newType);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -53,18 +53,18 @@ const EditDialogTitle = ({ newGroup, setNewGroup, initialIcon }) => {
   return (
     <>
       <IconInput
-        shownIcon={newGroup.icon}
+        shownIcon={group.icon}
         initialIcon={initialIcon}
         onChange={handleOnIconChange}
         isLoading={isIconLoading}
       />
       <div className={classes.title}>
         <EditableGroupName
-          group={newGroup}
-          setGroup={setNewGroup}
+          group={group}
+          setGroup={setGroup}
         />
         <LockIconInput
-          type={newGroup.type}
+          type={group.type}
           onChange={handleOnTypeChange}
           isLoading={isLockLoading}
         />

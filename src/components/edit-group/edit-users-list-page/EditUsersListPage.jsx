@@ -10,29 +10,29 @@ import {
 import GroupsService from '../../../services/GroupsService';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
-const EditUsersListPage = ({ newGroup, setNewGroup }) => {
+const EditUsersListPage = ({ group, setGroup }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [removeUserLoaders, setRemoveUserLoaders] = useState([]);
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
-    setNewGroupUser(setNewGroup, userToAdd, role);
-    GroupsService.addUserToGroup(newGroup._id, { id: userToAdd.id, role })
+    setNewGroupUser(group, userToAdd, role);
+    GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
       .catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
-        removeGroupUser(setNewGroup, { user: userToAdd });
+        removeGroupUser(setGroup, { user: userToAdd });
       });
   };
 
   const handleRemoveUser = (userObjectToRemove) => {
     setRemoveUserLoaders((prevValue) => [...prevValue, userObjectToRemove.user.id]);
-    GroupsService.removeUserFromGroup(newGroup._id, userObjectToRemove.user.id)
+    GroupsService.removeUserFromGroup(group._id, userObjectToRemove.user.id)
       .then(() => {
-        removeGroupUser(setNewGroup, userObjectToRemove);
+        removeGroupUser(setGroup, userObjectToRemove);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -47,9 +47,9 @@ const EditUsersListPage = ({ newGroup, setNewGroup }) => {
 
   const handleChangeRole = (userObjectToUpdate, newRole) => {
     setUpdateUserLoaders((prevValue) => [...prevValue, userObjectToUpdate.user.id]);
-    GroupsService.updateUserRole(newGroup._id, userObjectToUpdate.user.id, newRole)
+    GroupsService.updateUserRole(group._id, userObjectToUpdate.user.id, newRole)
       .then(() => {
-        setNewGroupUserRole(setNewGroup, userObjectToUpdate, newRole);
+        setNewGroupUserRole(setGroup, userObjectToUpdate, newRole);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -64,7 +64,7 @@ const EditUsersListPage = ({ newGroup, setNewGroup }) => {
 
   return (
     <UsersInputFields
-      groupUsers={newGroup.users}
+      groupUsers={group.users}
       onAdd={handleAddUser}
       onRemove={handleRemoveUser}
       onChangeRole={handleChangeRole}

@@ -9,8 +9,11 @@ import useStyles from './ScrollableGroupsResult.styles';
 
 const ScrollableGroupsResult = ({
   currentUserGroups,
+  setCurrentUserGroups,
   privateGroups,
+  setPrivateGroups,
   publicGroups,
+  setPublicGroups,
   searchValue,
   setOpenAddGroupDialog,
   isLoading,
@@ -37,27 +40,39 @@ const ScrollableGroupsResult = ({
   const currentUserGroupsList = (
     <>
       <TextDivider text={t('title.currentUserGroups')} />
-      <GroupsList groups={currentUserGroups} searchValue={searchValue} />
+      <GroupsList
+        groups={currentUserGroups}
+        setGroups={setCurrentUserGroups}
+        searchValue={searchValue}
+      />
     </>
   );
 
   const privateGroupsList = (
     <>
       <TextDivider text={t('title.privateGroups')} />
-      <GroupsList groups={privateGroups} searchValue={searchValue} />
+      <GroupsList
+        groups={privateGroups}
+        setGroups={setPrivateGroups}
+        searchValue={searchValue}
+      />
     </>
   );
 
   const publicGroupsList = (
     <>
       <TextDivider text={t('title.publicGroups')} />
-      <GroupsList groups={publicGroups} searchValue={searchValue} />
+      <GroupsList
+        groups={publicGroups}
+        setGroups={setPublicGroups}
+        searchValue={searchValue}
+      />
     </>
   );
 
   const renderGroupsList = () => {
     if (((privateGroups && privateGroups.length === 0)
-    && (publicGroups && publicGroups.length === 0))) {
+      && (publicGroups && publicGroups.length === 0))) {
       return noGroupsFound;
     }
     if (currentUserGroups && currentUserGroups.length === 0) {

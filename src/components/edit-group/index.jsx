@@ -1,36 +1,34 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import DialogTemplate from '../shared/dialog-template/DialogTemplate';
 import EditDialogTitle from './edit-dialog-title/EditDialogTitle';
 import EditInfoPage from './edit-info-page/EditInfoPage';
 import EditUsersListPage from './edit-users-list-page/EditUsersListPage';
 import Paging from '../shared/paging/Paging';
-import researchContext from '../../stores/researchStore';
 
-const EditGroupDialog = ({ group, open, onClose }) => {
-  const research = useContext(researchContext);
-  const [newGroup, setNewGroup] = useState(group);
-
+const EditGroupDialog = ({
+  group,
+  setGroup,
+  open,
+  onClose,
+}) => {
   return (
     <DialogTemplate
       title={(
         <EditDialogTitle
-          newGroup={newGroup}
-          setNewGroup={(value) => setNewGroup(value)}
+          group={group}
+          setGroup={setGroup}
           initialIcon={group.icon}
         />
       )}
       content={(
         <Paging pages={[
-          <EditInfoPage newGroup={newGroup} setNewGroup={setNewGroup} />,
-          <EditUsersListPage newGroup={newGroup} setNewGroup={setNewGroup} />,
+          <EditInfoPage group={group} setGroup={setGroup} />,
+          <EditUsersListPage group={group} setGroup={setGroup} />,
         ]}
         />
       )}
       open={open}
-      onClose={() => {
-        onClose();
-        research();
-      }}
+      onClose={onClose}
       cancelOnTouchOutside
     />
   );

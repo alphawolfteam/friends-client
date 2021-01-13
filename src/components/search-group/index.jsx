@@ -122,8 +122,11 @@ const GroupsSearch = () => {
       <researchContext.Provider value={() => handleOnSearch(prevSearchValue)}>
         <ScrollableGroupsResult
           currentUserGroups={sortedCurrentUserGroups}
+          setCurrentUserGroups={setCurrentUserGroups}
           privateGroups={sortedPrivateGroups}
+          setPrivateGroups={setFilteredPrivateGroups}
           publicGroups={sortedPublicGroups}
+          setPublicGroups={setFilteredPublicGroups}
           searchValue={prevSearchValue}
           setOpenAddGroupDialog={(value) => setOpenAddGroupDialog(value)}
           isLoading={isLoading}

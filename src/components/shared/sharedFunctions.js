@@ -63,27 +63,19 @@ export const getUserIndex = (usersList, userObjectToFind) => {
 };
 
 export const setNewGroupName = (setGroup, newName) => {
-  setGroup((prevValue) => {
-    return { ...prevValue, name: newName };
-  });
+  setGroup((prevValue) => ({ ...prevValue, name: newName }));
 };
 
 export const setNewGroupDescription = (setGroup, newDescription) => {
-  setGroup((prevValue) => {
-    return { ...prevValue, description: newDescription };
-  });
+  setGroup((prevValue) => ({ ...prevValue, description: newDescription }));
 };
 
 export const setNewGroupIcon = (setGroup, newIcon) => {
-  setGroup((prevValue) => {
-    return { ...prevValue, icon: newIcon };
-  });
+  setGroup((prevValue) => ({ ...prevValue, icon: newIcon }));
 };
 
 export const setNewGroupType = (setGroup, newType) => {
-  setGroup((prevValue) => {
-    return { ...prevValue, type: newType };
-  });
+  setGroup((prevValue) => ({ ...prevValue, type: newType }));
 };
 
 export const setNewGroupUser = (setGroup, userToAdd, role) => {

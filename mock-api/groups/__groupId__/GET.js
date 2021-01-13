@@ -8,12 +8,12 @@ module.exports = (req, res) => {
     res.status(200).json({
       ...groupToFind,
       users: groupToFind.users
-        .map((groupUser) => {
-          return {
+        .map((groupUser) => (
+          {
             user: { ...users.find((user) => user.id === groupUser.id) },
             role: groupUser.role,
-          };
-        }),
+          }
+        )),
     });
   } else {
     res.status(400).json({

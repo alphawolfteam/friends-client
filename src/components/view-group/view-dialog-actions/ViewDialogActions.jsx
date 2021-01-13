@@ -43,7 +43,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     currentUser.genesisId,
   );
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dialogLeaveAnswer === 'agree') {
       setIsLoading(true);
       GroupsService.removeUserFromGroup(group._id, currentUser.genesisId)
@@ -60,7 +60,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     }
   }, [dialogLeaveAnswer]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dialogDeleteAnswer === 'agree') {
       setIsLoading(true);
       GroupsService.deleteGroup(group._id)

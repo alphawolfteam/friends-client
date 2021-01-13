@@ -51,7 +51,7 @@ const GroupsSearch = () => {
       ));
   }, []);
 
-  useEffect(async () => {
+  useEffect(() => {
     handleInit();
   }, []);
 

@@ -15,7 +15,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
   const [searchValue, setSearchValue] = useState('');
   const [options, setOptions] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (searchValue.length < config.length_limitations.min_length_user_search_value) {
       setOptions([]);
     } else {

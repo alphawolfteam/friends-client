@@ -24,7 +24,6 @@ const Paging = ({ pages }) => {
       position="static"
       activeStep={activeStep}
       className={classes.stepper}
-      direction="rtl"
       nextButton={(
         <Button
           size="small"

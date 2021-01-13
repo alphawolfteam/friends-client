@@ -1,9 +1,15 @@
-import { apiGatewayInstance } from '../axiosConf';
+import axios from 'axios';
+import config from '../appConf';
+
+const headers = {
+  Accept: 'application/json',
+};
 
 class UsersService {
   static async searchUsers(searchValue) {
-    const { data } = await apiGatewayInstance.get('/users',
-      { params: { partialName: searchValue } });
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/users`,
+      { params: { partialName: searchValue } },
+      { ...headers });
     return data;
   }
 }

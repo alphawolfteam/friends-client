@@ -1,5 +1,10 @@
-import { apiGatewayInstance } from '../axiosConf';
+import axios from 'axios';
 import config from '../appConf';
+
+const headers = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
+};
 
 class GroupsService {
   static isTagExist(tagsList, tagLabelToFind) {
@@ -35,67 +40,79 @@ class GroupsService {
   }
 
   static async searchPrivateGroups(searchValue) {
-    const { data } = await apiGatewayInstance.get('/groups',
-      { params: { partial: searchValue, type: 'private' } });
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups`,
+      { params: { partial: searchValue, type: 'private' } },
+      { ...headers });
     return data;
   }
 
   static async searchPublicGroups(searchValue) {
-    const { data } = await apiGatewayInstance.get('/groups',
-      { params: { partial: searchValue, type: 'public' } });
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups`,
+      { params: { partial: searchValue, type: 'public' } },
+      { ...headers });
     return data;
   }
 
   static async getUserGroups(userId) {
-    const { data } = await apiGatewayInstance.get(`/users/${userId}/groups`);
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/users/${userId}/groups`,
+      { ...headers });
     return data;
   }
 
   static async createGroup(newGroup) {
-    console.log(config);
-    const { data } = await apiGatewayInstance.post('/groups', newGroup);
+    const { data } = await axios.post(`${config.uri.api_gateway_uri}/groups`, newGroup,
+      { ...headers });
     return data;
   }
 
   static async getGroupById(groupId) {
-    const { data } = await apiGatewayInstance.get(`/groups/${groupId}`);
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups/${groupId}`,
+      { ...headers });
     return data;
   }
 
   static async deleteGroup(groupId) {
-    await apiGatewayInstance.delete(`/groups/${groupId}`);
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}`, { ...headers });
   }
 
   static async removeUserFromGroup(groupId, userId) {
-    await apiGatewayInstance.delete(`/groups/${groupId}/users/${userId}`);
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
+      { ...headers });
   }
 
   static async addUserToGroup(groupId, newUser) {
-    await apiGatewayInstance.post(`/groups/${groupId}/users`, newUser);
+    await axios.post(`${config.uri.api_gateway_uri}/groups/${groupId}/users`, newUser,
+      { ...headers });
   }
 
   static async updateUserRole(groupId, userId, newRole) {
-    const updatedUser = await apiGatewayInstance.patch(`/groups/${groupId}/users/${userId}`,
-      { role: newRole });
+    const updatedUser = await axios.patch(
+      `${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
+      { role: newRole },
+      { ...headers },
+    );
     return updatedUser;
   }
 
   static async updateGroupDetails(groupId, newGroup) {
-    await apiGatewayInstance.patch(`/groups/${groupId}`,
+    await axios.patch(`${config.uri.api_gateway_uri}/groups/${groupId}`,
       {
         name: newGroup.name,
         description: newGroup.description,
         type: newGroup.type,
         icon: newGroup.icon,
-      });
+      },
+      { ...headers });
   }
 
   static async addTagToGroup(groupId, newTag) {
-    await apiGatewayInstance.put(`/groups/${groupId}/tags/${newTag}`);
+    await axios.put(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${newTag}`,
+      { ...headers });
   }
 
   static async removeTagFromGroup(groupId, tagToRemove) {
-    await apiGatewayInstance.delete(`/groups/${groupId}/tags/${tagToRemove}`);
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${tagToRemove}`,
+      { ...headers });
   }
 }
 

@@ -21,6 +21,8 @@ const resources = {
         agree: 'כן :)',
         disagree: 'בעצם לא..',
         ok: 'אוקיי',
+        next: 'הבא',
+        back: 'חזור',
       },
       tooltip: {
         addNewPhoto: 'הוספת תמונה חדשה',

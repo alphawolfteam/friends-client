@@ -1,50 +1,59 @@
 import React, { useState } from 'react';
-import { NavigateNext, NavigateBefore } from '@material-ui/icons';
+import { useTranslation } from 'react-i18next';
+import { MobileStepper, Button } from '@material-ui/core';
+import { KeyboardArrowRight, KeyboardArrowLeft } from '@material-ui/icons';
 import useStyles from './Paging.styles';
 
 const Paging = ({ pages }) => {
   const classes = useStyles();
-  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const { t } = useTranslation();
+  const [activeStep, setActiveStep] = useState(pages.length - 1);
 
-  const changePage = (direction) => {
-    if (direction === 'next') {
-      setCurrentPageIndex((prevPage) => prevPage + 1);
-    } else if (direction === 'back') {
-      setCurrentPageIndex((prevPage) => prevPage - 1);
-    }
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const renderButtonsSection = () => (
-    <div className={classes.buttonSection}>
-      <NavigateBefore
-        className={`${currentPageIndex < pages.length - 1
-          ? classes.arrowIcon
-          : classes.disabledArrowIcon}`}
-        onClick={() => {
-          if (currentPageIndex < pages.length - 1) {
-            changePage('next');
-          }
-        }}
-      />
-      <NavigateNext
-        className={`${currentPageIndex > 0
-          ? classes.arrowIcon
-          : classes.disabledArrowIcon}`}
-        onClick={() => {
-          if (currentPageIndex > 0) {
-            changePage('back');
-          }
-        }}
-      />
-    </div>
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const renderStepper = () => (
+    <MobileStepper
+      variant="dots"
+      steps={pages.length}
+      position="static"
+      activeStep={activeStep}
+      className={classes.stepper}
+      direction="rtl"
+      nextButton={(
+        <Button
+          size="small"
+          onClick={handleNext}
+          disabled={activeStep === pages.length - 1}
+        >
+          <KeyboardArrowRight />
+          {t('button.back')}
+        </Button>
+      )}
+      backButton={(
+        <Button
+          size="small"
+          onClick={handleBack}
+          disabled={activeStep === 0}
+        >
+          {t('button.next')}
+          <KeyboardArrowLeft />
+        </Button>
+      )}
+    />
   );
 
   return (
     <div className={classes.root}>
       <div className={classes.page}>
-        {pages[currentPageIndex]}
+        {pages[activeStep]}
       </div>
-      {renderButtonsSection()}
+      {renderStepper()}
     </div>
   );
 };

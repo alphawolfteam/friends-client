@@ -92,12 +92,7 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
   };
 
   return (
-    <Paging pages={[<UsersInputFields
-      groupUsers={newGroup.users}
-      onAdd={(userToAdd, role) => handleAddUser(userToAdd, role)}
-      onRemove={(userObjectToRemove) => handleRemoveUser(userObjectToRemove)}
-      onChangeRole={(userObjectToUpdate, newRole) => handleChangeRole(userObjectToUpdate, newRole)}
-    />,
+    <Paging pages={[
       <div className={classes.page}>
         <EditableGroupDescription group={newGroup} setGroup={setNewGroup} />
         <TagsInputFields
@@ -106,6 +101,14 @@ const EditDialogContent = ({ newGroup, setNewGroup }) => {
           onRemove={(tagToRemove) => handleRemoveTag(tagToRemove)}
         />
       </div>,
+      <UsersInputFields
+        groupUsers={newGroup.users}
+        onAdd={(userToAdd, role) => handleAddUser(userToAdd, role)}
+        onRemove={(userObjectToRemove) => handleRemoveUser(userObjectToRemove)}
+        onChangeRole={
+          (userObjectToUpdate, newRole) => handleChangeRole(userObjectToUpdate, newRole)
+        }
+      />,
     ]}
     />
   );

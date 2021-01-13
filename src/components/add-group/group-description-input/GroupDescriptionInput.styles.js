@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
     width: '90%',
     resize: 'none',
     direction: 'rtl',
-    marginBottom: '1em',
     borderRadius: 10,
     padding: '2%',
     fontSize: '1rem',

@@ -17,6 +17,14 @@ const AddDialogContent = ({ newGroup, setNewGroup }) => {
 
   return (
     <Paging pages={[
+      <div className={classes.page}>
+        <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
+        <TagsInputFields
+          tagsList={newGroup.tags}
+          onAdd={(newTag) => setNewGroupTag(setNewGroup, newTag)}
+          onRemove={(tagToRemove) => removeGroupTag(setNewGroup, tagToRemove)}
+        />
+      </div>,
       <UsersInputFields
         groupUsers={newGroup.users}
         onAdd={(userToAdd, role) => setNewGroupUser(setNewGroup, userToAdd, role)}
@@ -27,14 +35,6 @@ const AddDialogContent = ({ newGroup, setNewGroup }) => {
           newRole,
         )}
       />,
-      <div className={classes.page}>
-        <GroupDescriptionInput group={newGroup} setGroup={setNewGroup} />
-        <TagsInputFields
-          tagsList={newGroup.tags}
-          onAdd={(newTag) => setNewGroupTag(setNewGroup, newTag)}
-          onRemove={(tagToRemove) => removeGroupTag(setNewGroup, tagToRemove)}
-        />
-      </div>,
     ]}
     />
   );

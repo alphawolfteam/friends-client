@@ -5,6 +5,9 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.snackbar + 1,
     color: '#fff',
   },
+  backdrop: {
+    background: 'none',
+  },
 }));
 
 export default useStyles;

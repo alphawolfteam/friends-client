@@ -9,6 +9,7 @@ import CustomeSnackbarContent from '../../shared/custome-snackbar-content/Custom
 import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import ValidationService from '../../../services/ValidationService';
+import config from '../../../appConf';
 import useStyles from './AddDialogActions.styles';
 
 const AddDialogActions = ({ newGroup, onClose }) => {
@@ -20,9 +21,12 @@ const AddDialogActions = ({ newGroup, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [validationArray, setValidationArray] = useState([]);
 
-  const handleAdd = async () => {
+  const handleAdd = () => {
     setValidationArray(() => {
-      const newValue = ValidationService.validateGroupObject(newGroup);
+      const newValue = ValidationService.validateGroupObject(
+        newGroup,
+        config.length_limitations.min_length_group_name,
+      );
 
       if (newValue.length === 0) {
         setIsLoading(true);

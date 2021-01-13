@@ -1,9 +1,9 @@
 import GroupsService from './GroupsService';
 
 class ValidationService {
-  static validateGroupObject(groupObject) {
+  static validateGroupObject(groupObject, minGroupNameLength) {
     return [
-      this.validateGroupName(groupObject.name),
+      this.validateGroupName(groupObject.name, minGroupNameLength),
       this.validateGroupDescription(groupObject.description),
       this.validateGroupUsers(groupObject.users),
     ].filter((field) => field !== null);

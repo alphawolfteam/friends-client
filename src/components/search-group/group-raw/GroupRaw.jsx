@@ -4,7 +4,7 @@ import {
   CardContent,
   Typography,
   ButtonBase,
-  Tooltip
+  Tooltip,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { getSortedTagsByString } from '../../shared/sharedFunctions';

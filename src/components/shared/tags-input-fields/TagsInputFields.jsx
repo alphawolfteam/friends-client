@@ -31,7 +31,7 @@ const TagsInputFields = ({
     enqueueSnackbar(
       <CustomeSnackbarContent message={t(
         `error.${validationResult}`,
-        { minTagLength: String(config.length_limitations.min_length_tag) },
+        { minTagLength: config.length_limitations.min_length_tag },
       )}
       />,
     );

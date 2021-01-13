@@ -18,16 +18,14 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
   const [removeTagLoaders, setRemoveTagLoaders] = useState([]);
 
   const handleAddTag = (newTag) => {
-    // TODO: Add loader
+    setNewGroupTag(setNewGroup, newTag);
     GroupsService.addTagToGroup(newGroup._id, newTag)
-      .then(() => {
-        setNewGroupTag(setNewGroup, newTag);
-      })
       .catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
+        removeGroupTag(setNewGroup, newTag);
       });
   };
 

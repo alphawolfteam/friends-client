@@ -17,16 +17,14 @@ const EditUsersListPage = ({ newGroup, setNewGroup }) => {
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
-    // TODO: Add loader
+    setNewGroupUser(setNewGroup, userToAdd, role);
     GroupsService.addUserToGroup(newGroup._id, { id: userToAdd.id, role })
-      .then(() => {
-        setNewGroupUser(setNewGroup, userToAdd, role);
-      })
       .catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
+        removeGroupUser(setNewGroup, { user: userToAdd });
       });
   };
 

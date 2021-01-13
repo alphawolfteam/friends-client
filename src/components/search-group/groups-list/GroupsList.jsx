@@ -18,7 +18,6 @@ const GroupsList = ({ groups, searchValue }) => {
 
   useEffect(() => {
     if (selectedGroupId !== undefined) {
-      // TODO: Add loader
       GroupsService.getGroupById(selectedGroupId)
         .then((res) => {
           setSelectedGroup(res);

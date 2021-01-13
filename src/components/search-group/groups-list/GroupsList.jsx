@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
+import { Fade } from '@material-ui/core';
 import GroupDialog from '../../view-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../../stores/userStore';
@@ -47,19 +48,21 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
 
   return (
     <>
-      <div className={classes.root}>
-        {groups.map((group) => (
-          <GroupRaw
-            key={group._id}
-            group={group}
-            setSelectedGroupId={(value) => setSelectedGroupId(value)}
-            searchValue={searchValue}
-            currentUserRole={
-              GroupsService.getUserRoleValue(group, currentUser.genesisId)
-            }
-          />
-        ))}
-      </div>
+      <Fade in>
+        <div className={classes.wrap}>
+          {groups.map((group) => (
+            <GroupRaw
+              key={group._id}
+              group={group}
+              setSelectedGroupId={(value) => setSelectedGroupId(value)}
+              searchValue={searchValue}
+              currentUserRole={
+                GroupsService.getUserRoleValue(group, currentUser.genesisId)
+              }
+            />
+          ))}
+        </div>
+      </Fade>
       {selectedGroup && selectedGroupId && (
         <GroupDialog
           group={selectedGroup}

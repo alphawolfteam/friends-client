@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {
+  root: {},
+  wrap: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

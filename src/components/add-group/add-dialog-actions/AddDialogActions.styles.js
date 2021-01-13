@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   root: {},
   button: {
-    fontSize: '1em',
-    paddingRight: '1em',
-    paddingLeft: '1em',
+    fontSize: '0.9em',
+    padding: '0.3em 1em',
   },
   icon: {
     marginRight: '0.25em',

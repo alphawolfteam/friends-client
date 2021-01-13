@@ -1,43 +1,34 @@
-import React, { useState } from 'react';
-import { Chip } from '@material-ui/core';
+import React from 'react';
+import { Chip, CircularProgress } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import CustomeTooltip from '../custome-tooltip/CustomeTooltip';
 import useStyles from './DeletableTag.styles';
-import ExistTransition from '../exist-transition/ExistTransition';
 
-const duration = 300;
-
-const DeletableTag = ({ tag, onRemove }) => {
+const DeletableTag = ({ tag, onRemove, isRemoveLoading }) => {
   const classes = useStyles();
-  const [inProp, setInProp] = useState(true);
-
-  const tagElement = (
-    <Chip
-      className={classes.label}
-      label={`#${tag}`}
-      onDelete={() => {
-        setInProp(false);
-        setTimeout(() => {
-          onRemove();
-        }, duration);
-      }}
-      deleteIcon={(
-        <Close className={classes.closeIcon} />
-      )}
-    />
-  );
 
   return (
-    <ExistTransition
+    <CustomeTooltip
+      title={tag}
+      className={classes.root}
       element={(
-        <CustomeTooltip
-          title={tag}
-          className={classes.root}
-          element={tagElement}
-        />
+        <div className={classes.element}>
+          <Chip
+            className={classes.label}
+            label={`#${tag}`}
+            onDelete={onRemove}
+            deleteIcon={(
+              <Close className={classes.closeIcon} />
+            )}
+          />
+          {isRemoveLoading && (
+            <CircularProgress
+              size={25}
+              className={classes.buttonProgress}
+            />
+          )}
+        </div>
       )}
-      duration={duration}
-      inProp={inProp}
     />
   );
 };

@@ -9,7 +9,12 @@ import useStyles from './TagsInputFields.styles';
 import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 import config from '../../../appConf';
 
-const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
+const TagsInputFields = ({
+  tagsList,
+  onAdd,
+  onRemove,
+  removeTagLoaders,
+}) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -46,6 +51,7 @@ const TagsInputFields = ({ tagsList, onAdd, onRemove }) => {
               <DeletableTag
                 tag={tag.label}
                 key={tag.label}
+                isRemoveLoading={removeTagLoaders && removeTagLoaders.includes(tag.label)}
                 onRemove={() => onRemove(tag.label)}
               />
             ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import {
@@ -15,6 +15,7 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const [removeTagLoaders, setRemoveTagLoaders] = useState([]);
 
   const handleAddTag = (newTag) => {
     // TODO: Add loader
@@ -31,7 +32,7 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
   };
 
   const handleRemoveTag = (tagToRemove) => {
-    // TODO: Add loader
+    setRemoveTagLoaders((prevValue) => [...prevValue, tagToRemove]);
     GroupsService.removeTagFromGroup(newGroup._id, tagToRemove)
       .then(() => {
         removeGroupTag(setNewGroup, tagToRemove);
@@ -41,6 +42,9 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
+      }).finally(() => {
+        setRemoveTagLoaders((prevValue) => prevValue.filter((id) => (
+          id !== tagToRemove)));
       });
   };
 
@@ -54,6 +58,7 @@ const EditInfoPage = ({ newGroup, setNewGroup }) => {
         tagsList={newGroup.tags}
         onAdd={handleAddTag}
         onRemove={handleRemoveTag}
+        removeTagLoaders={removeTagLoaders}
       />
     </div>
   );

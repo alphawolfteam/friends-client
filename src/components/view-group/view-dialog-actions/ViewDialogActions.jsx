@@ -2,11 +2,12 @@ import React, {
   useContext, useState, useEffect,
 } from 'react';
 import { Button } from '@material-ui/core';
-import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@material-ui/lab';
+import { SpeedDial, SpeedDialAction } from '@material-ui/lab';
 import {
   DeleteOutlined,
   EditOutlined,
   ExitToAppOutlined,
+  Dehaze,
 } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
@@ -118,7 +119,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
         <SpeedDial
           ariaLabel="speed dial"
           className={classes.speedDialActions}
-          icon={<SpeedDialIcon className={classes.speedDialIcon} />}
+          icon={<Dehaze className={classes.speedDialIcon} />}
           onClose={() => setOpenSpeedDial(false)}
           onOpen={() => setOpenSpeedDial(true)}
           open={openSpeedDial}

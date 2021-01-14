@@ -13,7 +13,6 @@ import GroupsSearch from './components/search-group/index';
 import CustomeSnackbarContent from
   './components/shared/custome-snackbar-content/CustomeSnackbarContent';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
-import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
 import ConfigService from './services/ConfigService';
@@ -78,12 +77,10 @@ const App = () => {
       )
       : renderUnauthorized()
   );
-
   const renderLoading = () => (
     <div className={classes.loading}>
       <FriendsLogo className={classes.friendsLogo} />
-      <span className={classes.text}>powered by</span>
-      <UnitLogo className={classes.unitLogo} />
+      <div className={classes.fadingEffect} />
     </div>
   );
 

@@ -5,7 +5,7 @@ import UserInfo from '../user-info/UserInfo';
 import config from '../../../appConf';
 import useStyles from './UserRaw.styles';
 
-const UserRaw = ({ userObject }) => {
+const UserRaw = ({ user, role }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -16,9 +16,9 @@ const UserRaw = ({ userObject }) => {
           component="span"
           className={classes.text}
         >
-          <UserInfo userObject={userObject} />
+          <UserInfo user={user} />
           <div className={classes.role}>
-            {userObject.role === config.roles.manager_role_value && t('roles.manager')}
+            {role === config.roles.manager_role_value && t('roles.manager')}
           </div>
         </Typography>
       </CardContent>

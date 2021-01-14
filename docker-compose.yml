@@ -8,11 +8,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
-
-  # config:
-  #   container_name: config
-  #   build:
-  #     context: ./config
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - '3001:3001'

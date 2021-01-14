@@ -12,7 +12,7 @@ import RolesSelect from '../roles-select/RolesSelect';
 import useStyles from './UserRawActions.styles';
 
 const UserRawActions = ({
-  userObject,
+  role,
   onRemove,
   onChangeRole,
   isRemoveLoading,
@@ -26,7 +26,7 @@ const UserRawActions = ({
       <div className={classes.rolesSelect}>
         <RolesSelect
           disabled={isUpdateLoading === true}
-          role={userObject.role}
+          role={role}
           onChange={onChangeRole}
         />
         <Backdrop open={isUpdateLoading === true} className={classes.backdrop}>

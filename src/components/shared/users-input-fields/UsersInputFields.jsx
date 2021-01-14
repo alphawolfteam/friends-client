@@ -28,7 +28,7 @@ const UsersInputFields = ({
   const [selectedUser, setSelectedUser] = useState(undefined);
 
   const usersListToEdit = useMemo(
-    () => groupUsers.filter((userObject) => userObject.user.id !== currentUser.genesisId),
+    () => groupUsers.filter(({ user }) => user.id !== currentUser.genesisId),
     [groupUsers, currentUser],
   );
 
@@ -50,26 +50,25 @@ const UsersInputFields = ({
   const renderCurrentUserField = () => (
     <div className={classes.field}>
       <UserRaw
-        userObject={{
-          user: {
-            id: currentUser.genesisId,
-            firstName: currentUser.name.firstName,
-            lastName: currentUser.name.lastName,
-          },
-          role: config.roles.manager_role_value,
+        user={{
+          id: currentUser.genesisId,
+          firstName: currentUser.name.firstName,
+          lastName: currentUser.name.lastName,
         }}
+        role={config.roles.manager_role_value}
       />
     </div>
   );
 
-  const renderUserInputField = (userObject) => (
-    <div key={userObject.user.id} className={classes.field}>
+  const renderUserInputField = (user, role) => (
+    <div key={user.id} className={classes.field}>
       <EditableUserRaw
-        userObject={userObject}
-        onRemove={() => onRemove(userObject)}
-        onChangeRole={(newRole) => onChangeRole(userObject, newRole)}
-        isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(userObject.user.id)}
-        isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(userObject.user.id)}
+        user={user}
+        role={role}
+        onRemove={() => onRemove(user)}
+        onChangeRole={(newRole) => onChangeRole(user, newRole)}
+        isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(user.id)}
+        isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(user.id)}
       />
     </div>
   );
@@ -80,8 +79,8 @@ const UsersInputFields = ({
       <div className={classes.scrollBar}>
         <div className={classes.fieldList}>
           {renderCurrentUserField()}
-          {sortedUsers.length > 0 ? sortedUsers.map((user) => (
-            renderUserInputField(user)
+          {sortedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
+            renderUserInputField(user, role)
           ))
             : (
               <Typography className={classes.message}>

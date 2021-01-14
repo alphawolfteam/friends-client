@@ -24,15 +24,15 @@ const EditUsersListPage = ({ group, setGroup }) => {
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
         );
-        removeGroupUser(setGroup, { user: userToAdd });
+        removeGroupUser(setGroup, userToAdd.id);
       });
   };
 
-  const handleRemoveUser = (userObjectToRemove) => {
-    setRemoveUserLoaders((prevValue) => [...prevValue, userObjectToRemove.user.id]);
-    GroupsService.removeUserFromGroup(group._id, userObjectToRemove.user.id)
+  const handleRemoveUser = (user) => {
+    setRemoveUserLoaders((prevValue) => [...prevValue, user.id]);
+    GroupsService.removeUserFromGroup(group._id, user.id)
       .then(() => {
-        removeGroupUser(setGroup, userObjectToRemove);
+        removeGroupUser(setGroup, user.id);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -40,16 +40,15 @@ const EditUsersListPage = ({ group, setGroup }) => {
           { variant: 'error' },
         );
       }).finally(() => {
-        setRemoveUserLoaders((prevValue) => prevValue.filter((id) => (
-          id !== userObjectToRemove.user.id)));
+        setRemoveUserLoaders((prevValue) => prevValue.filter((id) => (id !== user.id)));
       });
   };
 
-  const handleChangeRole = (userObjectToUpdate, newRole) => {
-    setUpdateUserLoaders((prevValue) => [...prevValue, userObjectToUpdate.user.id]);
-    GroupsService.updateUserRole(group._id, userObjectToUpdate.user.id, newRole)
+  const handleChangeRole = (user, newRole) => {
+    setUpdateUserLoaders((prevValue) => [...prevValue, user.id]);
+    GroupsService.updateUserRole(group._id, user.id, newRole)
       .then(() => {
-        setNewGroupUserRole(setGroup, userObjectToUpdate, newRole);
+        setNewGroupUserRole(setGroup, user.id, newRole);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -57,8 +56,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
           { variant: 'error' },
         );
       }).finally(() => {
-        setUpdateUserLoaders((prevValue) => prevValue.filter((id) => (
-          id !== userObjectToUpdate.user.id)));
+        setUpdateUserLoaders((prevValue) => prevValue.filter((id) => (id !== user.id)));
       });
   };
 

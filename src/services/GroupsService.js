@@ -12,14 +12,10 @@ class GroupsService {
   }
 
   static isUserExist(usersList, userIdToFind) {
-    return this._getUserFromList(usersList, userIdToFind) !== undefined;
+    return usersList.find(({ user }) => user.id === userIdToFind) !== undefined;
   }
 
-  static _getUserFromList(usersList, userIdToFind) {
-    return usersList.find((userObject) => userObject.user.id === userIdToFind);
-  }
-
-  static getUserRoleValue(group, userId) {
+  static getUserRole(group, userId) {
     let role;
     group.users.forEach((groupUser) => {
       if (userId === groupUser.id) {
@@ -29,14 +25,14 @@ class GroupsService {
     return role;
   }
 
-  static getUserRoleValueFromPopulatedGroup(group, userId) {
-    let role;
-    group.users.forEach((userObject) => {
-      if (userId === userObject.user.id) {
-        role = userObject.role;
+  static getUserRoleFromPopulatedGroup(group, userId) {
+    let userRole;
+    group.users.forEach(({ user, role }) => {
+      if (userId === user.id) {
+        userRole = role;
       }
     });
-    return role;
+    return userRole;
   }
 
   static async searchPrivateGroups(searchValue) {

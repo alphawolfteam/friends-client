@@ -5,7 +5,7 @@ export const getSortedGroupsByRole = (groupsList, userId, managerRoleValue) => {
   const unownedGroups = [];
 
   groupsList.forEach((group) => {
-    if (GroupsService.getUserRoleValue(group, userId) === managerRoleValue) {
+    if (GroupsService.getUserRole(group, userId) === managerRoleValue) {
       ownedGroups.push(group);
     } else {
       unownedGroups.push(group);
@@ -43,10 +43,6 @@ export const getSortedTagsByString = (tagsList, string) => {
   return [...matchedTags, ...unmatchedTags];
 };
 
-export const getUserIndex = (usersList, userObjectToFind) => {
-  return usersList.map((userObject) => userObject.user.id).indexOf(userObjectToFind.user.id);
-};
-
 export const setNewGroupName = (setGroup, newName) => {
   setGroup((prevValue) => ({ ...prevValue, name: newName }));
 };
@@ -73,18 +69,22 @@ export const setNewGroupUser = (setGroup, userToAdd, role) => {
   }));
 };
 
-export const removeGroupUser = (setGroup, userObjectToRemove) => {
+const getUserIndex = (usersList, userIdToFind) => {
+  return usersList.map(({ user }) => user.id).indexOf(userIdToFind);
+};
+
+export const removeGroupUser = (setGroup, userIdToRemove) => {
   setGroup((prevValue) => {
     const usersList = [...prevValue.users];
-    usersList.splice(getUserIndex(usersList, userObjectToRemove), 1);
+    usersList.splice(getUserIndex(usersList, userIdToRemove), 1);
     return { ...prevValue, users: usersList };
   });
 };
 
-export const setNewGroupUserRole = (setGroup, userObjectToUpdate, newRole) => {
+export const setNewGroupUserRole = (setGroup, userIdToUpdate, newRole) => {
   setGroup((prevValue) => {
     const usersList = [...prevValue.users];
-    usersList[getUserIndex(usersList, userObjectToUpdate)].role = newRole;
+    usersList[getUserIndex(usersList, userIdToUpdate)].role = newRole;
     return { ...prevValue, users: usersList };
   });
 };

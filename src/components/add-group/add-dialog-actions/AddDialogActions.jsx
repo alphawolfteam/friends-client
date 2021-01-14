@@ -32,8 +32,8 @@ const AddDialogActions = ({ newGroup, onClose }) => {
         setIsLoading(true);
         GroupsService.createGroup({
           ...newGroup,
-          users: [...newGroup.users.map((userObject) => (
-            { id: userObject.user.id, role: userObject.role }
+          users: [...newGroup.users.map(({ user, role }) => (
+            { id: user.id, role }
           ))],
         })
           .then(() => {

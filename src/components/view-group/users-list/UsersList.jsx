@@ -13,10 +13,11 @@ const UsersList = ({ users }) => {
   return (
     <div className={classes.root}>
       <div className={classes.scrollBarContent}>
-        {sortedUsers.map((userObject) => (
+        {sortedUsers.map(({ user, role }) => (
           <UserRaw
-            key={userObject.user.id}
-            userObject={userObject}
+            key={user.id}
+            user={user}
+            role={role}
           />
         ))}
       </div>

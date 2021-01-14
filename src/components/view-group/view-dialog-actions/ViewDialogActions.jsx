@@ -21,7 +21,7 @@ import CustomeSnackbarContent from '../../shared/custome-snackbar-content/Custom
 import config from '../../../appConf';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
-  (user) => user.role === config.roles.manager_role_value,
+  ({ user }) => user.role === config.roles.manager_role_value,
 ).length;
 
 const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
@@ -38,7 +38,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
-  const currentUserRole = GroupsService.getUserRoleValueFromPopulatedGroup(
+  const currentUserRole = GroupsService.getUserRoleFromPopulatedGroup(
     group,
     currentUser.genesisId,
   );
@@ -95,9 +95,21 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   };
 
   const actions = [
-    { icon: <EditOutlined />, name: t('button.edit'), onClick: () => setOpenEditGroupDialog(true) },
-    { icon: <ExitToAppOutlined />, name: t('button.leaveGroup'), onClick: () => handleLeaveGroup() },
-    { icon: <DeleteOutlined />, name: t('button.deleteGroup'), onClick: () => handleDeleteGroup() },
+    {
+      icon: <EditOutlined />,
+      name: t('button.edit'),
+      onClick: () => setOpenEditGroupDialog(true),
+    },
+    {
+      icon: <ExitToAppOutlined />,
+      name: t('button.leaveGroup'),
+      onClick: () => handleLeaveGroup(),
+    },
+    {
+      icon: <DeleteOutlined />,
+      name: t('button.deleteGroup'),
+      onClick: () => handleDeleteGroup(),
+    },
   ];
 
   return (

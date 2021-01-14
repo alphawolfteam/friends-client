@@ -28,10 +28,10 @@ const AddDialogContent = ({ newGroup, setNewGroup }) => {
       <UsersInputFields
         groupUsers={newGroup.users}
         onAdd={(userToAdd, role) => setNewGroupUser(setNewGroup, userToAdd, role)}
-        onRemove={(userObjectToRemove) => removeGroupUser(setNewGroup, userObjectToRemove)}
-        onChangeRole={(userObjectToUpdate, newRole) => setNewGroupUserRole(
+        onRemove={(user) => removeGroupUser(setNewGroup, user.id)}
+        onChangeRole={(user, newRole) => setNewGroupUserRole(
           setNewGroup,
-          userObjectToUpdate,
+          user.id,
           newRole,
         )}
       />,

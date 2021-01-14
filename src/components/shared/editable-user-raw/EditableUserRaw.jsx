@@ -5,7 +5,8 @@ import UserInfo from '../user-info/UserInfo';
 import useStyles from './EditableUserRaw.styles';
 
 const EditableUserRaw = ({
-  userObject,
+  user,
+  role,
   onRemove,
   onChangeRole,
   isRemoveLoading,
@@ -20,11 +21,11 @@ const EditableUserRaw = ({
           component="span"
           className={classes.main}
         >
-          <UserInfo userObject={userObject} />
+          <UserInfo user={user} />
           <UserRawActions
-            userObject={userObject}
-            onRemove={() => onRemove()}
-            onChangeRole={(newRole) => onChangeRole(newRole)}
+            role={role}
+            onRemove={onRemove}
+            onChangeRole={onChangeRole}
             isRemoveLoading={isRemoveLoading}
             isUpdateLoading={isUpdateLoading}
           />

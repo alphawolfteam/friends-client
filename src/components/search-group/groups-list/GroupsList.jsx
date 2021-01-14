@@ -34,15 +34,13 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
     if (selectedGroup) {
       setGroups((prevValue) => (
         prevValue.map((group) => (
-          group._id === selectedGroup._id
-            ? {
-              ...selectedGroup,
-              users: selectedGroup.users.map((userObject) => (
-                {
-                  id: userObject.user.id,
-                  role: userObject.role,
-                })),
-            } : group))));
+          group._id === selectedGroup._id ? {
+            ...selectedGroup,
+            users: selectedGroup.users.map(({ user, role }) => ({
+              id: user.id,
+              role,
+            })),
+          } : group))));
     }
   }, [selectedGroup]);
 
@@ -57,7 +55,7 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
               setSelectedGroupId={(value) => setSelectedGroupId(value)}
               searchValue={searchValue}
               currentUserRole={
-                GroupsService.getUserRoleValue(group, currentUser.genesisId)
+                GroupsService.getUserRole(group, currentUser.genesisId)
               }
             />
           ))}

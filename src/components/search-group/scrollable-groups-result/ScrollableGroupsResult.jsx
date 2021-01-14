@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Paper } from '@material-ui/core';
+import { Typography, Paper, Fade } from '@material-ui/core';
 import { GroupAddOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
@@ -79,11 +79,13 @@ const ScrollableGroupsResult = ({
       return noCurrentUserGroupsFound;
     }
     return (
-      <>
-        {currentUserGroups && currentUserGroups.length > 0 && (currentUserGroupsList)}
-        {privateGroups && privateGroups.length > 0 && (privateGroupsList)}
-        {publicGroups && publicGroups.length > 0 && (publicGroupsList)}
-      </>
+      <Fade in>
+        <div className={classes.wrap}>
+          {currentUserGroups && currentUserGroups.length > 0 && (currentUserGroupsList)}
+          {privateGroups && privateGroups.length > 0 && (privateGroupsList)}
+          {publicGroups && publicGroups.length > 0 && (publicGroupsList)}
+        </div>
+      </Fade>
     );
   };
 

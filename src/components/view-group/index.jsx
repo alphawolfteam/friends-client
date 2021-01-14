@@ -19,8 +19,9 @@ const GroupDialog = ({
   const handleOnClose = () => {
     if (initialType !== group.type) {
       research();
+    } else {
+      onClose();
     }
-    onClose();
   };
 
   return (

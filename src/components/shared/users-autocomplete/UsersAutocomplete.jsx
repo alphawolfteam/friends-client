@@ -10,37 +10,38 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
     setOptions([]);
   };
 
+  const renderOptions = () => (
+    options.map((user) => (
+      <Card
+        key={user.id}
+        className={classes.optionCard}
+      >
+        <Typography
+          className={classes.optionContent}
+          onClick={() => handleOnClick(user)}
+        >
+          <strong>
+            {user.firstName}
+            {' '}
+            {user.lastName}
+          </strong>
+          {'- '}
+          {user.hierarchyFlat}
+        </Typography>
+      </Card>
+    ))
+  );
+
   return (
-    <>
-      { options.length > 0
-      && (
+    options.length > 0
+    && (
       <div className={classes.root}>
         <hr className={classes.divider} />
         <div className={classes.optionsList}>
-          {options.map((user) => (
-            <Card
-              key={user.id}
-              className={classes.optionCard}
-            >
-              <Typography
-                className={classes.optionContent}
-                onClick={() => handleOnClick(user)}
-              >
-                <strong>
-                  {user.firstName}
-                  {' '}
-                  {user.lastName}
-                </strong>
-                {'- '}
-                {user.hierarchyFlat}
-              </Typography>
-            </Card>
-          ))}
+          {renderOptions()}
         </div>
       </div>
-      )}
-    </>
-  );
+    ));
 };
 
 export default UsersAutocomplete;

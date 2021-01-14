@@ -26,6 +26,7 @@ const GroupsSearch = () => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const currentUser = useContext(userContext);
   const [currentUserGroups, setCurrentUserGroups] = useState(undefined);
   const [filteredPrivateGroups, setFilteredPrivateGroups] = useState(undefined);
   const [filteredPublicGroups, setFilteredPublicGroups] = useState(undefined);
@@ -33,7 +34,6 @@ const GroupsSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentSearchValue, setCurrentSearchValue] = useState('');
   const [prevSearchValue, setPrevSearchValue] = useState('');
-  const currentUser = useContext(userContext);
 
   const handleInit = useCallback(() => {
     setIsLoading(true);

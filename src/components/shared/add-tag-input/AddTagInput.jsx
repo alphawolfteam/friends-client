@@ -33,7 +33,10 @@ const AddTagInput = ({ onAdd, isValidated }) => {
 
   return (
     <div className={classes.root}>
-      <Add className={classes.addIcon} onClick={() => handleOnClick()} />
+      <Add
+        className={classes.addIcon}
+        onClick={() => handleOnClick()}
+      />
       <InputBase
         placeholder={t('placeholder.addTag')}
         onChange={(e) => handleOnChange(e)}

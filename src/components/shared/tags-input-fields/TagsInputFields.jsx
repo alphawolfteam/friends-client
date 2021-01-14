@@ -38,30 +38,34 @@ const TagsInputFields = ({
     return false;
   };
 
+  const renderTagsList = () => (
+    tagsList.length > 0 ? (
+      <>
+        {tagsList.map((tag) => (
+          <DeletableTag
+            tag={tag.label}
+            key={tag.label}
+            isRemoveLoading={removeTagLoaders && removeTagLoaders.includes(tag.label)}
+            onRemove={() => onRemove(tag.label)}
+          />
+        ))}
+      </>
+    )
+      : (
+        <Typography className={classes.message}>
+          {t('message.noTagsFound')}
+        </Typography>
+      )
+  );
+
   return (
     <div className={classes.root}>
       <AddTagInput
-        onAdd={(newTag) => onAdd(newTag)}
-        isValidated={(newTag) => isValidated(newTag)}
+        onAdd={onAdd}
+        isValidated={isValidated}
       />
       <div className={classes.tagsList}>
-        {tagsList.length > 0 ? (
-          <>
-            {tagsList.map((tag) => (
-              <DeletableTag
-                tag={tag.label}
-                key={tag.label}
-                isRemoveLoading={removeTagLoaders && removeTagLoaders.includes(tag.label)}
-                onRemove={() => onRemove(tag.label)}
-              />
-            ))}
-          </>
-        )
-          : (
-            <Typography className={classes.message}>
-              {t('message.noTagsFound')}
-            </Typography>
-          )}
+        {renderTagsList()}
       </div>
     </div>
   );

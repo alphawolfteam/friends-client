@@ -56,7 +56,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[10],
     _id: '4524216344',
   },
   {
@@ -88,7 +88,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[9],
     _id: '465997590756',
   },
   {
@@ -112,7 +112,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[6],
     _id: '2678765432',
   },
   {
@@ -148,7 +148,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[5],
     _id: '2626753788686',
   },
   {
@@ -208,7 +208,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[1],
     _id: '45376568098765',
   },
 ];

@@ -62,9 +62,12 @@ class GroupsService {
   }
 
   static async getGroupById(groupId) {
-    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups/${groupId}`,
+    const res = await axios.get(`${config.uri.api_gateway_uri}/groups/${groupId}`,
       { ...headers });
-    return data;
+    if (res.status === 206) {
+      throw new Error('Partial Content');
+    }
+    return res.data;
   }
 
   static async deleteGroup(groupId) {

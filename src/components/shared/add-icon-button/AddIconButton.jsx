@@ -32,7 +32,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   };
 
   return (
-    <Tooltip title={t('tooltip.addNewPhoto')} className={classes.root}>
+    <Tooltip title={t('tooltip.addNewPhoto')}>
       <IconButton
         variant="contained"
         component="label"

@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  root: {},
   card: {
     margin: '1%',
     width: '90%',
@@ -17,33 +16,10 @@ const useStyles = makeStyles(() => ({
       paddingBottom: '0.5%',
     },
   },
-  actions: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  rolesSelect: {
-    marginLeft: '0.5rem',
-  },
   main: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  text: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  iconButton: {
-    marginLeft: '15%',
-    fontSize: '1.5rem',
-    color: 'grey',
-    cursor: 'pointer',
-    '&:hover': {
-      color: 'black',
-    },
   },
 }));
 

@@ -23,7 +23,6 @@ const AlertTemplate = ({
   return (
     <Dialog
       open={open}
-      className={classes.root}
       TransitionComponent={Transition}
       keepMounted
       onClose={() => onClose()}

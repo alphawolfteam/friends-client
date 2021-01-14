@@ -22,10 +22,6 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  loader: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   startMessage: {
     display: 'flex',
     flexDirection: 'column',

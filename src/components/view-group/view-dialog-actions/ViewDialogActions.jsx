@@ -113,9 +113,9 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     },
   ];
 
-  return (
-    <div className={classes.root}>
-      {currentUserRole === config.roles.manager_role_value && (
+  const renderButtons = () => (
+    currentUserRole === config.roles.manager_role_value
+      ? (
         <SpeedDial
           ariaLabel="speed dial"
           className={classes.speedDialActions}
@@ -135,8 +135,8 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
             />
           ))}
         </SpeedDial>
-      )}
-      {currentUserRole === config.roles.member_role_value && (
+      )
+      : (
         <div className={classes.actions}>
           <Button
             onClick={() => handleLeaveGroup()}
@@ -145,19 +145,24 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
             <ExitToAppOutlined className={classes.icon} />
           </Button>
         </div>
-      )}
+      )
+  );
+
+  return (
+    <div className={classes.root}>
+      {renderButtons()}
       <AlertDialogTemplate
         message={t('alertMessage.leaveGroup')}
         open={openAlertLeaveDialog}
         onClose={() => setOpenAlertLeaveDialog(false)}
-        handleAnswer={(answer) => setDialogLeaveAnswer(answer)}
+        handleAnswer={setDialogLeaveAnswer}
         preferredAnswer="disagree"
       />
       <AlertDialogTemplate
         message={alertDeleteDialogMessage}
         open={openAlertDeleteDialog}
         onClose={() => setOpenAlertDeleteDialog(false)}
-        handleAnswer={(answer) => setDialogDeleteAnswer(answer)}
+        handleAnswer={setDialogDeleteAnswer}
         preferredAnswer="disagree"
       />
       <AlertMessageTemplate

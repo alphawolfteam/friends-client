@@ -9,7 +9,11 @@ import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditDialogTitle.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
-const EditDialogTitle = ({ group, setGroup, initialIcon }) => {
+const EditDialogTitle = ({
+  group,
+  setGroup,
+  initialIcon,
+}) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import DialogTemplate from '../shared/dialog-template/DialogTemplate';
 import EditGroupDialog from '../edit-group/index';
 import ViewDialogTitle from './view-dialog-title/ViewDialogTitle';
 import ViewDialogContent from './view-dialog-content/ViewDialogContent';
 import ViewDialogActions from './view-dialog-actions/ViewDialogActions';
+import researchContext from '../../stores/researchStore';
 
 const GroupDialog = ({
   group,
@@ -12,6 +13,15 @@ const GroupDialog = ({
   onClose,
 }) => {
   const [openEditGroupDialog, setOpenEditGroupDialog] = useState(false);
+  const research = useContext(researchContext);
+  const initialType = useMemo(() => group.type, []);
+
+  const handleOnClose = () => {
+    if (initialType !== group.type) {
+      research();
+    }
+    onClose();
+  };
 
   return (
     <>
@@ -34,11 +44,11 @@ const GroupDialog = ({
             <ViewDialogActions
               group={group}
               setOpenEditGroupDialog={setOpenEditGroupDialog}
-              onClose={onClose}
+              onClose={handleOnClose}
             />
           )}
           open={open}
-          onClose={onClose}
+          onClose={handleOnClose}
           cancelOnTouchOutside
         />
       )}

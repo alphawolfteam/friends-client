@@ -11,7 +11,10 @@ const GroupsLoader = () => {
       <CardContent className={classes.cardBody}>
         <Skeleton variant="rect" className={classes.info} />
         <div className={classes.main}>
-          <Skeleton variant="text" className={classes.name} />
+          <div className={classes.title}>
+            <Skeleton variant="text" className={classes.name} />
+            <Skeleton variant="text" className={classes.id} />
+          </div>
           <Skeleton variant="circle" className={classes.img} />
         </div>
       </CardContent>

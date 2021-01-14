@@ -17,7 +17,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
-    setNewGroupUser(group, userToAdd, role);
+    setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
       .catch(() => {
         enqueueSnackbar(

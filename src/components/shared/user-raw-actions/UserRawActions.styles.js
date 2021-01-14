@@ -5,9 +5,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
   rolesSelect: {
     marginLeft: '0.5rem',
+    marginRight: '0.5rem',
     position: 'relative',
   },
   iconButton: {
@@ -22,13 +24,17 @@ const useStyles = makeStyles((theme) => ({
   },
   backdrop: {
     background: 'none',
-    width: '5em',
-    height: '2em',
     position: 'absolute',
-    zIndex: theme.zIndex.snackbar + 1,
+    zIndex: theme.zIndex.snackbar + 1000,
   },
   buttonProgress: {
     position: 'absolute',
+    color: theme.palette.primary.main,
+  },
+  selectProgress: {
+    position: 'absolute',
+    left: '40%',
+    top: '25%',
     color: theme.palette.primary.main,
   },
 }));

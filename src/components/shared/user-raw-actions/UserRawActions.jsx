@@ -24,13 +24,12 @@ const UserRawActions = ({
   const renderRolesSelect = () => (
     <>
       <RolesSelect
-        disabled={isUpdateLoading === true}
         role={role}
         onChange={onChangeRole}
       />
-      <Backdrop open={isUpdateLoading === true} className={classes.backdrop}>
-        <CircularProgress size={20} />
-      </Backdrop>
+      {isUpdateLoading && (
+        <CircularProgress size={20} className={classes.selectProgress} />
+      )}
     </>
   );
 
@@ -55,6 +54,10 @@ const UserRawActions = ({
       <Tooltip title={t('tooltip.delete')}>
         {renderDeleteButton()}
       </Tooltip>
+      <Backdrop
+        open={isUpdateLoading === true || isRemoveLoading === true}
+        className={classes.backdrop}
+      />
     </Typography>
   );
 };

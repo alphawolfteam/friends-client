@@ -7,11 +7,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignSelf: 'flex-end',
     paddingBottom: '0.25rem',
+    position: 'relative',
   },
   icon: {
     '&:hover': {
       color: theme.palette.primary.main,
     },
+  },
+  progress: {
+    position: 'absolute',
+    left: '0.1em',
   },
 }));
 

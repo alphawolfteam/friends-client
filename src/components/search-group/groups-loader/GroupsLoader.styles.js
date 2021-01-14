@@ -36,11 +36,24 @@ const useStyles = makeStyles(() => ({
     paddingLeft: '1%',
     width: '5em',
     height: '2em',
+    borderRadius: 5,
+  },
+  title: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   },
   name: {
-    marginRight: '5%',
+    marginRight: '10%',
     width: '8em',
-    height: '2em',
+    height: '3em',
+    borderRadius: 5,
+  },
+  id: {
+    marginRight: '10%',
+    width: '4em',
+    height: '3em',
+    borderRadius: 5,
   },
   img: {
     width: '6em',

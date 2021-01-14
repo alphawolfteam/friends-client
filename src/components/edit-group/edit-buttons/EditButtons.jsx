@@ -55,7 +55,7 @@ const EditButtons = ({
             <ClearOutlined />
           </IconButton>
         </Tooltip>
-        { isLoading && <CircularProgress size={25} />}
+        { isLoading && <CircularProgress size={25} className={classes.progress} />}
       </div>
     )
   );

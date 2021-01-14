@@ -26,18 +26,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     outline: 'none',
   },
-  iconsSection: {
-    zIndex: 2,
-    direction: 'ltr',
-    display: 'flex',
-    alignSelf: 'flex-end',
-    paddingBottom: '0.25rem',
-  },
-  icon: {
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
-  },
 }));
 
 export default useStyles;

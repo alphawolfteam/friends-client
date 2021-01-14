@@ -13,24 +13,29 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
   const [editMode, setEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const saveNewDescription = (newDescription) => {
+    setIsLoading(true);
+    GroupsService.updateGroupDetails(
+      group._id,
+      { ...group, description: newDescription },
+    ).then(() => {
+      setNewGroupDescription(setGroup, newDescription);
+      setEditMode(false);
+    }).catch(() => {
+      enqueueSnackbar(
+        <CustomeSnackbarContent message={t('error.server')} />,
+        { variant: 'error' },
+      );
+    }).finally(() => {
+      setIsLoading(false);
+    });
+  };
+
   const handleOnSave = (newDescription) => {
     const validationResult = ValidationService.validateGroupDescription(newDescription);
     if (validationResult === null) {
       if (group.description !== newDescription) {
-        setIsLoading(true);
-        GroupsService.updateGroupDetails(group._id, { ...group, description: newDescription })
-          .then(() => {
-            setNewGroupDescription(setGroup, newDescription);
-            setEditMode(false);
-          })
-          .catch(() => {
-            enqueueSnackbar(
-              <CustomeSnackbarContent message={t('error.server')} />,
-              { variant: 'error' },
-            );
-          }).finally(() => {
-            setIsLoading(false);
-          });
+        saveNewDescription(newDescription);
       } else {
         setEditMode(false);
       }

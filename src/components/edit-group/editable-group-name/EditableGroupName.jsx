@@ -14,6 +14,22 @@ const GroupNameInput = ({ group, setGroup }) => {
   const [editMode, setEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const saveNewName = (newName) => {
+    setIsLoading(true);
+    GroupsService.updateGroupDetails(group._id, { ...group, name: newName })
+      .then(() => {
+        setNewGroupName(setGroup, newName);
+        setEditMode(false);
+      }).catch(() => {
+        enqueueSnackbar(
+          <CustomeSnackbarContent message={t('error.server')} />,
+          { variant: 'error' },
+        );
+      }).finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   const handleOnSave = (newName) => {
     const validationResult = ValidationService.validateGroupName(
       newName,
@@ -21,20 +37,7 @@ const GroupNameInput = ({ group, setGroup }) => {
     );
     if (validationResult === null) {
       if (group.name !== newName) {
-        setIsLoading(true);
-        GroupsService.updateGroupDetails(group._id, { ...group, name: newName })
-          .then(() => {
-            setNewGroupName(setGroup, newName);
-            setEditMode(false);
-          })
-          .catch(() => {
-            enqueueSnackbar(
-              <CustomeSnackbarContent message={t('error.server')} />,
-              { variant: 'error' },
-            );
-          }).finally(() => {
-            setIsLoading(false);
-          });
+        saveNewName(newName);
       } else {
         setEditMode(false);
       }

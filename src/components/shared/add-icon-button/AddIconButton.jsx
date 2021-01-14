@@ -11,18 +11,22 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
 
+  const uploadImage = (imageFile) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(imageFile);
+    reader.onload = () => {
+      const newIcon = reader.result;
+      if (!iconsOptions.includes(newIcon)) {
+        setIconsOptions((prevValue) => [newIcon, ...prevValue]);
+      }
+      setSelectedIcon(newIcon);
+    };
+  };
+
   const handleOnChange = async (event) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith('image')) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const newIcon = reader.result;
-        if (!iconsOptions.includes(newIcon)) {
-          setIconsOptions((prevValue) => [newIcon, ...prevValue]);
-        }
-        setSelectedIcon(newIcon);
-      };
+      uploadImage(file);
     } else {
       enqueueSnackbar(
         <CustomeSnackbarContent message={t('error.file')} />,
@@ -32,7 +36,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   };
 
   return (
-    <Tooltip title={t('tooltip.addNewPhoto')} className={classes.root}>
+    <Tooltip title={t('tooltip.addNewPhoto')}>
       <IconButton
         variant="contained"
         component="label"

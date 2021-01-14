@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
+import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import {
   setNewGroupUser,
   removeGroupUser,
   setNewGroupUserRole,
 } from '../../shared/sharedFunctions';
 import GroupsService from '../../../services/GroupsService';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const EditUsersListPage = ({ group, setGroup }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -17,7 +17,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
   const handleAddUser = (userToAdd, role) => {
-    setNewGroupUser(group, userToAdd, role);
+    setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
       .catch(() => {
         enqueueSnackbar(

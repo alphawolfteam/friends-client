@@ -1,16 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import { Fade } from '@material-ui/core';
 import GroupDialog from '../../view-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
-import useStyles from './GroupsList.styles';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const GroupsList = ({ groups, setGroups, searchValue }) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
@@ -46,21 +43,17 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
 
   return (
     <>
-      <Fade in>
-        <div className={classes.wrap}>
-          {groups.map((group) => (
-            <GroupRaw
-              key={group._id}
-              group={group}
-              setSelectedGroupId={(value) => setSelectedGroupId(value)}
-              searchValue={searchValue}
-              currentUserRole={
-                GroupsService.getUserRole(group, currentUser.genesisId)
-              }
-            />
-          ))}
-        </div>
-      </Fade>
+      {groups.map((group) => (
+        <GroupRaw
+          key={group._id}
+          group={group}
+          setSelectedGroupId={(value) => setSelectedGroupId(value)}
+          searchValue={searchValue}
+          currentUserRole={
+            GroupsService.getUserRole(group, currentUser.genesisId)
+          }
+        />
+      ))}
       {selectedGroup && selectedGroupId && (
         <GroupDialog
           group={selectedGroup}

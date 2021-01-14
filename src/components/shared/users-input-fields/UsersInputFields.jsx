@@ -60,34 +60,32 @@ const UsersInputFields = ({
     </div>
   );
 
-  const renderUserInputField = (user, role) => (
-    <div key={user.id} className={classes.field}>
-      <EditableUserRaw
-        user={user}
-        role={role}
-        onRemove={() => onRemove(user)}
-        onChangeRole={(newRole) => onChangeRole(user, newRole)}
-        isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(user.id)}
-        isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(user.id)}
-      />
-    </div>
+  const renderUsersFields = () => (
+    sortedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
+      <div key={user.id} className={classes.field}>
+        <EditableUserRaw
+          user={user}
+          role={role}
+          onRemove={() => onRemove(user)}
+          onChangeRole={(newRole) => onChangeRole(user, newRole)}
+          isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(user.id)}
+          isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(user.id)}
+        />
+      </div>
+    ))
+      : (
+        <Typography className={classes.message}>
+          {t('message.noMembersFound')}
+        </Typography>
+      )
   );
 
   return (
     <div className={classes.root}>
       <AddUserSearchBar setSelectedUser={setSelectedUser} />
       <div className={classes.scrollBar}>
-        <div className={classes.fieldList}>
-          {renderCurrentUserField()}
-          {sortedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
-            renderUserInputField(user, role)
-          ))
-            : (
-              <Typography className={classes.message}>
-                {t('message.noMembersFound')}
-              </Typography>
-            )}
-        </div>
+        {renderCurrentUserField()}
+        {renderUsersFields()}
       </div>
     </div>
   );

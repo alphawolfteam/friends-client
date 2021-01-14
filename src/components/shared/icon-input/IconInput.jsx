@@ -25,6 +25,28 @@ const IconInput = ({
     onChange(selectedIcon);
   }, [selectedIcon]);
 
+  const renderLoader = () => (
+    <Backdrop className={classes.backdrop} open={isLoading === true}>
+      <CircularProgress
+        variant="determinate"
+        className={classes.bottom}
+        size={50}
+        thickness={4}
+        value={100}
+      />
+      <CircularProgress
+        variant="indeterminate"
+        disableShrink
+        className={classes.top}
+        classes={{
+          circle: classes.circle,
+        }}
+        size={50}
+        thickness={4}
+      />
+    </Backdrop>
+  );
+
   return (
     <div className={classes.root}>
       <AddIconButton
@@ -37,25 +59,7 @@ const IconInput = ({
         setSelectedIcon={setSelectedIcon}
         shownIcon={shownIcon}
       />
-      <Backdrop className={classes.backdrop} open={isLoading === true}>
-        <CircularProgress
-          variant="determinate"
-          className={classes.bottom}
-          size={50}
-          thickness={4}
-          value={100}
-        />
-        <CircularProgress
-          variant="indeterminate"
-          disableShrink
-          className={classes.top}
-          classes={{
-            circle: classes.circle,
-          }}
-          size={50}
-          thickness={4}
-        />
-      </Backdrop>
+      {renderLoader()}
     </div>
   );
 };

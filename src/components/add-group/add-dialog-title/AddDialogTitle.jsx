@@ -8,14 +8,14 @@ import {
 } from '../../shared/sharedFunctions';
 import useStyles from './AddDialogTitle.styles';
 
-const AddDialogTitle = ({ newGroup, setNewGroup, DEFAULT_ICON }) => {
+const AddDialogTitle = ({ newGroup, setNewGroup, defaultIcon }) => {
   const classes = useStyles();
 
   return (
     <>
       <IconInput
         shownIcon={newGroup.icon}
-        initialIcon={DEFAULT_ICON}
+        initialIcon={defaultIcon}
         onChange={(newIcon) => setNewGroupIcon(setNewGroup, newIcon)}
       />
       <div className={classes.title}>

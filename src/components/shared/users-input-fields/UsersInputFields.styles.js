@@ -13,11 +13,6 @@ const useStyles = makeStyles((theme) => ({
     height: '12.5em',
     overflow: 'auto',
   },
-  fieldsList: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
   field: {
     display: 'flex',
     justifyContent: 'center',

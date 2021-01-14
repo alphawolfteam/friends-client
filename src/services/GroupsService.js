@@ -1,23 +1,22 @@
-// import axiosInstance from '../axiosConf';
-// import axios from "axios";
+import axios from 'axios';
+import config from '../appConf';
 
-// TODO: Delete
-import { groups } from './MockData';
-
-// TODO: delete
-const isIncludesInSentence = (sentence, portion) => (
-  sentence.startsWith(portion)
-  || sentence.split(' ').filter((word) => word.startsWith(portion)).length > 0
-);
-
-const getUserFromList = (usersList, userIdToFind) => {
-  return usersList.find((user) => user.id === userIdToFind);
+const headers = {
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
 };
 
-// TODO: Error handler
 class GroupsService {
-  static getUserRoleCode(group, userId) {
-    let role = false;
+  static isTagExist(tagsList, tagLabelToFind) {
+    return tagsList.find((tag) => tag.label === tagLabelToFind) !== undefined;
+  }
+
+  static isUserExist(usersList, userIdToFind) {
+    return usersList.find(({ user }) => user.id === userIdToFind) !== undefined;
+  }
+
+  static getUserRole(group, userId) {
+    let role;
     group.users.forEach((groupUser) => {
       if (userId === groupUser.id) {
         role = groupUser.role;
@@ -26,125 +25,93 @@ class GroupsService {
     return role;
   }
 
-  static async searchPrivateGroups(userId, searchValue) {
-    // TODO: Axios request
+  static getUserRoleFromPopulatedGroup(group, userId) {
+    let userRole;
+    group.users.forEach(({ user, role }) => {
+      if (userId === user.id) {
+        userRole = role;
+      }
+    });
+    return userRole;
+  }
 
-    return (await this.getPrivateGroups(userId))
-      .filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
-        || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
+  static async searchPrivateGroups(searchValue) {
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups`,
+      { params: { partial: searchValue, type: 'private' } },
+      { ...headers });
+    return data;
   }
 
   static async searchPublicGroups(searchValue) {
-    // TODO: Axios request
-
-    const publicGroups = groups.filter((group) => group.type === 'public');
-    return publicGroups.filter((publicGroup) => isIncludesInSentence(publicGroup.name, searchValue)
-      || publicGroup.tags.filter((tag) => isIncludesInSentence(tag, searchValue)).length > 0);
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/groups`,
+      { params: { partial: searchValue, type: 'public' } },
+      { ...headers });
+    return data;
   }
 
-  static async getPrivateGroups(userId) {
-    // TODO: Axios request
-    // const { data } = await axios.get(`/groups/users/:${userId}`);
-    // return data;
-
-    return groups.filter((group) => group.type === 'private'
-      && group.users.map((user) => user.id).includes(userId));
+  static async getUserGroups(userId) {
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}/users/${userId}/groups`,
+      { ...headers });
+    return data;
   }
 
   static async createGroup(newGroup) {
-    // TODO: Axios request
-    // await axios.post('/', newGroup);
-
-    const uint32 = window.crypto.getRandomValues(new Uint32Array(1))[0];
-    groups.push({ ...newGroup, _id: uint32.toString(16) });
+    const { data } = await axios.post(`${config.uri.api_gateway_uri}/groups`, newGroup,
+      { ...headers });
+    return data;
   }
 
-  static async getGroupUsers(groupId) {
-    // TODO: Axios request
-    // await axios.get(`/${groupId}/users`);
-
-    const groupToFind = groups[groups.map((group) => group._id).indexOf(groupId)];
-    return groupToFind.users;
+  static async getGroupById(groupId) {
+    const res = await axios.get(`${config.uri.api_gateway_uri}/groups/${groupId}`,
+      { ...headers });
+    if (res.status === 206) {
+      throw new Error('Partial Content');
+    }
+    return res.data;
   }
 
   static async deleteGroup(groupId) {
-    // TODO: Axios request
-    // await axios.delete(`/${groupId}`);
-
-    const groupIndexInArray = groups.map((group) => group._id).indexOf(groupId);
-    groups.splice(groupIndexInArray, 1);
-  }
-
-  static async updateGroup(group, newGroup) {
-    this._updateGroupDetails(group._id, newGroup);
-    const prevUsersList = group.users;
-    const newUsersList = newGroup.users;
-    this._removeUsersFromGroup(group._id, prevUsersList, newUsersList);
-    this._addUsersToGroup(group._id, prevUsersList, newUsersList);
-    this._updateUsersRole(group._id, prevUsersList, newUsersList);
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}`, { ...headers });
   }
 
   static async removeUserFromGroup(groupId, userId) {
-    // TODO: Axios request
-    // await axios.post(`/${groupId}/users/${userId}`);
-
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.users = groupToUpdate.users.filter((user) => user.id !== userId);
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
+      { ...headers });
   }
 
-  static _removeUsersFromGroup(groupId, prevUsersList, newUsersList) {
-    prevUsersList.forEach((prevUser) => {
-      if (!getUserFromList(newUsersList, prevUser.id)) {
-        this.removeUserFromGroup(groupId, prevUser.id);
-      }
-    });
+  static async addUserToGroup(groupId, newUser) {
+    await axios.post(`${config.uri.api_gateway_uri}/groups/${groupId}/users`, newUser,
+      { ...headers });
   }
 
-  static _addUsersToGroup(groupId, prevUsersList, newUsersList) {
-    newUsersList.forEach((newUser) => {
-      if (!getUserFromList(prevUsersList, newUser.id)) {
-        this._addUserToGroup(groupId, newUser);
-      }
-    });
+  static async updateUserRole(groupId, userId, newRole) {
+    const updatedUser = await axios.patch(
+      `${config.uri.api_gateway_uri}/groups/${groupId}/users/${userId}`,
+      { role: newRole },
+      { ...headers },
+    );
+    return updatedUser;
   }
 
-  static _updateUsersRole(groupId, prevUsersList, newUsersList) {
-    newUsersList.forEach((newUser) => {
-      if (getUserFromList(prevUsersList, newUser.id)
-        && getUserFromList(prevUsersList, newUser.id).role !== newUser.role) {
-        this._updateUserRole(groupId, newUser.id, newUser.role);
-      }
-    });
+  static async updateGroupDetails(groupId, newGroup) {
+    await axios.patch(`${config.uri.api_gateway_uri}/groups/${groupId}`,
+      {
+        name: newGroup.name,
+        description: newGroup.description,
+        type: newGroup.type,
+        icon: newGroup.icon,
+      },
+      { ...headers });
   }
 
-  static async _updateGroupDetails(groupId, newGroup) {
-    // TODO: Axios request
-    // await axios.put(`/${groupId}`, newGroup);
-
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.name = newGroup.name;
-    groupToUpdate.description = newGroup.description;
-    groupToUpdate.type = newGroup.type;
-    groupToUpdate.tags = newGroup.tags;
-    groupToUpdate.icon = newGroup.icon;
+  static async addTagToGroup(groupId, newTag) {
+    await axios.put(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${newTag}`,
+      { ...headers });
   }
 
-  static async _addUserToGroup(groupId, newUser) {
-    // TODO: Axios request
-    // await axios.post(`/${groupId}/users`, newUser);
-
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    groupToUpdate.users.push(newUser);
-  }
-
-  static async _updateUserRole(groupId, userId, newRole) {
-    // TODO: Axios request
-    // await axios.post(`/${groupId}/users/${userId}`, newRole);
-
-    const groupToUpdate = groups[groups.map((group) => group._id).indexOf(groupId)];
-    const userToUpdate = groupToUpdate.users[
-      groupToUpdate.users.map((user) => user.id).indexOf(userId)];
-    userToUpdate.role = newRole;
+  static async removeTagFromGroup(groupId, tagToRemove) {
+    await axios.delete(`${config.uri.api_gateway_uri}/groups/${groupId}/tags/${tagToRemove}`,
+      { ...headers });
   }
 }
 

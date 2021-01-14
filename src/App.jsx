@@ -5,16 +5,23 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import AppBarComponent from './components/app-bar/AppBar';
+import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
+import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
-import GroupsSearch from './pages/groups-search/GroupsSearch';
-import { ReactComponent as FriendsLogo } from './images/logo.svg';
-import { ReactComponent as UnitLogo } from './images/unitLogo.svg';
+import GroupsSearch from './components/search-group/index';
+import CustomeSnackbarContent from
+  './components/shared/custome-snackbar-content/CustomeSnackbarContent';
+import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
+import { ReactComponent as UnitLogo } from './utils/images/unitLogo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
+import ConfigService from './services/ConfigService';
 
 const App = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -22,8 +29,12 @@ const App = () => {
   const initAuthUser = useCallback(() => {
     AuthService.getAuthUser()
       .then((res) => {
-        setCurrentUser(res);
-        setIsAuthenticated(true);
+        if (res) {
+          setCurrentUser(res);
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
       })
       .catch(() => setIsAuthenticated(false))
       .then(() => {
@@ -34,19 +45,26 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    initAuthUser();
+    ConfigService.setConfigVariables().then(() => {
+      if (!isAuthenticated) {
+        initAuthUser();
+      }
+    }).catch(() => enqueueSnackbar(
+      <CustomeSnackbarContent message={t('error.server')} />,
+      { variant: 'error' },
+    ));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;
 
-  const renderFriends = () => (
+  const renderApp = () => (
     isAuthenticated
       ? (
         <Router>
           <div className={classes.app}>
             <userContext.Provider value={currentUser}>
               <AppBarComponent />
-              <div>
+              <div className={classes.page}>
                 <Switch>
                   <Route path="/">
                     <GroupsSearch />
@@ -71,7 +89,7 @@ const App = () => {
 
   return isLoading
     ? renderLoading()
-    : renderFriends();
+    : renderApp();
 };
 
 export default App;

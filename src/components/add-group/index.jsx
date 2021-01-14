@@ -35,7 +35,7 @@ const AddGroupDialog = ({ open, onClose }) => {
         <AddDialogTitle
           newGroup={newGroup}
           setNewGroup={setNewGroup}
-          DEFAULT_ICON={DEFAULT_ICON}
+          defaultIcon={DEFAULT_ICON}
         />
       )}
       content={(

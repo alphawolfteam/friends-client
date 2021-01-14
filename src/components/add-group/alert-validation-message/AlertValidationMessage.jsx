@@ -5,9 +5,18 @@ import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessa
 import config from '../../../appConf';
 import useStyles from './AlertValidationMessage.styles';
 
-const AlertValidationMessage = ({ open, onClose, validationArray }) => {
+const AlertValidationMessage = ({ open, onClose, validationTitlesArray }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+
+  const validationFields = (
+    validationTitlesArray.map((validationTitle) => (
+      <Typography component="span" key={validationTitle} className={classes.field}>
+        { t(`validation.${validationTitle}`,
+          { minGroupNameLength: config.length_limitations.min_length_group_name })}
+      </Typography>
+    ))
+  );
 
   const validationMessage = (
     <Typography component="span" className={classes.message}>
@@ -15,12 +24,7 @@ const AlertValidationMessage = ({ open, onClose, validationArray }) => {
         {t('alertMessage.validationMessage')}
       </Typography>
       <Typography component="span" className={classes.fieldsList}>
-        {validationArray.map((validationTitle) => (
-          <Typography component="span" key={validationTitle} className={classes.field}>
-            { t(`validation.${validationTitle}`,
-              { minGroupNameLength: config.length_limitations.min_length_group_name })}
-          </Typography>
-        ))}
+        {validationFields}
       </Typography>
     </Typography>
   );

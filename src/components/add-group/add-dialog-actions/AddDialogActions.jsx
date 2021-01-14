@@ -17,12 +17,12 @@ const AddDialogActions = ({ newGroup, onClose }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const research = useContext(researchContext);
-  const [openValidationMessage, setOpenValidationMessage] = useState(false);
+  const [openValidationAlert, setOpenValidationAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [validationArray, setValidationArray] = useState([]);
+  const [validationTitlesArray, setValidationTitlesArray] = useState([]);
 
   const handleAdd = () => {
-    setValidationArray(() => {
+    setValidationTitlesArray(() => {
       const newValue = ValidationService.validateGroupObject(
         newGroup,
         config.length_limitations.min_length_group_name,
@@ -48,7 +48,7 @@ const AddDialogActions = ({ newGroup, onClose }) => {
             );
           });
       } else {
-        setOpenValidationMessage(true);
+        setOpenValidationAlert(true);
       }
 
       return newValue;
@@ -57,14 +57,14 @@ const AddDialogActions = ({ newGroup, onClose }) => {
 
   return (
     <>
-      <Button className={classes.button} onClick={() => handleAdd()}>
+      <Button className={classes.button} onClick={handleAdd}>
         {t('button.add')}
         <Add className={classes.icon} />
       </Button>
       <AlertValidationMessage
-        validationArray={validationArray}
-        open={openValidationMessage}
-        onClose={() => setOpenValidationMessage(false)}
+        validationTitlesArray={validationTitlesArray}
+        open={openValidationAlert}
+        onClose={() => setOpenValidationAlert(false)}
       />
       <CustomeBackdrop open={isLoading} />
     </>

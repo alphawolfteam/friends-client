@@ -7,6 +7,7 @@ const resources = {
       title: {
         description: 'תיאור',
         members: 'חברים',
+        oneMember: 'חבר אחד',
         currentUserGroups: 'הקבוצות שלי',
         privateGroups: 'קבוצות פרטיות',
         publicGroups: 'קבוצות ציבוריות',

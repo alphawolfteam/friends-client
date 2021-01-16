@@ -47,9 +47,14 @@ const GroupRaw = ({
     <div className={classes.info}>
       <LockIcon type={group.type} />
       <Typography className={classes.groupAmount}>
-        {group.users.length}
-        {' '}
-        {t('title.members')}
+        {group.users.length === 1 ? t('title.oneMember')
+          : (
+            <>
+              {group.users.length}
+              {' '}
+              {t('title.members')}
+            </>
+          )}
       </Typography>
     </div>
   );

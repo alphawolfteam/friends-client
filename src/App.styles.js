@@ -27,13 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
   loading: {
     display: 'flex',
-    backgroundColor: theme.palette.background.main,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     top: '5%',
     height: '98vh',
     width: '99vw',
+    backgroundColor: 'white',
   },
   text: {
     fontFamily: theme.typography.fontFamily,
@@ -42,12 +42,37 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2%',
   },
   friendsLogo: {
-    width: '50vw',
-    height: '30vh',
+    width: '70vw',
+    height: '80vh',
+    animation: '$fade 2s ease-in alternate',
   },
-  unitLogo: {
-    width: '30%',
-    height: '20%',
+  fadingEffect: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    width: '100%',
+    background: 'white',
+    animation: '$transition 2s ease-in alternate',
+  },
+  '@keyframes transition': {
+    '0%': {
+      width: '100%',
+    },
+    '50%': {
+      width: '0%',
+    },
+    '100%': {
+      width: '0%',
+    },
+  },
+  '@keyframes fade': {
+    '0%': {
+      opacity: 0.5,
+    },
+    '100%': {
+      opacity: 1,
+    },
   },
 }));
 

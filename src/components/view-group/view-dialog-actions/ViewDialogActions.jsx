@@ -22,7 +22,7 @@ import CustomeSnackbarContent from '../../shared/custome-snackbar-content/Custom
 import config from '../../../appConf';
 
 const getManagersCount = (groupsUsers) => groupsUsers.filter(
-  ({ user }) => user.role === config.roles.manager_role_value,
+  ({ role }) => role === config.roles.manager_role_value,
 ).length;
 
 const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
@@ -84,6 +84,7 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   };
 
   const handleLeaveGroup = () => {
+    console.log(group.users);
     if (group.users.length === 1) {
       setAlertDeleteDialogMessage(t('alertMessage.theGroupWillBeDeleted'));
       setOpenAlertDeleteDialog(true);

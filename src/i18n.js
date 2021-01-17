@@ -7,6 +7,7 @@ const resources = {
       title: {
         description: 'תיאור',
         members: 'חברים',
+        oneMember: 'חבר אחד',
         currentUserGroups: 'הקבוצות שלי',
         privateGroups: 'קבוצות פרטיות',
         publicGroups: 'קבוצות ציבוריות',
@@ -57,7 +58,7 @@ const resources = {
       },
       alertMessage: {
         cantLeaveGroup: 'כדי לצאת מהקבוצה מנו מנהלים חדשים :)',
-        theGroupWillBeDeleted: 'אוי חבל הקבוצה תמחק.. לצאת מהקבוצה?',
+        theGroupWillBeDeleted: 'הקבוצה תמחק.. לצאת מהקבוצה?',
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         validationMessage: 'רק רגע..',

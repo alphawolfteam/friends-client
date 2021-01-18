@@ -84,7 +84,6 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
   };
 
   const handleLeaveGroup = () => {
-    console.log(group.users);
     if (group.users.length === 1) {
       setAlertDeleteDialogMessage(t('alertMessage.theGroupWillBeDeleted'));
       setOpenAlertDeleteDialog(true);

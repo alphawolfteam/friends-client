@@ -20,7 +20,7 @@ const LockIconInput = ({ type, onChange, isLoading }) => {
         disabled={isLoading}
         size="small"
         checked={type === 'private'}
-        color="default"
+        color="primary"
         onChange={() => onChange(type === 'private' ? 'public' : 'private')}
       />
     </div>

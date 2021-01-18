@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Typography, Paper, Fade } from '@material-ui/core';
 import { GroupAddOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
@@ -20,10 +20,6 @@ const ScrollableGroupsResult = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    console.log('currentUserGroups', currentUserGroups);
-  }, [currentUserGroups]);
 
   const noGroupsFound = (
     <Typography className={classes.message}>

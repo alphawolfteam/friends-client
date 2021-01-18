@@ -28,7 +28,7 @@ const Paging = ({ pages }) => {
         <Button
           size="small"
           onClick={handleNext}
-          className={classes.button}
+          className={classes.backButton}
           disabled={activeStep === pages.length - 1}
         >
           <KeyboardArrowRight />
@@ -39,7 +39,7 @@ const Paging = ({ pages }) => {
         <Button
           size="small"
           onClick={handleBack}
-          className={classes.button}
+          className={classes.nextButton}
           disabled={activeStep === 0}
         >
           {t('button.next')}

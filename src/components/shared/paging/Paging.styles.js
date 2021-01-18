@@ -19,9 +19,13 @@ const useStyles = makeStyles(() => ({
     overflow: 'auto',
     overflowX: 'hidden',
   },
-  button: {
+  nextButton: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+  },
+  backButton: {
+    display: 'flex',
+    justifyContent: 'flex-start',
   },
   stepper: {
     background: 'none',

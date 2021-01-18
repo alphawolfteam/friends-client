@@ -88,7 +88,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[9],
+    icon: groupIconsCodes[0],
     _id: '465997590756',
   },
   {
@@ -148,7 +148,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[5],
+    icon: groupIconsCodes[3],
     _id: '2626753788686',
   },
   {
@@ -176,7 +176,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[9],
     _id: '9876543214',
   },
   {

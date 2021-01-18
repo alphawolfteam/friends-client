@@ -7,7 +7,7 @@ class AuthService {
   static async getAuthUser() {
     const cookie = Cookies.get(config.token_name);
     if (!cookie) {
-      window.location.replace(`${config.uri.auth_service_uri}api/login`);
+      window.location.replace(`${config.uri.auth_service_uri}auth/login`);
     } else {
       axios.interceptors.request.use((requestsConfig) => {
         requestsConfig.headers.Authorization = `Bearer ${cookie}`;

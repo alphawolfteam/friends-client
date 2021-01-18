@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import apiMocker from 'connect-api-mocker';
 
-const port = 9000;
+const port = 4000;
 const app = express();
 
 app.use(cors());

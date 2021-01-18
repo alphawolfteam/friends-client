@@ -1,6 +1,6 @@
 const config = {
   uri: {
-    config_service_uri: 'http://localhost:9000/',
+    config_service_uri: 'http://localhost:4000/',
   },
 };
 

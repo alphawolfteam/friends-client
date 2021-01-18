@@ -2,8 +2,8 @@ import groupIconsCodes from '../src/utils/images/group-icons/group-icons-base64-
 
 export const config = {
   uri: {
-    api_gateway_uri: 'http://localhost:9000/',
-    auth_service_uri: 'http://localhost:9000/',
+    api_gateway_uri: 'http://localhost:4000/',
+    auth_service_uri: 'http://localhost:4000/',
   },
   roles: {
     member_role_value: 0,

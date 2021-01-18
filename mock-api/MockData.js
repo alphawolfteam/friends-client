@@ -2,8 +2,8 @@ import groupIconsCodes from '../src/utils/images/group-icons/group-icons-base64-
 
 export const config = {
   uri: {
-    api_gateway_uri: 'http://localhost:9000',
-    auth_service_uri: 'http://localhost:9000',
+    api_gateway_uri: 'http://localhost:9000/',
+    auth_service_uri: 'http://localhost:9000/',
   },
   roles: {
     member_role_value: 0,
@@ -15,7 +15,7 @@ export const config = {
     min_length_tag: 2,
     min_length_user_search_value: 2,
   },
-  token_name: 'friends_token',
+  token_name: 'friends-token',
 };
 
 export const groups = [

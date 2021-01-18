@@ -8,7 +8,7 @@ const headers = {
 class ConfigService {
   static async setConfigVariables() {
     const { data } = await axios.get(
-      `${config.uri.config_service_uri}/config`,
+      `${config.uri.config_service_uri}config`,
       { ...headers },
     );
     config.uri.api_gateway_uri = data.uri.api_gateway_uri;

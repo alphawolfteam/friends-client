@@ -1,4 +1,4 @@
-import { getGroupById } from '../../../../sharedFunctions';
+import { getGroupById } from '../../../../../sharedFunctions';
 
 module.exports = (req, res) => {
   const { groupId } = req.params;

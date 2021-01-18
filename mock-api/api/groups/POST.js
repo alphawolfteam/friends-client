@@ -1,4 +1,4 @@
-import { groups } from '../MockData';
+import { groups } from '../../MockData';
 
 module.exports = (req, res) => {
   const newGroup = req.body;

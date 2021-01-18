@@ -1,4 +1,4 @@
-import { groups } from '../../../MockData';
+import { groups } from '../../../../MockData';
 
 module.exports = (req, res) => {
   const { userId } = req.params;

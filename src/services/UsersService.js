@@ -7,7 +7,7 @@ const headers = {
 
 class UsersService {
   static async searchUsers(searchValue) {
-    const { data } = await axios.get(`${config.uri.api_gateway_uri}/users`,
+    const { data } = await axios.get(`${config.uri.api_gateway_uri}api/users`,
       { params: { partialName: searchValue } },
       { ...headers });
     return data;

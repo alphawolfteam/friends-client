@@ -1,4 +1,4 @@
-import { groups, currentUser } from '../MockData';
+import { groups, currentUser } from '../../MockData';
 
 const isIncludesInSentence = (sentence, portion) => (
   sentence.startsWith(portion)

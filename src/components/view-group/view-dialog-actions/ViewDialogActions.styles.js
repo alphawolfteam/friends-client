@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     left: 0,
   },
-  speedDialIcon: {
-    color: 'white',
-  },
   icon: {
     marginRight: '0.3em',
   },

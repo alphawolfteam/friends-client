@@ -7,8 +7,8 @@ import {
   DeleteOutlined,
   EditOutlined,
   ExitToAppOutlined,
-  Dehaze,
 } from '@material-ui/icons';
+import Hamburger from 'hamburger-react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './ViewDialogActions.styles';
@@ -119,7 +119,14 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
         <SpeedDial
           ariaLabel="speed dial"
           className={classes.speedDialActions}
-          icon={<Dehaze className={classes.speedDialIcon} />}
+          icon={(
+            <Hamburger
+              toggled={openSpeedDial}
+              size={20}
+              color="white"
+              easing="ease-in"
+            />
+          )}
           onClose={() => setOpenSpeedDial(false)}
           onOpen={() => setOpenSpeedDial(true)}
           open={openSpeedDial}

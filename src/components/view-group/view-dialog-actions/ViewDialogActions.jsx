@@ -113,9 +113,10 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
     },
   ];
 
-  const renderButtons = () => {
-    if (currentUserRole === config.roles.manager_role_value) {
-      return (
+  const renderButtons = () => (
+    <>
+      { currentUserRole === config.roles.manager_role_value
+      && (
         <SpeedDial
           ariaLabel="speed dial"
           className={classes.speedDialActions}
@@ -142,20 +143,19 @@ const ViewDialogActions = ({ group, setOpenEditGroupDialog, onClose }) => {
             />
           ))}
         </SpeedDial>
-      );
-    } if (currentUserRole === config.roles.member_role_value) {
-      return (
-        <div className={classes.actions}>
-          <Button
-            onClick={() => handleLeaveGroup()}
-          >
-            {t('button.leaveGroup')}
-            <ExitToAppOutlined className={classes.icon} />
-          </Button>
-        </div>
-      );
-    }
-  };
+      )}
+      {currentUserRole === config.roles.member_role_value && (
+      <div className={classes.actions}>
+        <Button
+          onClick={() => handleLeaveGroup()}
+        >
+          {t('button.leaveGroup')}
+          <ExitToAppOutlined className={classes.icon} />
+        </Button>
+      </div>
+      )}
+    </>
+  );
 
   return (
     <div className={classes.root}>

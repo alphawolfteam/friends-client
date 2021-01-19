@@ -21,7 +21,6 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
     ).then(() => {
       setNewGroupDescription(setGroup, newDescription);
       setEditMode(false);
-      enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
     }).catch(() => {
       enqueueSnackbar(
         <CustomeSnackbarContent message={t('error.server')} />,

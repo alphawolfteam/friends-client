@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import GroupDialog from '../../view-group/index';
+import EditGroupDialog from '../../edit-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
+import config from '../../../appConf';
 
 const GroupsList = ({ groups, setGroups, searchValue }) => {
   const { t } = useTranslation();
@@ -55,15 +57,29 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
         />
       ))}
       {selectedGroup && selectedGroupId && (
-        <GroupDialog
-          group={selectedGroup}
-          setGroup={setSelectedGroup}
-          open={selectedGroup !== undefined && selectedGroupId !== undefined}
-          onClose={() => {
-            setSelectedGroupId(undefined);
-            setSelectedGroup(undefined);
-          }}
-        />
+        GroupsService.getUserRoleFromPopulatedGroup(selectedGroup, currentUser.genesisId)
+        === config.roles.manager_role_value
+          ? (
+            <EditGroupDialog
+              open={selectedGroup !== undefined && selectedGroupId !== undefined}
+              onClose={() => {
+                setSelectedGroupId(undefined);
+                setSelectedGroup(undefined);
+              }}
+              group={selectedGroup}
+              setGroup={setSelectedGroup}
+            />
+          )
+          : (
+            <GroupDialog
+              group={selectedGroup}
+              open={selectedGroup !== undefined && selectedGroupId !== undefined}
+              onClose={() => {
+                setSelectedGroupId(undefined);
+                setSelectedGroup(undefined);
+              }}
+            />
+          )
       )}
     </>
   );

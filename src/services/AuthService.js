@@ -5,16 +5,25 @@ import config from '../appConf';
 
 class AuthService {
   static async getAuthUser() {
-    const token = Cookies.get(config.token_name);
-    if (!token) {
+    const cookie = Cookies.get(config.token_name);
+    if (!cookie) {
       this.redirect();
     } else {
-      axios.interceptors.request.use((requestsConfig) => {
+      this.setAuthHeaders();
+      return jwt.decode(cookie).user;
+    }
+  }
+
+  static async setAuthHeaders() {
+    axios.interceptors.request.use((requestsConfig) => {
+      const token = Cookies.get(config.token_name);
+      if (!token) {
+        this.redirect();
+      } else {
         requestsConfig.headers.Authorization = `Bearer ${token}`;
         return requestsConfig;
-      });
-      return jwt.decode(token).user;
-    }
+      }
+    });
   }
 
   static async redirect() {

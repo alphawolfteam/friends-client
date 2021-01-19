@@ -72,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    cursor: 'auto',
   },
   groupIcon: {
     borderRadius: '50%',
@@ -81,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
     width: '6em',
     height: '6em',
     overflow: 'hidden',
-    cursor: 'auto',
     boxShadow: '0 0.2vw 0.3vw 0 grey',
   },
   img: {

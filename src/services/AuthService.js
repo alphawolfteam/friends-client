@@ -1,20 +1,24 @@
-import jwt_decode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import config from '../appConf';
 
 class AuthService {
   static async getAuthUser() {
-    const cookie = Cookies.get(config.token_name);
-    if (!cookie) {
-      window.location.replace(`${config.uri.auth_service_uri}auth/login`);
+    const token = Cookies.get(config.token_name);
+    if (!token) {
+      this.redirect();
     } else {
       axios.interceptors.request.use((requestsConfig) => {
-        requestsConfig.headers.Authorization = `Bearer ${cookie}`;
+        requestsConfig.headers.Authorization = `Bearer ${token}`;
         return requestsConfig;
       });
-      return jwt_decode(cookie).user;
+      return jwt.decode(token).user;
     }
+  }
+
+  static async redirect() {
+    window.location.replace(`${config.uri.auth_service_uri}auth/login`);
   }
 }
 

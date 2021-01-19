@@ -51,6 +51,7 @@ const resources = {
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
       },
       message: {
+        groupWasEdited: 'הקבוצה נערכה',
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',

@@ -26,7 +26,9 @@ const EditDialogTitle = ({
       setNewGroupIcon(setGroup, newIcon);
       setIsIconLoading(true);
       GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
-        .catch(() => {
+        .then(() => {
+          enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
+        }).catch(() => {
           setNewGroupIcon(setGroup, prevIcon);
           enqueueSnackbar(
             <CustomeSnackbarContent message={t('error.server')} />,
@@ -41,8 +43,10 @@ const EditDialogTitle = ({
   const handleOnTypeChange = (newType) => {
     setIsLockLoading(true);
     GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
-      .then(() => { setNewGroupType(setGroup, newType); })
-      .catch(() => {
+      .then(() => {
+        setNewGroupType(setGroup, newType);
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
+      }).catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },

@@ -20,6 +20,7 @@ const GroupNameInput = ({ group, setGroup }) => {
       .then(() => {
         setNewGroupName(setGroup, newName);
         setEditMode(false);
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
       }).catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,

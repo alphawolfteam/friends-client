@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     fontWeight: '600',
     textAlign: 'center',
+    userSelect: 'none',
   },
 }));
 

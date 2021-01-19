@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: '1.3rem',
     fontWeight: '500',
+    userSelect: 'none',
   },
 }));
 

@@ -20,7 +20,9 @@ const EditInfoPage = ({ group, setGroup }) => {
   const handleAddTag = (newTag) => {
     setNewGroupTag(setGroup, newTag);
     GroupsService.addTagToGroup(group._id, newTag)
-      .catch(() => {
+      .then(() => {
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
+      }).catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
@@ -34,6 +36,7 @@ const EditInfoPage = ({ group, setGroup }) => {
     GroupsService.removeTagFromGroup(group._id, tagToRemove)
       .then(() => {
         removeGroupTag(setGroup, tagToRemove);
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
       })
       .catch(() => {
         enqueueSnackbar(

@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: '2rem',
-    cursor: 'auto',
   },
 }));
 

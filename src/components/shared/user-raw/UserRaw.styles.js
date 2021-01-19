@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
     fontSize: '0.8rem',
     paddingLeft: '1%',
+    userSelect: 'none',
   },
 }));
 

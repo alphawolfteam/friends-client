@@ -1,29 +1,33 @@
-import React, {
-  useContext, useState, useEffect,
-} from 'react';
-import { Tooltip, Fab } from '@material-ui/core';
-import { ExitToAppOutlined } from '@material-ui/icons';
+import React, { useContext, useState, useEffect } from 'react';
+import { Fab, Tooltip } from '@material-ui/core';
+import { DeleteOutlined, ExitToAppOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import useStyles from './ViewDialogActions.styles';
-import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
-import userContext from '../../../stores/userStore';
 import researchContext from '../../../stores/researchStore';
+import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
+import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
 import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
+import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
+import useStyles from './EditDialogActions.styles';
 import config from '../../../appConf';
 
-const ViewDialogActions = ({ group, onClose }) => {
+const getManagersCount = (groupsUsers) => groupsUsers.filter(
+  ({ role }) => role === config.roles.manager_role_value,
+).length;
+
+const EditDialogActions = ({ group, onClose }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
-  const currentUser = useContext(userContext);
   const research = useContext(researchContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const currentUser = useContext(userContext);
   const [openAlertLeaveDialog, setOpenAlertLeaveDialog] = useState(false);
+  const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(undefined);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const currentUserRole = GroupsService.getUserRoleFromPopulatedGroup(
@@ -65,34 +69,46 @@ const ViewDialogActions = ({ group, onClose }) => {
     }
   }, [dialogDeleteAnswer]);
 
+  const handleDeleteGroup = () => {
+    setAlertDeleteDialogMessage(t('alertMessage.deleteGroup'));
+    setOpenAlertDeleteDialog(true);
+  };
+
   const handleLeaveGroup = () => {
     if (group.users.length === 1) {
       setAlertDeleteDialogMessage(t('alertMessage.theGroupWillBeDeleted'));
       setOpenAlertDeleteDialog(true);
+    } else if (currentUserRole === config.roles.manager_role_value
+      && getManagersCount(group.users) === 1) {
+      setOpenAlertLeaveMessage(true);
     } else {
       setOpenAlertLeaveDialog(true);
     }
   };
 
   const renderButtons = () => (
-    <>
-      {currentUserRole === config.roles.member_role_value && (
-      <div className={classes.actions}>
-        <Tooltip title={t('tooltip.leaveGroup')}>
-          <Fab
-            onClick={() => handleLeaveGroup()}
-            className={classes.fab}
-          >
-            <ExitToAppOutlined className={classes.icon} />
-          </Fab>
-        </Tooltip>
-      </div>
-      )}
-    </>
+    <div className={classes.actions}>
+      <Tooltip title={t('tooltip.leaveGroup')}>
+        <Fab
+          onClick={() => handleLeaveGroup()}
+          className={classes.fab}
+        >
+          <ExitToAppOutlined className={classes.icon} />
+        </Fab>
+      </Tooltip>
+      <Tooltip title={t('tooltip.deleteGroup')}>
+        <Fab
+          onClick={() => handleDeleteGroup()}
+          className={classes.fab}
+        >
+          <DeleteOutlined className={classes.icon} />
+        </Fab>
+      </Tooltip>
+    </div>
   );
 
   return (
-    <div className={classes.root}>
+    <>
       {renderButtons()}
       <AlertDialogTemplate
         message={t('alertMessage.leaveGroup')}
@@ -108,9 +124,14 @@ const ViewDialogActions = ({ group, onClose }) => {
         handleAnswer={setDialogDeleteAnswer}
         preferredAnswer="disagree"
       />
+      <AlertMessageTemplate
+        message={t('alertMessage.cantLeaveGroup')}
+        open={openAlertLeaveMessage}
+        onClose={() => setOpenAlertLeaveMessage(false)}
+      />
       <CustomeBackdrop open={isLoading} />
-    </div>
+    </>
   );
 };
 
-export default ViewDialogActions;
+export default EditDialogActions;

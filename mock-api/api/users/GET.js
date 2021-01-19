@@ -1,5 +1,5 @@
-import { users } from '../MockData';
-import { decodeString } from '../sharedFunctions';
+import { users } from '../../MockData';
+import { decodeString } from '../../sharedFunctions';
 
 module.exports = (req, res) => {
   const partialName = decodeString(req.query.partialName);

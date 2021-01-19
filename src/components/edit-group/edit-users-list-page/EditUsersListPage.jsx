@@ -19,7 +19,9 @@ const EditUsersListPage = ({ group, setGroup }) => {
   const handleAddUser = (userToAdd, role) => {
     setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
-      .catch(() => {
+      .then(() => {
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
+      }).catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },
@@ -33,6 +35,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
     GroupsService.removeUserFromGroup(group._id, user.id)
       .then(() => {
         removeGroupUser(setGroup, user.id);
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
       })
       .catch(() => {
         enqueueSnackbar(
@@ -49,6 +52,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
     GroupsService.updateUserRole(group._id, user.id, newRole)
       .then(() => {
         setNewGroupUserRole(setGroup, user.id, newRole);
+        enqueueSnackbar(<CustomeSnackbarContent message={t('message.groupWasEdited')} />);
       })
       .catch(() => {
         enqueueSnackbar(

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'rtl',
     textAlign: 'center',
     color: theme.palette.primary.main,
+    userSelect: 'none',
   },
 }));
 

@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'flex-end',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '700',
+    userSelect: 'none',
   },
   groupDescription: {
     maxHeight: '8vh',

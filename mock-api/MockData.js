@@ -2,8 +2,8 @@ import groupIconsCodes from '../src/utils/images/group-icons/group-icons-base64-
 
 export const config = {
   uri: {
-    api_gateway_uri: 'http://localhost:9000',
-    auth_service_uri: 'http://localhost:9000',
+    api_gateway_uri: 'http://localhost:4000/',
+    auth_service_uri: 'http://localhost:4000/',
   },
   roles: {
     member_role_value: 0,
@@ -15,7 +15,7 @@ export const config = {
     min_length_tag: 2,
     min_length_user_search_value: 2,
   },
-  token_name: 'friends_token',
+  token_name: 'friends-token',
 };
 
 export const groups = [
@@ -88,7 +88,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[9],
+    icon: groupIconsCodes[0],
     _id: '465997590756',
   },
   {
@@ -148,7 +148,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[5],
+    icon: groupIconsCodes[3],
     _id: '2626753788686',
   },
   {
@@ -176,7 +176,7 @@ export const groups = [
     exchangeAddress: '',
     externalSystems: {},
     createdBy: '5e5688324203fc40043591aa',
-    icon: groupIconsCodes[0],
+    icon: groupIconsCodes[9],
     _id: '9876543214',
   },
   {

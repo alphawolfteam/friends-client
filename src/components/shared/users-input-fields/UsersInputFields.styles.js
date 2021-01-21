@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '1em',
   },
   scrollBar: {
     width: '90%',

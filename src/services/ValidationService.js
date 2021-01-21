@@ -10,17 +10,11 @@ class ValidationService {
   }
 
   static validateGroupDescription(groupDescription) {
-    if (!groupDescription || groupDescription === '') {
-      return 'emptyDescriptionInput';
-    }
-    return null;
+    return !groupDescription || groupDescription === '' ? 'emptyDescriptionInput' : null;
   }
 
   static validateGroupUsers(groupUsers) {
-    if (!groupUsers || groupUsers.length <= 1) {
-      return 'noMembersInList';
-    }
-    return null;
+    return !groupUsers || groupUsers.length <= 1 ? 'noMembersInList' : null;
   }
 
   static validateGroupName(groupName, minGroupNameLength) {

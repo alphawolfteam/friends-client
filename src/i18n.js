@@ -36,7 +36,7 @@ const resources = {
         cancel: 'ביטול',
       },
       placeholder: {
-        addTag: 'הוסיפו תגית..',
+        addTag: 'כתבו תגית..',
         searchFriend: 'הוסיפו חבר...',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',

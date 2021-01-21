@@ -27,7 +27,7 @@ const EditDialogActions = ({ group, onClose }) => {
   const [openAlertLeaveMessage, setOpenAlertLeaveMessage] = useState(false);
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
   const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
   const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
   const currentUserRole = GroupsService.getUserRoleFromPopulatedGroup(

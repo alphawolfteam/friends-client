@@ -36,7 +36,7 @@ const resources = {
         cancel: 'ביטול',
       },
       placeholder: {
-        addTag: 'הוסיפו תגית..',
+        addTag: 'כתבו תגית..',
         searchFriend: 'הוסיפו חבר...',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',
@@ -51,7 +51,6 @@ const resources = {
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
       },
       message: {
-        groupWasEdited: 'הקבוצה נערכה',
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',

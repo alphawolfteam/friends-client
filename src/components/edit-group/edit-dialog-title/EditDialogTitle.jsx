@@ -41,8 +41,9 @@ const EditDialogTitle = ({
   const handleOnTypeChange = (newType) => {
     setIsLockLoading(true);
     GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
-      .then(() => { setNewGroupType(setGroup, newType); })
-      .catch(() => {
+      .then(() => {
+        setNewGroupType(setGroup, newType);
+      }).catch(() => {
         enqueueSnackbar(
           <CustomeSnackbarContent message={t('error.server')} />,
           { variant: 'error' },

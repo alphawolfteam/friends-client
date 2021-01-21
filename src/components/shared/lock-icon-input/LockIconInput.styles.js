@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   lockIcon: {
     background: 'none',
     boxShadow: 'none',
+    zIndex: 2,
     '&:hover': {
       background: 'none',
       boxShadow: 'none',

@@ -16,8 +16,6 @@ const resources = {
         add: 'הוספה',
         edit: 'עריכה',
         addNewGroup: 'קבוצה חדשה',
-        leaveGroup: 'יציאה מהקבוצה',
-        deleteGroup: 'מחיקת קבוצה',
         agree: 'כן :)',
         disagree: 'בעצם לא..',
         ok: 'אוקיי',
@@ -25,6 +23,8 @@ const resources = {
         back: 'חזור',
       },
       tooltip: {
+        leaveGroup: 'יציאה מהקבוצה',
+        deleteGroup: 'מחיקת קבוצה',
         addNewPhoto: 'הוספת תמונה חדשה',
         delete: 'מחיקה',
         privateGroup: 'קבוצה פרטית',

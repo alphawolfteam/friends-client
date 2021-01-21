@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.5vw',
     fontWeight: '600',
     color: theme.palette.font.main,
+    userSelect: 'none',
   },
   message: {
     direction: 'rtl',
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontWeight: '600',
     color: theme.palette.font.main,
+    userSelect: 'none',
   },
 }));
 

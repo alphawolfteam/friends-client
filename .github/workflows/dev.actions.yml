@@ -4,8 +4,10 @@ on:
   push:
     branches: [ dev ]
 
+  workflow_dispatch:
+
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,4 +31,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: alphawolfsforce/friends-client:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:develop

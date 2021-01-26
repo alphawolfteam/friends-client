@@ -33,10 +33,10 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:develop
 
-      - name: ./
+      - name: Update azure vm
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: ./update-service.sh
+          command: sh update-service.sh
           host: ${{ secrets.AZURE_HOST }}
           username: ${{ secrets.AZURE_USERNAME }}
           password: ${{ secrets.AZURE_PASSWORD }}

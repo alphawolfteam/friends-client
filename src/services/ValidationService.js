@@ -2,29 +2,32 @@ import GroupsService from './GroupsService';
 
 class ValidationService {
   static validateGroupObject(groupObject, minGroupNameLength) {
-    return [
-      this.validateGroupName(groupObject.name, minGroupNameLength),
-      this.validateGroupDescription(groupObject.description),
-      this.validateGroupUsers(groupObject.users),
-    ].filter((field) => field !== null);
-  }
+    const validations = {
+      name: {
+        required: true,
+        emptyError: 'emptyNameInput',
+        minLength: minGroupNameLength,
+        tooShortError: 'nameTooShort',
+      },
+      description: {
+        required: true,
+        emptyError: 'emptyDescriptionInput',
+      },
+      users: {
+        minLength: 2,
+        tooShortError: 'noMembersInList',
+      },
+    };
 
-  static validateGroupDescription(groupDescription) {
-    return !groupDescription || groupDescription === '' ? 'emptyDescriptionInput' : null;
-  }
-
-  static validateGroupUsers(groupUsers) {
-    return !groupUsers || groupUsers.length <= 1 ? 'noMembersInList' : null;
-  }
-
-  static validateGroupName(groupName, minGroupNameLength) {
-    if (!groupName || groupName === '') {
-      return 'emptyNameInput';
-    }
-    if (groupName.length < minGroupNameLength) {
-      return 'nameTooShort';
-    }
-    return null;
+    return Object.entries(validations).reduce((errors, [property, requirements]) => {
+      if (requirements.required && !groupObject[property]) {
+        errors.push(requirements.emptyError);
+      } else if (requirements.minLength && groupObject[property]
+        && groupObject[property].length < requirements.minLength) {
+        errors.push(requirements.tooShortError);
+      }
+      return errors;
+    }, []);
   }
 
   static validateNewGroupTag(groupTags, newTag, minTagLength) {

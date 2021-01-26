@@ -4,7 +4,7 @@ module.exports = (req, res) => {
   const { groupId } = req.params;
   const newGroup = req.body;
   const groupToUpdate = getGroupById(groupId);
-  if (groupToUpdate) {
+  if (groupToUpdate && Object.keys(newGroup).length > 0) {
     groupToUpdate.name = newGroup.name;
     groupToUpdate.description = newGroup.description;
     groupToUpdate.type = newGroup.type;

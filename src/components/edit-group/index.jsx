@@ -15,6 +15,7 @@ const EditGroupDialog = ({
 }) => {
   const research = useContext(researchContext);
   const initialType = useMemo(() => group.type, []);
+  const initialIcon = useMemo(() => group.icon, []);
 
   const handleOnClose = () => {
     if (initialType !== group.type) {
@@ -30,7 +31,7 @@ const EditGroupDialog = ({
         <EditDialogTitle
           group={group}
           setGroup={setGroup}
-          initialIcon={group.icon}
+          initialIcon={initialIcon}
         />
       )}
       content={(

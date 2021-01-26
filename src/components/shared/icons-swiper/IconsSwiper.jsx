@@ -14,7 +14,7 @@ const IconsSwiper = ({
   const [controlledSwiper, setControlledSwiper] = useState(null);
 
   useEffect(() => {
-    if (controlledSwiper) {
+    if (controlledSwiper && iconsOptions.includes(shownIcon)) {
       controlledSwiper.slideTo(iconsOptions.indexOf(shownIcon));
     }
   }, [shownIcon, controlledSwiper]);

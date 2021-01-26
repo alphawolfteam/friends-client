@@ -32,3 +32,11 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:develop
+
+      - name: ./
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: ./update-service.sh
+          host: ${{ secrets.AZURE_HOST }}
+          username: ${{ secrets.AZURE_USERNAME }}
+          password: ${{ secrets.AZURE_PASSWORD }}

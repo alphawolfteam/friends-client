@@ -1,7 +1,3 @@
-const config = {
-  uri: {
-    config_service_uri: 'http://localhost:4000/',
-  },
-};
+const config = {};
 
 export default config;

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import {
   setNewGroupUser,
   removeGroupUser,
@@ -20,10 +19,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
     setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
       .catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
         removeGroupUser(setGroup, userToAdd.id);
       });
   };
@@ -35,10 +31,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
         removeGroupUser(setGroup, user.id);
       })
       .catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {
         setRemoveUserLoaders((prevValue) => prevValue.filter((id) => (id !== user.id)));
       });
@@ -51,10 +44,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
         setNewGroupUserRole(setGroup, user.id, newRole);
       })
       .catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {
         setUpdateUserLoaders((prevValue) => prevValue.filter((id) => (id !== user.id)));
       });

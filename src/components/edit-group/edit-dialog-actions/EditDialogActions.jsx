@@ -8,7 +8,6 @@ import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
 import useStyles from './EditDialogActions.styles';
 import config from '../../../appConf';
@@ -44,10 +43,7 @@ const EditDialogActions = ({ group, onClose }) => {
           research();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(
-            <CustomeSnackbarContent message={t('error.server')} />,
-            { variant: 'error' },
-          );
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
         });
     }
   }, [dialogLeaveAnswer]);
@@ -61,10 +57,7 @@ const EditDialogActions = ({ group, onClose }) => {
           research();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(
-            <CustomeSnackbarContent message={t('error.server')} />,
-            { variant: 'error' },
-          );
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
         });
     }
   }, [dialogDeleteAnswer]);

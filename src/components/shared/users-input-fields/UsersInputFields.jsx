@@ -10,7 +10,6 @@ import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
 import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 import config from '../../../appConf';
 
 const UsersInputFields = ({
@@ -42,7 +41,7 @@ const UsersInputFields = ({
         onAdd(selectedUser, config.roles.member_role_value);
         setSelectedUser(undefined);
       } else {
-        enqueueSnackbar(<CustomeSnackbarContent message={t('error.userAlreadyExist')} />);
+        enqueueSnackbar(t('error.userAlreadyExist'));
       }
     }
   }, [selectedUser]);

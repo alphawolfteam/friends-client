@@ -6,7 +6,6 @@ import EditGroupDialog from '../../edit-group/index';
 import GroupRaw from '../group-raw/GroupRaw';
 import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import config from '../../../appConf';
 
 const GroupsList = ({ groups, setGroups, searchValue }) => {
@@ -22,10 +21,7 @@ const GroupsList = ({ groups, setGroups, searchValue }) => {
         .then((res) => {
           setSelectedGroup(res);
         })
-        .catch(() => enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        ));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [selectedGroupId]);
 

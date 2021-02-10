@@ -6,7 +6,6 @@ import AddTagInput from '../add-tag-input/AddTagInput';
 import DeletableTag from '../deletable-tag/DeletableTag';
 import ValidationService from '../../../services/ValidationService';
 import useStyles from './TagsInputFields.styles';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 import config from '../../../appConf';
 
 const TagsInputFields = ({
@@ -29,11 +28,8 @@ const TagsInputFields = ({
       return true;
     }
     enqueueSnackbar(
-      <CustomeSnackbarContent message={t(
-        `error.${validationResult}`,
-        { minTagLength: config.length_limitations.min_length_tag },
-      )}
-      />,
+      t(`error.${validationResult}`,
+        { minTagLength: config.length_limitations.min_length_tag }),
     );
     return false;
   };

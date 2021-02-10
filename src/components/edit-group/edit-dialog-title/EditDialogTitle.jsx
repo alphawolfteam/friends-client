@@ -7,7 +7,6 @@ import LockIconInput from '../../shared/lock-icon-input/LockIconInput';
 import { setNewGroupIcon, setNewGroupType } from '../../shared/sharedFunctions';
 import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditDialogTitle.styles';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const EditDialogTitle = ({
   group,
@@ -28,10 +27,7 @@ const EditDialogTitle = ({
       GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
         .catch(() => {
           setNewGroupIcon(setGroup, prevIcon);
-          enqueueSnackbar(
-            <CustomeSnackbarContent message={t('error.server')} />,
-            { variant: 'error' },
-          );
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
         }).finally(() => {
           setIsIconLoading(false);
         });
@@ -44,10 +40,7 @@ const EditDialogTitle = ({
       .then(() => {
         setNewGroupType(setGroup, newType);
       }).catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {
         setIsLockLoading(false);
       });

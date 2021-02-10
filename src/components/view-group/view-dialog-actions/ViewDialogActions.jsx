@@ -11,7 +11,6 @@ import userContext from '../../../stores/userStore';
 import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import config from '../../../appConf';
 
 const ViewDialogActions = ({ group, onClose }) => {
@@ -40,10 +39,7 @@ const ViewDialogActions = ({ group, onClose }) => {
           research();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(
-            <CustomeSnackbarContent message={t('error.server')} />,
-            { variant: 'error' },
-          );
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
         });
     }
   }, [dialogLeaveAnswer]);
@@ -57,10 +53,7 @@ const ViewDialogActions = ({ group, onClose }) => {
           research();
         }).catch(() => {
           setIsLoading(false);
-          enqueueSnackbar(
-            <CustomeSnackbarContent message={t('error.server')} />,
-            { variant: 'error' },
-          );
+          enqueueSnackbar(t('error.server'), { variant: 'error' });
         });
     }
   }, [dialogDeleteAnswer]);

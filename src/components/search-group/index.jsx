@@ -15,7 +15,6 @@ import researchContext from '../../stores/researchStore';
 import useStyles from './index.style';
 import GroupsService from '../../services/GroupsService';
 import { getSortedGroupsByRole, getSortedGroupsByType } from '../shared/sharedFunctions';
-import CustomeSnackbarContent from '../shared/custome-snackbar-content/CustomeSnackbarContent';
 import GroupSearchBar from './group-search-bar/GroupSearchBar';
 import ScrollableGroupsResult from
   './scrollable-groups-result/ScrollableGroupsResult';
@@ -45,10 +44,7 @@ const GroupsSearch = () => {
         setCurrentSearchValue('');
         setIsLoading(false);
       })
-      .catch(() => enqueueSnackbar(
-        <CustomeSnackbarContent message={t('error.server')} />,
-        { variant: 'error' },
-      ));
+      .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
   }, []);
 
   useEffect(() => {
@@ -71,10 +67,7 @@ const GroupsSearch = () => {
           setFilteredPublicGroups(results[1]);
           setIsLoading(false);
         })
-        .catch(() => enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        ));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, []);
 

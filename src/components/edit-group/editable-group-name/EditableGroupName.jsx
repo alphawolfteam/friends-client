@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import ValidationService from '../../../services/ValidationService';
 import GroupsService from '../../../services/GroupsService';
 import { setNewGroupName } from '../../shared/sharedFunctions';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import EditableTextField from '../editable-text-field/EditableTextField';
 import config from '../../../appConf';
 
@@ -21,10 +20,7 @@ const GroupNameInput = ({ group, setGroup }) => {
         setNewGroupName(setGroup, newName);
         setEditMode(false);
       }).catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {
         setIsLoading(false);
       });
@@ -43,11 +39,8 @@ const GroupNameInput = ({ group, setGroup }) => {
       }
     } else {
       enqueueSnackbar(
-        <CustomeSnackbarContent message={t(
-          `validation.${validationResult}`,
-          { minGroupNameLength: config.length_limitations.min_length_group_name },
-        )}
-        />,
+        t(`validation.${validationResult}`,
+          { minGroupNameLength: config.length_limitations.min_length_group_name }),
       );
     }
   };

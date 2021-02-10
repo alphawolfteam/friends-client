@@ -5,7 +5,6 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
 import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import ValidationService from '../../../services/ValidationService';
@@ -42,10 +41,7 @@ const AddDialogActions = ({ newGroup, onClose }) => {
           })
           .catch(() => {
             setIsLoading(false);
-            enqueueSnackbar(
-              <CustomeSnackbarContent message={t('error.server')} />,
-              { variant: 'error' },
-            );
+            enqueueSnackbar(t('error.server'), { variant: 'error' });
           });
       } else {
         setOpenValidationAlert(true);

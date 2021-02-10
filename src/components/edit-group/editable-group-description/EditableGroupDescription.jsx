@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import ValidationService from '../../../services/ValidationService';
 import GroupsService from '../../../services/GroupsService';
 import { setNewGroupDescription } from '../../shared/sharedFunctions';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 import EditableTextField from '../editable-text-field/EditableTextField';
 
 const GroupDescriptionInput = ({ group, setGroup }) => {
@@ -22,10 +21,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
       setNewGroupDescription(setGroup, newDescription);
       setEditMode(false);
     }).catch(() => {
-      enqueueSnackbar(
-        <CustomeSnackbarContent message={t('error.server')} />,
-        { variant: 'error' },
-      );
+      enqueueSnackbar(t('error.server'), { variant: 'error' });
     }).finally(() => {
       setIsLoading(false);
     });
@@ -40,7 +36,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
         setEditMode(false);
       }
     } else {
-      enqueueSnackbar(<CustomeSnackbarContent message={t(`validation.${validationResult}`)} />);
+      enqueueSnackbar(t(`validation.${validationResult}`));
     }
   };
 

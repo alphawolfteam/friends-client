@@ -10,8 +10,6 @@ import { useTranslation } from 'react-i18next';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';
-import CustomeSnackbarContent from
-  './components/shared/custome-snackbar-content/CustomeSnackbarContent';
 import { ReactComponent as FriendsLogo } from './utils/images/logo.svg';
 import useStyles from './App.styles';
 import AuthService from './services/AuthService';
@@ -48,10 +46,7 @@ const App = () => {
       if (!isAuthenticated) {
         initAuthUser();
       }
-    }).catch(() => enqueueSnackbar(
-      <CustomeSnackbarContent message={t('error.server')} />,
-      { variant: 'error' },
-    ));
+    }).catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
   }, [initAuthUser]);
 
   const renderUnauthorized = () => <span>unauthorized</span>;

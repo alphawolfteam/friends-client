@@ -9,7 +9,6 @@ import EditableGroupDescription from '../editable-group-description/EditableGrou
 import TagsInputFields from '../../shared/tags-input-fields/TagsInputFields';
 import GroupsService from '../../../services/GroupsService';
 import useStyles from './EditInfoPage.styles';
-import CustomeSnackbarContent from '../../shared/custome-snackbar-content/CustomeSnackbarContent';
 
 const EditInfoPage = ({ group, setGroup }) => {
   const classes = useStyles();
@@ -21,10 +20,7 @@ const EditInfoPage = ({ group, setGroup }) => {
     setNewGroupTag(setGroup, newTag);
     GroupsService.addTagToGroup(group._id, newTag)
       .catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
         removeGroupTag(setGroup, newTag);
       });
   };
@@ -36,10 +32,7 @@ const EditInfoPage = ({ group, setGroup }) => {
         removeGroupTag(setGroup, tagToRemove);
       })
       .catch(() => {
-        enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        );
+        enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {
         setRemoveTagLoaders((prevValue) => prevValue.filter((id) => (
           id !== tagToRemove)));

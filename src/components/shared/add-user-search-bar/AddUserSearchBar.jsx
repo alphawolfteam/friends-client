@@ -6,7 +6,6 @@ import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../../services/UsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
 import config from '../../../appConf';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const AddUserSearchBar = ({ setSelectedUser }) => {
   const classes = useStyles();
@@ -23,10 +22,7 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
         .then((res) => {
           setOptions(res);
         })
-        .catch(() => enqueueSnackbar(
-          <CustomeSnackbarContent message={t('error.server')} />,
-          { variant: 'error' },
-        ));
+        .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [searchValue]);
 

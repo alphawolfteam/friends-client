@@ -9,7 +9,7 @@ import './index.css';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <SnackbarProvider maxSnack={3}>
+    <SnackbarProvider maxSnack={3} preventDuplicate>
       <App />
     </SnackbarProvider>
   </ThemeProvider>,

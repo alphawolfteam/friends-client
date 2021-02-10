@@ -1,23 +1,5 @@
 import groupIconsCodes from '../src/utils/images/group-icons/group-icons-base64-codes';
 
-export const config = {
-  uri: {
-    api_gateway_uri: 'http://localhost:4000/',
-    auth_service_uri: 'http://localhost:4000/',
-  },
-  roles: {
-    member_role_value: 0,
-    modifier_role_value: 1,
-    manager_role_value: 2,
-  },
-  length_limitations: {
-    min_length_group_name: 2,
-    min_length_tag: 2,
-    min_length_user_search_value: 2,
-  },
-  token_name: 'friends-token',
-};
-
 export const groups = [
   {
     name: 'כל דולפין',

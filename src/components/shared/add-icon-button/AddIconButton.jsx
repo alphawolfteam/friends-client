@@ -4,7 +4,6 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import { AddPhotoAlternateOutlined } from '@material-ui/icons';
 import useStyles from './AddIconButton.styles';
-import CustomeSnackbarContent from '../custome-snackbar-content/CustomeSnackbarContent';
 
 const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
   const classes = useStyles();
@@ -28,10 +27,7 @@ const AddIconButton = ({ iconsOptions, setIconsOptions, setSelectedIcon }) => {
     if (file && file.type.startsWith('image')) {
       uploadImage(file);
     } else {
-      enqueueSnackbar(
-        <CustomeSnackbarContent message={t('error.file')} />,
-        { variant: 'error' },
-      );
+      enqueueSnackbar(t('error.file'), { variant: 'error' });
     }
   };
 

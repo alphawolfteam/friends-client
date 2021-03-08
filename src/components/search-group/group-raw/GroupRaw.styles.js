@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: '1%',
     width: '85%',
+    minHeight: '8rem',
     borderRadius: 15,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.2vw 0.4vw, rgba(0, 0, 0, 0.23) 0 0.2vw 0.4vw',
     border: `0.1vw solid ${theme.palette.primary.main}`,

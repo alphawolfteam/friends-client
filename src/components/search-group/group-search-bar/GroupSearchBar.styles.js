@@ -22,8 +22,9 @@ const useStyles = makeStyles((theme) => ({
     width: '8%',
     height: '50%',
     marginLeft: '0.5em',
-    '&:hover': {
+    '&:focus,&:hover': {
       background: 'none',
+      boxShadow: 'none',
       color: theme.palette.secondary.main,
     },
   },

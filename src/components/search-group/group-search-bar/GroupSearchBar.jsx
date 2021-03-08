@@ -29,11 +29,8 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
 
   return (
     <div className={classes.root}>
-      <Fab
-        className={classes.searchIcon}
-        onClick={() => handleOnClick()}
-      >
-        <Search />
+      <Fab className={classes.searchIcon}>
+        <Search onClick={() => handleOnClick()} />
         <Divider
           className={classes.divider}
           orientation="vertical"

@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   app: {
     backgroundColor: theme.palette.background.main,
-    height: 'calc(100vh - 4.5em)',
+    height: 'calc(100vh - 1em)',
+    overflow: 'hidden',
   },
   page: {
     marginTop: '4em',

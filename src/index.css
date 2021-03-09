@@ -1,4 +1,9 @@
+html,body {
+  overflow: hidden;
+  margin: 0;
+}
+
 @font-face {
     font-family: 'Alef';
     src: local('Alef'), url(./utils/fonts/Alef/Alef-Webfont/Alef-Regular.ttf) format('truetype');
-  }
+}

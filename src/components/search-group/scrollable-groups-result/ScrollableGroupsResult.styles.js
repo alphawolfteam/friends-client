@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1%',
     width: 'calc(100vw - 1em)',
-    height: '70vh',
+    height: '73vh',
     overflow: 'auto',
     transform: 'translateX(0)',
   },

@@ -10,7 +10,7 @@ const globalTheme = createMuiTheme({
       light: '#C2EFDC',
     },
     secondary: {
-      main: '#C2EFDC',
+      main: '#24BCA9',
     },
     background: {
       main: '#F9FAFB',

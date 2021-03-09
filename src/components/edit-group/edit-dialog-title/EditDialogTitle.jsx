@@ -25,6 +25,9 @@ const EditDialogTitle = ({
       setNewGroupIcon(setGroup, newIcon);
       setIsIconLoading(true);
       GroupsService.updateGroupDetails(group._id, { ...group, icon: newIcon })
+        .then(() => {
+          enqueueSnackbar(t('success.icon'), { variant: 'success' });
+        })
         .catch(() => {
           setNewGroupIcon(setGroup, prevIcon);
           enqueueSnackbar(t('error.server'), { variant: 'error' });
@@ -39,6 +42,7 @@ const EditDialogTitle = ({
     GroupsService.updateGroupDetails(group._id, { ...group, type: newType })
       .then(() => {
         setNewGroupType(setGroup, newType);
+        enqueueSnackbar(t('success.type'), { variant: 'success' });
       }).catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {

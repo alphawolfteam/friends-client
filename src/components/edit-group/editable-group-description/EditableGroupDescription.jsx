@@ -20,6 +20,7 @@ const GroupDescriptionInput = ({ group, setGroup }) => {
     ).then(() => {
       setNewGroupDescription(setGroup, newDescription);
       setEditMode(false);
+      enqueueSnackbar(t('success.description'), { variant: 'success' });
     }).catch(() => {
       enqueueSnackbar(t('error.server'), { variant: 'error' });
     }).finally(() => {

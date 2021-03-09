@@ -18,6 +18,9 @@ const EditUsersListPage = ({ group, setGroup }) => {
   const handleAddUser = (userToAdd, role) => {
     setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
+      .then(() => {
+        enqueueSnackbar(t('success.addUser'), { variant: 'success' });
+      })
       .catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
         removeGroupUser(setGroup, userToAdd.id);
@@ -29,6 +32,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
     GroupsService.removeUserFromGroup(group._id, user.id)
       .then(() => {
         removeGroupUser(setGroup, user.id);
+        enqueueSnackbar(t('success.removeUser'), { variant: 'success' });
       })
       .catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
@@ -42,6 +46,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
     GroupsService.updateUserRole(group._id, user.id, newRole)
       .then(() => {
         setNewGroupUserRole(setGroup, user.id, newRole);
+        enqueueSnackbar(t('success.role'), { variant: 'success' });
       })
       .catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });

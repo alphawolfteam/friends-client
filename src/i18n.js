@@ -50,6 +50,17 @@ const resources = {
         tagAlreadyExist: 'התגית כבר קיימת',
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
       },
+      success: {
+        icon: 'התמונה עודכנה בהצלחה',
+        type: 'סוג הקבוצה עודכן בהצלחה',
+        addTag: 'התגית נוספה בהצלחה',
+        removeTag: 'התגית הוסרה בהצלחה',
+        role: 'התפקיד עודכן בהצלחה',
+        addUser: 'החבר נוסף בהצלחה',
+        removeUser: 'החבר הוסר בהצלחה',
+        description: 'התיאור עודכן בהצלחה',
+        name: 'השם עודכן בהצלחה',
+      },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',

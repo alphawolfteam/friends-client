@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputBase, Fab, Divider } from '@material-ui/core';
-import { Search } from '@material-ui/icons';
+import { Search, Clear } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import useStyles from './GroupSearchBar.styles';
 
@@ -16,8 +16,12 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
     }
   };
 
-  const handleOnClick = () => {
+  const handleOnSearch = () => {
     onSearch(searchValue);
+  };
+
+  const handleOnClear = () => {
+    setSearchValue('');
   };
 
   const handleOnChange = (event) => {
@@ -29,14 +33,19 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
 
   return (
     <div className={classes.root}>
-      <Fab className={classes.searchIcon}>
-        <Search onClick={() => handleOnClick()} />
+      <Fab className={classes.icon}>
+        <Search onClick={() => handleOnSearch()} />
         <Divider
           className={classes.divider}
           orientation="vertical"
           flexItem
         />
       </Fab>
+      {searchValue && (
+      <Fab className={classes.icon}>
+        <Clear onClick={() => handleOnClear()} />
+      </Fab>
+      )}
       <InputBase
         id="searchInput"
         placeholder={t('placeholder.search')}

@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
   },
   icon: {
     paddingRight: '5%',
+    paddingLeft: '3%',
   },
   addButton: {
     fontSize: '1em',

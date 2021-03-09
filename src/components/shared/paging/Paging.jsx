@@ -1,60 +1,62 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MobileStepper, Button } from '@material-ui/core';
-import { KeyboardArrowRight, KeyboardArrowLeft } from '@material-ui/icons';
+import {
+  Tabs,
+  Tab,
+  Box,
+  Typography,
+} from '@material-ui/core';
 import useStyles from './Paging.styles';
 
-const Paging = ({ pages }) => {
-  const classes = useStyles();
-  const { t } = useTranslation();
-  const [activeStep, setActiveStep] = useState(pages.length - 1);
+function TabPanel(props) {
+  const {
+    children, value, index, ...other
+  } = props;
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const renderStepper = () => (
-    <MobileStepper
-      variant="dots"
-      steps={pages.length}
-      position="static"
-      activeStep={activeStep}
-      className={classes.stepper}
-      nextButton={(
-        <Button
-          size="small"
-          onClick={handleNext}
-          className={classes.backButton}
-          disabled={activeStep === pages.length - 1}
-        >
-          <KeyboardArrowRight />
-          {t('button.back')}
-        </Button>
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
       )}
-      backButton={(
-        <Button
-          size="small"
-          onClick={handleBack}
-          className={classes.nextButton}
-          disabled={activeStep === 0}
-        >
-          {t('button.next')}
-          <KeyboardArrowLeft />
-        </Button>
-      )}
-    />
+    </div>
   );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+const Paging = ({ pages }) => {
+  // const Paging = ({ pages, headlines }) => {
+  const classes = useStyles();
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <div className={classes.root}>
-      <div className={classes.page}>
-        {pages[activeStep]}
-      </div>
-      {renderStepper()}
+      <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+        <Tab label="Item One" {...a11yProps(0)} />
+        <Tab label="Item Two" {...a11yProps(1)} />
+        <Tab label="Item Three" {...a11yProps(2)} />
+      </Tabs>
+      {pages.map((page, index) => (
+        <TabPanel value={value} index={index} className={classes.page}>
+          {pages[index]}
+        </TabPanel>
+      ))}
     </div>
   );
 };

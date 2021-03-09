@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Paper, Fade } from '@material-ui/core';
+import { Typography, Fade } from '@material-ui/core';
 import { GroupAddOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
@@ -90,11 +90,11 @@ const ScrollableGroupsResult = ({
   };
 
   return (
-    <Paper elevation={2} className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.scrollBarContent}>
         {isLoading ? <GroupsLoader /> : renderGroupsList()}
       </div>
-    </Paper>
+    </div>
   );
 };
 

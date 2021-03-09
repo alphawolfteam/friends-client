@@ -22,6 +22,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
 
   const handleOnClear = () => {
     setSearchValue('');
+    onSearch('');
   };
 
   const handleOnChange = (event) => {

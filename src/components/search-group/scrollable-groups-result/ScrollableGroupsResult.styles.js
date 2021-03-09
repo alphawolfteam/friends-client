@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1%',
     width: 'calc(100vw - 1em)',
-    height: '80vh',
+    height: '70vh',
     background: theme.palette.background.main,
     borderRadius: 10,
     overflow: 'auto',

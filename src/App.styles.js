@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
       width: '0.4em',
     },
     '*::-webkit-scrollbar-track': {
-      background: theme.palette.secondary.main,
+      background: theme.palette.primary.light,
 
       'border-radius': '50em',
     },
@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   page: {
+    height: '100%',
+    width: '100%',
     marginTop: '4em',
   },
   loading: {
@@ -32,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     top: '5%',
-    height: '98vh',
-    width: '99vw',
+    height: 'calc(100vh - 1em)',
+    width: 'calc(100vw - 1em)',
     backgroundColor: 'white',
   },
   text: {

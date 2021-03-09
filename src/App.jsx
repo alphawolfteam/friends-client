@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import FooterComponent from './components/footer/index';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';
@@ -66,6 +67,7 @@ const App = () => {
                   <Redirect to="/" />
                 </Switch>
               </div>
+              <FooterComponent />
             </userContext.Provider>
           </div>
         </Router>

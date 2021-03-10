@@ -17,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
   yesodotLogo: {
     height: '3em',
     width: '3.5em',
+    marginLeft: '0.5%',
+  },
+  sapirLogo: {
+    height: '3.5em',
+    width: '3.5em',
   },
 }));
 

@@ -7,11 +7,16 @@ const useStyles = makeStyles((theme) => ({
   },
   toolBar: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
-  logo: {
-    width: '3em',
+  teamLogo: {
     height: '3em',
+    width: '5em',
+    marginLeft: '0.5%',
+  },
+  yesodotLogo: {
+    height: '3em',
+    width: '3.5em',
   },
 }));
 

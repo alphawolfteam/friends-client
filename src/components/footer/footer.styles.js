@@ -9,11 +9,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-end',
   },
-  kidonLogo: {
-    height: '5em',
-    width: '6em',
-    marginLeft: '0.5%',
-  },
   teamLogo: {
     height: '3em',
     width: '5em',

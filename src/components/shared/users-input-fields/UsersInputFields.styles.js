@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   },
   scrollBar: {
     width: '90%',
-    marginTop: '4em',
-    height: '12.5em',
+    marginTop: '3.5em',
+    height: '12em',
     overflow: 'auto',
   },
   field: {

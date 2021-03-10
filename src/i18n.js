@@ -4,6 +4,10 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   he: {
     translation: {
+      headline: {
+        friends: 'רשימת חברים',
+        additionalData: 'מידע נוסף',
+      },
       title: {
         description: 'תיאור',
         members: 'חברים',

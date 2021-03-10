@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import FooterComponent from './components/footer/index';
+import FooterComponent from './components/footer/footer';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
 import GroupsSearch from './components/search-group/index';

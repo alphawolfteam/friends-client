@@ -8,6 +8,9 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     minHeight: '100%',
   },
+  tab: {
+    fontWeight: 600,
+  },
   page: {
     position: 'relative',
     display: 'flex',

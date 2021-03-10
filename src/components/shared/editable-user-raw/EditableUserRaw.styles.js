@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() => ({
   card: {
     margin: '1%',
-    width: '90%',
+    width: '95%',
     height: '50%',
     boxShadow: 'inset 0 0 0.1vw 0 grey',
   },

@@ -1,60 +1,37 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { MobileStepper, Button } from '@material-ui/core';
-import { KeyboardArrowRight, KeyboardArrowLeft } from '@material-ui/icons';
+import { Tabs, Tab, Box } from '@material-ui/core';
 import useStyles from './Paging.styles';
 
 const Paging = ({ pages }) => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const [activeStep, setActiveStep] = useState(pages.length - 1);
+  const [value, setValue] = useState(pages.length - 1);
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const renderStepper = () => (
-    <MobileStepper
-      variant="dots"
-      steps={pages.length}
-      position="static"
-      activeStep={activeStep}
-      className={classes.stepper}
-      nextButton={(
-        <Button
-          size="small"
-          onClick={handleNext}
-          className={classes.backButton}
-          disabled={activeStep === pages.length - 1}
-        >
-          <KeyboardArrowRight />
-          {t('button.back')}
-        </Button>
-      )}
-      backButton={(
-        <Button
-          size="small"
-          onClick={handleBack}
-          className={classes.nextButton}
-          disabled={activeStep === 0}
-        >
-          {t('button.next')}
-          <KeyboardArrowLeft />
-        </Button>
-      )}
-    />
-  );
 
   return (
     <div className={classes.root}>
-      <div className={classes.page}>
-        {pages[activeStep]}
-      </div>
-      {renderStepper()}
+      <Tabs value={value} onChange={handleChange}>
+        {pages.map(({ headline }, index) => (
+          <Tab key={index} label={headline} className={classes.tab} />
+        ))}
+      </Tabs>
+      {pages.map(({ component }, index) => (
+        <div
+          className={classes.page}
+          role="tabpanel"
+          hidden={value !== index}
+          key={index}
+          id={index}
+        >
+          {value === index && (
+          <Box p={3}>
+            {component}
+          </Box>
+          )}
+        </div>
+      ))}
     </div>
   );
 };

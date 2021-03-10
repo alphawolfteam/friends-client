@@ -1,4 +1,5 @@
 import React, { useContext, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import researchContext from '../../stores/researchStore';
 import DialogTemplate from '../shared/dialog-template/DialogTemplate';
 import EditDialogTitle from './edit-dialog-title/EditDialogTitle';
@@ -14,6 +15,7 @@ const EditGroupDialog = ({
   onClose,
 }) => {
   const research = useContext(researchContext);
+  const { t } = useTranslation();
   const initialType = useMemo(() => group.type, []);
   const initialIcon = useMemo(() => group.icon, []);
 
@@ -36,8 +38,18 @@ const EditGroupDialog = ({
       )}
       content={(
         <Paging pages={[
-          <EditInfoPage group={group} setGroup={setGroup} />,
-          <EditUsersListPage group={group} setGroup={setGroup} />,
+          {
+            headline: t('headline.additionalData'),
+            component: (
+              <EditInfoPage group={group} setGroup={setGroup} />
+            ),
+          },
+          {
+            headline: t('headline.friends'),
+            component: (
+              <EditUsersListPage group={group} setGroup={setGroup} />
+            ),
+          },
         ]}
         />
       )}

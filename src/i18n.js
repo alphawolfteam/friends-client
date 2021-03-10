@@ -4,6 +4,10 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   he: {
     translation: {
+      headline: {
+        friends: 'רשימת חברים',
+        additionalData: 'מידע נוסף',
+      },
       title: {
         description: 'תיאור',
         members: 'חברים',
@@ -49,6 +53,17 @@ const resources = {
         emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
+      },
+      success: {
+        icon: 'התמונה עודכנה בהצלחה',
+        type: 'סוג הקבוצה עודכן בהצלחה',
+        addTag: 'התגית נוספה בהצלחה',
+        removeTag: 'התגית הוסרה בהצלחה',
+        role: 'התפקיד עודכן בהצלחה',
+        addUser: 'החבר נוסף בהצלחה',
+        removeUser: 'החבר הוסר בהצלחה',
+        description: 'התיאור עודכן בהצלחה',
+        name: 'השם עודכן בהצלחה',
       },
       message: {
         noGroupsFound: 'לא נמצאו אף קבוצות',

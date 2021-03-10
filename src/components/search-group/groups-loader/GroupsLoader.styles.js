@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   },
   card: {
     marginTop: '2%',
-    width: '85%',
+    width: '65%',
     borderRadius: 15,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.2vw 0.4vw, rgba(0, 0, 0, 0.23) 0 0.2vw 0.4vw',
   },

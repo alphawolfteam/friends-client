@@ -15,15 +15,16 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '20%',
     background: theme.palette.primary.main,
   },
-  searchIcon: {
+  icon: {
     color: theme.palette.primary.main,
     background: 'none',
     boxShadow: 'none',
     width: '8%',
     height: '50%',
-    marginLeft: '0.5em',
-    '&:hover': {
+    paddingLeft: '0.5em',
+    '&:focus,&:hover': {
       background: 'none',
+      boxShadow: 'none',
       color: theme.palette.secondary.main,
     },
   },

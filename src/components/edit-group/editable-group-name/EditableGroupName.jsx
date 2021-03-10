@@ -19,6 +19,7 @@ const GroupNameInput = ({ group, setGroup }) => {
       .then(() => {
         setNewGroupName(setGroup, newName);
         setEditMode(false);
+        enqueueSnackbar(t('success.name'), { variant: 'success' });
       }).catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
       }).finally(() => {

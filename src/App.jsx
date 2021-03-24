@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import InfoButton from './components/shared/info-button/infoButton';
+import InfoComponent from './components/shared/info-component/InfoComponent';
 import FooterComponent from './components/footer/footer';
 import AppBarComponent from './components/app-bar/index';
 import userContext from './stores/userStore';
@@ -68,7 +68,7 @@ const App = () => {
                   <Redirect to="/" />
                 </Switch>
               </div>
-              <InfoButton />
+              <InfoComponent />
               <FooterComponent />
             </userContext.Provider>
           </div>

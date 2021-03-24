@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  IconButton, Tooltip, Dialog, DialogContent, Typography, Divider,
+  IconButton, Tooltip, Dialog, DialogContent, Typography,
 } from '@material-ui/core';
 import { Info } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
@@ -26,19 +26,12 @@ const InfoComponent = () => {
       </Tooltip>
       <Dialog open={openDialog} onClose={() => setOpenDialog((prevValue) => !prevValue)}>
         <DialogContent className={classes.content}>
-          <div className={classes.title}>
-            <ReactLogo className={classes.logo} />
-            <Divider
-              className={classes.divider}
-              orientation="vertical"
-              flexItem
-            />
-            <Typography className={classes.link} onClick={() => { DocsService.redirect(); }}>
-              DOCS
-            </Typography>
-          </div>
+          <ReactLogo className={classes.logo} />
           <Typography component="pre" className={classes.text}>
             {t('text.info')}
+          </Typography>
+          <Typography className={classes.link} onClick={() => { DocsService.redirect(); }}>
+            {t('link.docs')}
           </Typography>
           <Typography className={classes.message}>
             {t('text.infoMessage')}

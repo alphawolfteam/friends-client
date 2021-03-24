@@ -10,10 +10,6 @@ const useStyles = makeStyles((theme) => ({
     width: '1.5em',
     height: '1.5em',
   },
-  title: {
-    display: 'flex',
-    alignItems: 'center',
-  },
   content: {
     display: 'flex',
     flexDirection: 'column',
@@ -25,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontSize: '1.15em',
     overflowWrap: 'break-word',
-    marginBottom: '2em',
+    marginBottom: '1.25em',
     marginTop: '1em',
   },
   message: {
@@ -39,15 +35,11 @@ const useStyles = makeStyles((theme) => ({
     width: '18em',
     height: '7em',
   },
-  divider: {
-    margin: '0 1em',
-    background: theme.palette.primary.main,
-  },
   link: {
     direction: 'rtl',
     textAlign: 'center',
-    fontSize: '2em',
-    fontWeight: 700,
+    marginBottom: '1.25em',
+    fontSize: '1.25em',
     textDecoration: 'underline',
     color: theme.palette.font.main,
     fontFamily: theme.typography.fontFamily,

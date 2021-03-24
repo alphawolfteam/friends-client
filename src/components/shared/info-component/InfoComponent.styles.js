@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontSize: '2em',
     fontWeight: 700,
+    textDecoration: 'underline',
     color: theme.palette.font.main,
     fontFamily: theme.typography.fontFamily,
     cursor: 'pointer',

@@ -18,13 +18,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    padding: '5%',
   },
   text: {
     direction: 'rtl',
     textAlign: 'center',
     fontSize: '1.15em',
     overflowWrap: 'break-word',
-    margin: '1em 0',
+    marginBottom: '2em',
+    marginTop: '1em',
   },
   message: {
     direction: 'rtl',
@@ -46,8 +48,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontSize: '2em',
     fontWeight: 700,
-    textDecoration: 'underline',
-    color: theme.palette.primary.main,
+    color: theme.palette.font.main,
     fontFamily: theme.typography.fontFamily,
     cursor: 'pointer',
     '&:hover': {

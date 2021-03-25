@@ -43,7 +43,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
         />
       </Fab>
       {searchValue && (
-      <Fab className={classes.icon}>
+      <Fab className={`${classes.icon} ${classes.clearIcon}`}>
         <Clear onClick={() => handleOnClear()} />
       </Fab>
       )}

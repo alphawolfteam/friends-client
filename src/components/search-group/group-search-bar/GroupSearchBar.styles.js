@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'relative',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -19,14 +20,19 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     background: 'none',
     boxShadow: 'none',
+    paddingLeft: '0.5em',
     width: '8%',
     height: '50%',
-    paddingLeft: '0.5em',
     '&:focus,&:hover': {
       background: 'none',
       boxShadow: 'none',
       color: theme.palette.secondary.main,
     },
+  },
+  clearIcon: {
+    position: 'absolute',
+    zIndex: 2,
+    left: '2.5em',
   },
   input: {
     direction: 'rtl',

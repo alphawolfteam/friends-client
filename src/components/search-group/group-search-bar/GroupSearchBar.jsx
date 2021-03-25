@@ -49,7 +49,7 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
       )}
       <InputBase
         id="searchInput"
-        placeholder={t('placeholder.search')}
+        placeholder={t('placeholder.searchGroup')}
         value={searchValue}
         onKeyDown={(e) => handleOnKeyPress(e)}
         onChange={(e) => handleOnChange(e)}

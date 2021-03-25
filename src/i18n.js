@@ -43,9 +43,9 @@ const resources = {
       placeholder: {
         addTag: 'כתבו תגית..',
         searchFriend: 'הוסיפו חבר...',
+        searchGroup: 'חיפוש לפי שם או תגית..',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',
-        search: 'חיפוש..',
       },
       error: {
         file: 'יש לבחור תמונה',

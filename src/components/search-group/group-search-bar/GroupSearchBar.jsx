@@ -43,13 +43,13 @@ const GroupSearchBar = ({ searchValue, setSearchValue, onSearch }) => {
         />
       </Fab>
       {searchValue && (
-      <Fab className={classes.icon}>
+      <Fab className={`${classes.icon} ${classes.clearIcon}`}>
         <Clear onClick={() => handleOnClear()} />
       </Fab>
       )}
       <InputBase
         id="searchInput"
-        placeholder={t('placeholder.search')}
+        placeholder={t('placeholder.searchGroup')}
         value={searchValue}
         onKeyDown={(e) => handleOnKeyPress(e)}
         onChange={(e) => handleOnChange(e)}

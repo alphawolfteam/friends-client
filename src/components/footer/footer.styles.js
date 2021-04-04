@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '0.5%',
   },
   sapirLogo: {
+    marginTop: '0.8em',
     height: '3.5em',
     width: '3.5em',
   },

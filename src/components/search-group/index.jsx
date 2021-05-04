@@ -6,8 +6,8 @@ import React,
   useState,
   useCallback,
 } from 'react';
-import { Button } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import Add from '@material-ui/icons/Add';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import userContext from '../../stores/userStore';

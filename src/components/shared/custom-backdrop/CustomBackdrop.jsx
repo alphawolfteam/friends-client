@@ -1,13 +1,13 @@
 import React from 'react';
 import { CircularProgress, Backdrop, Dialog } from '@material-ui/core';
-import useStyles from './CustomeBackdrop.styles';
+import useStyles from './CustomBackdrop.styles';
 
-const CustomeBackdrop = ({ open }) => {
+const CustomBackdrop = ({ open }) => {
   const classes = useStyles();
 
   return (
     <Dialog className={classes.root} open={open}>
-      <Backdrop open={open === true} className={classes.backdrop}>
+      <Backdrop open className={classes.backdrop}>
         <CircularProgress color="primary" />
       </Backdrop>
     </Dialog>
@@ -15,4 +15,4 @@ const CustomeBackdrop = ({ open }) => {
   );
 };
 
-export default CustomeBackdrop;
+export default CustomBackdrop;

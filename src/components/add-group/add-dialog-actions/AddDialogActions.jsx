@@ -4,7 +4,7 @@ import { Add } from '@material-ui/icons';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import AlertValidationMessage from '../alert-validation-message/AlertValidationMessage';
-import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
+import CustomBackdrop from '../../shared/custom-backdrop/CustomBackdrop';
 import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
 import ValidationService from '../../../services/ValidationService';
@@ -62,7 +62,7 @@ const AddDialogActions = ({ newGroup, onClose }) => {
         open={openValidationAlert}
         onClose={() => setOpenValidationAlert(false)}
       />
-      <CustomeBackdrop open={isLoading} />
+      <CustomBackdrop open={isLoading} />
     </>
   );
 };

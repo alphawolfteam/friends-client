@@ -8,7 +8,7 @@ import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
-import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
+import CustomBackdrop from '../../shared/custom-backdrop/CustomBackdrop';
 import useStyles from './EditDialogActions.styles';
 import config from '../../../appConf';
 
@@ -122,7 +122,7 @@ const EditDialogActions = ({ group, onClose }) => {
         open={openAlertLeaveMessage}
         onClose={() => setOpenAlertLeaveMessage(false)}
       />
-      <CustomeBackdrop open={isLoading} />
+      <CustomBackdrop open={isLoading} />
     </>
   );
 };

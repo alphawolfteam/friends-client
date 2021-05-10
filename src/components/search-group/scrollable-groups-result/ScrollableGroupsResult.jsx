@@ -1,6 +1,7 @@
-import React from 'react';
-import { Typography, Fade } from '@material-ui/core';
-import { GroupAddOutlined } from '@material-ui/icons';
+import React, { useState, useEffect } from 'react';
+import Fade from '@material-ui/core/Fade';
+import Typography from '@material-ui/core/Typography';
+import GroupAddOutlined from '@material-ui/icons/GroupAddOutlined';
 import { useTranslation } from 'react-i18next';
 import GroupsList from '../groups-list/GroupsList';
 import GroupsLoader from '../groups-loader/GroupsLoader';
@@ -20,6 +21,10 @@ const ScrollableGroupsResult = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const [showLoader, setShowLoader] = useState(false);
+  let timeout;
+
+  useEffect(() => () => clearTimeout(timeout));
 
   const noGroupsFound = (
     <Typography className={classes.message}>
@@ -71,29 +76,36 @@ const ScrollableGroupsResult = ({
   );
 
   const renderGroupsList = () => {
-    if (((privateGroups && privateGroups.length === 0)
-      && (publicGroups && publicGroups.length === 0))) {
+    if (privateGroups?.length === 0 && publicGroups?.length === 0) {
       return noGroupsFound;
     }
-    if (currentUserGroups && currentUserGroups.length === 0) {
+
+    if (currentUserGroups?.length === 0) {
       return noCurrentUserGroupsFound;
     }
+
     return (
       <Fade in>
         <div className={classes.wrap}>
-          {currentUserGroups && currentUserGroups.length > 0 && (currentUserGroupsList)}
-          {privateGroups && privateGroups.length > 0 && (privateGroupsList)}
-          {publicGroups && publicGroups.length > 0 && (publicGroupsList)}
+          {currentUserGroups?.length && currentUserGroupsList}
+          {privateGroups?.length && privateGroupsList}
+          {publicGroups?.length && publicGroupsList}
         </div>
       </Fade>
     );
   };
 
+  const renderContent = () => {
+    timeout = setTimeout(() => {
+      setShowLoader(isLoading);
+    }, 1000);
+
+    return <>{showLoader ? <GroupsLoader /> : renderGroupsList()}</>;
+  };
+
   return (
     <div className={classes.root}>
-      <div className={classes.scrollBarContent}>
-        {isLoading ? <GroupsLoader /> : renderGroupsList()}
-      </div>
+      <div className={classes.scrollBarContent}>{renderContent()}</div>
     </div>
   );
 };

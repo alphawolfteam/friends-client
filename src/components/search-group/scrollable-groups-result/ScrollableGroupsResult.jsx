@@ -22,9 +22,17 @@ const ScrollableGroupsResult = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const [showLoader, setShowLoader] = useState(false);
-  let timeout;
+  const LOADER_DELAY = 1000;
 
-  useEffect(() => () => clearTimeout(timeout));
+  useEffect(() => {
+    if (isLoading) {
+      const timeout = setTimeout(() => setShowLoader(isLoading), LOADER_DELAY);
+
+      return () => clearTimeout(timeout);
+    }
+
+    setShowLoader(false);
+  }, [isLoading]);
 
   const noGroupsFound = (
     <Typography className={classes.message}>
@@ -95,17 +103,11 @@ const ScrollableGroupsResult = ({
     );
   };
 
-  const renderContent = () => {
-    timeout = setTimeout(() => {
-      setShowLoader(isLoading);
-    }, 1000);
-
-    return <>{showLoader ? <GroupsLoader /> : renderGroupsList()}</>;
-  };
-
   return (
     <div className={classes.root}>
-      <div className={classes.scrollBarContent}>{renderContent()}</div>
+      <div className={classes.scrollBarContent}>
+        {showLoader ? <GroupsLoader /> : renderGroupsList()}
+      </div>
     </div>
   );
 };

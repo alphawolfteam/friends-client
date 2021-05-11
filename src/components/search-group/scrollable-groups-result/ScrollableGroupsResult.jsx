@@ -87,9 +87,9 @@ const ScrollableGroupsResult = ({
     return (
       <Fade in>
         <div className={classes.wrap}>
-          {currentUserGroups?.length && currentUserGroupsList}
-          {privateGroups?.length && privateGroupsList}
-          {publicGroups?.length && publicGroupsList}
+          {currentUserGroups?.length > 0 && currentUserGroupsList}
+          {privateGroups?.length > 0 && privateGroupsList}
+          {publicGroups?.length > 0 && publicGroupsList}
         </div>
       </Fade>
     );

@@ -7,7 +7,7 @@ import UsersService from '../../../services/UsersService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
 import config from '../../../appConf';
 
-const AddUserSearchBar = ({ setSelectedUser }) => {
+const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -20,7 +20,11 @@ const AddUserSearchBar = ({ setSelectedUser }) => {
     } else {
       UsersService.searchUsers(searchValue)
         .then((res) => {
-          setOptions(res);
+          setOptions(
+            res
+              .filter((user) => groupUsers
+                .every((groupUser) => groupUser.user.id !== user.id)),
+          );
         })
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }

@@ -81,7 +81,10 @@ const UsersInputFields = ({
 
   return (
     <div className={classes.root}>
-      <AddUserSearchBar setSelectedUser={setSelectedUser} />
+      <AddUserSearchBar
+        setSelectedUser={setSelectedUser}
+        groupUsers={groupUsers}
+      />
       <div className={classes.scrollBar}>
         {renderCurrentUserField()}
         {renderUsersFields()}

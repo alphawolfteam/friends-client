@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, CardContent } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Skeleton from '@material-ui/lab/Skeleton';
 import useStyles from './GroupsLoader.styles';
 
 const GroupsLoader = () => {

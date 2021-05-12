@@ -9,7 +9,7 @@ import GroupsService from '../../../services/GroupsService';
 import config from '../../../appConf';
 import CustomBackdrop from '../../shared/custom-backdrop/CustomBackdrop';
 
-const SPINNER_SHOW_DELAY = 5;
+const SPINNER_SHOW_DELAY = 1000;
 
 const GroupsList = ({ groups, setGroups, searchValue }) => {
   const { t } = useTranslation();

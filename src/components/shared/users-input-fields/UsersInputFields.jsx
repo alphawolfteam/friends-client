@@ -1,7 +1,11 @@
 import React, {
   useState, useEffect, useContext, useMemo,
 } from 'react';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Fade from '@material-ui/core/Fade';
+import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './UsersInputFields.styles';
@@ -25,6 +29,7 @@ const UsersInputFields = ({
   const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
+  const [isModeSearch, setIsModeSearch] = useState(true);
 
   const usersListToEdit = useMemo(
     () => groupUsers.filter(({ user }) => user.id !== currentUser.genesisId),
@@ -79,12 +84,29 @@ const UsersInputFields = ({
       )
   );
 
+  const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
+
   return (
     <div className={classes.root}>
-      <AddUserSearchBar
-        setSelectedUser={setSelectedUser}
-        groupUsers={groupUsers}
-      />
+      <div className={classes.inputArea}>
+        <IconButton
+          className={classes.inputIcon}
+          onClick={() => setIsModeSearch((mode) => !mode)}
+        >
+          <Fade in={isModeSearch} mountOnEnter unmountOnExit exit={false} timeout={500}>
+            <SearchIcon />
+          </Fade>
+
+          <Fade in={!isModeSearch} mountOnEnter unmountOnExit exit={false} timeout={500}>
+            <AddIcon />
+          </Fade>
+        </IconButton>
+        <SearchBar
+          setSelectedUser={setSelectedUser}
+          groupUsers={groupUsers}
+          className={classes.inputField}
+        />
+      </div>
       <div className={classes.scrollBar}>
         {renderCurrentUserField()}
         {renderUsersFields()}

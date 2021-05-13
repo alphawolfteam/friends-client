@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
   scrollBar: {
     width: '90%',
-    marginTop: '3.5em',
+    marginTop: '1.5em',
     height: '12em',
     overflow: 'auto',
   },
@@ -25,6 +25,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     textAlign: 'center',
     userSelect: 'none',
+  },
+  inputArea: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '0.2%',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  inputIcon: {
+    color: theme.palette.primary.main,
+    position: 'relative',
+    marginRight: '.5rem',
   },
 }));
 

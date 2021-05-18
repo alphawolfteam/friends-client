@@ -12,6 +12,7 @@ import useStyles from './UsersInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
+import SearchUserBar from '../search-user-bar/SearchUserBar';
 import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
 import config from '../../../appConf';
@@ -29,11 +30,12 @@ const UsersInputFields = ({
   const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
+  const [searchedUsers, setSearchedUsers] = useState(groupUsers);
   const [isModeSearch, setIsModeSearch] = useState(true);
 
   const usersListToEdit = useMemo(
-    () => groupUsers.filter(({ user }) => user.id !== currentUser.genesisId),
-    [groupUsers, currentUser],
+    () => searchedUsers.filter(({ user }) => user.id !== currentUser.genesisId),
+    [groupUsers, currentUser, searchedUsers],
   );
 
   const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
@@ -93,16 +95,29 @@ const UsersInputFields = ({
           className={classes.inputIcon}
           onClick={() => setIsModeSearch((mode) => !mode)}
         >
-          <Fade in={isModeSearch} mountOnEnter unmountOnExit exit={false} timeout={500}>
+          <Fade
+            in={isModeSearch}
+            mountOnEnter
+            unmountOnExit
+            exit={false}
+            timeout={500}
+          >
             <SearchIcon />
           </Fade>
 
-          <Fade in={!isModeSearch} mountOnEnter unmountOnExit exit={false} timeout={500}>
+          <Fade
+            in={!isModeSearch}
+            mountOnEnter
+            unmountOnExit
+            exit={false}
+            timeout={500}
+          >
             <AddIcon />
           </Fade>
         </IconButton>
         <SearchBar
           setSelectedUser={setSelectedUser}
+          setSearchedUsers={setSearchedUsers}
           groupUsers={groupUsers}
           className={classes.inputField}
         />

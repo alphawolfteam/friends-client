@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Info, People } from '@material-ui/icons';
 import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import useStyles from './ViewDialogContent.styles';
 import TagsList from '../../shared/tags-list/TagsList';
 import UsersList from '../users-list/UsersList';
+import SearchUserBar from '../../shared/search-user-bar/SearchUserBar';
 
 const ViewDialogContent = ({ group }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const [searchedUsers, setSearchedUsers] = useState(group.users);
 
   return (
     <div className={classes.root}>
@@ -30,7 +32,8 @@ const ViewDialogContent = ({ group }) => {
         <People className={classes.titleIcon} />
         {t('title.members')}
       </Typography>
-      <UsersList users={group.users} />
+      <SearchUserBar setSearchedUsers={setSearchedUsers} groupUsers={group.users} />
+      <UsersList users={searchedUsers} />
     </div>
   );
 };

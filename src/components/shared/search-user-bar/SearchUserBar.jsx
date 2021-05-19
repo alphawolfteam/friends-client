@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { useTranslation } from 'react-i18next';
 import useStyles from './SearchUserBar.styles';
@@ -11,19 +11,23 @@ const SearchUserBar = ({ setSearchedUsers, groupUsers }) => {
 
   const handleSearchChange = ({ target: { value } }) => {
     setSearchValue(value);
+  };
 
-    if (value === '') setSearchedUsers(groupUsers);
+  useEffect(() => {
+    if (searchValue === '') setSearchedUsers(groupUsers);
 
-    if (value.length < config.length_limitations.min_length_user_search_value) return;
+    if (searchValue.length < config.length_limitations.min_length_user_search_value) return;
 
     setSearchedUsers(
       groupUsers.filter(
-        ({ user }) => user.firstName.startsWith(value)
-          || user.lastName.startsWith(value)
-          || (`${user.firstName} ${user.lastName}`).startsWith(value),
+        ({ user }) => user.firstName.startsWith(searchValue)
+          || user.lastName.startsWith(searchValue)
+          || (`${user.firstName} ${user.lastName}`).startsWith(searchValue),
       ),
     );
-  };
+  }, [searchValue, groupUsers]);
+
+  useEffect(() => () => setSearchedUsers(groupUsers), []);
 
   return (
     <div className={classes.root}>

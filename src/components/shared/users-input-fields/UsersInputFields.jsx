@@ -38,9 +38,9 @@ const UsersInputFields = ({
     [groupUsers, currentUser, searchedUsers],
   );
 
-  const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
-    return secondUser.role - firstUser.role;
-  }), [usersListToEdit]);
+  const sortedUsers = useMemo(() => usersListToEdit
+    .sort((firstUser, secondUser) => secondUser.role - firstUser.role),
+  [usersListToEdit]);
 
   useEffect(() => {
     if (selectedUser) {
@@ -67,7 +67,7 @@ const UsersInputFields = ({
   );
 
   const renderUsersFields = () => (
-    sortedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
+    searchedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
       <div key={user.id} className={classes.field}>
         <EditableUserRaw
           user={user}
@@ -123,7 +123,8 @@ const UsersInputFields = ({
         />
       </div>
       <div className={classes.scrollBar}>
-        {renderCurrentUserField()}
+        {searchedUsers.some(({ user }) => user.id === currentUser.genesisId)
+          && renderCurrentUserField()}
         {renderUsersFields()}
       </div>
     </div>

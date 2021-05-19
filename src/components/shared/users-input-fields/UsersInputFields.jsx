@@ -33,9 +33,11 @@ const UsersInputFields = ({
   const [searchedUsers, setSearchedUsers] = useState(groupUsers);
   const [isModeSearch, setIsModeSearch] = useState(true);
 
+  const updatedUsersList = isModeSearch ? searchedUsers : groupUsers;
+
   const usersListToEdit = useMemo(
-    () => searchedUsers.filter(({ user }) => user.id !== currentUser.genesisId),
-    [groupUsers, currentUser, searchedUsers],
+    () => updatedUsersList.filter(({ user }) => user.id !== currentUser.genesisId),
+    [groupUsers, currentUser, searchedUsers, isModeSearch],
   );
 
   const sortedUsers = useMemo(() => usersListToEdit
@@ -67,7 +69,7 @@ const UsersInputFields = ({
   );
 
   const renderUsersFields = () => (
-    searchedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
+    updatedUsersList.length > 0 ? sortedUsers.map(({ user, role }) => (
       <div key={user.id} className={classes.field}>
         <EditableUserRaw
           user={user}

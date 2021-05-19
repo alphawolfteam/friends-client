@@ -18,7 +18,9 @@ const SearchUserBar = ({ setSearchedUsers, groupUsers }) => {
 
     setSearchedUsers(
       groupUsers.filter(
-        ({ user }) => user.firstName.startsWith(value) || user.lastName.startsWith(value),
+        ({ user }) => user.firstName.startsWith(value)
+          || user.lastName.startsWith(value)
+          || (`${user.firstName} ${user.lastName}`).startsWith(value),
       ),
     );
   };

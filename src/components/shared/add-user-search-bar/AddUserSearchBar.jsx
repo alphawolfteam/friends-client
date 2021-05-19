@@ -37,7 +37,7 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
     <div className={classes.root}>
       <InputBase
         id="searchInput"
-        placeholder={t('placeholder.searchFriend')}
+        placeholder={t('placeholder.addFriend')}
         value={searchValue}
         onChange={handleOnChange}
         className={classes.searchBar}

@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
     userSelect: 'none',
   },
   inputArea: {
-    position: 'relative',
+    position: 'absolute',
+    top: '0',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -27,7 +27,7 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
         })
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
-  }, [searchValue]);
+  }, [searchValue, groupUsers]);
 
   const handleOnChange = (event) => {
     setSearchValue(() => event.target.value);

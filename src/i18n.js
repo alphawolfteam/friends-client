@@ -39,6 +39,8 @@ const resources = {
         save: 'שמירה',
         cancel: 'ביטול',
         info: 'למידע נוסף',
+        search: 'חיפוש',
+        add: 'הוספה',
       },
       placeholder: {
         addTag: 'כתבו תגית..',

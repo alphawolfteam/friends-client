@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Fade from '@material-ui/core/Fade';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
@@ -104,7 +105,9 @@ const UsersInputFields = ({
             exit={false}
             timeout={500}
           >
-            <SearchIcon />
+            <Tooltip title={t('tooltip.search')}>
+              <SearchIcon />
+            </Tooltip>
           </Fade>
 
           <Fade
@@ -114,7 +117,9 @@ const UsersInputFields = ({
             exit={false}
             timeout={500}
           >
-            <AddIcon />
+            <Tooltip title={t('tooltip.add')}>
+              <AddIcon />
+            </Tooltip>
           </Fade>
         </IconButton>
         <SearchBar

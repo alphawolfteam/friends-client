@@ -12,7 +12,7 @@ const Paging = ({ pages }) => {
 
   return (
     <div className={classes.root}>
-      <Tabs value={value} onChange={handleChange}>
+      <Tabs value={value} onChange={handleChange} style={{ marginBottom: '2%' }}>
         {pages.map(({ headline }, index) => (
           <Tab key={index} label={headline} className={classes.tab} />
         ))}

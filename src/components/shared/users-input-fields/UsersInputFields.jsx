@@ -88,7 +88,7 @@ const UsersInputFields = ({
       )
   );
 
-  const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
+  const SearchBar = isModeSearch ? AddUserSearchBar : SearchUserBar;
 
   return (
     <div className={classes.root}>

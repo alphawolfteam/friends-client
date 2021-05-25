@@ -126,7 +126,6 @@ const UsersInputFields = ({
           setSelectedUser={setSelectedUser}
           setSearchedUsers={setSearchedUsers}
           groupUsers={groupUsers}
-          className={classes.inputField}
         />
       </div>
       <div className={classes.scrollBar}>

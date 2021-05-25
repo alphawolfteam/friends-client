@@ -49,7 +49,7 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
           setSelectedUser(selectedOption);
           setSearchValue('');
         }}
-        setOptions={setOptions}
+        setOptions={(value) => setOptions(value)}
       />
     </div>
   );

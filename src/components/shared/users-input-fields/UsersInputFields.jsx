@@ -88,7 +88,7 @@ const UsersInputFields = ({
       )
   );
 
-  const SearchBar = isModeSearch ? AddUserSearchBar : SearchUserBar;
+  const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
 
   return (
     <div className={classes.root}>
@@ -98,7 +98,7 @@ const UsersInputFields = ({
           onClick={() => setIsModeSearch((mode) => !mode)}
         >
           <Fade
-            in={isModeSearch}
+            in={!isModeSearch}
             mountOnEnter
             unmountOnExit
             exit={false}
@@ -108,7 +108,7 @@ const UsersInputFields = ({
           </Fade>
 
           <Fade
-            in={!isModeSearch}
+            in={isModeSearch}
             mountOnEnter
             unmountOnExit
             exit={false}

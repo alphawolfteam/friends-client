@@ -98,25 +98,30 @@ const UsersInputFields = ({
           className={classes.inputIcon}
           onClick={() => setIsModeSearch((mode) => !mode)}
         >
-           <Fade
-            in
+          <Fade
+            in={!isModeSearch}
             mountOnEnter
             unmountOnExit
             exit={false}
             timeout={500}
           >
-            {isModeSearch
-              ? (
-                <Tooltip title={t('tooltip.search')}>
-                  <SearchIcon />
-                </Tooltip>
-              )
-              : (
-                <Tooltip title={t('tooltip.add')}>
-                  <AddIcon />
-                </Tooltip>
-              )}
+            <Tooltip title={t('tooltip.search')}>
+              <SearchIcon />
+            </Tooltip>
           </Fade>
+
+          <Fade
+            in={isModeSearch}
+            mountOnEnter
+            unmountOnExit
+            exit={false}
+            timeout={500}
+          >
+            <Tooltip title={t('tooltip.add')}>
+              <AddIcon />
+            </Tooltip>
+          </Fade>
+        </IconButton>
         <SearchBar
           setSelectedUser={setSelectedUser}
           setSearchedUsers={setSearchedUsers}

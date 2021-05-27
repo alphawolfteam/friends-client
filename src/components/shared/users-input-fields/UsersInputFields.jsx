@@ -2,9 +2,9 @@ import React, {
   useState, useEffect, useContext, useMemo,
 } from 'react';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tooltip from '@material-ui/core/Tooltip';
-import Fade from '@material-ui/core/Fade';
+import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from 'react-i18next';
@@ -94,34 +94,24 @@ const UsersInputFields = ({
   return (
     <div className={classes.root}>
       <div className={classes.inputArea}>
-        <IconButton
-          className={classes.inputIcon}
-          onClick={() => setIsModeSearch((mode) => !mode)}
-        >
-          <Fade
-            in={!isModeSearch}
-            mountOnEnter
-            unmountOnExit
-            exit={false}
-            timeout={500}
-          >
-            <Tooltip title={t('tooltip.search')}>
+        <ButtonGroup className={classes.buttonGroup} variant="primary" color="primary">
+          <Tooltip title={t('tooltip.search')}>
+            <Button
+              className={`${classes.inputIcon} ${isModeSearch ? classes.active : classes.disabled}`}
+              onClick={() => setIsModeSearch(true)}
+            >
               <SearchIcon />
-            </Tooltip>
-          </Fade>
-
-          <Fade
-            in={isModeSearch}
-            mountOnEnter
-            unmountOnExit
-            exit={false}
-            timeout={500}
-          >
-            <Tooltip title={t('tooltip.add')}>
+            </Button>
+          </Tooltip>
+          <Tooltip title={t('tooltip.add')}>
+            <Button
+              className={`${classes.inputIcon} ${!isModeSearch ? classes.active : classes.disabled}`}
+              onClick={() => setIsModeSearch(false)}
+            >
               <AddIcon />
-            </Tooltip>
-          </Fade>
-        </IconButton>
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
         <SearchBar
           setSelectedUser={setSelectedUser}
           setSearchedUsers={setSearchedUsers}

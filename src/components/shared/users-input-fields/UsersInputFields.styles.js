@@ -37,11 +37,22 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'center',
     alignItems: 'center',
   },
+  buttonGroup: {
+    alignSelf: 'baseline',
+    position: 'relative',
+  },
   inputIcon: {
     color: theme.palette.primary.main,
-    position: 'relative',
-    marginRight: '.5rem',
-    alignSelf: 'baseline',
+    marginRight: '.25rem',
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0 0.1vw 0.2vw, rgba(0, 0, 0, 0.23) 0 0.1vw 0.2vw',
+    paddingTop: '7%',
+    paddingBottom: '7%',
+  },
+  active: {
+    backgroundColor: 'rgba(36, 188, 169, 0.2)',
+  },
+  disabled: {
+    backgroundColor: 'rgba(233, 235, 240, 0.9)',
   },
 }));
 

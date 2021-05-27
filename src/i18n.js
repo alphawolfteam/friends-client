@@ -73,7 +73,8 @@ const resources = {
         noGroupsFound: 'לא נמצאו אף קבוצות',
         noCurrentUserGroupsFound: 'אין לכם קבוצות! צרו אחת :)',
         noTagsFound: '(: אין תגיות.. אתם יכולים לצרף כמה',
-        noMembersFound: '(: אין חברים בקבוצה.. צרפו כמה',
+        noMembers: '(: אין חברים בקבוצה.. צרפו כמה',
+        noMembersFound: 'לא נמצאו חברים',
       },
       alertMessage: {
         cantLeaveGroup: 'כדי לצאת מהקבוצה מנו מנהלים חדשים :)',

@@ -1,13 +1,19 @@
 import React, {
   useState, useEffect, useContext, useMemo,
 } from 'react';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import SearchIcon from '@material-ui/icons/Search';
+import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './UsersInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
+import SearchUserBar from '../search-user-bar/SearchUserBar';
 import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
 import config from '../../../appConf';
@@ -25,15 +31,19 @@ const UsersInputFields = ({
   const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
+  const [searchedUsers, setSearchedUsers] = useState(groupUsers);
+  const [isModeSearch, setIsModeSearch] = useState(true);
+
+  const updatedUsersList = isModeSearch ? searchedUsers : groupUsers;
 
   const usersListToEdit = useMemo(
-    () => groupUsers.filter(({ user }) => user.id !== currentUser.genesisId),
-    [groupUsers, currentUser],
+    () => updatedUsersList.filter(({ user }) => user.id !== currentUser.genesisId),
+    [groupUsers, currentUser, searchedUsers, isModeSearch],
   );
 
-  const sortedUsers = useMemo(() => usersListToEdit.sort((firstUser, secondUser) => {
-    return secondUser.role - firstUser.role;
-  }), [usersListToEdit]);
+  const sortedUsers = useMemo(() => usersListToEdit
+    .sort((firstUser, secondUser) => secondUser.role - firstUser.role),
+  [usersListToEdit]);
 
   useEffect(() => {
     if (selectedUser) {
@@ -60,7 +70,7 @@ const UsersInputFields = ({
   );
 
   const renderUsersFields = () => (
-    sortedUsers.length > 0 ? sortedUsers.map(({ user, role }) => (
+    updatedUsersList.length > 0 ? sortedUsers.map(({ user, role }) => (
       <div key={user.id} className={classes.field}>
         <EditableUserRaw
           user={user}
@@ -79,12 +89,44 @@ const UsersInputFields = ({
       )
   );
 
+  const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
+
   return (
     <div className={classes.root}>
-      <AddUserSearchBar setSelectedUser={setSelectedUser} />
+      <div className={classes.inputArea}>
+        <ButtonGroup className={classes.buttonGroup} variant="primary" color="primary">
+          <Tooltip title={t('tooltip.search')}>
+            <Button
+              className={`${classes.inputIcon} ${isModeSearch ? classes.active : classes.disabled}`}
+              onClick={() => setIsModeSearch(true)}
+            >
+              <SearchIcon />
+            </Button>
+          </Tooltip>
+          <Tooltip title={t('tooltip.add')}>
+            <Button
+              className={`${classes.inputIcon} ${!isModeSearch ? classes.active : classes.disabled}`}
+              onClick={() => setIsModeSearch(false)}
+            >
+              <AddIcon />
+            </Button>
+          </Tooltip>
+        </ButtonGroup>
+        <SearchBar
+          setSelectedUser={setSelectedUser}
+          setSearchedUsers={setSearchedUsers}
+          groupUsers={groupUsers}
+        />
+      </div>
       <div className={classes.scrollBar}>
-        {renderCurrentUserField()}
+        {searchedUsers.some(({ user }) => user.id === currentUser.genesisId)
+          && renderCurrentUserField()}
         {renderUsersFields()}
+        {searchedUsers.length !== 0 && groupUsers.length === 1 && (
+        <Typography className={classes.message}>
+          {t('message.noMembers')}
+        </Typography>
+        )}
       </div>
     </div>
   );

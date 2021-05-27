@@ -19,6 +19,9 @@ const useStyles = makeStyles(() => ({
     overflow: 'auto',
     overflowX: 'hidden',
   },
+  tabs: {
+    marginBottom: '2%',
+  },
 }));
 
 export default useStyles;

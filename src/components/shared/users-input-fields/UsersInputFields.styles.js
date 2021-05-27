@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '0',
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '0.2%',
     alignSelf: 'center',

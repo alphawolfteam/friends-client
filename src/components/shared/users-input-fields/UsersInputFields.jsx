@@ -122,7 +122,7 @@ const UsersInputFields = ({
         {searchedUsers.some(({ user }) => user.id === currentUser.genesisId)
           && renderCurrentUserField()}
         {renderUsersFields()}
-        {groupUsers.length === 1 && (
+        {searchedUsers.length !== 0 && groupUsers.length === 1 && (
         <Typography className={classes.message}>
           {t('message.noMembers')}
         </Typography>

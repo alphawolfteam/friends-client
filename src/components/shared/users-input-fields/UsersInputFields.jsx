@@ -32,8 +32,9 @@ const UsersInputFields = ({
   const currentUser = useContext(userContext);
   const [selectedUser, setSelectedUser] = useState(undefined);
   const [searchedUsers, setSearchedUsers] = useState(groupUsers);
-  const [isModeSearch, setIsModeSearch] = useState(true);
+  const [mode, setMode] = useState('search');
 
+  const isModeSearch = mode === 'search';
   const updatedUsersList = isModeSearch ? searchedUsers : groupUsers;
 
   const usersListToEdit = useMemo(
@@ -41,9 +42,12 @@ const UsersInputFields = ({
     [groupUsers, currentUser, searchedUsers, isModeSearch],
   );
 
-  const sortedUsers = useMemo(() => usersListToEdit
-    .sort((firstUser, secondUser) => secondUser.role - firstUser.role),
-  [usersListToEdit]);
+  const sortedUsers = useMemo(
+    () => usersListToEdit.sort(
+      (firstUser, secondUser) => secondUser.role - firstUser.role,
+    ),
+    [usersListToEdit],
+  );
 
   useEffect(() => {
     if (selectedUser) {
@@ -69,25 +73,28 @@ const UsersInputFields = ({
     </div>
   );
 
-  const renderUsersFields = () => (
-    updatedUsersList.length > 0 ? sortedUsers.map(({ user, role }) => (
+  const renderUsersFields = () => (updatedUsersList.length > 0 ? (
+    sortedUsers.map(({ user, role }) => (
       <div key={user.id} className={classes.field}>
         <EditableUserRaw
           user={user}
           role={role}
           onRemove={() => onRemove(user)}
           onChangeRole={(newRole) => onChangeRole(user, newRole)}
-          isRemoveLoading={removeUserLoaders && removeUserLoaders.includes(user.id)}
-          isUpdateLoading={updateUserLoaders && updateUserLoaders.includes(user.id)}
+          isRemoveLoading={
+              removeUserLoaders && removeUserLoaders.includes(user.id)
+            }
+          isUpdateLoading={
+              updateUserLoaders && updateUserLoaders.includes(user.id)
+            }
         />
       </div>
     ))
-      : (
+  ) : (
         <Typography className={classes.message}>
           {t('message.noMembersFound')}
         </Typography>
-      )
-  );
+  ));
 
   const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
 

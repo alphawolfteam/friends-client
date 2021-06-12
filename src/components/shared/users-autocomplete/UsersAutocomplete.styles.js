@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
     justifyContent: 'space-between',
     flexDirection: 'row',
+    alignItems: 'center',
   },
 
   groupInfo: {
@@ -63,16 +64,26 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '3%',
     paddingBottom: '3%',
-    paddingLeft: '7%',
+    paddingLeft: '2em',
     width: '10%',
   },
 
   groupAmount: {
+    display: 'flex',
+    flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     fontWeight: '700',
     whiteSpace: 'nowrap',
     // alignSelf: 'center',
+  },
+
+  groupTitle: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1em',
+    fontWeight: '500',
+    fontFamily: theme.typography.fontFamily,
   },
 
   optionContent: {

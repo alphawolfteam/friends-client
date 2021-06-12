@@ -19,7 +19,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   const renderGroup = (group) => (
     <Card key={group._id} className={classes.groupCard}>
       <Typography
-        className={classes.optionContent}
+        className={classes.groupTitle}
         onClick={() => handleSelect(group)}
       >
         <strong>

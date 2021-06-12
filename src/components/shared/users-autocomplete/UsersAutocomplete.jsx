@@ -36,9 +36,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
             t('title.oneMember')
           ) : (
             <>
-              {group.users.length}
-              {' '}
-              {t('title.members')}
+              {`${group.users.length} ${t('title.members')}`}
             </>
           )}
         </Typography>

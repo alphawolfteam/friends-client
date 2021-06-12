@@ -60,22 +60,21 @@ const useStyles = makeStyles((theme) => ({
 
   groupInfo: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     paddingTop: '3%',
     paddingBottom: '3%',
-    paddingLeft: '2em',
-    width: '10%',
+    width: '45%',
   },
 
   groupAmount: {
+    width: '20%',
     display: 'flex',
     flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
     fontWeight: '700',
     whiteSpace: 'nowrap',
-    // alignSelf: 'center',
   },
 
   groupTitle: {
@@ -84,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1em',
     fontWeight: '500',
     fontFamily: theme.typography.fontFamily,
+    width: '80%',
   },
 
   optionContent: {

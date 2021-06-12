@@ -23,18 +23,14 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
       setOptions([]);
     } else {
       UsersService.searchUsers(searchValue)
-        .then((res) => {
-          setOptions(
-            res.filter((user) => !GroupsService.isUserExist(groupUsers, user.id)),
-          );
-        })
-        .then(async () => {
-          const result = (await GroupsService.searchPrivateGroups(searchValue))
-            .concat(await GroupsService.searchPublicGroups(searchValue))
-            .filter((group) => group._id !== groupId);
-
-          setOptions((users) => users.concat(result));
-        })
+        .then((res) => res.filter((user) => !GroupsService.isUserExist(groupUsers, user.id)))
+        .then(async (users) => setOptions(
+          users.concat(
+            (await GroupsService.searchPrivateGroups(searchValue))
+              .concat(await GroupsService.searchPublicGroups(searchValue))
+              .filter((group) => group._id !== groupId),
+          ),
+        ))
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }
   }, [searchValue, groupUsers]);

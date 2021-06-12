@@ -25,6 +25,7 @@ const UsersInputFields = ({
   onChangeRole,
   removeUserLoaders,
   updateUserLoaders,
+  groupId,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -91,9 +92,9 @@ const UsersInputFields = ({
       </div>
     ))
   ) : (
-        <Typography className={classes.message}>
-          {t('message.noMembersFound')}
-        </Typography>
+    <Typography className={classes.message}>
+      {t('message.noMembersFound')}
+    </Typography>
   ));
 
   const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
@@ -105,7 +106,7 @@ const UsersInputFields = ({
           <Tooltip title={t('tooltip.search')}>
             <Button
               className={`${classes.inputIcon} ${isModeSearch ? classes.active : classes.disabled}`}
-              onClick={() => setIsModeSearch(true)}
+              onClick={() => setMode('search')}
             >
               <SearchIcon />
             </Button>
@@ -113,7 +114,7 @@ const UsersInputFields = ({
           <Tooltip title={t('tooltip.add')}>
             <Button
               className={`${classes.inputIcon} ${!isModeSearch ? classes.active : classes.disabled}`}
-              onClick={() => setIsModeSearch(false)}
+              onClick={() => setMode('add')}
             >
               <AddIcon />
             </Button>
@@ -123,6 +124,7 @@ const UsersInputFields = ({
           setSelectedUser={setSelectedUser}
           setSearchedUsers={setSearchedUsers}
           groupUsers={groupUsers}
+          groupId={groupId}
         />
       </div>
       <div className={classes.scrollBar}>

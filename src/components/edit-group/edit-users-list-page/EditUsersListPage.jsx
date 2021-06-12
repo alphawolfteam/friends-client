@@ -58,6 +58,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
   return (
     <UsersInputFields
       groupUsers={group.users}
+      groupId={group._id}
       onAdd={handleAddUser}
       onRemove={handleRemoveUser}
       onChangeRole={handleChangeRole}

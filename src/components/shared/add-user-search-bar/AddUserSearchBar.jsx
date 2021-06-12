@@ -8,7 +8,7 @@ import GroupsService from '../../../services/GroupsService';
 import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
 import config from '../../../appConf';
 
-const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
+const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -16,7 +16,10 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    if (searchValue.length < config.length_limitations.min_length_user_search_value) {
+    if (
+      searchValue.length
+      < config.length_limitations.min_length_user_search_value
+    ) {
       setOptions([]);
     } else {
       UsersService.searchUsers(searchValue)
@@ -24,6 +27,13 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers }) => {
           setOptions(
             res.filter((user) => !GroupsService.isUserExist(groupUsers, user.id)),
           );
+        })
+        .then(async () => {
+          const result = (await GroupsService.searchPrivateGroups(searchValue))
+            .concat(await GroupsService.searchPublicGroups(searchValue))
+            .filter((group) => group._id !== groupId);
+
+          setOptions((users) => users.concat(result));
         })
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }

@@ -37,6 +37,7 @@ const AddDialogContent = ({ newGroup, setNewGroup }) => {
         component: (
           <UsersInputFields
             groupUsers={newGroup.users}
+            groupId={newGroup._id}
             onAdd={(userToAdd, role) => setNewGroupUser(setNewGroup, userToAdd, role)}
             onRemove={(user) => removeGroupUser(setNewGroup, user.id)}
             onChangeRole={(user, newRole) => setNewGroupUserRole(

@@ -38,6 +38,43 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: 'none',
     },
   },
+
+  groupCard: {
+    width: '17rem',
+    minHeight: '3em',
+    paddingRight: '0.5em',
+    marginBottom: '4%',
+    background: 'none',
+    boxShadow: 'none',
+    direction: 'rtl',
+    display: 'flex',
+    wordBreak: 'break-all',
+    '&:hover': {
+      background: theme.palette.hover.main,
+      boxShadow: 'none',
+    },
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
+  groupInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: '3%',
+    paddingBottom: '3%',
+    paddingLeft: '7%',
+    width: '10%',
+  },
+
+  groupAmount: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '1em',
+    fontWeight: '700',
+    whiteSpace: 'nowrap',
+    // alignSelf: 'center',
+  },
+
   optionContent: {
     fontWeight: '500',
     fontFamily: theme.typography.fontFamily,

@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     paddingTop: '3%',
     paddingBottom: '3%',
-    width: '45%',
+    width: '50%',
   },
 
   groupAmount: {
@@ -90,6 +90,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '500',
     fontFamily: theme.typography.fontFamily,
     fontSize: '1em',
+  },
+
+  typeIcon: {
+    marginLeft: '.5em',
   },
 }));
 

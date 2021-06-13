@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import Group from '@material-ui/icons/Group';
+import Person from '@material-ui/icons/Person';
 import { useTranslation } from 'react-i18next';
 import useStyles from './UsersAutocomplete.styles';
 import LockIcon from '../lock-icon/LockIcon';
@@ -18,6 +20,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
 
   const renderGroup = (group) => (
     <Card key={group._id} className={classes.groupCard}>
+      <Group color="primary" className={classes.typeIcon} />
       <Typography
         className={classes.groupTitle}
         onClick={() => handleSelect(group)}
@@ -46,6 +49,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
 
   const renderUser = (user) => (
     <Card key={user.id} className={classes.optionCard}>
+      <Person color="primary" className={classes.typeIcon} />
       <Typography
         className={classes.optionContent}
         onClick={() => handleSelect(user)}

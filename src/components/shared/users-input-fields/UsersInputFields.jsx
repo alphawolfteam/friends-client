@@ -31,11 +31,10 @@ const UsersInputFields = ({
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const currentUser = useContext(userContext);
-  const [selectedUser, setSelectedUser] = useState(undefined);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [searchedUsers, setSearchedUsers] = useState(groupUsers);
-  const [mode, setMode] = useState('search');
+  const [isModeSearch, setIsModeSearch] = useState('search');
 
-  const isModeSearch = mode === 'search';
   const updatedUsersList = isModeSearch ? searchedUsers : groupUsers;
 
   const usersListToEdit = useMemo(
@@ -50,16 +49,28 @@ const UsersInputFields = ({
     [usersListToEdit],
   );
 
-  useEffect(() => {
-    if (selectedUser) {
-      if (!GroupsService.isUserExist(groupUsers, selectedUser.id)) {
-        onAdd(selectedUser, config.roles.member_role_value);
-        setSelectedUser(undefined);
-      } else {
-        enqueueSnackbar(t('error.userAlreadyExist'));
-      }
+  const onUserSelect = (user, supressError = false) => {
+    if (!GroupsService.isUserExist(groupUsers, user.id)) {
+      onAdd(user, config.roles.member_role_value);
+      return true;
     }
-  }, [selectedUser]);
+
+    if (supressError === false) enqueueSnackbar(t('error.userAlreadyExist'), { variant: 'error' });
+
+    return false;
+  };
+
+  const onGroupSelect = () => selectedOption.users.map(onUserSelect).every((result) => !result)
+    && enqueueSnackbar(t('error.allUsersAlreadyExist'), { variant: 'error' });
+
+  useEffect(() => {
+    if (selectedOption) {
+      ('users' in selectedOption ? onGroupSelect : onUserSelect)(
+        selectedOption,
+      );
+      setSelectedOption(null);
+    }
+  }, [selectedOption]);
 
   const renderCurrentUserField = () => (
     <div className={classes.field}>
@@ -102,26 +113,34 @@ const UsersInputFields = ({
   return (
     <div className={classes.root}>
       <div className={classes.inputArea}>
-        <ButtonGroup className={classes.buttonGroup} variant="primary" color="primary">
+        <ButtonGroup
+          className={classes.buttonGroup}
+          variant="primary"
+          color="primary"
+        >
           <Tooltip title={t('tooltip.search')}>
             <Button
-              className={`${classes.inputIcon} ${isModeSearch ? classes.active : classes.disabled}`}
-              onClick={() => setMode('search')}
+              className={`${classes.inputIcon} ${
+                isModeSearch ? classes.active : classes.disabled
+              }`}
+              onClick={() => setIsModeSearch(true)}
             >
               <SearchIcon />
             </Button>
           </Tooltip>
           <Tooltip title={t('tooltip.add')}>
             <Button
-              className={`${classes.inputIcon} ${!isModeSearch ? classes.active : classes.disabled}`}
-              onClick={() => setMode('add')}
+              className={`${classes.inputIcon} ${
+                !isModeSearch ? classes.active : classes.disabled
+              }`}
+              onClick={() => setIsModeSearch(false)}
             >
               <AddIcon />
             </Button>
           </Tooltip>
         </ButtonGroup>
         <SearchBar
-          setSelectedUser={setSelectedUser}
+          setSelectedUser={setSelectedOption}
           setSearchedUsers={setSearchedUsers}
           groupUsers={groupUsers}
           groupId={groupId}
@@ -132,9 +151,9 @@ const UsersInputFields = ({
           && renderCurrentUserField()}
         {renderUsersFields()}
         {searchedUsers.length !== 0 && groupUsers.length === 1 && (
-        <Typography className={classes.message}>
-          {t('message.noMembers')}
-        </Typography>
+          <Typography className={classes.message}>
+            {t('message.noMembers')}
+          </Typography>
         )}
       </div>
     </div>

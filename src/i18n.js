@@ -54,6 +54,8 @@ const resources = {
         file: 'יש לבחור תמונה',
         server: ':) קרתה תקלה.. נסו שוב מאוחר יותר',
         userAlreadyExist: 'החבר/ה כבר בקבוצה',
+        someUsersAlreadyExist: 'חלק מהחברים כבר בקבוצה',
+        allUsersAlreadyExist: 'כל החברים כבר בקבוצה',
         emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',

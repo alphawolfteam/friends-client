@@ -49,20 +49,19 @@ const UsersInputFields = ({
     [usersListToEdit],
   );
 
-  const onUserSelect = (user, supressError = false) => {
+  const onUserSelect = (user, supressSnackbar = false) => {
     if (!GroupsService.isUserExist(groupUsers, user.id)) {
       onAdd(user, config.roles.member_role_value);
       return true;
     }
 
-    if (supressError === false) enqueueSnackbar(t('error.userAlreadyExist'), { variant: 'error' });
+    if (!supressSnackbar) enqueueSnackbar(t('error.userAlreadyExist'), { variant: 'error' });
 
     return false;
   };
 
   const onGroupSelect = async () => (await GroupsService.getGroupById(selectedOption._id)).users
-    .map((groupUser) => groupUser.user)
-    .map(onUserSelect)
+    .map((groupUser) => onUserSelect(groupUser.user, true))
     .every((result) => !result)
     && enqueueSnackbar(t('error.allUsersAlreadyExist'), { variant: 'error' });
 

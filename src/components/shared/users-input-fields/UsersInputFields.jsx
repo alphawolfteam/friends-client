@@ -60,7 +60,10 @@ const UsersInputFields = ({
     return false;
   };
 
-  const onGroupSelect = () => selectedOption.users.map(onUserSelect).every((result) => !result)
+  const onGroupSelect = async () => (await GroupsService.getGroupById(selectedOption._id)).users
+    .map((groupUser) => groupUser.user)
+    .map(onUserSelect)
+    .every((result) => !result)
     && enqueueSnackbar(t('error.allUsersAlreadyExist'), { variant: 'error' });
 
   useEffect(() => {

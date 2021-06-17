@@ -65,7 +65,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
     </Card>
   );
 
-  const renderOptions = () => options.map((option) => ('users' in option ? renderGroup(option) : renderUser(option)));
+  const renderOptions = () => options.map((option) => ('users' in option ? renderGroup : renderUser)(option));
 
   return (
     options.length > 0 && (

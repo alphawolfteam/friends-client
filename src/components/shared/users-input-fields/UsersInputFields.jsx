@@ -51,7 +51,7 @@ const UsersInputFields = ({
 
   const onUserSelect = (user, supressSnackbar = false) => {
     if (!GroupsService.isUserExist(groupUsers, user.id)) {
-      onAdd(user, config.roles.member_role_value);
+      onAdd(user, config.roles.member_role_value, supressSnackbar);
       return true;
     }
 
@@ -60,10 +60,16 @@ const UsersInputFields = ({
     return false;
   };
 
-  const onGroupSelect = async () => (await GroupsService.getGroupById(selectedOption._id)).users
-    .map((groupUser) => onUserSelect(groupUser.user, true))
-    .every((result) => !result)
-    && enqueueSnackbar(t('error.allUsersAlreadyExist'), { variant: 'error' });
+  const onGroupSelect = async () => {
+    const failed = (await GroupsService.getGroupById(selectedOption._id)).users
+      .map((groupUser) => onUserSelect(groupUser.user, true))
+      .every((result) => !result);
+
+    enqueueSnackbar(
+      t(failed ? 'error.allUsersAlreadyExist' : 'success.addUsers'),
+      { variant: failed ? 'error' : 'success' },
+    );
+  };
 
   useEffect(() => {
     if (selectedOption) {

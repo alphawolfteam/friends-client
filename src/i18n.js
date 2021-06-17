@@ -67,6 +67,7 @@ const resources = {
         removeTag: 'התגית הוסרה בהצלחה',
         role: 'התפקיד עודכן בהצלחה',
         addUser: 'החבר נוסף בהצלחה',
+        addUsers: 'החברים נוספו בהצלחה',
         removeUser: 'החבר הוסר בהצלחה',
         description: 'התיאור עודכן בהצלחה',
         name: 'השם עודכן בהצלחה',

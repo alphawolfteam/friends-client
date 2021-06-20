@@ -90,9 +90,13 @@ const EditUsersListPage = ({ group, setGroup }) => {
         open={openConfirmationDialog}
         onClose={handleConfirmationDialogClose}
         handleAnswer={handleConfirmationDialogAnswer}
-        message={t('alertMessage.addUsersMessage', {
-          usersLength: selectedUsersLength,
-        })}
+        message={
+          selectedUsersLength > 1
+            ? t('alertMessage.addUsersMessage', {
+              usersLength: selectedUsersLength,
+            })
+            : t('alertMessage.addUserMessage')
+        }
         preferredAnswer="agree"
       />
     </>

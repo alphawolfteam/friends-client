@@ -84,6 +84,7 @@ const resources = {
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         validationMessage: 'רק רגע..',
+        addUserMessage: 'להוסיף חבר אחד לקבוצה?',
         addUsersMessage: 'להוסיף {{usersLength}} חברים לקבוצה?',
       },
       timeGreeting: {

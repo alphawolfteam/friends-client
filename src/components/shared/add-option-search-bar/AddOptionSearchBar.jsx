@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import useStyles from './AddUserSearchBar.styles';
+import useStyles from './AddOptionSearchBar.styles';
 import UsersService from '../../../services/UsersService';
 import GroupsService from '../../../services/GroupsService';
 import OptionsAutocomplete from '../options-autocomplete/OptionsAutocomplete';
 import config from '../../../appConf';
 
-const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
+const AddOptionsSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
@@ -60,4 +60,4 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
     </div>
   );
 };
-export default AddUserSearchBar;
+export default AddOptionsSearchBar;

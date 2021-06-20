@@ -12,7 +12,7 @@ import { useSnackbar } from 'notistack';
 import useStyles from './OptionsInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
-import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
+import AddOptionsSearchBar from '../add-option-search-bar/AddOptionSearchBar';
 import SearchUserBar from '../search-user-bar/SearchUserBar';
 import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
@@ -116,7 +116,7 @@ const OptionsInputFields = ({
     </Typography>
   ));
 
-  const SearchBar = isModeSearch ? SearchUserBar : AddUserSearchBar;
+  const SearchBar = isModeSearch ? SearchUserBar : AddOptionsSearchBar;
 
   return (
     <div className={classes.root}>

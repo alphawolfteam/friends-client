@@ -4,6 +4,10 @@ class DocsService {
   static async redirect() {
     window.location.replace(`${config.uri.api_gateway_uri}docs`);
   }
+
+  static async open() {
+    window.open(`${config.uri.api_gateway_uri}docs`);
+  }
 }
 
 export default DocsService;

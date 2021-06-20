@@ -87,10 +87,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     maxWidth: '100%',
     width: '100%',
-    height: 'auto',
+    height: '100%',
     top: '50%',
     left: '50%',
     transform: 'translate( -50%, -50%)',
+    objectFit: 'cover',
   },
 }));
 

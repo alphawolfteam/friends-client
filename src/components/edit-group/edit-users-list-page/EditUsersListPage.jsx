@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
+import OptionsInputFields from '../../shared/options-input-fields/OptionsInputFields';
 import {
   setNewGroupUser,
   removeGroupUser,
   setNewGroupUserRole,
 } from '../../shared/sharedFunctions';
 import GroupsService from '../../../services/GroupsService';
+import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 
 const EditUsersListPage = ({ group, setGroup }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
   const [removeUserLoaders, setRemoveUserLoaders] = useState([]);
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
+  const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+  const [selectedUsersLength, setSelectedUsersLength] = useState(0);
 
-  const handleAddUser = (userToAdd, role) => {
+  const resolveDialog = useRef(null);
+
+  const handleAddUser = (userToAdd, role, suppressSnackbar) => {
     setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
-      .then(() => {
-        enqueueSnackbar(t('success.addUser'), { variant: 'success' });
-      })
+      .then(() => !suppressSnackbar && enqueueSnackbar(t('success.addUser'), { variant: 'success' }))
       .catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
         removeGroupUser(setGroup, userToAdd.id);
@@ -55,15 +58,48 @@ const EditUsersListPage = ({ group, setGroup }) => {
       });
   };
 
+  const showCopyGroupWarning = (length) => {
+    setOpenConfirmationDialog(true);
+    setSelectedUsersLength(length);
+
+    return new Promise((resolve) => {
+      resolveDialog.current = resolve;
+    });
+  };
+
+  const handleConfirmationDialogClose = () => {
+    setOpenConfirmationDialog(false);
+    resolveDialog.current(false);
+  };
+
+  const handleConfirmationDialogAnswer = (answer) => resolveDialog.current(answer === 'agree');
+
   return (
-    <UsersInputFields
-      groupUsers={group.users}
-      onAdd={handleAddUser}
-      onRemove={handleRemoveUser}
-      onChangeRole={handleChangeRole}
-      removeUserLoaders={removeUserLoaders}
-      updateUserLoaders={updateUserLoaders}
-    />
+    <>
+      <OptionsInputFields
+        groupUsers={group.users}
+        groupId={group._id}
+        onAdd={handleAddUser}
+        onRemove={handleRemoveUser}
+        onChangeRole={handleChangeRole}
+        removeUserLoaders={removeUserLoaders}
+        updateUserLoaders={updateUserLoaders}
+        showCopyGroupWarning={showCopyGroupWarning}
+      />
+      <AlertDialogTemplate
+        open={openConfirmationDialog}
+        onClose={handleConfirmationDialogClose}
+        handleAnswer={handleConfirmationDialogAnswer}
+        message={
+          selectedUsersLength > 1
+            ? t('alertMessage.addUsersMessage', {
+              usersLength: selectedUsersLength,
+            })
+            : t('alertMessage.addUserMessage')
+        }
+        preferredAnswer="agree"
+      />
+    </>
   );
 };
 

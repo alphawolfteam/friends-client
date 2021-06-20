@@ -30,7 +30,7 @@ const InfoComponent = () => {
           <Typography component="pre" className={classes.text}>
             {t('text.info')}
           </Typography>
-          <Typography className={classes.link} onClick={() => { DocsService.redirect(); }}>
+          <Typography className={classes.link} onClick={() => DocsService.open()}>
             {t('link.docs')}
           </Typography>
           <Typography className={classes.message}>

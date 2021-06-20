@@ -45,7 +45,7 @@ const resources = {
       placeholder: {
         addTag: 'כתבו תגית..',
         searchFriend: 'חפשו בקבוצה...',
-        addFriend: 'הוסיפו חבר...',
+        addFriend: 'הוסיפו חבר או קבוצה...',
         searchGroup: 'חיפוש לפי שם או תגית..',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',
@@ -54,6 +54,7 @@ const resources = {
         file: 'יש לבחור תמונה',
         server: ':) קרתה תקלה.. נסו שוב מאוחר יותר',
         userAlreadyExist: 'החבר/ה כבר בקבוצה',
+        allUsersAlreadyExist: 'כל החברים כבר בקבוצה',
         emptyTagInput: 'יש למלא את התגית',
         tagAlreadyExist: 'התגית כבר קיימת',
         tagTooShort: 'תגית צריכה להכיל לפחות {{minTagLength}} תווים',
@@ -65,6 +66,7 @@ const resources = {
         removeTag: 'התגית הוסרה בהצלחה',
         role: 'התפקיד עודכן בהצלחה',
         addUser: 'החבר נוסף בהצלחה',
+        addUsers: 'החברים נוספו בהצלחה',
         removeUser: 'החבר הוסר בהצלחה',
         description: 'התיאור עודכן בהצלחה',
         name: 'השם עודכן בהצלחה',
@@ -82,6 +84,8 @@ const resources = {
         leaveGroup: 'אוי חבל.. לצאת מהקבוצה?',
         deleteGroup: 'אוי חבל.. למחוק את הקבוצה?',
         validationMessage: 'רק רגע..',
+        addUserMessage: 'להוסיף חבר אחד לקבוצה?',
+        addUsersMessage: 'להוסיף {{usersLength}} חברים לקבוצה?',
       },
       timeGreeting: {
         morning: 'בוקר טוב',

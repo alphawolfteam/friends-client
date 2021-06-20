@@ -41,6 +41,7 @@ const useStyles = makeStyles(() => ({
     zIndex: 1,
     transform: 'translate( 20%, -55%)',
     verticalAlign: 'super',
+    objectFit: 'cover',
   },
 
 }));

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
+import OptionsInputFields from '../../shared/options-input-fields/OptionsInputFields';
 import {
   setNewGroupUser,
   removeGroupUser,
@@ -76,7 +76,7 @@ const EditUsersListPage = ({ group, setGroup }) => {
 
   return (
     <>
-      <UsersInputFields
+      <OptionsInputFields
         groupUsers={group.users}
         groupId={group._id}
         onAdd={handleAddUser}

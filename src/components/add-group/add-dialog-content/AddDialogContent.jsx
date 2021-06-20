@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import UsersInputFields from '../../shared/users-input-fields/UsersInputFields';
+import OptionsInputFields from '../../shared/options-input-fields/OptionsInputFields';
 import Paging from '../../shared/paging/Paging';
 import GroupDescriptionInput from '../group-description-input/GroupDescriptionInput';
 import TagsInputFields from '../../shared/tags-input-fields/TagsInputFields';
@@ -35,7 +35,7 @@ const AddDialogContent = ({ newGroup, setNewGroup }) => {
       {
         headline: t('headline.friends'),
         component: (
-          <UsersInputFields
+          <OptionsInputFields
             groupUsers={newGroup.users}
             groupId={newGroup._id}
             onAdd={(userToAdd, role) => setNewGroupUser(setNewGroup, userToAdd, role)}

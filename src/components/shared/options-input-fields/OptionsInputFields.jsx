@@ -9,7 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
-import useStyles from './UsersInputFields.styles';
+import useStyles from './OptionsInputFields.styles';
 import UserRaw from '../user-raw/UserRaw';
 import EditableUserRaw from '../editable-user-raw/EditableUserRaw';
 import AddUserSearchBar from '../add-user-search-bar/AddUserSearchBar';
@@ -18,7 +18,7 @@ import GroupsService from '../../../services/GroupsService';
 import userContext from '../../../stores/userStore';
 import config from '../../../appConf';
 
-const UsersInputFields = ({
+const OptionsInputFields = ({
   groupUsers,
   onAdd,
   onRemove,
@@ -168,4 +168,4 @@ const UsersInputFields = ({
   );
 };
 
-export default UsersInputFields;
+export default OptionsInputFields;

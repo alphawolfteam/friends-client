@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import useStyles from './AddUserSearchBar.styles';
 import UsersService from '../../../services/UsersService';
 import GroupsService from '../../../services/GroupsService';
-import UsersAutocomplete from '../users-autocomplete/UsersAutocomplete';
+import OptionsAutocomplete from '../options-autocomplete/OptionsAutocomplete';
 import config from '../../../appConf';
 
 const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
@@ -49,7 +49,7 @@ const AddUserSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
         className={classes.searchBar}
         autoComplete="off"
       />
-      <UsersAutocomplete
+      <OptionsAutocomplete
         options={options}
         setSelectedOption={(selectedOption) => {
           setSelectedUser(selectedOption);

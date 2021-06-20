@@ -4,12 +4,12 @@ import Typography from '@material-ui/core/Typography';
 import Group from '@material-ui/icons/Group';
 import Person from '@material-ui/icons/Person';
 import { useTranslation } from 'react-i18next';
-import useStyles from './UsersAutocomplete.styles';
+import useStyles from './OptionsAutocomplete.styles';
 import LockIcon from '../lock-icon/LockIcon';
 
 const idLength = 4;
 
-const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
+const OptionsAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
@@ -77,4 +77,4 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   );
 };
 
-export default UsersAutocomplete;
+export default OptionsAutocomplete;

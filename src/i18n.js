@@ -45,7 +45,7 @@ const resources = {
       placeholder: {
         addTag: 'כתבו תגית..',
         searchFriend: 'חפשו בקבוצה...',
-        addFriend: 'הוסיפו חבר...',
+        addFriend: 'הוסיפו חבר או קבוצה...',
         searchGroup: 'חיפוש לפי שם או תגית..',
         description: 'הוסיפו תיאור..',
         name: 'הוסיפו שם..',

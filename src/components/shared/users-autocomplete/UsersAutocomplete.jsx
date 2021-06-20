@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import useStyles from './UsersAutocomplete.styles';
 import LockIcon from '../lock-icon/LockIcon';
 
-const tagLength = 4;
+const idLength = 4;
 
 const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   const classes = useStyles();
@@ -28,7 +28,7 @@ const UsersAutocomplete = ({ options, setOptions, setSelectedOption }) => {
         <strong>
           {group.name}
           {' #'}
-          {group._id.substr(-tagLength)}
+          {group._id.substr(-idLength)}
         </strong>
       </Typography>
 

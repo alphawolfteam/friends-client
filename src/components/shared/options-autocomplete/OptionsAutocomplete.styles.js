@@ -59,15 +59,17 @@ const useStyles = makeStyles((theme) => ({
 
   groupInfo: {
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
     paddingTop: '3%',
     paddingBottom: '3%',
-    width: '50%',
+    width: '10em',
+    '& > div > svg': {
+      fontSize: '1.5em',
+      marginLeft: '.25em',
+    },
   },
 
   groupAmount: {
-    width: '20%',
     display: 'flex',
     flexDirection: 'column',
     fontFamily: theme.typography.fontFamily,

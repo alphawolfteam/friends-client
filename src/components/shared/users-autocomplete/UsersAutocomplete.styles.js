@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: 'none',
     },
     justifyContent: 'space-between',
-    flexDirection: 'row',
     alignItems: 'center',
   },
 

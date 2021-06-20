@@ -19,12 +19,13 @@ const OptionsAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   };
 
   const renderGroup = (group) => (
-    <Card key={group._id} className={classes.groupCard}>
+    <Card
+      key={group._id}
+      className={classes.groupCard}
+      onClick={() => handleSelect(group)}
+    >
       <Group color="primary" className={classes.typeIcon} />
-      <Typography
-        className={classes.groupTitle}
-        onClick={() => handleSelect(group)}
-      >
+      <Typography className={classes.groupTitle}>
         <strong>
           {group.name}
           {' #'}
@@ -38,9 +39,7 @@ const OptionsAutocomplete = ({ options, setOptions, setSelectedOption }) => {
           {group.users.length === 1 ? (
             t('title.oneMember')
           ) : (
-            <>
-              {`${group.users.length} ${t('title.members')}`}
-            </>
+            <>{`${group.users.length} ${t('title.members')}`}</>
           )}
         </Typography>
       </div>
@@ -48,12 +47,13 @@ const OptionsAutocomplete = ({ options, setOptions, setSelectedOption }) => {
   );
 
   const renderUser = (user) => (
-    <Card key={user.id} className={classes.optionCard}>
+    <Card
+      key={user.id}
+      className={classes.optionCard}
+      onClick={() => handleSelect(user)}
+    >
       <Person color="primary" className={classes.typeIcon} />
-      <Typography
-        className={classes.optionContent}
-        onClick={() => handleSelect(user)}
-      >
+      <Typography className={classes.optionContent}>
         <strong>
           {user.firstName}
           {' '}

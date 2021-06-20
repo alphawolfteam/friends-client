@@ -61,12 +61,13 @@ const OptionsInputFields = ({
       await GroupsService.getGroupById(selectedOption._id)
     ).users.map((groupUser) => groupUser.user);
 
-    if (
-      users.every((groupUser) => GroupsService.isUserExist(groupUsers, groupUser.id))
-    ) {
+    const newUsers = users
+      .filter((groupUser) => !GroupsService.isUserExist(groupUsers, groupUser.id));
+
+    if (!newUsers.length) {
       enqueueSnackbar(t('error.allUsersAlreadyExist'));
-    } else if (await showCopyGroupWarning(users.length)) {
-      users.forEach((user) => onUserSelect(user, true));
+    } else if (await showCopyGroupWarning(newUsers.length)) {
+      newUsers.forEach((user) => onUserSelect(user, true));
       enqueueSnackbar(t('success.addUsers'), { variant: 'success' });
     }
   };

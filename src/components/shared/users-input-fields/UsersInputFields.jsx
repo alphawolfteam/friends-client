@@ -26,6 +26,7 @@ const UsersInputFields = ({
   removeUserLoaders,
   updateUserLoaders,
   groupId,
+  showCopyGroupWarning,
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -53,11 +54,21 @@ const UsersInputFields = ({
     if (!GroupsService.isUserExist(groupUsers, user.id)) {
       onAdd(user, config.roles.member_role_value, suppressSnackbar);
     } else if (!suppressSnackbar) enqueueSnackbar(t('error.userAlreadyExist'));
+  };
 
-    enqueueSnackbar(
-      t(failed ? 'error.allUsersAlreadyExist' : 'success.addUsers'),
-      { variant: failed ? 'error' : 'success' },
-    );
+  const onGroupSelect = async () => {
+    const users = (
+      await GroupsService.getGroupById(selectedOption._id)
+    ).users.map((groupUser) => groupUser.user);
+
+    if (
+      users.every((groupUser) => GroupsService.isUserExist(groupUsers, groupUser.id))
+    ) {
+      enqueueSnackbar(t('error.allUsersAlreadyExist'));
+    } else if (await showCopyGroupWarning(users.length)) {
+      users.forEach((user) => onUserSelect(user, true));
+      enqueueSnackbar(t('success.addUsers'), { variant: 'success' });
+    }
   };
 
   useEffect(() => {

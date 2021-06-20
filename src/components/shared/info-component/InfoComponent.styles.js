@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   text: {
     direction: 'rtl',
     textAlign: 'center',
-    fontSize: '1.15em',
     overflowWrap: 'break-word',
     marginBottom: '1.25em',
     marginTop: '1em',
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   message: {
     direction: 'rtl',
     textAlign: 'center',
-    fontSize: '1.35em',
+    fontSize: '1.25em',
     fontWeight: 600,
     color: theme.palette.primary.main,
   },
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     direction: 'rtl',
     textAlign: 'center',
     marginBottom: '1.25em',
-    fontSize: '1.25em',
+    fontSize: '1.15em',
     textDecoration: 'underline',
     color: theme.palette.font.main,
     fontFamily: theme.typography.fontFamily,

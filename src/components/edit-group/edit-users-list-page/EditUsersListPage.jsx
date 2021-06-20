@@ -15,10 +15,10 @@ const EditUsersListPage = ({ group, setGroup }) => {
   const [removeUserLoaders, setRemoveUserLoaders] = useState([]);
   const [updateUserLoaders, setUpdateUserLoaders] = useState([]);
 
-  const handleAddUser = (userToAdd, role, supressSnackbar) => {
+  const handleAddUser = (userToAdd, role, suppressSnackbar) => {
     setNewGroupUser(setGroup, userToAdd, role);
     GroupsService.addUserToGroup(group._id, { id: userToAdd.id, role })
-      .then(() => !supressSnackbar && enqueueSnackbar(t('success.addUser'), { variant: 'success' }))
+      .then(() => !suppressSnackbar && enqueueSnackbar(t('success.addUser'), { variant: 'success' }))
       .catch(() => {
         enqueueSnackbar(t('error.server'), { variant: 'error' });
         removeGroupUser(setGroup, userToAdd.id);

@@ -34,7 +34,7 @@ const OptionsInputFields = ({
   const currentUser = useContext(userContext);
   const [selectedOption, setSelectedOption] = useState(null);
   const [searchedUsers, setSearchedUsers] = useState(groupUsers);
-  const [isModeSearch, setIsModeSearch] = useState('search');
+  const [isModeSearch, setIsModeSearch] = useState(true);
 
   const updatedUsersList = isModeSearch ? searchedUsers : groupUsers;
 

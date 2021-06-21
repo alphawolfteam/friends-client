@@ -8,7 +8,7 @@ import userContext from '../../../stores/userStore';
 import GroupsService from '../../../services/GroupsService';
 import AlertDialogTemplate from '../../shared/alert-dialog-template/AlertDialogTemplate';
 import AlertMessageTemplate from '../../shared/alert-message-template/AlertMessageTemplate';
-import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
+import CustomBackdrop from '../../shared/custom-backdrop/CustomBackdrop';
 import useStyles from './EditDialogActions.styles';
 import config from '../../../appConf';
 
@@ -27,8 +27,8 @@ const EditDialogActions = ({ group, onClose }) => {
   const [openAlertDeleteDialog, setOpenAlertDeleteDialog] = useState(false);
   const [alertDeleteDialogMessage, setAlertDeleteDialogMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(undefined);
-  const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(undefined);
+  const [dialogLeaveAnswer, setDialogLeaveAnswer] = useState(null);
+  const [dialogDeleteAnswer, setDialogDeleteAnswer] = useState(null);
   const currentUserRole = GroupsService.getUserRoleFromPopulatedGroup(
     group,
     currentUser.genesisId,
@@ -122,7 +122,7 @@ const EditDialogActions = ({ group, onClose }) => {
         open={openAlertLeaveMessage}
         onClose={() => setOpenAlertLeaveMessage(false)}
       />
-      <CustomeBackdrop open={isLoading} />
+      <CustomBackdrop open={isLoading} />
     </>
   );
 };

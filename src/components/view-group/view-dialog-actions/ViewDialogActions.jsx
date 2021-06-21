@@ -6,7 +6,7 @@ import { ExitToAppOutlined } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from 'notistack';
 import useStyles from './ViewDialogActions.styles';
-import CustomeBackdrop from '../../shared/custome-backdrop/CustomeBackdrop';
+import CustomBackdrop from '../../shared/custom-backdrop/CustomBackdrop';
 import userContext from '../../../stores/userStore';
 import researchContext from '../../../stores/researchStore';
 import GroupsService from '../../../services/GroupsService';
@@ -101,7 +101,7 @@ const ViewDialogActions = ({ group, onClose }) => {
         handleAnswer={setDialogDeleteAnswer}
         preferredAnswer="disagree"
       />
-      <CustomeBackdrop open={isLoading} />
+      <CustomBackdrop open={isLoading} />
     </div>
   );
 };

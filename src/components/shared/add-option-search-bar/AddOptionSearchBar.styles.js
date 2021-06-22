@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '600',
     position: 'relative',
     alignSelf: 'end',
+    minHeight: '2.5rem',
   },
 }));
 

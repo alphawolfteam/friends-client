@@ -25,11 +25,10 @@ const AddOptionsSearchBar = ({ setSelectedUser, groupUsers, groupId }) => {
       UsersService.searchUsers(searchValue)
         .then((res) => res.filter((user) => !GroupsService.isUserExist(groupUsers, user.id)))
         .then(async (users) => setOptions(
-          users.concat(
-            (await GroupsService.searchPrivateGroups(searchValue))
-              .concat(await GroupsService.searchPublicGroups(searchValue))
-              .filter((group) => group._id !== groupId),
-          ),
+          (await GroupsService.searchPrivateGroups(searchValue))
+            .concat(await GroupsService.searchPublicGroups(searchValue))
+            .filter((group) => group._id !== groupId)
+            .concat(users),
         ))
         .catch(() => enqueueSnackbar(t('error.server'), { variant: 'error' }));
     }

@@ -27,7 +27,7 @@
   "scripts": {
     "mock-api": "nodemon --exec babel-node ./mock-api/app.js",
     "dev": "run-p start mock-api",
-    "start": "set BROWSER=none&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

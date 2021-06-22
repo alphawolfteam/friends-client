@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
     position: 'relative',
+    alignSelf: 'end',
+    minHeight: '2.5rem',
   },
 }));
 

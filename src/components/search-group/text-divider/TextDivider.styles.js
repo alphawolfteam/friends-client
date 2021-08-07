@@ -2,12 +2,20 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '50vw',
+    width: '100%',
     alignSelf: 'center',
+    position: 'sticky',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    zIndex: '1',
+    top: 0,
+    backgroundColor: theme.palette.background.main,
   },
   divider: {
     backgroundColor: theme.palette.primary.main,
     marginBottom: '1%',
+    width: '50vw',
   },
   dividerText: {
     fontFamily: theme.typography.fontFamily,
